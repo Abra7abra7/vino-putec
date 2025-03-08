@@ -38,13 +38,8 @@ export function LuxuryWineryHeader() {
       action: () => {},
     },
     {
-      title: "Wine Collection",
-      items: [
-        { title: "Red Wines", href: "/wines/red", action: () => {} },
-        { title: "Limited Edition", href: "/wines/limited", action: () => {} },
-        { title: "Estate Reserve", href: "/wines/reserve", action: () => {} },
-        { title: "Legacy Series", href: "/wines/legacy", action: () => {} },
-      ],
+      title: "Wines",
+      href: "/wines",
       action: () => {},
     },
     {
@@ -60,15 +55,6 @@ export function LuxuryWineryHeader() {
     {
       title: "Contact",
       href: "/contact",
-      action: () => {},
-    },
-    {
-      title: "Legal",
-      items: [
-        { title: "Privacy Policy", href: "/privacy", action: () => {} },
-        { title: "Terms of Service", href: "/terms", action: () => {} },
-        { title: "Shipping Information", href: "/shipping", action: () => {} },
-      ],
       action: () => {},
     },
   ];
@@ -200,46 +186,15 @@ export function LuxuryWineryHeader() {
                         {item.title}
                       </Link>
                     ) : (
-                      <>
-                        <button
-                          className="w-full py-4 text-center font-montserrat text-stone-900 hover:text-wine transition-colors"
-                          onClick={() => {
-                            setActiveDropdown(activeDropdown === item.title ? null : item.title);
-                            item.action && item.action();
-                          }}
-                        >
-                          <span className="flex items-center justify-center">
-                            {item.title}
-                            <ChevronDown className={`ml-1 h-4 w-4 transform transition-transform ${
-                              activeDropdown === item.title ? "rotate-180" : ""
-                            }`} />
-                          </span>
-                        </button>
-                        <AnimatePresence>
-                          {activeDropdown === item.title && item.items && (
-                            <motion.div
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="bg-stone-50"
-                            >
-                              {item.items.map((subItem) => (
-                                <Link
-                                  key={subItem.href}
-                                  href={subItem.href}
-                                  className="block py-3 text-center font-montserrat text-sm text-stone-700 hover:text-wine transition-colors"
-                                  onClick={() => {
-                                    setIsOpen(false);
-                                    subItem.action && subItem.action();
-                                  }}
-                                >
-                                  {subItem.title}
-                                </Link>
-                              ))}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </>
+                      <button
+                        className="block py-4 w-full text-left font-montserrat text-stone-900 hover:text-wine transition-colors"
+                        onClick={() => {
+                          setIsOpen(false);
+                          item.action && item.action();
+                        }}
+                      >
+                        {item.title}
+                      </button>
                     )}
                   </div>
                 ))}

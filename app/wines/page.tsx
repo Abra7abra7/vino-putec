@@ -6,9 +6,61 @@ import { LuxuryWineryFooter } from '../components/ui/luxury-winery-footer';
 import { WineCollectionShowcase } from '../components/WineCollectionShowcase';
 import { CartProvider, useCart } from '../components/cart/CartProvider';
 import { useCartStore } from '../components/cart/CartStore';
-import { wines } from '../data/wines';
+import { wines as initialWines } from '../data/wines';
 import { Wine as WineType } from '../data/wines';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
+
+const wines = [
+  ...initialWines,
+  {
+    id: 'white-1',
+    name: 'Chardonnay',
+    year: '2022',
+    region: 'Burgundy, France',
+    description: 'A classic Chardonnay with notes of apple and oak.',
+    price: '€25',
+    numericPrice: 25,
+    rating: 4,
+    image: '/images/chardonnay.jpg',
+    category: 'white'
+  },
+  {
+    id: 'white-2',
+    name: 'Sauvignon Blanc',
+    year: '2023',
+    region: 'Marlborough, New Zealand',
+    description: 'Crisp and refreshing with tropical fruit flavors.',
+    price: '€22',
+    numericPrice: 22,
+    rating: 5,
+    image: '/images/sauvignon_blanc.jpg',
+    category: 'white'
+  },
+  {
+    id: 'rose-1',
+    name: 'Provence Rosé',
+    year: '2022',
+    region: 'Provence, France',
+    description: 'Light and aromatic with hints of strawberry and peach.',
+    price: '€20',
+    numericPrice: 20,
+    rating: 4,
+    image: '/images/provence_rose.jpg',
+    category: 'rose'
+  },
+  {
+    id: 'rose-2',
+    name: 'Zinfandel Rosé',
+    year: '2023',
+    region: 'California, USA',
+    description: 'Fruity and sweet with raspberry and cherry notes.',
+    price: '€18',
+    numericPrice: 18,
+    rating: 3,
+    image: '/images/zinfandel_rose.jpg',
+    category: 'rose'
+  }
+];
 
 export default function WinesPage() {
   const [mounted, setMounted] = useState(false);
@@ -58,7 +110,9 @@ export default function WinesPage() {
   const categories = [
     { id: null, name: 'All Wines' },
     { id: 'red', name: 'Red Wines' },
-    { id: 'limited', name: 'Limited Editions' }
+    { id: 'limited', name: 'Limited Editions' },
+    { id: 'white', name: 'White Wines' },
+    { id: 'rose', name: 'Rosé Wines' }
   ];
 
   return (
@@ -196,7 +250,7 @@ export default function WinesPage() {
             { href: "/shipping", label: "Shipping Information" },
           ]}
           copyright={{
-            text: "© 2024 Putec Winery",
+            text: " 2024 Putec Winery",
             license: "All rights reserved",
           }}
         />

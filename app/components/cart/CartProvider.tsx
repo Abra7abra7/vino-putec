@@ -76,8 +76,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       // Get the current origin for success and cancel URLs
       const origin = window.location.origin;
       
-      console.log('Starting checkout process with items:', items);
-      
       // Create checkout session
       const response = await fetch('/api/checkout', {
         method: 'POST',
@@ -91,28 +89,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         }),
       });
       
-      console.log('Checkout API response status:', response.status);
-      
       if (!response.ok) {
         const errorData = await response.text();
-        console.error('Checkout API error:', errorData);
         setCheckoutError(`API error: ${response.status} - ${errorData || 'Unknown error'}`);
         setIsCheckingOut(false);
         return;
       }
       
       const data = await response.json();
-      console.log('Checkout session data:', data);
       
       if (data.error) {
-        console.error('Session creation error:', data.error);
         setCheckoutError(data.error);
         setIsCheckingOut(false);
         return;
       }
       
       if (!data.sessionId) {
-        console.error('No session ID returned from API');
         setCheckoutError('Failed to create checkout session. No session ID returned.');
         setIsCheckingOut(false);
         return;
@@ -121,22 +113,18 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       // Redirect to Stripe Checkout
       const stripe = await stripePromise;
       if (!stripe) {
-        console.error('Stripe not initialized');
         setCheckoutError('Stripe could not be initialized. Please check your configuration.');
         setIsCheckingOut(false);
         return;
       }
       
-      console.log('Redirecting to Stripe checkout with session ID:', data.sessionId);
       const { error } = await stripe.redirectToCheckout({ sessionId: data.sessionId });
       
       if (error) {
-        console.error('Stripe redirect error:', error);
         setCheckoutError(error.message || 'An error occurred during checkout.');
         setIsCheckingOut(false);
       }
     } catch (error) {
-      console.error('Error during checkout:', error);
       setCheckoutError(`An unexpected error occurred: ${error instanceof Error ? error.message : 'Unknown error'}`);
       setIsCheckingOut(false);
     }

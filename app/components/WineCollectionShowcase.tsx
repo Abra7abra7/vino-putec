@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { Wine, Star, X } from "lucide-react";
@@ -26,23 +26,31 @@ interface WineCollectionShowcaseProps {
 const WineCard = ({ wine }: { wine: WineProps }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <motion.div
       className="group relative bg-white rounded-lg overflow-hidden transition-all duration-500"
       initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      animate={{ opacity: isLoading ? 0.5 : 1, y: 0 }}
       viewport={{ once: true }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       whileHover={{ 
-        boxShadow: "0 22px 40px rgba(0, 0, 0, 0.15)",
-        y: -5,
-        transition: { duration: 0.4, ease: "easeOut" }
+        boxShadow: "0 12px 24px rgba(0, 0, 0, 0.1)",
+        y: -2,
+        transition: { duration: 0.3, ease: "easeOut" }
       }}
       style={{
         border: isHovered ? "1px solid rgba(191, 155, 48, 0.3)" : "1px solid transparent",
       }}
+      tabIndex={0} // Make focusable for keyboard navigation
+      role="button" // Indicate interactive element
     >
       {/* Image Container */}
       <div className="relative h-[400px] overflow-hidden bg-gradient-to-b from-[#f8f5f0] to-[#e8e4e0]">
@@ -169,10 +177,18 @@ const WineCard = ({ wine }: { wine: WineProps }) => {
           initial={{ backgroundColor: "#1c1917", color: "#ffffff" }}
           whileHover={{ 
             backgroundColor: "#bf9b30",
-            transition: { duration: 0.4 }
+            transition: { duration: 0.3 }
           }}
           whileTap={{ scale: 0.98 }}
-          onClick={() => wine.detailsUrl ? window.open(wine.detailsUrl, '_blank') : setIsModalOpen(true)}
+          onClick={() => {
+            if (wine.detailsUrl) {
+              window.open(wine.detailsUrl, '_blank');
+            } else {
+              setIsModalOpen(true);
+            }
+          }}
+          aria-label={wine.detailsUrl ? `View details of ${wine.name}` : `Open modal for ${wine.name}`}
+          disabled={isLoading} // Disable while loading
         >
           <motion.span
             className="relative z-10 inline-block"
@@ -181,15 +197,16 @@ const WineCard = ({ wine }: { wine: WineProps }) => {
               transition: { duration: 0.4 }
             }}
           >
-            View Details
+            {isLoading ? "Loading..." : "View Details"}
           </motion.span>
           <motion.div 
             className="absolute bottom-0 left-0 h-[2px] bg-[#bf9b30]"
             initial={{ width: "0%" }}
             whileHover={{ 
               width: "100%",
-              transition: { duration: 0.3, delay: 0.1 }
+              transition: { duration: 0.2, delay: 0.05 }
             }}
+            aria-hidden="true"
           />
         </motion.button>
       </motion.div>
@@ -299,6 +316,13 @@ export function WineCollectionShowcase({
   title = "Featured Wines",
   subtitle = "Discover our exceptional collection"
 }: WineCollectionShowcaseProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="w-full">
       <div className="text-center mb-12">
@@ -322,9 +346,15 @@ export function WineCollectionShowcase({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {wines.map((wine) => (
-          <WineCard key={wine.id} wine={wine} />
-        ))}
+        {isLoading ? (
+          <div className="col-span-3 text-center">
+            <p>Loading...</p>
+          </div>
+        ) : (
+          wines.map((wine) => (
+            <WineCard key={wine.id} wine={wine} />
+          ))
+        )}
       </div>
     </div>
   );
