@@ -6,6 +6,7 @@ import { LuxuryWineryFooter } from '../components/ui/luxury-winery-footer';
 import { WineCollectionShowcase } from '../components/WineCollectionShowcase';
 import { CartProvider, useCart } from '../components/cart/CartProvider';
 import { useCartStore } from '../components/cart/CartStore';
+<<<<<<< HEAD
 import { wines as initialWines } from '../data/wines';
 import { Wine as WineType } from '../data/wines';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
@@ -62,6 +63,12 @@ const wines = [
   }
 ];
 
+=======
+import { wines } from '../data/wines';
+import { Wine as WineType } from '../data/wines';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
+
+>>>>>>> 0223290 (update)
 export default function WinesPage() {
   const [mounted, setMounted] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -110,9 +117,13 @@ export default function WinesPage() {
   const categories = [
     { id: null, name: 'All Wines' },
     { id: 'red', name: 'Red Wines' },
+<<<<<<< HEAD
     { id: 'limited', name: 'Limited Editions' },
     { id: 'white', name: 'White Wines' },
     { id: 'rose', name: 'Rosé Wines' }
+=======
+    { id: 'limited', name: 'Limited Editions' }
+>>>>>>> 0223290 (update)
   ];
 
   return (
@@ -250,7 +261,11 @@ export default function WinesPage() {
             { href: "/shipping", label: "Shipping Information" },
           ]}
           copyright={{
+<<<<<<< HEAD
             text: " 2024 Putec Winery",
+=======
+            text: "© 2024 Putec Winery",
+>>>>>>> 0223290 (update)
             license: "All rights reserved",
           }}
         />
