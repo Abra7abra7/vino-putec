@@ -49,8 +49,8 @@ export function LuxuryHero({
       >
         <div className="absolute inset-0 bg-black/50 z-10" />
         <Image
-          src={backgroundImage || "/images/hero-vineyard.jpg"}
-          alt="Vineyard"
+          src={backgroundImage || "/images/hero.png"}
+          alt="Vineyard at sunset"
           fill
           className="object-cover"
           priority
@@ -62,23 +62,30 @@ export function LuxuryHero({
         className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4"
         style={{ opacity }}
       >
+        {/* Gold decorative element */}
+        <motion.div
+          className="absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-1 bg-[#bf9b30]"
+          initial={{ width: 0, opacity: 0 }}
+          animate={{ width: 96, opacity: 1 }}
+          transition={{ delay: 0.8, duration: 1 }}
+        />
         <div className="max-w-4xl mx-auto">
           <motion.h1 
-            className="text-4xl md:text-6xl lg:text-7xl font-playfair text-white mb-6"
+            className="text-4xl md:text-6xl lg:text-7xl font-playfair text-white mb-6 tracking-wide"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
-            {title}
+            {title || "Experience the Art of Fine Wine"}
           </motion.h1>
           
           <motion.p 
-            className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto"
+            className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto font-montserrat"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            {subtitle}
+            {subtitle || "Where tradition meets excellence in every bottle. Discover our handcrafted wines from sun-drenched vineyards."}
           </motion.p>
           
           <motion.div 
@@ -87,11 +94,11 @@ export function LuxuryHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <button className="luxury-button-light">
-              {ctaText}
+            <button className="px-8 py-3 bg-[#bf9b30] text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-[#d4af37] rounded">
+              {ctaText || "Explore Our Wines"}
             </button>
-            <button className="luxury-button-light">
-              {secondaryCtaText}
+            <button className="px-8 py-3 bg-transparent border border-white text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-white/10 rounded">
+              {secondaryCtaText || "Book a Tasting"}
             </button>
           </motion.div>
         </div>

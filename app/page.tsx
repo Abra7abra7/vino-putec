@@ -48,7 +48,7 @@ export default function Home() {
       <LuxuryHero 
         title="Putec Winery"
         subtitle="Crafting exceptional wines in the heart of Ribera del Duero since 1892. Experience the perfect harmony of tradition and innovation."
-        backgroundImage="/images/hero-vineyard.jpg"
+        backgroundImage="/images/hero.png"
         ctaText="Explore Our Collection"
         secondaryCtaText="Book a Tasting"
       />

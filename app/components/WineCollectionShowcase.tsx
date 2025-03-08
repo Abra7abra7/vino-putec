@@ -43,11 +43,12 @@ const WineCard = ({ wine }: { wine: WineProps }) => {
       }}
     >
       {/* Image Container */}
-      <div className="relative h-[400px] overflow-hidden">
+      <div className="relative h-[400px] overflow-hidden bg-gradient-to-b from-[#f8f5f0] to-[#e8e4e0]">
         <motion.div
-          className="absolute inset-0"
+          className="absolute inset-0 opacity-70"
           animate={{ 
-            scale: isHovered ? 1.1 : 1 
+            scale: isHovered ? 1.1 : 1,
+            opacity: isHovered ? 0.6 : 0.7
           }}
           transition={{ duration: 0.8, ease: [0.19, 1, 0.22, 1] }}
         >
@@ -55,17 +56,39 @@ const WineCard = ({ wine }: { wine: WineProps }) => {
             src={wine.image}
             alt={wine.name}
             fill
-            className="object-cover"
+            className="object-cover mix-blend-multiply"
           />
         </motion.div>
         
         <motion.div 
-          className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"
+          className="absolute inset-0 bg-gradient-to-t from-[#1c1917]/50 via-transparent to-transparent"
           animate={{ 
-            opacity: isHovered ? 0.9 : 0.6 
+            opacity: isHovered ? 0.7 : 0.5 
           }}
           transition={{ duration: 0.5 }}
         />
+        
+        {/* Wine Bottle Overlay - Improved */}
+        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+          <motion.div 
+            className="relative w-[120px] h-[300px] mt-10"
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: 1,
+              y: isHovered ? -5 : 0,
+              scale: isHovered ? 1.05 : 1
+            }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+          >
+            <Image
+              src="/images/botle1.png"
+              alt="Wine Bottle"
+              fill
+              className="object-contain drop-shadow-2xl"
+              style={{ filter: 'drop-shadow(0 10px 15px rgba(0, 0, 0, 0.4))' }}
+            />
+          </motion.div>
+        </div>
         
         {/* Price Tag */}
         <motion.div 
