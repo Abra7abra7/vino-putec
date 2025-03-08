@@ -3,6 +3,9 @@ import { Playfair_Display, Montserrat } from "next/font/google";
 import "@fontsource/playfair-display";
 import "@fontsource/montserrat";
 import "./globals.css";
+import { CartProvider } from "./components/cart/CartProvider";
+import MiniCart from "./components/cart/MiniCart";
+import CartToggle from "./components/cart/CartToggle";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -27,7 +30,17 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
       <body className="antialiased">
-        {children}
+        <CartProvider>
+          {/* Cart Toggle Button - Fixed position */}
+          <div className="fixed top-24 right-6 z-40">
+            <CartToggle />
+          </div>
+          
+          {/* Mini Cart Component */}
+          <MiniCart />
+          
+          {children}
+        </CartProvider>
       </body>
     </html>
   );
