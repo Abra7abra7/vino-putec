@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface LuxuryHeroProps {
   title?: string;
@@ -94,9 +95,11 @@ export function LuxuryHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            <button className="px-8 py-3 bg-[#bf9b30] text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-[#d4af37] rounded">
-              {ctaText || "Explore Our Wines"}
-            </button>
+            <Link href="/wines">
+              <button className="px-8 py-3 bg-[#bf9b30] text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-[#d4af37] rounded">
+                {ctaText || "Explore Our Wines"}
+              </button>
+            </Link>
             <button className="px-8 py-3 bg-transparent border border-white text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-white/10 rounded">
               {secondaryCtaText || "Book a Tasting"}
             </button>
