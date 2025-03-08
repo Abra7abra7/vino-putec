@@ -1,26 +1,114 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Base styles */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: 0 0% 100%;
+  --foreground: 20 14.3% 4.1%;
+  --radius: 0.5rem;
+  --font-playfair: 'Playfair Display', serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+  --color-wine: #8b0000;
+  --color-gold: #bf9b30;
+  --color-cream: #faf9f6;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #1c1917;
+  font-family: var(--font-montserrat);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-playfair);
+}
+
+/* Component styles */
+.luxury-button-light {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid white;
+  color: white;
+  font-family: var(--font-montserrat);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.luxury-button-light:hover {
+  background-color: white;
+  color: #1c1917;
+}
+
+.luxury-button-dark {
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid #1c1917;
+  color: #1c1917;
+  font-family: var(--font-montserrat);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.luxury-button-dark:hover {
+  background-color: #1c1917;
+  color: white;
+}
+
+.container {
+  max-width: 80rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Utility classes */
+.bg-cream {
+  background-color: var(--color-cream);
+}
+
+.text-wine {
+  color: var(--color-wine);
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.border-wine {
+  border-color: var(--color-wine);
+}
+
+.border-gold {
+  border-color: var(--color-gold);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 1s ease-out;
 }
