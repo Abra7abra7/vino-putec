@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { Wine, Star } from "lucide-react";
+import { Wine, Star, X } from "lucide-react";
 
 interface WineProps {
   id: string;
@@ -14,6 +14,7 @@ interface WineProps {
   price: string;
   rating: number;
   image: string;
+  detailsUrl?: string;
 }
 
 interface WineCollectionShowcaseProps {
@@ -24,6 +25,7 @@ interface WineCollectionShowcaseProps {
 
 const WineCard = ({ wine }: { wine: WineProps }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <motion.div
@@ -170,6 +172,7 @@ const WineCard = ({ wine }: { wine: WineProps }) => {
             transition: { duration: 0.4 }
           }}
           whileTap={{ scale: 0.98 }}
+          onClick={() => wine.detailsUrl ? window.open(wine.detailsUrl, '_blank') : setIsModalOpen(true)}
         >
           <motion.span
             className="relative z-10 inline-block"
@@ -200,6 +203,93 @@ const WineCard = ({ wine }: { wine: WineProps }) => {
         }}
         transition={{ duration: 0.5 }}
       />
+      
+      {/* Wine Details Modal */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <motion.div 
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsModalOpen(false)}
+          >
+            <motion.div 
+              className="bg-white max-w-2xl w-full rounded-lg overflow-hidden"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              transition={{ type: "spring", damping: 25 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="relative h-[300px]">
+                <Image
+                  src={wine.image}
+                  alt={wine.name}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                <button 
+                  className="absolute top-4 right-4 bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-white/40 transition-colors"
+                  onClick={() => setIsModalOpen(false)}
+                >
+                  <X className="h-5 w-5 text-white" />
+                </button>
+                <div className="absolute bottom-0 left-0 p-6">
+                  <h2 className="text-3xl font-playfair text-white">{wine.name}</h2>
+                  <p className="text-white/80 font-montserrat">{wine.year} • {wine.region}</p>
+                </div>
+              </div>
+              
+              <div className="p-6">
+                <div className="flex justify-between items-center mb-6">
+                  <div className="flex">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star 
+                        key={i} 
+                        className={`w-5 h-5 ${i < wine.rating ? 'text-[#bf9b30] fill-current' : 'text-stone-300'}`} 
+                      />
+                    ))}
+                  </div>
+                  <span className="font-playfair text-2xl text-stone-900">{wine.price}</span>
+                </div>
+                
+                <h3 className="font-playfair text-xl text-stone-900 mb-2">Tasting Notes</h3>
+                <p className="text-stone-600 mb-6">{wine.description}</p>
+                
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div>
+                    <h4 className="font-montserrat text-sm text-stone-500 uppercase tracking-wider mb-1">Grape Variety</h4>
+                    <p className="font-playfair text-stone-900">Tempranillo, Cabernet</p>
+                  </div>
+                  <div>
+                    <h4 className="font-montserrat text-sm text-stone-500 uppercase tracking-wider mb-1">Alcohol</h4>
+                    <p className="font-playfair text-stone-900">14.5%</p>
+                  </div>
+                  <div>
+                    <h4 className="font-montserrat text-sm text-stone-500 uppercase tracking-wider mb-1">Aging</h4>
+                    <p className="font-playfair text-stone-900">24 months in oak</p>
+                  </div>
+                  <div>
+                    <h4 className="font-montserrat text-sm text-stone-500 uppercase tracking-wider mb-1">Serving</h4>
+                    <p className="font-playfair text-stone-900">16-18°C</p>
+                  </div>
+                </div>
+                
+                <div className="flex gap-4">
+                  <button className="flex-1 py-3 bg-[#bf9b30] text-white font-montserrat text-sm uppercase tracking-wider hover:bg-[#d4af37] transition-colors rounded">
+                    Add to Cart
+                  </button>
+                  <button className="px-4 py-3 border border-stone-300 text-stone-900 font-montserrat text-sm uppercase tracking-wider hover:bg-stone-100 transition-colors rounded">
+                    <Wine className="h-5 w-5" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.div>
   );
 };
