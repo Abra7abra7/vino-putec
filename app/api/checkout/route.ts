@@ -42,34 +42,88 @@ export async function POST(req: NextRequest) {
         throw new Error(`Invalid item data: ${JSON.stringify(item)}`);
       }
       
-      return {
-        price_data: {
-          currency: 'eur',
-          product_data: {
-            name: `${item.name} ${item.year ? `(${item.year})` : ''}`,
-            description: `Putec Winery - ${item.name}`,
-            images: item.image ? [item.image] : undefined,
+      // Handle different item types
+      if (item.itemType === 'experience' || item.itemType === 'event') {
+        // For bookings, create a custom description with booking details
+        const bookingInfo = item.bookingInfo;
+        if (!bookingInfo) {
+          throw new Error(`Booking info missing for booking item: ${JSON.stringify(item)}`);
+        }
+        
+        const formattedDate = new Date(bookingInfo.date).toLocaleDateString();
+        
+        let description = `${item.itemType === 'experience' ? 'Experience' : 'Event'} Booking - ${item.name}\n`;
+        description += `Date: ${formattedDate}\n`;
+        description += `Time: ${bookingInfo.time}\n`;
+        description += `Attendees: ${bookingInfo.attendees}`;
+        
+        if (bookingInfo.specialRequests) {
+          description += `\nSpecial Requests: ${bookingInfo.specialRequests}`;
+        }
+        
+        return {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: `${item.name} - ${item.itemType === 'experience' ? 'Experience' : 'Event'} Booking`,
+              description,
+              images: item.image ? [item.image] : undefined,
+              metadata: {
+                itemType: item.itemType,
+                bookingDate: bookingInfo.date,
+                bookingTime: bookingInfo.time,
+                attendees: bookingInfo.attendees.toString(),
+                dateId: bookingInfo.dateId,
+                specialRequests: bookingInfo.specialRequests || ''
+              }
+            },
+            unit_amount: Math.round(item.price * 100), // Stripe uses cents
           },
-          unit_amount: Math.round(item.price * 100), // Stripe uses cents
-        },
-        quantity: item.quantity,
-      };
+          quantity: item.quantity,
+        };
+      } else {
+        // Regular wine product
+        return {
+          price_data: {
+            currency: 'eur',
+            product_data: {
+              name: `${item.name} ${item.year ? `(${item.year})` : ''}`,
+              description: `Putec Winery - ${item.name}`,
+              images: item.image ? [item.image] : undefined,
+            },
+            unit_amount: Math.round(item.price * 100), // Stripe uses cents
+          },
+          quantity: item.quantity,
+        };
+      }
     });
     
     console.log('Created line items:', JSON.stringify(lineItems, null, 2));
 
+    // Check if there are any booking items
+    const hasBookingItems = items.some(item => item.itemType === 'experience' || item.itemType === 'event');
+    
     // Create a Stripe checkout session
     console.log('Creating Stripe checkout session...');
-    const session = await stripe.checkout.sessions.create({
+    const sessionConfig: any = {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
       success_url: successUrl,
       cancel_url: cancelUrl,
-      shipping_address_collection: {
-        allowed_countries: ['ES', 'FR', 'GB', 'DE', 'IT', 'US'],
+      metadata: {
+        orderId: `order-${Date.now()}`,
+        hasBookings: hasBookingItems ? 'true' : 'false'
       },
-      shipping_options: [
+    };
+    
+    // Only add shipping options for orders that include physical products (wines)
+    if (!hasBookingItems || items.some(item => item.itemType === 'wine')) {
+      sessionConfig.shipping_address_collection = {
+        allowed_countries: ['ES', 'FR', 'GB', 'DE', 'IT', 'US'],
+      };
+      
+      sessionConfig.shipping_options = [
         {
           shipping_rate_data: {
             type: 'fixed_amount',
@@ -110,11 +164,15 @@ export async function POST(req: NextRequest) {
             },
           },
         },
-      ],
-      metadata: {
-        orderId: `order-${Date.now()}`,
-      },
-    });
+      ];
+    }
+    
+    // For booking-only orders, collect customer email
+    if (hasBookingItems && !items.some(item => item.itemType === 'wine')) {
+      sessionConfig.customer_email_collection = true;
+    }
+    
+    const session = await stripe.checkout.sessions.create(sessionConfig);
 
     console.log('Checkout session created successfully with ID:', session.id);
     

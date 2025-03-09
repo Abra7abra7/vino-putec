@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { LuxuryWineryHeader } from "../components/ui/luxury-winery-header";
 import { LuxuryWineryFooter } from "../components/ui/luxury-winery-footer";
 import { Facebook, Instagram, Twitter, Calendar, Users, MapPin } from "lucide-react";
@@ -138,10 +139,10 @@ export default function Events() {
                     </ul>
                   </div>
                   
-                  <button className="luxury-button-dark flex items-center">
+                  <Link href={`/events/${space.id}/booking`} className="luxury-button-dark flex items-center">
                     <Calendar className="h-4 w-4 mr-2" />
-                    Inquire About This Venue
-                  </button>
+                    Book This Venue
+                  </Link>
                 </div>
               </motion.div>
             ))}

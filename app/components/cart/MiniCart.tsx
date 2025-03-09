@@ -101,7 +101,11 @@ const MiniCart = () => {
                       <div className="flex items-start">
                         {/* Product image */}
                         <Link 
-                          href={`/wines/${item.id}`} 
+                          href={item.itemType === 'experience' 
+                            ? `/experiences/${item.id.split('-')[0]}` 
+                            : item.itemType === 'event'
+                            ? `/events/${item.id.split('-')[0]}`
+                            : `/wines/${item.id}`} 
                           className="h-16 w-16 flex-shrink-0 rounded overflow-hidden bg-gray-100"
                           onClick={() => setIsCartOpen(false)}
                         >
@@ -113,25 +117,51 @@ const MiniCart = () => {
                           <div className="flex justify-between">
                             <div>
                               <Link 
-                                href={`/wines/${item.id}`}
+                                href={item.itemType === 'experience' 
+                                  ? `/experiences/${item.id.split('-')[0]}` 
+                                  : item.itemType === 'event'
+                                  ? `/events/${item.id.split('-')[0]}`
+                                  : `/wines/${item.id}`}
                                 className="text-sm font-medium text-gray-900 hover:text-amber-700"
                                 onClick={() => setIsCartOpen(false)}
                               >
                                 {item.name}
                               </Link>
-                              <p className="text-xs text-gray-500">{item.year}</p>
-                              <p className="text-xs text-gray-500 mt-1">€{item.price.toFixed(2)} each</p>
+                              
+                              {item.year && <p className="text-xs text-gray-500">{item.year}</p>}
+                              
+                              {item.bookingInfo ? (
+                                <div className="mt-1 space-y-1">
+                                  <p className="text-xs text-gray-500">
+                                    <span className="font-medium">Date:</span> {new Date(item.bookingInfo.date).toLocaleDateString()}
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    <span className="font-medium">Time:</span> {item.bookingInfo.time}
+                                  </p>
+                                  <p className="text-xs text-gray-500">
+                                    <span className="font-medium">Attendees:</span> {item.bookingInfo.attendees}
+                                  </p>
+                                </div>
+                              ) : (
+                                <p className="text-xs text-gray-500 mt-1">€{item.price.toFixed(2)} each</p>
+                              )}
                             </div>
                             <p className="text-sm font-medium text-gray-900">€{(item.price * item.quantity).toFixed(2)}</p>
                           </div>
                           
                           {/* Quantity controls */}
                           <div className="mt-2 flex items-center justify-between">
-                            <QuantitySelector
-                              quantity={item.quantity}
-                              onQuantityChange={(newQuantity) => updateQuantity(item.id, newQuantity)}
-                              compact={true}
-                            />
+                            {item.bookingInfo ? (
+                              <div className="text-xs text-amber-700 italic">
+                                {item.itemType === 'experience' ? 'Experience' : 'Event'} Booking
+                              </div>
+                            ) : (
+                              <QuantitySelector
+                                quantity={item.quantity}
+                                onQuantityChange={(newQuantity) => updateQuantity(item.id, newQuantity)}
+                                compact={true}
+                              />
+                            )}
                             
                             <button 
                               onClick={() => removeItem(item.id)}

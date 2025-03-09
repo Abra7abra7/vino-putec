@@ -7,8 +7,11 @@ import CartNotification from './CartNotification';
 interface CartContextType {
   items: CartItem[];
   addItem: (item: Omit<CartItem, 'quantity'> & { displayName?: string }, quantity?: number) => void;
+  addBookingItem: (item: Omit<CartItem, 'quantity'>) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
+  updateBookingAttendees: (id: string, attendees: number) => void;
+  updateBookingSpecialRequests: (id: string, specialRequests: string) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
@@ -76,6 +79,26 @@ export function CartProvider({ children }: CartProviderProps) {
     });
   };
 
+  // Add booking item with notification
+  const addBookingItemWithNotification = (
+    item: Omit<CartItem, 'quantity'>
+  ) => {
+    if (!isMounted) return;
+    
+    // Call the original addBookingItem function from the store
+    cartStore.addBookingItem(item);
+    
+    // Show notification
+    setNotification({
+      isVisible: true,
+      message: `${item.name} booking has been added to your cart`,
+      productName: item.name,
+      productImage: item.image,
+      quantity: 1,
+      productId: item.id
+    });
+  };
+
   // Close notification
   const closeNotification = () => {
     setNotification(prev => ({ ...prev, isVisible: false }));
@@ -84,8 +107,11 @@ export function CartProvider({ children }: CartProviderProps) {
   const value = {
     items: cartStore.items,
     addItem: addItemWithNotification,
+    addBookingItem: addBookingItemWithNotification,
     removeItem: cartStore.removeItem,
     updateQuantity: cartStore.updateQuantity,
+    updateBookingAttendees: cartStore.updateBookingAttendees,
+    updateBookingSpecialRequests: cartStore.updateBookingSpecialRequests,
     clearCart: cartStore.clearCart,
     getTotalItems: cartStore.getTotalItems,
     getTotalPrice: cartStore.getTotalPrice,
