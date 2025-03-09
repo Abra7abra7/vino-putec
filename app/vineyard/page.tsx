@@ -15,7 +15,7 @@ export default function Vineyard() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="/images/vineyard-aerial.jpg"
+            src="/images/experience3.png"
             alt="Putec Vineyard Aerial View"
             fill
             className="object-cover"
@@ -75,7 +75,7 @@ export default function Vineyard() {
               viewport={{ once: true }}
             >
               <Image
-                src="/images/terroir-soil.jpg"
+                src="/images/botle2.png"
                 alt="Putec Vineyard Soil"
                 fill
                 className="object-cover"
@@ -107,7 +107,7 @@ export default function Vineyard() {
             >
               <div className="relative h-80 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/tempranillo.jpg"
+                  src="/images/red_wine.png"
                   alt="Tempranillo Grapes"
                   fill
                   className="object-cover"
@@ -128,7 +128,7 @@ export default function Vineyard() {
             >
               <div className="relative h-80 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/cabernet.jpg"
+                  src="/images/botle1.png"
                   alt="Cabernet Sauvignon Grapes"
                   fill
                   className="object-cover"
@@ -149,7 +149,7 @@ export default function Vineyard() {
             >
               <div className="relative h-80 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/merlot.jpg"
+                  src="/images/botle2.png"
                   alt="Merlot Grapes"
                   fill
                   className="object-cover"
@@ -185,7 +185,7 @@ export default function Vineyard() {
               viewport={{ once: true }}
             >
               <Image
-                src="/images/sustainable-vineyard.jpg"
+                src="/images/wine4.png"
                 alt="Sustainable Vineyard Practices"
                 fill
                 className="object-cover"

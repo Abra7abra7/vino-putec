@@ -16,7 +16,7 @@ const featuredWines = [
     description: "A masterpiece of complexity and elegance, featuring rich dark fruits, subtle oak, and a silky finish that lingers.",
     price: "€145",
     rating: 5,
-    image: "/images/reserve-cabernet.jpg"
+    image: "/images/bottle2.png"
   },
   {
     id: "grand-cru",
@@ -26,7 +26,7 @@ const featuredWines = [
     description: "Our flagship wine, expressing the pure essence of Spanish terroir with remarkable depth and character.",
     price: "€180",
     rating: 5,
-    image: "/images/grand-cru.jpg"
+    image: "/images/bottle1.png"
   },
   {
     id: "limited-merlot",
@@ -36,7 +36,7 @@ const featuredWines = [
     description: "A rare blend showcasing exceptional balance between fruit and structure, with only 1,000 bottles produced.",
     price: "€120",
     rating: 4,
-    image: "/images/limited-merlot.jpg"
+    image: "/images/bottle2.png"
   }
 ];
 
@@ -68,7 +68,7 @@ export default function Home() {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/wine-cellar.jpg"
+            src="/images/experience3.png"
             alt="Putec Wine Cellar"
             fill
             className="object-cover"

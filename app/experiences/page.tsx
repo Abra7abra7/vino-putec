@@ -58,7 +58,7 @@ export default function Experiences() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="/images/wine-tasting.jpg"
+            src="/images/experience.png"
             alt="Putec Wine Experiences"
             fill
             className="object-cover"
@@ -179,7 +179,7 @@ export default function Experiences() {
               viewport={{ once: true }}
             >
               <Image
-                src="/images/custom-event.jpg"
+                src="/images/experience2.png"
                 alt="Custom Wine Experience"
                 fill
                 className="object-cover"

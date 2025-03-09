@@ -180,7 +180,7 @@ export default function WinesPage() {
             { href: "/shipping", label: "Shipping Information" },
           ]}
           copyright={{
-            text: "© 2024 Putec Winery",
+            text: " 2024 Putec Winery",
             license: "All rights reserved",
           }}
         />

@@ -15,7 +15,7 @@ export default function About() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="/images/vineyard-sunset.jpg"
+            src="/images/wine.png"
             alt="Putec Winery Heritage"
             fill
             className="object-cover"
@@ -74,7 +74,7 @@ export default function About() {
               viewport={{ once: true }}
             >
               <Image
-                src="/images/historical-winery.jpg"
+                src="/images/botle2.png"
                 alt="Putec Winery Historical Photo"
                 fill
                 className="object-cover"
@@ -161,7 +161,7 @@ export default function About() {
             >
               <div className="relative h-80 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/winemaker.jpg"
+                  src="/images/ceo.png"
                   alt="Elena Putec - Head Winemaker"
                   fill
                   className="object-cover"
@@ -183,7 +183,7 @@ export default function About() {
             >
               <div className="relative h-80 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/viticulturist.jpg"
+                  src="/images/ceo1.png"
                   alt="Marco Fernández - Head Viticulturist"
                   fill
                   className="object-cover"
@@ -205,7 +205,7 @@ export default function About() {
             >
               <div className="relative h-80 mb-6 rounded-lg overflow-hidden">
                 <Image
-                  src="/images/sommelier.jpg"
+                  src="/images/ceo3.png"
                   alt="Isabella Torres - Master Sommelier"
                   fill
                   className="object-cover"
