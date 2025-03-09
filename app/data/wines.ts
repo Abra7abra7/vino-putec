@@ -1,3 +1,24 @@
+// Constants
+export const WINE_CATEGORIES = {
+  RED: 'red',
+  LIMITED: 'limited'
+} as const;
+
+export type WineCategory = typeof WINE_CATEGORIES[keyof typeof WINE_CATEGORIES];
+
+// Types
+interface WineTasting {
+  appearance?: string;
+  aroma?: string;
+  flavor?: string;
+  finish?: string;
+}
+
+interface WineAward {
+  year: string;
+  award: string;
+}
+
 export interface Wine {
   id: string;
   name: string;
@@ -10,18 +31,10 @@ export interface Wine {
   rating: number;
   image: string;
   stock: number;
-  category: string;
-  tasting?: {
-    appearance?: string;
-    aroma?: string;
-    flavor?: string;
-    finish?: string;
-  };
+  category: WineCategory;
+  tasting?: WineTasting;
   pairings?: string[];
-  awards?: {
-    year: string;
-    award: string;
-  }[];
+  awards?: WineAward[];
 }
 
 export const wines: Wine[] = [
@@ -37,7 +50,7 @@ export const wines: Wine[] = [
     rating: 5,
     image: "/images/vino/red.png",
     stock: 24,
-    category: "red",
+    category: WINE_CATEGORIES.RED,
     tasting: {
       appearance: "Deep ruby with garnet highlights",
       aroma: "Black currant, cedar, tobacco, and hints of vanilla",
@@ -62,7 +75,7 @@ export const wines: Wine[] = [
     rating: 5,
     image: "/images/vino/red2.png",
     stock: 18,
-    category: "red",
+    category: WINE_CATEGORIES.RED,
     tasting: {
       appearance: "Intense, deep purple with slow-forming legs",
       aroma: "Complex bouquet of black cherry, plum, leather, and truffle",
@@ -87,7 +100,7 @@ export const wines: Wine[] = [
     rating: 4,
     image: "/images/vino/rose.png",
     stock: 32,
-    category: "red",
+    category: WINE_CATEGORIES.RED,
     tasting: {
       appearance: "Bright ruby red with violet reflections",
       aroma: "Red berries, plum, subtle herbs, and mocha",
@@ -112,7 +125,7 @@ export const wines: Wine[] = [
     rating: 4,
     image: "/images/vino/rose.png",
     stock: 120,
-    category: "red",
+    category: WINE_CATEGORIES.RED,
     tasting: {
       appearance: "Medium ruby red",
       aroma: "Red fruits, vanilla, and subtle spice",
@@ -136,7 +149,7 @@ export const wines: Wine[] = [
     rating: 5,
     image: "/images/vino/rose2.png",
     stock: 15,
-    category: "limited",
+    category: WINE_CATEGORIES.LIMITED,
     tasting: {
       appearance: "Deep garnet with brick edges",
       aroma: "Dried fruits, leather, tobacco, and forest floor",
@@ -161,7 +174,7 @@ export const wines: Wine[] = [
     rating: 5,
     image: "/images/vino/white.png",
     stock: 22,
-    category: "limited",
+    category: WINE_CATEGORIES.LIMITED,
     tasting: {
       appearance: "Opaque purple-black",
       aroma: "Blackberry, cassis, graphite, and exotic spices",

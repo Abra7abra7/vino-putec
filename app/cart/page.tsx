@@ -24,26 +24,41 @@ export default function CartPage() {
   const handleCheckout = async () => {
     setIsCheckingOut(true);
     try {
-      const response = await fetch('/api/create-checkout-session', {
+      const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          items: items.map(item => ({ id: item.id, quantity: item.quantity })),
+          items: items.map(item => ({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image,
+            year: item.year
+          })),
+          successUrl: `${window.location.origin}/checkout/success`,
+          cancelUrl: `${window.location.origin}/checkout/cancel`,
         }),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Checkout failed');
+      }
 
       const { sessionId } = await response.json();
       const stripe = await stripePromise;
       if (stripe) {
         await stripe.redirectToCheckout({ sessionId });
       } else {
-        console.error('Stripe failed to load');
-        setIsCheckingOut(false);
+        throw new Error('Stripe failed to load');
       }
     } catch (error) {
       console.error('Error during checkout:', error);
+      alert('There was a problem processing your checkout. Please try again.');
+    } finally {
       setIsCheckingOut(false);
     }
   };
@@ -124,8 +139,8 @@ export default function CartPage() {
                             </div>
                             
                             {/* Quantity controls */}
-                            <div className="mt-4 flex items-center justify-between">
-                              <div className="flex items-center border rounded">
+                            <div className="mt-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-0">
+                              <div className="flex items-center border rounded max-w-[140px]">
                                 <button 
                                   onClick={() => updateQuantity(item.id, item.quantity - 1)}
                                   className="p-2 text-gray-500 hover:text-gray-700 disabled:opacity-50"
@@ -134,7 +149,7 @@ export default function CartPage() {
                                 >
                                   <Minus className="h-4 w-4" />
                                 </button>
-                                <span className="px-4 py-2 text-gray-700">{item.quantity}</span>
+                                <span className="px-4 py-2 text-gray-700 flex-1 text-center">{item.quantity}</span>
                                 <button 
                                   onClick={() => updateQuantity(item.id, item.quantity + 1)}
                                   className="p-2 text-gray-500 hover:text-gray-700"

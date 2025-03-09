@@ -6,6 +6,8 @@ import { LuxuryHero } from "./components/ui/luxury-hero";
 import { WineCollectionShowcase } from "./components/WineCollectionShowcase";
 import { LuxuryWineryFooter } from "./components/ui/luxury-winery-footer";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import { useState } from "react";
+import { WINE_CATEGORIES } from "./data/wines";
 
 const featuredWines = [
   {
@@ -15,8 +17,11 @@ const featuredWines = [
     region: "Ribera del Duero, Spain",
     description: "A masterpiece of complexity and elegance, featuring rich dark fruits, subtle oak, and a silky finish that lingers.",
     price: "€145",
+    numericPrice: 145,
     rating: 5,
-    image: "/images/bottle2.png"
+    image: "/images/bottle2.png",
+    stock: 24,
+    category: WINE_CATEGORIES.RED
   },
   {
     id: "grand-cru",
@@ -25,8 +30,11 @@ const featuredWines = [
     region: "Ribera del Duero, Spain",
     description: "Our flagship wine, expressing the pure essence of Spanish terroir with remarkable depth and character.",
     price: "€180",
+    numericPrice: 180,
     rating: 5,
-    image: "/images/bottle1.png"
+    image: "/images/bottle1.png",
+    stock: 18,
+    category: WINE_CATEGORIES.RED
   },
   {
     id: "limited-merlot",
@@ -35,10 +43,23 @@ const featuredWines = [
     region: "Ribera del Duero, Spain",
     description: "A rare blend showcasing exceptional balance between fruit and structure, with only 1,000 bottles produced.",
     price: "€120",
+    numericPrice: 120,
     rating: 4,
-    image: "/images/bottle2.png"
+    image: "/images/bottle2.png",
+    stock: 32,
+    category: WINE_CATEGORIES.RED
   }
 ];
+
+function handleReservation() {
+  // Implement booking logic here
+  // This could involve API calls to a backend service to create a reservation
+  console.log('Attempting to book a tasting session...');
+  // Example: Simulate a successful booking
+  setTimeout(() => {
+    alert('Your tasting session has been booked successfully!');
+  }, 1000);
+}
 
 export default function Home() {
   return (
@@ -85,8 +106,8 @@ export default function Home() {
               Immerse yourself in the art of winemaking with our exclusive tastings and private tours. 
               Let our expert sommeliers guide you through a journey of sensory discovery in our historic cellars.
             </p>
-            <button className="luxury-button-light">
-              Reserve Your Experience
+            <button className="luxury-button-light" onClick={handleReservation}>
+              Book a Tasting
             </button>
           </div>
         </div>
@@ -151,7 +172,7 @@ export default function Home() {
           { href: "/shipping", label: "Shipping Information" },
         ]}
         copyright={{
-          text: "© 2024 Putec Winery",
+          text: " 2024 Putec Winery",
           license: "All rights reserved",
         }}
       />

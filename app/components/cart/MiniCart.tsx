@@ -1,22 +1,37 @@
 "use client";
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingCart, X, Trash2, Plus, Minus, CreditCard } from 'lucide-react';
+import { ShoppingCart, X, Trash2, CreditCard } from 'lucide-react';
 import { useCart } from './CartProvider';
+import { useRouter } from 'next/navigation';
+import { QuantitySelector } from '../ui/QuantitySelector';
+import Link from 'next/link';
 
 const MiniCart = () => {
+  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   const { 
     items, 
     removeItem, 
     updateQuantity, 
     getTotalItems, 
-    getTotalPrice,
+    getFormattedTotalPrice,
     isCartOpen,
     setIsCartOpen
   } = useCart();
 
-  if (!isCartOpen) return null;
+  // Handle hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const handleCheckout = () => {
+    setIsCartOpen(false);
+    router.push('/cart');
+  };
+
+  if (!isMounted || !isCartOpen) return null;
 
   return (
     <AnimatePresence>
@@ -29,6 +44,7 @@ const MiniCart = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsCartOpen(false)}
+            aria-hidden="true"
           />
           
           {/* Cart panel */}
@@ -38,6 +54,9 @@ const MiniCart = () => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Shopping cart"
           >
             {/* Header */}
             <div className="p-4 border-b border-gray-200 flex items-center justify-between">
@@ -48,6 +67,7 @@ const MiniCart = () => {
               <button 
                 onClick={() => setIsCartOpen(false)}
                 className="text-gray-500 hover:text-gray-700"
+                aria-label="Close cart"
               >
                 <X className="h-5 w-5" />
               </button>
@@ -80,42 +100,43 @@ const MiniCart = () => {
                     >
                       <div className="flex items-start">
                         {/* Product image */}
-                        <div className="h-16 w-16 flex-shrink-0 rounded overflow-hidden bg-gray-100">
+                        <Link 
+                          href={`/wines/${item.id}`} 
+                          className="h-16 w-16 flex-shrink-0 rounded overflow-hidden bg-gray-100"
+                          onClick={() => setIsCartOpen(false)}
+                        >
                           <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
-                        </div>
+                        </Link>
                         
                         {/* Product details */}
                         <div className="ml-4 flex-1">
                           <div className="flex justify-between">
                             <div>
-                              <h4 className="text-sm font-medium text-gray-900">{item.name}</h4>
+                              <Link 
+                                href={`/wines/${item.id}`}
+                                className="text-sm font-medium text-gray-900 hover:text-amber-700"
+                                onClick={() => setIsCartOpen(false)}
+                              >
+                                {item.name}
+                              </Link>
                               <p className="text-xs text-gray-500">{item.year}</p>
+                              <p className="text-xs text-gray-500 mt-1">€{item.price.toFixed(2)} each</p>
                             </div>
                             <p className="text-sm font-medium text-gray-900">€{(item.price * item.quantity).toFixed(2)}</p>
                           </div>
                           
                           {/* Quantity controls */}
                           <div className="mt-2 flex items-center justify-between">
-                            <div className="flex items-center border rounded">
-                              <button 
-                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                                className="p-1 text-gray-500 hover:text-gray-700"
-                                disabled={item.quantity <= 1}
-                              >
-                                <Minus className="h-4 w-4" />
-                              </button>
-                              <span className="px-2 text-sm">{item.quantity}</span>
-                              <button 
-                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                                className="p-1 text-gray-500 hover:text-gray-700"
-                              >
-                                <Plus className="h-4 w-4" />
-                              </button>
-                            </div>
+                            <QuantitySelector
+                              quantity={item.quantity}
+                              onQuantityChange={(newQuantity) => updateQuantity(item.id, newQuantity)}
+                              compact={true}
+                            />
                             
                             <button 
                               onClick={() => removeItem(item.id)}
-                              className="text-red-500 hover:text-red-700"
+                              className="text-red-500 hover:text-red-700 p-1"
+                              aria-label={`Remove ${item.name} from cart`}
                             >
                               <Trash2 className="h-4 w-4" />
                             </button>
@@ -133,17 +154,17 @@ const MiniCart = () => {
               <div className="border-t border-gray-200 p-4">
                 <div className="flex justify-between mb-4">
                   <span className="text-base font-medium text-gray-900">Subtotal</span>
-                  <span className="text-base font-medium text-gray-900">€{getTotalPrice().toFixed(2)}</span>
+                  <span className="text-base font-medium text-gray-900">{getFormattedTotalPrice()}</span>
                 </div>
                 <p className="text-sm text-gray-500 mb-4">Shipping and taxes calculated at checkout</p>
                 <div className="space-y-2">
-                  <a 
-                    href="/checkout"
+                  <button 
+                    onClick={handleCheckout}
                     className="w-full flex items-center justify-center bg-amber-700 text-white py-3 px-4 rounded-md hover:bg-amber-800 transition-colors"
                   >
                     <CreditCard className="h-5 w-5 mr-2" />
                     Checkout
-                  </a>
+                  </button>
                   <button 
                     onClick={() => setIsCartOpen(false)}
                     className="w-full py-3 px-4 rounded-md border border-gray-300 text-gray-700 hover:bg-gray-50 transition-colors"

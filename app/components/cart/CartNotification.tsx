@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle, ShoppingCart, X } from 'lucide-react';
+import { CheckCircle, ShoppingCart, X, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface CartNotificationProps {
   isVisible: boolean;
@@ -10,6 +12,8 @@ interface CartNotificationProps {
   onClose: () => void;
   productName?: string;
   productImage?: string;
+  quantity?: number;
+  productId?: string;
 }
 
 const CartNotification = ({
@@ -17,8 +21,12 @@ const CartNotification = ({
   message,
   onClose,
   productName,
-  productImage
+  productImage,
+  quantity = 1,
+  productId
 }: CartNotificationProps) => {
+  const router = useRouter();
+  // Auto-close notification after 4 seconds
   useEffect(() => {
     if (isVisible) {
       const timer = setTimeout(() => {
@@ -54,6 +62,7 @@ const CartNotification = ({
                     <button
                       onClick={onClose}
                       className="ml-4 inline-flex text-gray-400 hover:text-gray-500 focus:outline-none"
+                      aria-label="Close notification"
                     >
                       <X className="h-5 w-5" />
                     </button>
@@ -62,10 +71,15 @@ const CartNotification = ({
                   <div className="mt-2 flex items-center">
                     {productImage && (
                       <div className="flex-shrink-0 h-12 w-12 mr-3 bg-gray-100 rounded overflow-hidden">
-                        <img src={productImage} alt={productName} className="h-full w-full object-cover" />
+                        <img src={productImage} alt={productName || "Product"} className="h-full w-full object-cover" />
                       </div>
                     )}
-                    <p className="text-sm text-gray-600">{message}</p>
+                    <div>
+                      <p className="text-sm text-gray-600">{message}</p>
+                      {quantity > 1 && (
+                        <p className="text-xs text-gray-500 mt-1">Quantity: {quantity}</p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -78,14 +92,31 @@ const CartNotification = ({
                 >
                   Continue Shopping
                 </button>
-                <a
-                  href="/cart"
+                <button
+                  onClick={() => {
+                    onClose();
+                    router.push('/cart');
+                  }}
                   className="flex-1 flex justify-center items-center py-2 px-4 rounded bg-amber-700 text-sm font-medium text-white hover:bg-amber-800 focus:outline-none"
                 >
                   <ShoppingCart className="h-4 w-4 mr-1" />
                   View Cart
-                </a>
+                </button>
               </div>
+              
+              {/* View product link */}
+              {productId && (
+                <div className="mt-3 text-center">
+                  <Link
+                    href={`/wines/${productId}`}
+                    className="inline-flex items-center text-sm text-amber-700 hover:text-amber-800"
+                    onClick={onClose}
+                  >
+                    View Product Details
+                    <ArrowRight className="h-3 w-3 ml-1" />
+                  </Link>
+                </div>
+              )}
             </div>
             
             {/* Progress bar */}

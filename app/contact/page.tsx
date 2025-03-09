@@ -15,7 +15,7 @@ export default function Contact() {
       <section className="relative h-[40vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="/images/contact-hero.jpg"
+            src="/images/contact_us.png"
             alt="Contact Putec Winery"
             fill
             className="object-cover"

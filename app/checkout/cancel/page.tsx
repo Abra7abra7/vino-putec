@@ -1,8 +1,9 @@
 "use client";
 
+import { useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { XCircle, ArrowRight, ShoppingCart } from 'lucide-react';
+import { XCircle, ArrowLeft, ShoppingCart } from 'lucide-react';
 import { LuxuryWineryHeader } from '../../components/ui/luxury-winery-header';
 import { LuxuryWineryFooter } from '../../components/ui/luxury-winery-footer';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
@@ -23,53 +24,26 @@ export default function CheckoutCancelPage() {
             <XCircle className="w-24 h-24 text-red-500" />
           </div>
           
-          <h1 className="font-playfair text-4xl mb-6">Order Canceled</h1>
+          <h1 className="font-playfair text-4xl mb-6">Checkout Cancelled</h1>
           
           <p className="text-lg text-stone-700 mb-8">
-            Your order has been canceled and no payment has been processed.
-            Your items are still in your cart if you wish to complete your purchase later.
+            Your checkout process has been cancelled. Your cart items are still saved, and you can continue shopping or try again whenever you're ready.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/wines">
-              <button className="py-3 px-8 bg-stone-200 text-stone-800 rounded font-montserrat text-sm uppercase tracking-wider hover:bg-stone-300 transition-colors flex items-center justify-center">
+              <button className="flex items-center justify-center py-3 px-8 border border-stone-300 text-stone-800 rounded font-montserrat text-sm uppercase tracking-wider hover:bg-stone-50 transition-colors">
+                <ArrowLeft className="w-4 h-4 mr-2" />
                 Continue Shopping
-                <ArrowRight className="w-4 h-4 ml-2" />
               </button>
             </Link>
             
-            <button 
-              onClick={() => {
-                // Use client-side navigation to go back to the previous page
-                window.history.back();
-              }}
-              className="py-3 px-8 bg-[#1c1917] text-white rounded font-montserrat text-sm uppercase tracking-wider hover:bg-[#2c2927] transition-colors flex items-center justify-center"
-            >
-              <ShoppingCart className="w-4 h-4 mr-2" />
-              Return to Cart
-            </button>
-          </div>
-          
-          <div className="bg-stone-100 p-6 rounded-lg">
-            <h2 className="font-playfair text-2xl mb-4">Need Assistance?</h2>
-            <p className="mb-4">
-              If you encountered any issues during the checkout process or have questions about our wines, 
-              please don't hesitate to contact our customer service team.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <div className="text-center">
-                <p className="font-semibold">Email</p>
-                <a href="mailto:sales@putec.com" className="text-[#bf9b30] hover:underline">
-                  sales@putec.com
-                </a>
-              </div>
-              <div className="text-center">
-                <p className="font-semibold">Phone</p>
-                <a href="tel:+34983680314" className="text-[#bf9b30] hover:underline">
-                  +34 983 680 314
-                </a>
-              </div>
-            </div>
+            <Link href="/cart">
+              <button className="flex items-center justify-center py-3 px-8 bg-amber-700 text-white rounded font-montserrat text-sm uppercase tracking-wider hover:bg-amber-800 transition-colors">
+                <ShoppingCart className="w-4 h-4 mr-2" />
+                Return to Cart
+              </button>
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -27,10 +27,14 @@ const WineCard = ({
   showAddToCart?: boolean; 
   onAddToCart?: (wine: WineType) => void 
 }) => {
-  // Use the cart context for direct cart operations
-  const { addItem } = useCart();
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
+  const { addItem } = useCart();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000);
@@ -97,6 +101,8 @@ const WineCard = ({
             <button 
               className="bg-yellow-500 text-white py-1 px-3 rounded-md hover:bg-yellow-600 transition-colors"
               onClick={() => {
+                if (!mounted) return;
+                
                 if (onAddToCart) {
                   onAddToCart(wine);
                 } else {

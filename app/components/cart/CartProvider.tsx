@@ -1,19 +1,23 @@
 "use client";
 
-import React, { createContext, useContext, ReactNode, useState } from 'react';
+import React, { createContext, useContext, ReactNode, useState, useEffect } from 'react';
 import { useCartStore, CartItem } from './CartStore';
 import CartNotification from './CartNotification';
 
 interface CartContextType {
   items: CartItem[];
-  addItem: (item: Omit<CartItem, 'quantity'> & { displayName?: string }) => void;
+  addItem: (item: Omit<CartItem, 'quantity'> & { displayName?: string }, quantity?: number) => void;
   removeItem: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   clearCart: () => void;
   getTotalItems: () => number;
   getTotalPrice: () => number;
+  getFormattedTotalPrice: () => string;
+  getItemCount: (id: string) => number;
+  isItemInCart: (id: string) => boolean;
   isCartOpen: boolean;
   setIsCartOpen: (isOpen: boolean) => void;
+  lastUpdated: number;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -36,24 +40,39 @@ export function CartProvider({ children }: CartProviderProps) {
   
   // Local state for UI elements
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const [notification, setNotification] = useState({
     isVisible: false,
     message: '',
     productName: '',
-    productImage: ''
+    productImage: '',
+    quantity: 1,
+    productId: ''
   });
 
+  // Handle hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Enhanced addItem function that shows notification
-  const addItemWithNotification = (item: Omit<CartItem, 'quantity'> & { displayName?: string }) => {
+  const addItemWithNotification = (
+    item: Omit<CartItem, 'quantity'> & { displayName?: string }, 
+    quantity = 1
+  ) => {
+    if (!isMounted) return;
+    
     // Call the original addItem function from the store
-    cartStore.addItem(item);
+    cartStore.addItem(item, quantity);
     
     // Show notification
     setNotification({
       isVisible: true,
       message: `${item.displayName || item.name} has been added to your cart`,
       productName: item.name,
-      productImage: item.image
+      productImage: item.image,
+      quantity,
+      productId: item.id
     });
   };
 
@@ -70,20 +89,28 @@ export function CartProvider({ children }: CartProviderProps) {
     clearCart: cartStore.clearCart,
     getTotalItems: cartStore.getTotalItems,
     getTotalPrice: cartStore.getTotalPrice,
+    getFormattedTotalPrice: cartStore.getFormattedTotalPrice,
+    getItemCount: cartStore.getItemCount,
+    isItemInCart: cartStore.isItemInCart,
     isCartOpen,
-    setIsCartOpen
+    setIsCartOpen,
+    lastUpdated: cartStore.lastUpdated
   };
 
   return (
     <CartContext.Provider value={value}>
       {children}
-      <CartNotification 
-        isVisible={notification.isVisible}
-        message={notification.message}
-        productName={notification.productName}
-        productImage={notification.productImage}
-        onClose={closeNotification}
-      />
+      {isMounted && (
+        <CartNotification 
+          isVisible={notification.isVisible}
+          message={notification.message}
+          productName={notification.productName}
+          productImage={notification.productImage}
+          quantity={notification.quantity}
+          productId={notification.productId}
+          onClose={closeNotification}
+        />
+      )}
     </CartContext.Provider>
   );
 }

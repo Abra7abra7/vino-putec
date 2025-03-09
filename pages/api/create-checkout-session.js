@@ -22,6 +22,10 @@ export default async function handler(req, res) {
         quantity: item.quantity || 1,
       }));
 
+      if (!lineItems || lineItems.length === 0) {
+        return res.status(400).json({ error: 'Could not create line items for Stripe checkout session.' });
+      }
+
       // Create the checkout session
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
