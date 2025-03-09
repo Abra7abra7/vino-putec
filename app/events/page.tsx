@@ -13,7 +13,7 @@ const eventSpaces = [
     description: "Our grand barrel hall provides a dramatic backdrop for elegant receptions and gala dinners, surrounded by rows of aging oak barrels.",
     capacity: "Up to 120 guests",
     bestFor: ["Gala dinners", "Corporate events", "Wine launch parties"],
-    image: "/images/barrel-hall.jpg"
+    image: "/images/white1.png"
   },
   {
     id: "private-cellar",
@@ -21,7 +21,7 @@ const eventSpaces = [
     description: "An intimate underground space with stone walls and vaulted ceilings dating back to the 19th century, perfect for exclusive gatherings.",
     capacity: "Up to 30 guests",
     bestFor: ["Private dinners", "Wine tastings", "Intimate celebrations"],
-    image: "/images/private-cellar.jpg"
+    image: "/images/wine.png"
   },
   {
     id: "vineyard-terrace",
@@ -29,7 +29,7 @@ const eventSpaces = [
     description: "An elegant outdoor space overlooking our vineyards, offering breathtaking views of the Ribera del Duero landscape.",
     capacity: "Up to 150 guests",
     bestFor: ["Wedding receptions", "Sunset cocktail events", "Summer parties"],
-    image: "/images/vineyard-terrace.jpg"
+    image: "/images/wine4.png"
   },
   {
     id: "tasting-room",
@@ -37,7 +37,7 @@ const eventSpaces = [
     description: "A sophisticated space with floor-to-ceiling windows offering panoramic views of the vineyards, ideal for daytime events.",
     capacity: "Up to 50 guests",
     bestFor: ["Business meetings", "Educational seminars", "Wine masterclasses"],
-    image: "/images/tasting-room.jpg"
+    image: "/images/botle2.png"
   }
 ];
 
@@ -50,7 +50,7 @@ export default function Events() {
       <section className="relative h-[60vh] flex items-center justify-center">
         <div className="absolute inset-0">
           <Image
-            src="/images/event-venue.jpg"
+            src="/images/wine4.png"
             alt="Putec Winery Events"
             fill
             className="object-cover"

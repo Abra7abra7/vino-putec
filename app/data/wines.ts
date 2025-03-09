@@ -35,7 +35,7 @@ export const wines: Wine[] = [
     price: "€145",
     numericPrice: 145,
     rating: 5,
-    image: "/images/reserve-cabernet.jpg",
+    image: "/images/vino/red.png",
     stock: 24,
     category: "red",
     tasting: {
@@ -60,7 +60,7 @@ export const wines: Wine[] = [
     price: "€180",
     numericPrice: 180,
     rating: 5,
-    image: "/images/grand-cru.jpg",
+    image: "/images/vino/red2.png",
     stock: 18,
     category: "red",
     tasting: {
@@ -85,7 +85,7 @@ export const wines: Wine[] = [
     price: "€120",
     numericPrice: 120,
     rating: 4,
-    image: "/images/limited-merlot.jpg",
+    image: "/images/vino/rose.png",
     stock: 32,
     category: "red",
     tasting: {
@@ -110,7 +110,7 @@ export const wines: Wine[] = [
     price: "€35",
     numericPrice: 35,
     rating: 4,
-    image: "/images/crianza.jpg",
+    image: "/images/vino/rose.png",
     stock: 120,
     category: "red",
     tasting: {
@@ -134,7 +134,7 @@ export const wines: Wine[] = [
     price: "€210",
     numericPrice: 210,
     rating: 5,
-    image: "/images/vintage-collection.jpg",
+    image: "/images/vino/rose2.png",
     stock: 15,
     category: "limited",
     tasting: {
@@ -159,7 +159,7 @@ export const wines: Wine[] = [
     price: "€165",
     numericPrice: 165,
     rating: 5,
-    image: "/images/estate-reserve.jpg",
+    image: "/images/vino/white.png",
     stock: 22,
     category: "limited",
     tasting: {

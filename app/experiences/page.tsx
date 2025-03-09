@@ -15,7 +15,7 @@ const experiences = [
     price: "€75 per person",
     capacity: "2-8 guests",
     includes: ["Guided tasting of 5 premium wines", "Artisanal cheese pairing", "Souvenir Putec crystal wine glass"],
-    image: "/images/premium-tasting.jpg"
+    image: "/images/event.png"
   },
   {
     id: "vineyard-tour",
@@ -25,7 +25,7 @@ const experiences = [
     price: "€95 per person",
     capacity: "2-12 guests",
     includes: ["Guided vineyard tour", "Barrel cellar visit", "Tasting of 4 reserve wines", "Gourmet tapas"],
-    image: "/images/vineyard-tour.jpg"
+    image: "/images/event2.png"
   },
   {
     id: "winemaker-experience",
@@ -35,7 +35,7 @@ const experiences = [
     price: "€350 per person",
     capacity: "1-4 guests",
     includes: ["Hands-on winemaking activities", "Private cellar tour", "Barrel tasting session", "Gourmet lunch with wine pairings", "Custom blended bottle to take home"],
-    image: "/images/winemaker-experience.jpg"
+    image: "/images/event3.png"
   },
   {
     id: "private-dinner",
@@ -45,7 +45,7 @@ const experiences = [
     price: "€250 per person",
     capacity: "2-10 guests",
     includes: ["Five-course gourmet meal", "Wine pairing with each course", "Private sommelier service", "Cellar tour", "Commemorative gift"],
-    image: "/images/cellar-dinner.jpg"
+    image: "/images/event4.png"
   }
 ];
 
