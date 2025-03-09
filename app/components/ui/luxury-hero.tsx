@@ -11,6 +11,7 @@ interface LuxuryHeroProps {
   backgroundImage?: string;
   ctaText?: string;
   secondaryCtaText?: string;
+  onSecondaryCtaClick?: () => void;
 }
 
 export function LuxuryHero({
@@ -19,6 +20,7 @@ export function LuxuryHero({
   backgroundImage,
   ctaText,
   secondaryCtaText,
+  onSecondaryCtaClick,
 }: LuxuryHeroProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -100,7 +102,10 @@ export function LuxuryHero({
                 {ctaText || "Explore Our Wines"}
               </button>
             </Link>
-            <button className="px-8 py-3 bg-transparent border border-white text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-white/10 rounded">
+            <button 
+              className="px-8 py-3 bg-transparent border border-white text-white font-montserrat text-sm uppercase tracking-wider transition-all hover:bg-white/10 rounded"
+              onClick={onSecondaryCtaClick}
+            >
               {secondaryCtaText || "Book a Tasting"}
             </button>
           </motion.div>

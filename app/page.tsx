@@ -7,6 +7,7 @@ import { WineCollectionShowcase } from "./components/WineCollectionShowcase";
 import { LuxuryWineryFooter } from "./components/ui/luxury-winery-footer";
 import { Facebook, Instagram, Twitter } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { WINE_CATEGORIES } from "./data/wines";
 
 const featuredWines = [
@@ -52,13 +53,9 @@ const featuredWines = [
 ];
 
 function handleReservation() {
-  // Implement booking logic here
-  // This could involve API calls to a backend service to create a reservation
-  console.log('Attempting to book a tasting session...');
-  // Example: Simulate a successful booking
-  setTimeout(() => {
-    alert('Your tasting session has been booked successfully!');
-  }, 1000);
+  // Redirect to the experiences page
+  console.log('Redirecting to experiences page...');
+  window.location.href = '/experiences';
 }
 
 export default function Home() {
@@ -72,6 +69,7 @@ export default function Home() {
         backgroundImage="/images/hero.png"
         ctaText="Explore Our Collection"
         secondaryCtaText="Book a Tasting"
+        onSecondaryCtaClick={handleReservation}
       />
 
       {/* Featured Wines Section */}
