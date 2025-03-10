@@ -65,8 +65,11 @@ const MiniCart = () => {
                 <h2 className="text-lg font-medium text-gray-900">Your Cart ({getTotalItems()})</h2>
               </div>
               <button 
-                onClick={() => setIsCartOpen(false)}
-                className="text-gray-500 hover:text-gray-700"
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent event bubbling
+                  setIsCartOpen(false);
+                }}
+                className="text-gray-500 hover:text-gray-700 hover:bg-gray-100 p-1.5 rounded-full z-50 relative"
                 aria-label="Close cart"
               >
                 <X className="h-5 w-5" />

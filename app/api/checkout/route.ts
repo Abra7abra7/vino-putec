@@ -3,10 +3,19 @@ import Stripe from 'stripe';
 
 // Initialize Stripe with your secret key
 // Make sure STRIPE_SECRET_KEY is set in your .env.local file (should start with sk_test_ or sk_live_)
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_4eC39HqLyjWDarjtT1zdp7dc';
-const stripe = new Stripe(stripeSecretKey);
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
-console.log('Stripe initialized with key starting with:', stripeSecretKey.substring(0, 8));
+// Check if the Stripe secret key is available
+if (!stripeSecretKey) {
+  console.error('STRIPE_SECRET_KEY environment variable is not set. Payment processing will fail.');
+}
+
+const stripe = new Stripe(stripeSecretKey || '');
+
+// Only log the key prefix if it exists
+if (stripeSecretKey) {
+  console.log('Stripe initialized with key starting with:', stripeSecretKey.substring(0, 8));
+}
 
 
 export async function POST(req: NextRequest) {

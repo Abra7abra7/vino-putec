@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Star } from "lucide-react";
 import { Wine as WineType } from "../data/wines";
 import { useCart } from "./cart/CartProvider";
@@ -37,8 +38,7 @@ const WineCard = ({
   }, []);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
+    setIsLoading(false);
   }, []);
 
   return (
@@ -100,7 +100,9 @@ const WineCard = ({
           {showAddToCart && (
             <button 
               className="bg-yellow-500 text-white py-1 px-3 rounded-md hover:bg-yellow-600 transition-colors"
-              onClick={() => {
+              onClick={(e) => {
+                // Prevent navigation when clicking the Add to Cart button
+                e.stopPropagation();
                 if (!mounted) return;
                 
                 if (onAddToCart) {
@@ -136,8 +138,7 @@ export function WineCollectionShowcase({
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1000);
-    return () => clearTimeout(timer);
+    setIsLoading(false);
   }, []);
 
   return (
@@ -167,12 +168,17 @@ export function WineCollectionShowcase({
           </div>
         ) : (
           wines.map((wine) => (
-            <WineCard 
-              key={wine.id} 
-              wine={wine} 
-              showAddToCart={showAddToCart}
-              onAddToCart={onAddToCart}
-            />
+            <Link 
+              href={`/wines/${wine.id}`} 
+              key={wine.id}
+              className="block transition-transform hover:cursor-pointer"
+            >
+              <WineCard 
+                wine={wine} 
+                showAddToCart={showAddToCart}
+                onAddToCart={onAddToCart}
+              />
+            </Link>
           ))
         )}
       </div>

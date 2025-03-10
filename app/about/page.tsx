@@ -62,7 +62,7 @@ export default function About() {
               <p className="text-lg text-stone-700 mb-6">
                 Through generations, the Putec family has maintained their founder's unwavering commitment to excellence, combining traditional methods with innovative techniques to create wines that reflect the unique character of our land.
               </p>
-              <p className="text-lg text-stone-700">
+              <p className="text-lg text-stone-700 mb-6">
                 Today, Putec Winery stands as a testament to the family's dedication, producing wines that are celebrated by connoisseurs around the world for their complexity, elegance, and authentic expression of the Ribera del Duero region.
               </p>
             </motion.div>

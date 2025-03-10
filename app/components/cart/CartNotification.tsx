@@ -60,8 +60,11 @@ const CartNotification = ({
                   <div className="flex items-center justify-between">
                     <h3 className="text-sm font-medium text-gray-900">Added to Cart</h3>
                     <button
-                      onClick={onClose}
-                      className="ml-4 inline-flex text-gray-400 hover:text-gray-500 focus:outline-none"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Prevent event bubbling
+                        onClose();
+                      }}
+                      className="ml-4 inline-flex text-gray-400 hover:text-gray-500 hover:bg-gray-100 p-1 rounded-full focus:outline-none"
                       aria-label="Close notification"
                     >
                       <X className="h-5 w-5" />

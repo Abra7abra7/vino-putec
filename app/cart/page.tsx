@@ -316,11 +316,11 @@ export default function CartPage() {
                   
                   <div className="mt-6 text-center text-sm text-gray-500">
                     <p>We accept all major credit cards and PayPal</p>
-                    <div className="flex justify-center mt-2 space-x-2">
-                      <img src="/images/visa.svg" alt="Visa" className="h-6" />
-                      <img src="/images/mastercard.svg" alt="Mastercard" className="h-6" />
-                      <img src="/images/amex.svg" alt="American Express" className="h-6" />
-                      <img src="/images/paypal.svg" alt="PayPal" className="h-6" />
+                    <div className="flex justify-center mt-2 space-x-3">
+                      <span className="px-3 py-1 bg-blue-100 text-blue-800 font-semibold rounded">VISA</span>
+                      <span className="px-3 py-1 bg-red-100 text-red-800 font-semibold rounded">MasterCard</span>
+                      <span className="px-3 py-1 bg-gray-100 text-gray-800 font-semibold rounded">AMEX</span>
+                      <span className="px-3 py-1 bg-blue-100 text-blue-800 font-semibold rounded">PayPal</span>
                     </div>
                   </div>
                 </div>

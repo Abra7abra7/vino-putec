@@ -79,6 +79,7 @@ export default function Home() {
             wines={featuredWines}
             title="Premium Collection"
             subtitle="Discover our most prestigious wines, each bottle a testament to our commitment to excellence"
+            showAddToCart={true}
           />
         </div>
       </section>

@@ -226,7 +226,7 @@ export default function Contact() {
       <section className="relative h-[500px]">
         <div className="absolute inset-0">
           <Image
-            src="/images/map.jpg"
+            src="/images/event6.png"
             alt="Putec Winery Location Map"
             fill
             className="object-cover"
