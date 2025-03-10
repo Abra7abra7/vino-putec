@@ -7,6 +7,7 @@ import { useCart } from '../components/cart/CartProvider';
 import { LuxuryWineryHeader } from '../components/ui/luxury-winery-header';
 import { LuxuryWineryFooter } from '../components/ui/luxury-winery-footer';
 import Link from 'next/link';
+import Image from 'next/image';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY || '');
@@ -140,8 +141,14 @@ export default function CartPage() {
                       >
                         <div className="flex flex-col sm:flex-row items-start">
                           {/* Product image */}
-                          <div className="h-24 w-24 flex-shrink-0 rounded overflow-hidden bg-gray-100 mb-4 sm:mb-0">
-                            <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                          <div className="h-24 w-24 flex-shrink-0 rounded overflow-hidden bg-gray-100 mb-4 sm:mb-0 relative">
+                            <Image 
+                              src={item.image} 
+                              alt={item.name} 
+                              fill
+                              sizes="96px"
+                              className="object-cover" 
+                            />
                           </div>
                           
                           {/* Product details */}

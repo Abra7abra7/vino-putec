@@ -7,6 +7,7 @@ import { useCart } from './CartProvider';
 import { useRouter } from 'next/navigation';
 import { QuantitySelector } from '../ui/QuantitySelector';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const MiniCart = () => {
   const router = useRouter();
@@ -112,7 +113,13 @@ const MiniCart = () => {
                           className="h-16 w-16 flex-shrink-0 rounded overflow-hidden bg-gray-100"
                           onClick={() => setIsCartOpen(false)}
                         >
-                          <img src={item.image} alt={item.name} className="h-full w-full object-cover" />
+                          <Image 
+                            src={item.image} 
+                            alt={item.name} 
+                            fill
+                            sizes="64px"
+                            className="object-cover" 
+                          />
                         </Link>
                         
                         {/* Product details */}

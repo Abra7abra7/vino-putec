@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle, ShoppingCart, X, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 interface CartNotificationProps {
@@ -73,8 +74,14 @@ const CartNotification = ({
                   
                   <div className="mt-2 flex items-center">
                     {productImage && (
-                      <div className="flex-shrink-0 h-12 w-12 mr-3 bg-gray-100 rounded overflow-hidden">
-                        <img src={productImage} alt={productName || "Product"} className="h-full w-full object-cover" />
+                      <div className="flex-shrink-0 h-12 w-12 mr-3 bg-gray-100 rounded overflow-hidden relative">
+                        <Image 
+                          src={productImage} 
+                          alt={productName || "Product"} 
+                          fill
+                          sizes="48px"
+                          className="object-cover" 
+                        />
                       </div>
                     )}
                     <div>

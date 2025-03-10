@@ -5,6 +5,7 @@ import { useCart } from '../components/cart/CartProvider';
 import { motion } from 'framer-motion';
 import { CreditCard, ArrowLeft, Facebook, Instagram, Twitter, ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { loadStripe } from '@stripe/stripe-js';
 import { LuxuryWineryHeader } from '../components/ui/luxury-winery-header';
 import { LuxuryWineryFooter } from '../components/ui/luxury-winery-footer';
@@ -179,11 +180,15 @@ export default function CheckoutPage() {
                   {items.map((item) => (
                     <div key={item.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                       <div className="flex items-center">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="h-16 w-16 object-cover rounded"
-                        />
+                        <div className="relative h-16 w-16 rounded overflow-hidden">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
+                        </div>
                         <div className="ml-4">
                           <p className="text-sm font-medium text-gray-900">{item.name}</p>
                           <p className="text-sm text-gray-500">{item.year}</p>
