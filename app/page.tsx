@@ -20,7 +20,7 @@ const featuredWines = [
     price: "€145",
     numericPrice: 145,
     rating: 5,
-    image: "/images/bottle2.png",
+    image: "/images/botle2.png",
     stock: 24,
     category: WINE_CATEGORIES.RED
   },
@@ -33,7 +33,7 @@ const featuredWines = [
     price: "€180",
     numericPrice: 180,
     rating: 5,
-    image: "/images/bottle1.png",
+    image: "/images/botle1.png",
     stock: 18,
     category: WINE_CATEGORIES.RED
   },
@@ -46,7 +46,7 @@ const featuredWines = [
     price: "€120",
     numericPrice: 120,
     rating: 4,
-    image: "/images/bottle2.png",
+    image: "/images/botle2.png",
     stock: 32,
     category: WINE_CATEGORIES.RED
   }
