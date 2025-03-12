@@ -15,8 +15,8 @@ import { Facebook, Instagram, Twitter } from 'lucide-react';
 
 export default function WineDetailPage() {
   const params = useParams();
-  const id = params.id as string;
-  const [wine, setWine] = useState(wines.find(w => w.id === id));
+  const id = params?.id as string || '';
+  const wine = wines.find(w => w.id === id);
   const [quantity, setQuantity] = useState(1);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
   const [mounted, setMounted] = useState(false);
@@ -94,13 +94,13 @@ export default function WineDetailPage() {
                 links: [
                   { href: "/wines/vintage-collection", label: "Vintage Collection" },
                   { href: "/wines/estate-reserve", label: "Estate Reserve" },
-                  { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+                  { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
                   { href: "/wines/legacy-series", label: "Legacy Series" },
                 ],
               },
             ]}
             contactInfo={{
-              address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+              address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
               phone: "+34 983 680 314",
               email: "visitas@putec.com",
             }}
@@ -354,13 +354,13 @@ export default function WineDetailPage() {
               links: [
                 { href: "/wines/vintage-collection", label: "Vintage Collection" },
                 { href: "/wines/estate-reserve", label: "Estate Reserve" },
-                { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+                { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
                 { href: "/wines/legacy-series", label: "Legacy Series" },
               ],
             },
           ]}
           contactInfo={{
-            address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+            address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
             phone: "+34 983 680 314",
             email: "visitas@putec.com",
           }}

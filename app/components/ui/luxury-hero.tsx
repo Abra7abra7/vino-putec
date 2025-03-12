@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,43 +22,70 @@ export function LuxuryHero({
   secondaryCtaText,
   onSecondaryCtaClick,
 }: LuxuryHeroProps) {
+  // Track if we're on the client
+  const [isClient, setIsClient] = useState(false);
+  
+  // Create ref and scroll progress at top level
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
 
+  // Define spring config
   const springConfig = { stiffness: 100, damping: 30, bounce: 0 };
-
+  
+  // Create all motion values at top level
   const opacity = useSpring(
     useTransform(scrollYProgress, [0, 0.5], [1, 0]),
     springConfig
   );
-
+  
   const scale = useSpring(
     useTransform(scrollYProgress, [0, 0.5], [1, 1.1]),
     springConfig
   );
+  
+  // Use effect only to set client state
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   return (
     <div
       ref={ref}
       className="relative w-full h-screen overflow-hidden"
     >
-      {/* Background Image with Parallax Effect */}
-      <motion.div
-        className="absolute inset-0 w-full h-full"
-        style={{ scale }}
-      >
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <Image
-          src={backgroundImage || "/images/hero.png"}
-          alt="Vineyard at sunset"
-          fill
-          className="object-cover"
-          priority
-        />
-      </motion.div>
+      {/* Conditional rendering based on client state */}
+      {isClient ? (
+        <motion.div
+          className="absolute inset-0 w-full h-full"
+          style={{ scale }}
+        >
+          <div className="absolute inset-0 bg-black/50 z-10" />
+          <Image
+            src={backgroundImage || "/images/hero.png"}
+            alt="Vineyard at sunset"
+            fill
+            className="object-cover"
+            priority
+            suppressHydrationWarning={true}
+          />
+        </motion.div>
+      ) : (
+        /* Static version for server rendering */
+        <div className="absolute inset-0 w-full h-full">
+          <div className="absolute inset-0 bg-black/50 z-10" />
+          <Image
+            src={backgroundImage || "/images/hero.png"}
+            alt="Vineyard at sunset"
+            fill
+            className="object-cover"
+            priority
+            suppressHydrationWarning={true}
+          />
+        </div>
+      )}
 
       {/* Content Container */}
       <motion.div 

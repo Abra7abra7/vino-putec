@@ -83,7 +83,7 @@ const MiniCart = () => {
                 <div className="h-full flex flex-col items-center justify-center text-center">
                   <ShoppingCart className="h-12 w-12 text-gray-300 mb-4" />
                   <h3 className="text-lg font-medium text-gray-900 mb-1">Your cart is empty</h3>
-                  <p className="text-gray-500 mb-6">Looks like you haven't added any wines to your cart yet.</p>
+                  <p className="text-gray-500 mb-6">Looks like you haven&apos;t added any wines to your cart yet.</p>
                   <button 
                     onClick={() => setIsCartOpen(false)}
                     className="bg-amber-700 text-white px-4 py-2 rounded-md hover:bg-amber-800 transition-colors"

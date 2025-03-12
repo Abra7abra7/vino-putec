@@ -48,7 +48,7 @@ export default function Privacy() {
                 <p className="mb-4">We may use the information we collect for various purposes, including to:</p>
                 <ul className="list-disc pl-6">
                   <li>Process and fulfill your orders</li>
-                  <li>Send you promotional offers, updates, and newsletters (if you've opted in)</li>
+                  <li>Send you promotional offers, updates, and newsletters (if you&apos;ve opted in)</li>
                   <li>Respond to your inquiries and provide customer support</li>
                   <li>Improve our website, products, and services</li>
                   <li>Personalize your experience and deliver content relevant to your interests</li>
@@ -69,7 +69,7 @@ export default function Privacy() {
                 <p className="mb-4">We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties except in the following cases:</p>
                 <ul className="list-disc pl-6">
                   <li>To trusted third parties who assist us in operating our website, conducting our business, or servicing you</li>
-                  <li>To comply with legal requirements, enforce our policies, or protect our or others' rights, property, or safety</li>
+                  <li>To comply with legal requirements, enforce our policies, or protect our or others&apos; rights, property, or safety</li>
                   <li>To a buyer or other successor in the event of a merger, divestiture, restructuring, reorganization, dissolution, or other sale or transfer of our assets</li>
                 </ul>
               </div>
@@ -103,7 +103,7 @@ export default function Privacy() {
                 <address className="not-italic mt-2">
                   <p>Putec Winery</p>
                   <p>Carretera N-122, km 311</p>
-                  <p>47350 Quintanilla de Onésimo</p>
+                  <p>47350 Quintanilla de On&eacute;simo</p>
                   <p>Valladolid, Spain</p>
                   <p>Email: privacy@putec.com</p>
                   <p>Phone: +34 983 680 314</p>
@@ -135,13 +135,13 @@ export default function Privacy() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

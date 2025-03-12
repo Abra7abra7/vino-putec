@@ -58,10 +58,10 @@ export default function Vineyard() {
                 Our Exceptional Terroir
               </h2>
               <p className="text-lg text-stone-700 mb-6">
-                Nestled in the heart of Ribera del Duero, our 120-hectare estate benefits from the region's continental climate, characterized by hot summers and cold winters, creating the perfect conditions for growing exceptional grapes.
+                Nestled in the heart of Ribera del Duero, our 120-hectare estate benefits from the region&apos;s continental climate, characterized by hot summers and cold winters, creating the perfect conditions for growing exceptional grapes.
               </p>
               <p className="text-lg text-stone-700 mb-6">
-                The vineyard's unique combination of clay-limestone soils imparts distinctive mineral qualities to our wines, while the altitude (800 meters above sea level) ensures optimal temperature variations that enhance the grapes' aromatic complexity.
+                The vineyard&apos;s unique combination of clay-limestone soils imparts distinctive mineral qualities to our wines, while the altitude (800 meters above sea level) ensures optimal temperature variations that enhance the grapes&apos; aromatic complexity.
               </p>
               <p className="text-lg text-stone-700">
                 Each parcel of our vineyard has been meticulously mapped and planted according to its specific soil composition, exposure, and microclimate, allowing us to cultivate grapes that truly express the essence of our land.
@@ -202,7 +202,7 @@ export default function Vineyard() {
                 <div>
                   <h3 className="text-2xl font-playfair text-gold mb-4">Organic Farming</h3>
                   <p className="text-white/80">
-                    We've embraced organic farming practices, avoiding synthetic chemicals and focusing on natural soil health to produce grapes of exceptional quality and purity.
+                    We&apos;ve embraced organic farming practices, avoiding synthetic chemicals and focusing on natural soil health to produce grapes of exceptional quality and purity.
                   </p>
                 </div>
                 
@@ -265,13 +265,13 @@ export default function Vineyard() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

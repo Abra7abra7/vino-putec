@@ -38,7 +38,7 @@ export default function Contact() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            We'd love to hear from you
+            We&apos;d love to hear from you
           </motion.p>
         </div>
       </section>
@@ -58,7 +58,7 @@ export default function Contact() {
                 Send Us a Message
               </h2>
               <p className="text-lg text-stone-700 mb-8">
-                Whether you have questions about our wines, wish to book an experience, or are planning a special event, we're here to assist you.
+                Whether you have questions about our wines, wish to book an experience, or are planning a special event, we&apos;re here to assist you.
               </p>
               
               <form className="space-y-6">
@@ -146,7 +146,7 @@ export default function Contact() {
                 Contact Information
               </h2>
               <p className="text-lg text-stone-700 mb-8">
-                We look forward to welcoming you to Putec Winery. Here's how you can reach us.
+                We look forward to welcoming you to Putec Winery. Here&apos;s how you can reach us.
               </p>
               
               <div className="space-y-6">
@@ -156,7 +156,7 @@ export default function Contact() {
                     <h3 className="text-xl font-playfair text-stone-900 mb-2">Address</h3>
                     <p className="text-stone-700">
                       Carretera N-122, km 311<br />
-                      47350 Quintanilla de Onésimo<br />
+                      47350 Quintanilla de On&eacute;simo<br />
                       Valladolid, Spain
                     </p>
                   </div>
@@ -243,7 +243,7 @@ export default function Contact() {
             <div className="flex items-start">
               <MapPin className="h-5 w-5 text-wine mt-1 mr-2 flex-shrink-0" />
               <p className="text-stone-700">
-                From Valladolid: Take the N-122 towards Aranda de Duero. The winery is at km 311, just before Quintanilla de Onésimo.
+                From Valladolid: Take the N-122 towards Aranda de Duero. The winery is at km 311, just before Quintanilla de On&eacute;simo.
               </p>
             </div>
             <div className="flex items-start">
@@ -278,13 +278,13 @@ export default function Contact() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

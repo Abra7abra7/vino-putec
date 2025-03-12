@@ -199,7 +199,7 @@ export default function Experiences() {
                 Looking for something unique? Our team can craft a custom wine experience tailored to your preferences and interests.
               </p>
               <p className="text-lg text-white/80 mb-8">
-                Whether you're celebrating a special occasion, hosting corporate clients, or seeking a personalized wine journey, we'll create an unforgettable experience that exceeds your expectations.
+                Whether you&apos;re celebrating a special occasion, hosting corporate clients, or seeking a personalized wine journey, we&apos;ll create an unforgettable experience that exceeds your expectations.
               </p>
               <button className="luxury-button-light">
                 Inquire About Custom Experiences
@@ -236,7 +236,7 @@ export default function Experiences() {
                 <div>
                   <h3 className="text-xl font-playfair text-stone-900 mb-2">Private Groups</h3>
                   <p className="text-stone-700">
-                    For groups larger than 12 people, please contact us directly to arrange a private experience tailored to your group's needs.
+                    For groups larger than 12 people, please contact us directly to arrange a private experience tailored to your group&apos;s needs.
                   </p>
                 </div>
                 
@@ -274,13 +274,13 @@ export default function Experiences() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

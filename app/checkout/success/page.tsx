@@ -39,7 +39,7 @@ export default function CheckoutSuccessPage() {
           </p>
           
           <div className="bg-stone-100 p-6 rounded-lg mb-8">
-            <h2 className="font-playfair text-2xl mb-4">What's Next?</h2>
+            <h2 className="font-playfair text-2xl mb-4">What&apos;s Next?</h2>
             <ul className="text-left space-y-4">
               <li className="flex items-start">
                 <span className="bg-[#bf9b30] text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 mt-1 flex-shrink-0">1</span>
@@ -87,13 +87,13 @@ export default function CheckoutSuccessPage() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

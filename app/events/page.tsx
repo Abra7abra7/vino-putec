@@ -236,7 +236,7 @@ export default function Events() {
               <div className="p-8 bg-white">
                 <h3 className="text-2xl font-playfair text-stone-900 mb-3">Weddings</h3>
                 <p className="text-stone-700 mb-6">
-                  Say "I do" surrounded by the beauty of our vineyards. Our wedding packages include ceremony and reception venues, bespoke catering, wine service, and dedicated coordination.
+                  Say &quot;I do&quot; surrounded by the beauty of our vineyards. Our wedding packages include ceremony and reception venues, bespoke catering, wine service, and dedicated coordination.
                 </p>
                 <button className="luxury-button-dark text-sm">Learn More About Weddings</button>
               </div>
@@ -312,13 +312,13 @@ export default function Events() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

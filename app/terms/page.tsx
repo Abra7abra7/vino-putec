@@ -24,7 +24,7 @@ export default function Terms() {
               
               <div className="mb-8">
                 <h2 className="text-2xl font-playfair text-stone-900 mb-4">1. Acceptance of Terms</h2>
-                <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. Additionally, when using this website's particular services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
+                <p>By accessing and using this website, you accept and agree to be bound by the terms and provision of this agreement. Additionally, when using this website&apos;s particular services, you shall be subject to any posted guidelines or rules applicable to such services.</p>
               </div>
               
               <div className="mb-8">
@@ -35,7 +35,7 @@ export default function Terms() {
               <div className="mb-8">
                 <h2 className="text-2xl font-playfair text-stone-900 mb-4">3. Products and Pricing</h2>
                 <p className="mb-4">All prices shown on our website are in euros (€) and include applicable taxes unless stated otherwise. We reserve the right to modify prices at any time without prior notice.</p>
-                <p>Product descriptions and images are for illustrative purposes only. We make every effort to accurately display the characteristics of our products, including colors and vintages, but we cannot guarantee that your computer's display of colors accurately reflects the actual product.</p>
+                <p>Product descriptions and images are for illustrative purposes only. We make every effort to accurately display the characteristics of our products, including colors and vintages, but we cannot guarantee that your computer&apos;s display of colors accurately reflects the actual product.</p>
               </div>
               
               <div className="mb-8">
@@ -94,7 +94,7 @@ export default function Terms() {
                 <address className="not-italic mt-2">
                   <p>Putec Winery</p>
                   <p>Carretera N-122, km 311</p>
-                  <p>47350 Quintanilla de Onésimo</p>
+                  <p>47350 Quintanilla de On&eacute;simo</p>
                   <p>Valladolid, Spain</p>
                   <p>Email: legal@putec.com</p>
                   <p>Phone: +34 983 680 314</p>
@@ -126,13 +126,13 @@ export default function Terms() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

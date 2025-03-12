@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { LuxuryWineryHeader } from '../components/ui/luxury-winery-header';
 import { LuxuryWineryFooter } from '../components/ui/luxury-winery-footer';
 import { WineCollectionShowcase } from '../components/WineCollectionShowcase';
-import { wines, Wine as WineType } from '../data/wines';
+import { wines } from '../data/wines';
 import { Facebook, Instagram, Twitter } from 'lucide-react';
 export default function WinesPage() {
   const [mounted, setMounted] = useState(false);
@@ -140,13 +140,13 @@ export default function WinesPage() {
               links: [
                 { href: "/wines/vintage-collection", label: "Vintage Collection" },
                 { href: "/wines/estate-reserve", label: "Estate Reserve" },
-                { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+                { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
                 { href: "/wines/legacy-series", label: "Legacy Series" },
               ],
             },
           ]}
           contactInfo={{
-            address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+            address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
             phone: "+34 983 680 314",
             email: "visitas@putec.com",
           }}
@@ -180,7 +180,7 @@ export default function WinesPage() {
             { href: "/shipping", label: "Shipping Information" },
           ]}
           copyright={{
-            text: " 2024 Putec Winery",
+            text: "© 2024 Putec Winery",
             license: "All rights reserved",
           }}
         />

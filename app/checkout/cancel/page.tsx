@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { XCircle, ArrowLeft, ShoppingCart } from 'lucide-react';
@@ -27,7 +26,7 @@ export default function CheckoutCancelPage() {
           <h1 className="font-playfair text-4xl mb-6">Checkout Cancelled</h1>
           
           <p className="text-lg text-stone-700 mb-8">
-            Your checkout process has been cancelled. Your cart items are still saved, and you can continue shopping or try again whenever you're ready.
+            Your checkout process has been cancelled. Your cart items are still saved, and you can continue shopping or try again whenever you&apos;re ready.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -66,13 +65,13 @@ export default function CheckoutCancelPage() {
             links: [
               { href: "/wines/vintage-collection", label: "Vintage Collection" },
               { href: "/wines/estate-reserve", label: "Estate Reserve" },
-              { href: "/wines/winemakers-selection", label: "Winemaker's Selection" },
+              { href: "/wines/winemakers-selection", label: "Winemaker&apos;s Selection" },
               { href: "/wines/legacy-series", label: "Legacy Series" },
             ],
           },
         ]}
         contactInfo={{
-          address: "Carretera N-122, km 311, 47350 Quintanilla de Onésimo, Valladolid, Spain",
+          address: "Carretera N-122, km 311, 47350 Quintanilla de On&eacute;simo, Valladolid, Spain",
           phone: "+34 983 680 314",
           email: "visitas@putec.com",
         }}

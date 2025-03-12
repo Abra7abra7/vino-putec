@@ -90,7 +90,7 @@ export function LuxuryWineryHeader() {
                 {item.href ? (
                   <Link
                     href={item.href}
-                    onClick={() => item.action && item.action()}
+                    onClick={item.action}
                     className={`font-montserrat text-sm tracking-wide transition-all duration-300 ${
                       isScrolled ? "text-stone-900" : "text-white"
                     } group-hover:text-wine`}
@@ -102,7 +102,7 @@ export function LuxuryWineryHeader() {
                   </Link>
                 ) : (
                   <button
-                    onClick={() => item.action && item.action()}
+                    onClick={item.action}
                     className={`flex items-center space-x-1 font-montserrat text-sm tracking-wide transition-all duration-300 ${
                       isScrolled ? "text-stone-900" : "text-white"
                     } group-hover:text-wine`}
@@ -128,7 +128,7 @@ export function LuxuryWineryHeader() {
                         <Link
                           key={subItem.href}
                           href={subItem.href}
-                          onClick={() => subItem.action && subItem.action()}
+                          onClick={subItem.action}
                           className="block px-5 py-2.5 text-sm text-stone-900 hover:bg-stone-50 hover:text-wine transition-colors"
                         >
                           {subItem.title}
@@ -173,7 +173,7 @@ export function LuxuryWineryHeader() {
                         className="block py-4 text-center font-montserrat text-stone-900 hover:text-wine transition-colors"
                         onClick={() => {
                           setIsOpen(false);
-                          item.action && item.action();
+                          if (item.action) { item.action(); }
                         }}
                       >
                         {item.title}
@@ -183,7 +183,7 @@ export function LuxuryWineryHeader() {
                         className="block py-4 w-full text-left font-montserrat text-stone-900 hover:text-wine transition-colors"
                         onClick={() => {
                           setIsOpen(false);
-                          item.action && item.action();
+                          if (item.action) { item.action(); }
                         }}
                       >
                         {item.title}

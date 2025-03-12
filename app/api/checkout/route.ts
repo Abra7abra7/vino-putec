@@ -3,17 +3,17 @@ import Stripe from 'stripe';
 
 // Initialize Stripe with your secret key
 // Make sure STRIPE_SECRET_KEY is set in your .env.local file (should start with sk_test_ or sk_live_)
-const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
+const stripeSecretKey = process.env.STRIPE_SECRET_KEY || 'sk_test_dummy_key_for_build';
 
 // Check if the Stripe secret key is available
-if (!stripeSecretKey) {
-  console.error('STRIPE_SECRET_KEY environment variable is not set. Payment processing will fail.');
+if (stripeSecretKey === 'sk_test_dummy_key_for_build') {
+  console.error('STRIPE_SECRET_KEY environment variable is not set. Using dummy key for build.');
 }
 
-const stripe = new Stripe(stripeSecretKey || '');
+const stripe = new Stripe(stripeSecretKey);
 
-// Only log the key prefix if it exists
-if (stripeSecretKey) {
+// Only log the key prefix if it's not the dummy key
+if (stripeSecretKey !== 'sk_test_dummy_key_for_build') {
   console.log('Stripe initialized with key starting with:', stripeSecretKey.substring(0, 8));
 }
 
@@ -115,9 +115,8 @@ export async function POST(req: NextRequest) {
     // Create a Stripe checkout session
     console.log('Creating Stripe checkout session...');
     
-    // Define the session configuration
-    // Using 'as any' to bypass TypeScript errors with Stripe types
-    const sessionConfig: any = {
+    // Define the session configuration with proper typing
+    const sessionConfig: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ['card'],
       line_items: lineItems,
       mode: 'payment',
@@ -181,7 +180,8 @@ export async function POST(req: NextRequest) {
     
     // For booking-only orders, collect customer email
     if (hasBookingItems && !items.some(item => item.itemType === 'wine')) {
-      sessionConfig.customer_email_collection = true;
+      // Use the correct property name from Stripe SDK
+      sessionConfig.customer_email = 'auto';
     }
     
     const session = await stripe.checkout.sessions.create(sessionConfig);
