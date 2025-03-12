@@ -25,37 +25,30 @@ export function LuxuryWineryHeader() {
     {
       title: "Home",
       href: "/",
-      action: () => {},
     },
     {
       title: "About",
       href: "/about",
-      action: () => {},
     },
     {
       title: "Vineyard",
       href: "/vineyard",
-      action: () => {},
     },
     {
       title: "Wines",
       href: "/wines",
-      action: () => {},
     },
     {
       title: "Experiences",
       href: "/experiences",
-      action: () => {},
     },
     {
       title: "Events",
       href: "/events",
-      action: () => {},
     },
     {
       title: "Contact",
       href: "/contact",
-      action: () => {},
     },
   ];
 

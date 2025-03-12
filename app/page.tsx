@@ -6,8 +6,7 @@ import { LuxuryHero } from "./components/ui/luxury-hero";
 import { WineCollectionShowcase } from "./components/WineCollectionShowcase";
 import { LuxuryWineryFooter } from "./components/ui/luxury-winery-footer";
 import { Facebook, Instagram, Twitter } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+// Removed unused imports: useState, useRouter
 import { WINE_CATEGORIES } from "./data/wines";
 
 const featuredWines = [

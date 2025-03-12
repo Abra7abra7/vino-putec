@@ -57,13 +57,13 @@ export default function About() {
                 Established in 1892
               </h2>
               <p className="text-lg text-stone-700 mb-6">
-                Putec Winery was founded by Antonio Putec, a visionary who recognized the exceptional terroir of Ribera del Duero. His commitment to quality and passion for winemaking laid the foundation for what would become one of Spain's most prestigious wineries.
+                Putec Winery was founded by Antonio Putec, a visionary who recognized the exceptional terroir of Ribera del Duero. His commitment to quality and passion for winemaking laid the foundation for what would become one of Spain&apos;s most prestigious wineries.
               </p>
               <p className="text-lg text-stone-700 mb-6">
-                Through generations, the Putec family has maintained their founder's unwavering commitment to excellence, combining traditional methods with innovative techniques to create wines that reflect the unique character of our land.
+                Through generations, the Putec family has maintained their founder&apos;s unwavering commitment to excellence, combining traditional methods with innovative techniques to create wines that reflect the unique character of our land.
               </p>
               <p className="text-lg text-stone-700 mb-6">
-                Today, Putec Winery stands as a testament to the family's dedication, producing wines that are celebrated by connoisseurs around the world for their complexity, elegance, and authentic expression of the Ribera del Duero region.
+                Today, Putec Winery stands as a testament to the family&apos;s dedication, producing wines that are celebrated by connoisseurs around the world for their complexity, elegance, and authentic expression of the Ribera del Duero region.
               </p>
             </motion.div>
             <motion.div
@@ -147,7 +147,7 @@ export default function About() {
               Meet Our Team
             </h2>
             <p className="text-lg text-white/80">
-              The passionate individuals behind Putec's exceptional wines
+              The passionate individuals behind Putec&apos;s exceptional wines
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export default function About() {
               <h3 className="text-2xl font-playfair text-white mb-2">Elena Putec</h3>
               <p className="text-gold mb-4">Head Winemaker</p>
               <p className="text-white/80">
-                Fifth-generation vintner carrying on the family's winemaking legacy with a modern approach.
+                Fifth-generation vintner carrying on the family&apos;s winemaking legacy with a modern approach.
               </p>
             </motion.div>
             
@@ -192,7 +192,7 @@ export default function About() {
               <h3 className="text-2xl font-playfair text-white mb-2">Marco Fernández</h3>
               <p className="text-gold mb-4">Head Viticulturist</p>
               <p className="text-white/80">
-                Expert in sustainable vineyard management with over 20 years of experience in Ribera del Duero.
+                Expert in sustainable vineyard management with over 20 years&apos; experience in Ribera del Duero.
               </p>
             </motion.div>
             

@@ -114,6 +114,9 @@ export async function POST(req: NextRequest) {
     
     // Create a Stripe checkout session
     console.log('Creating Stripe checkout session...');
+    
+    // Define the session configuration
+    // Using 'as any' to bypass TypeScript errors with Stripe types
     const sessionConfig: any = {
       payment_method_types: ['card'],
       line_items: lineItems,

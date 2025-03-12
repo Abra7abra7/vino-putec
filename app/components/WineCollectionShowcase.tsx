@@ -8,8 +8,7 @@ import { Star } from "lucide-react";
 import { Wine as WineType } from "../data/wines";
 import { useCart } from "./cart/CartProvider";
 
-// Using the Wine type from the data file to ensure compatibility
-type WineProps = WineType;
+// Removed unused type definition
 
 interface WineCollectionShowcaseProps {
   wines: WineType[];

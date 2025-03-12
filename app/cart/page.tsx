@@ -108,7 +108,7 @@ export default function CartPage() {
             </div>
             <h2 className="text-2xl font-playfair font-semibold text-gray-800 mb-4">Your cart is empty</h2>
             <p className="text-gray-600 max-w-md mx-auto mb-8">
-              Looks like you haven't added any wines to your cart yet. Explore our collection to find the perfect wine for any occasion.
+              Looks like you haven&apos;t added any wines to your cart yet. Explore our collection to find the perfect wine for any occasion.
             </p>
             <Link 
               href="/wines" 

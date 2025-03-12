@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { loadStripe } from '@stripe/stripe-js';
 import { Star, Award, Wine as WineIcon, ShoppingCart, CreditCard, Heart, Eye, ZapIcon } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -110,11 +111,15 @@ const WineCard = ({ wine }) => {
 
       {/* Background image covering the whole card */}
       <div className="absolute inset-0 w-full h-full">
-        <img 
-          src={wine.image} 
-          alt={wine.name} 
-          className={`w-full h-full object-cover transition-transform duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`} 
-        />
+        <div className="relative w-full h-full">
+          <Image 
+            src={wine.image} 
+            alt={wine.name} 
+            fill
+            sizes="100vw"
+            className={`object-cover transition-transform duration-700 ${isHovered ? 'scale-110' : 'scale-100'}`} 
+          />
+        </div>
         {/* Gradient overlay for better text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" style={{opacity: 0.8}}></div>
         
@@ -213,7 +218,15 @@ const WineCard = ({ wine }) => {
             <div className="flex flex-col md:flex-row">
               {/* Wine image */}
               <div className="md:w-1/2 relative h-72 md:h-auto">
-                <img src={wine.image} alt={wine.name} className="w-full h-full object-cover" />
+                <div className="relative w-full h-full">
+                  <Image 
+                    src={wine.image} 
+                    alt={wine.name} 
+                    fill
+                    sizes="50vw"
+                    className="object-cover" 
+                  />
+                </div>
                 {wine.awards && wine.awards.length > 0 && (
                   <div className="absolute bottom-4 left-4 bg-amber-100/90 backdrop-blur-sm px-3 py-2 rounded-md">
                     <div className="flex items-center text-amber-800">
