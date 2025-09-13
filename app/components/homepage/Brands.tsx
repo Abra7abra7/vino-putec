@@ -9,10 +9,10 @@ export default function Brands() {
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-6 text-center">
         {/* Section Title */}
-        <h2 className="text-3xl font-bold text-gray-800 mb-8">{homepage.brandsTitle}</h2>
+        <h2 className="text-3xl font-bold text-foreground mb-8">{homepage.brandsTitle}</h2>
 
         {/* Brand Grid */}
         <div className="grid grid-cols-1 mt-2 sm:grid-cols-3 md:grid-cols-5 gap-6 items-center justify-center">

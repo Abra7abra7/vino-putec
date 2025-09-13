@@ -30,10 +30,10 @@ export default function HomepageBanner() {
         className="max-w-4xl mx-auto px-6"
       >
         <h2 className="text-3xl md:text-4xl font-extrabold mb-6 drop-shadow-lg">{title}</h2>
-        <p className="text-lg mb-8 text-gray-200">{subtitle}</p>
+        <p className="text-lg mb-8 text-primary">{subtitle}</p>
         <Link
           href={ctaLink}
-          className="bg-white text-gray-600 hover:bg-gray-200 hover:text-gray-800 px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-transform transform hover:scale-110"
+          className="bg-background text-wine-red hover:bg-primary hover:text-wine-dark px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
         >
           {buttonText}
         </Link>

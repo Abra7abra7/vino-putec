@@ -8,15 +8,15 @@ export default function Header() {
   return (
     <>
       {/* MAIN HEADER */}
-      <header className="bg-white text-gray-900 py-4 px-4 flex justify-between items-center relative z-50">
+      <header className="bg-background text-foreground py-4 px-4 flex justify-between items-center relative z-50">
         {/* Logo & Tagline */}
         <div>
           <h1 className="text-2xl font-bold">
-            <Link href="/" className="text-gray-900 hover:text-gray-700">
+            <Link href="/" className="text-foreground hover:text-wine-red transition-colors">
               {content.siteName}
             </Link>
           </h1>
-          <strong className="text-gray-700">{content.siteTagline}</strong>
+          <strong className="text-wine-red">{content.siteTagline}</strong>
         </div>
 
         {/* Mobile Menu (Client Component) */}

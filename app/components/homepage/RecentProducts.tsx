@@ -11,13 +11,13 @@ export default async function RecentProducts() {
   const recentProducts = allProducts.slice(0, 3);
 
   if (recentProducts.length === 0) {
-    return <p className="text-center text-gray-500">{labels.noProductsFound}</p>;
+    return <p className="text-center text-wine-red">{labels.noProductsFound}</p>;
   }
 
   return (
-    <section className="py-12 bg-gray-100">
+    <section className="py-12 bg-primary-light">
       <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-gray-800 text-center mb-8">
+        <h2 className="text-3xl font-bold text-foreground text-center mb-8">
           {labels.recentProducts}
         </h2>
 

@@ -27,7 +27,7 @@ export default function OrderSummary() {
   const currencySymbol = cartItems.length > 0 ? getCurrencySymbol(cartItems[0].Currency) : "€";
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-background rounded-lg shadow-lg p-6 border border-primary">
       <h2 className="text-lg font-semibold mb-4">{labels.orderSummary || "Order Summary"}</h2>
 
       <div className="space-y-4">
@@ -37,15 +37,15 @@ export default function OrderSummary() {
             <div className="flex-1">
               <Link
                 href={`/products/${item.Slug}`}
-                className="text-sm font-medium text-gray-800 hover:text-gray-600"
+                className="text-sm font-medium text-foreground hover:text-wine-red"
               >
                 {item.Title}
               </Link>
-              <p className="text-sm text-gray-600">
+              <p className="text-sm text-wine-red">
                 {labels.quantity || "Qty"}: {item.quantity} × {getCurrencySymbol(item.Currency)}{parseFloat(item.SalePrice || item.RegularPrice).toFixed(2)}
               </p>
             </div>
-            <div className="text-sm font-medium text-gray-800">
+            <div className="text-sm font-medium text-foreground">
               {getCurrencySymbol(item.Currency)}{(item.quantity * parseFloat(item.SalePrice || item.RegularPrice)).toFixed(2)}
             </div>
           </div>

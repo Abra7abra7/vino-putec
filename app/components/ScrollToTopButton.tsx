@@ -19,7 +19,7 @@ const ScrollToTopButton = () => {
       <button
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         className="fixed bottom-8 right-8 p-3 rounded shadow-lg 
-                   bg-gray-600 hover:bg-gray-500 text-white transition"
+                   bg-wine-red hover:bg-wine-dark text-background transition-colors"
       >
         <ArrowUp className="size-6" />
       </button>

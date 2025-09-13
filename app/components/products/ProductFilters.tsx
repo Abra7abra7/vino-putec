@@ -34,13 +34,13 @@ export default function ProductFilters({
         value={searchInput} // Controlled state
         onChange={handleSearchChange} // Update state on input change
         placeholder={labels.searchPlaceholder}
-        className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-white"
+        className="border border-primary rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-wine-red bg-background"
       />
 
       {/* Category Dropdown */}
       <select
         onChange={(e) => setCategoryFilter(e.target.value)}
-        className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-white"
+        className="border border-primary rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-wine-red bg-background"
       >
         <option value="">{labels.allCategories}</option>
         {categories.map((category) => (
@@ -53,7 +53,7 @@ export default function ProductFilters({
       {/* Sorting Dropdown */}
       <select
         onChange={(e) => setSortBy(e.target.value)}
-        className="border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-500 bg-white"
+        className="border border-primary rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-wine-red bg-background"
       >
         <option value="name">{labels.sortByName}</option>
         <option value="price">{labels.sortByPrice}</option>

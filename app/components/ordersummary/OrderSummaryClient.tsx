@@ -88,34 +88,34 @@ export default function OrderSummaryClient() {
 
   const renderAddress = (title: string, data: Address) => (
     <div className="mb-6">
-      <h3 className="font-semibold text-gray-800 mb-2">{title}</h3>
-      <p className="text-sm text-gray-700">{data.firstName} {data.lastName}</p>
-      <p className="text-sm text-gray-700">{data.address1}</p>
-      {data.address2 && <p className="text-sm text-gray-700">{data.address2}</p>}
-      <p className="text-sm text-gray-700">{data.city}, {data.state}, {data.country} {data.postalCode}</p>
-      <p className="text-sm text-gray-700">{data.phone}</p>
-      <p className="text-sm text-gray-700">{data.email}</p>
+      <h3 className="font-semibold text-foreground mb-2">{title}</h3>
+      <p className="text-sm text-wine-red">{data.firstName} {data.lastName}</p>
+      <p className="text-sm text-wine-red">{data.address1}</p>
+      {data.address2 && <p className="text-sm text-wine-red">{data.address2}</p>}
+      <p className="text-sm text-wine-red">{data.city}, {data.state}, {data.country} {data.postalCode}</p>
+      <p className="text-sm text-wine-red">{data.phone}</p>
+      <p className="text-sm text-wine-red">{data.email}</p>
     </div>
   );
 
   return (
     <section className="max-w-4xl mx-auto py-10 px-6">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4">
+      <h1 className="text-3xl font-bold text-foreground mb-4">
         {labels.orderSummary || "Order Summary"}
       </h1>
-      <p className="text-gray-600 mt-3 mb-8">
+      <p className="text-wine-red mt-3 mb-8">
         {labels.orderConfirmationMessage ||
           "Your order was placed successfully. We’ll notify you once it’s processed."}
       </p>
-      <p className="text-sm text-gray-600 mb-4">
+      <p className="text-sm text-wine-red mb-4">
         {labels.orderId || "Order ID"}: {order.orderId}
       </p>
-      <p className="text-sm text-gray-600 mb-4">
+      <p className="text-sm text-wine-red mb-4">
         {labels.orderDate || "Order Date"}: {order.orderDate}
       </p>
 
-      <div className="bg-white p-6 rounded-md shadow-md">
-        <h2 className="text-xl font-semibold text-gray-700 mb-4">
+      <div className="bg-background p-6 rounded-md shadow-md">
+        <h2 className="text-xl font-semibold text-wine-red mb-4">
           {labels.orderDetails || "Order Details"}
         </h2>
 
@@ -133,15 +133,15 @@ export default function OrderSummaryClient() {
                     height={80}
                     className="rounded object-cover"
                   />
-                  <span className="text-gray-800">{item.Title} × {item.quantity}</span>
+                  <span className="text-foreground">{item.Title} × {item.quantity}</span>
                 </div>
-                <span className="text-gray-700">{getCurrencySymbol(item.Currency)}{(price * item.quantity).toFixed(2)}</span>
+                <span className="text-wine-red">{getCurrencySymbol(item.Currency)}{(price * item.quantity).toFixed(2)}</span>
               </li>
             );
           })}
         </ul>
 
-        <div className="border-t mt-6 pt-4 space-y-2 text-sm text-gray-700">
+        <div className="border-t mt-6 pt-4 space-y-2 text-sm text-wine-red">
           <div className="flex justify-between">
             <span>{labels.subtotal || "Subtotal"}:</span>
             <span>€{total.toFixed(2)}</span>
@@ -150,13 +150,13 @@ export default function OrderSummaryClient() {
             <span>{labels.shipping || "Shipping"}: {order.shippingMethod?.name}</span>
             <span>€{shippingCost.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between font-semibold text-gray-900 border-t pt-2">
+          <div className="flex justify-between font-semibold text-foreground border-t pt-2">
             <span>{labels.total || "Total"}:</span>
             <span>€{grandTotal.toFixed(2)}</span>
           </div>
         </div>
 
-        <div className="mt-6 text-sm text-gray-600 space-y-1">
+        <div className="mt-6 text-sm text-wine-red space-y-1">
           <p>
             {labels.shippingMethod || "Shipping Method"}: {order.shippingMethod?.name}
           </p>

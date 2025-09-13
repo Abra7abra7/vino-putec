@@ -34,19 +34,19 @@ export default function ContactUsForm() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-stone-100 py-16">
+    <section className="w-full min-h-screen bg-primary-light py-16">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-black text-center">{contactForm.title}</h2>
+        <h2 className="text-4xl font-bold text-foreground text-center">{contactForm.title}</h2>
 
-        {status && <div className="mb-4 text-green-600 font-semibold">{status}</div>}
+        {status && <div className="mb-4 text-wine-red font-semibold">{status}</div>}
 
         <form
           onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded-lg p-8 space-y-6 mt-3"
+          className="bg-background shadow-lg rounded-lg p-8 space-y-6 mt-3 border border-primary"
         >
           {/* Name Field */}
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
+            <label className="block text-foreground font-medium mb-2">
               {contactForm.nameLabel}
             </label>
             <input
@@ -61,7 +61,7 @@ export default function ContactUsForm() {
 
           {/* Email Field */}
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
+            <label className="block text-foreground font-medium mb-2">
               {contactForm.emailLabel}
             </label>
             <input
@@ -76,7 +76,7 @@ export default function ContactUsForm() {
 
           {/* Message Field */}
           <div>
-            <label className="block text-gray-700 font-medium mb-2">
+            <label className="block text-foreground font-medium mb-2">
               {contactForm.messageLabel}
             </label>
             <textarea
@@ -92,7 +92,7 @@ export default function ContactUsForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-3 rounded-md font-semibold transition"
+            className="bg-wine-red hover:bg-wine-dark text-background px-6 py-3 rounded-md font-semibold transition-colors"
           >
             {contactForm.buttonText}
           </button>

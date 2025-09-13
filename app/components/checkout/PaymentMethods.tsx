@@ -49,19 +49,19 @@ export default function PaymentMethods() {
 
   return (
     <div className="mt-8">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
+      <h2 className="text-lg font-semibold text-foreground mb-4">
         {labels.paymentMethod || "Payment Method"}
       </h2>
 
       {!formReady && (
-        <p className="text-sm text-gray-500 mb-2">
+        <p className="text-sm text-wine-red mb-2">
           {labels.completeBeforePayment ||
             "Please complete all shipping and billing fields before selecting a payment method."}
         </p>
       )}
 
       <div
-        className={`space-y-4 bg-white rounded p-5 transition-all duration-300 ${
+        className={`space-y-4 bg-background rounded p-5 transition-all duration-300 ${
           formReady ? "" : "opacity-80 blur-[1px] pointer-events-none"
         }`}
       >
@@ -77,9 +77,9 @@ export default function PaymentMethods() {
                     value={method.id}
                     checked={selectedMethodId === method.id}
                     onChange={() => handleChange(method.id)}
-                    className="accent-gray-700"
+                    className="accent-wine-red"
                   />
-                  <span className="text-sm font-medium text-gray-800">{method.name}</span>
+                  <span className="text-sm font-medium text-foreground">{method.name}</span>
                   {method.icon && (
                     <Image
                       src={method.icon}

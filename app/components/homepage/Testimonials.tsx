@@ -15,11 +15,11 @@ export default function Testimonials() {
     
     for (let i = 0; i < maxStars; i++) {
       if (i < Math.floor(rating)) {
-        stars.push(<span key={i} className="text-yellow-500 text-lg">★</span>); // Full star
+        stars.push(<span key={i} className="text-accent-gold text-lg">★</span>); // Full star
       } else if (i < Math.ceil(rating) && rating % 1 !== 0) {
-        stars.push(<span key={i} className="text-yellow-500 text-lg">⯪</span>); // Half star symbol
+        stars.push(<span key={i} className="text-accent-gold text-lg">⯪</span>); // Half star symbol
       } else {
-        stars.push(<span key={i} className="text-gray-400 text-lg">☆</span>); // Empty star
+        stars.push(<span key={i} className="text-wine-red text-lg">☆</span>); // Empty star
       }
     }
   
@@ -27,10 +27,10 @@ export default function Testimonials() {
   };  
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-20 bg-background">
       <div className="container mx-auto px-6 text-center">
         {/* Section Title */}
-        <h2 className="text-4xl font-extrabold text-gray-800 mb-12">
+        <h2 className="text-4xl font-extrabold text-foreground mb-12">
           {homepage.testimonialsTitle || "What Our Customers Say"}
         </h2>
 
@@ -39,7 +39,7 @@ export default function Testimonials() {
           {homepage.testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-gray-100 p-8 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105"
+              className="bg-primary-light p-8 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105"
             >
               {/* User Avatar */}
               <Image
@@ -47,7 +47,7 @@ export default function Testimonials() {
                 alt={testimonial.name}
                 width={80}
                 height={80}
-                className="rounded-full mb-4 border-4 border-gray-300"
+                className="rounded-full mb-4 border-4 border-primary"
                 priority={false}
               />
 

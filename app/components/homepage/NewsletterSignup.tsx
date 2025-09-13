@@ -31,10 +31,10 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="py-16 bg-gray-100">
+    <section className="py-16 bg-primary-light">
       <div className="container mx-auto text-center px-6">
-        <h2 className="text-3xl font-bold text-gray-800">{newsletter.title}</h2>
-        <p className="text-gray-600 mt-2">{newsletter.description}</p>
+        <h2 className="text-3xl font-bold text-foreground">{newsletter.title}</h2>
+        <p className="text-wine-red mt-2">{newsletter.description}</p>
 
         <form onSubmit={handleSubmit} className="mt-6 flex justify-center">
           <input
@@ -43,11 +43,11 @@ export default function NewsletterSignup() {
             onChange={(e) => setEmail(e.target.value)}
             placeholder={newsletter.placeholder}
             required
-            className="px-4 py-3 w-40 sm:w-72 border border-gray-300 bg-white rounded-l-md focus:outline-none"
+            className="px-4 py-3 w-40 sm:w-72 border border-primary bg-background rounded-l-md focus:outline-none focus:ring-2 focus:ring-wine-red"
           />
           <button
             type="submit"
-            className="px-3 sm:px-6 py-1 sm:py-3 bg-gray-800 text-white font-bold rounded-r-md hover:bg-gray-900 transition"
+            className="px-3 sm:px-6 py-1 sm:py-3 bg-wine-red text-background font-bold rounded-r-md hover:bg-wine-dark transition-colors"
             disabled={status === "loading"}
           >
             {status === "loading" ? "Processing..." : newsletter.buttonText}

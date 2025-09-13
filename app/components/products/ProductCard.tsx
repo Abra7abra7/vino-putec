@@ -29,7 +29,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg overflow-hidden transition hover:scale-105">
+    <div className="bg-background shadow-lg rounded-lg overflow-hidden transition hover:scale-105 border border-primary">
       {/* Product Image with Link to Product Page */}
       <Link href={`/products/${product.Slug}`}>
         <div className="w-full">
@@ -45,13 +45,13 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="p-6">
-        <h3 className="text-xl font-semibold text-gray-900 truncate">
-          <Link href={`/products/${product.Slug}`} className="hover:text-gray-600">
+        <h3 className="text-xl font-semibold text-foreground truncate">
+          <Link href={`/products/${product.Slug}`} className="hover:text-wine-red">
             {product.Title}
           </Link>
         </h3>
 
-        <p className="text-gray-700 mt-2 text-sm line-clamp-2">{product.ShortDescription}</p>
+        <p className="text-foreground mt-2 text-sm line-clamp-2">{product.ShortDescription}</p>
 
         <div className="mt-3">
           {hasDiscount ? (
@@ -60,13 +60,13 @@ export default function ProductCard({ product }: ProductCardProps) {
                 {currencySymbol}
                 {product.SalePrice}
               </span>
-              <span className="text-gray-500 line-through">
+              <span className="text-wine-red line-through">
                 {currencySymbol}
                 {product.RegularPrice}
               </span>
             </div>
           ) : (
-            <span className="text-lg font-bold text-gray-900">
+            <span className="text-lg font-bold text-foreground">
               {currencySymbol}
               {product.RegularPrice}
             </span>
@@ -75,14 +75,14 @@ export default function ProductCard({ product }: ProductCardProps) {
 
         <div className="mt-4 flex flex-col sm:flex-row gap-2">
           <Link href={`/products/${product.Slug}`} className="sm:w-1/2">
-            <span className="w-full inline-block bg-gray-800 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-semibold text-center transition">
+            <span className="w-full inline-block bg-wine-red hover:bg-wine-dark text-background px-4 py-2 rounded-md text-sm font-semibold text-center transition-colors">
               {labels.viewProduct || "View Product"}
             </span>
           </Link>
 
           <button
             onClick={handleAddToCart}
-            className="w-full sm:w-1/2 bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-md text-sm font-semibold text-center transition"
+            className="w-full sm:w-1/2 bg-primary hover:bg-primary-dark text-foreground px-4 py-2 rounded-md text-sm font-semibold text-center transition-colors"
           >
             {labels.addToCart || "Add to Cart"}
           </button>

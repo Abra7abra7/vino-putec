@@ -18,15 +18,15 @@ export default function ShippingMethod() {
 
   return (
     <div className="mt-8">
-      <h2 className="text-lg font-semibold text-gray-800 mb-4">
+      <h2 className="text-lg font-semibold text-foreground mb-4">
         {labels.shippingMethod || "Shipping Method"}
       </h2>
 
-      <div className="space-y-4 bg-white rounded p-5">
+      <div className="space-y-4 bg-background rounded p-5">
         {shippingMethods.map((method) => (
           <label
             key={method.id}
-            className="flex items-center justify-between p-1 rounded-md cursor-pointer hover:border-gray-500 transition"
+            className="flex items-center justify-between p-1 rounded-md cursor-pointer hover:border-wine-red transition"
           >
             <div className="flex items-center gap-4">
               <input
@@ -35,11 +35,11 @@ export default function ShippingMethod() {
                 value={method.id}
                 checked={selectedMethodId === method.id}
                 onChange={() => handleChange(method.id)}
-                className="accent-gray-700"
+                className="accent-wine-red"
               />
-              <span className="text-sm font-medium text-gray-800">{method.name}</span>
+              <span className="text-sm font-medium text-foreground">{method.name}</span>
             </div>
-            <span className="text-sm text-gray-700">
+            <span className="text-sm text-wine-red">
               {getCurrencySymbol(method.currency)}
               {method.price.toFixed(2)}
             </span>

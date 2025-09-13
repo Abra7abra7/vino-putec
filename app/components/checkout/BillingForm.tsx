@@ -42,22 +42,22 @@ export default function BillingForm() {
   return (
     <div className="space-y-4 mt-8">
       <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold text-gray-800">
+        <h3 className="text-xl font-semibold text-foreground">
           {labels.billingInformation || "Billing Information"}
         </h3>
         <button
           type="button"
           onClick={handleSameAsShipping}
-          className="text-sm text-gray-600 underline hover:text-gray-800"
+          className="text-sm text-wine-red underline hover:text-foreground"
         >
           {labels.sameAsShipping || "Same as Shipping"}
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input name="firstName" value={billingForm.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-white border border-gray-300 p-1 pl-2 rounded" required />
-        <input name="lastName" value={billingForm.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-white border border-gray-300 p-1 pl-2 rounded" required />
+        <input name="firstName" value={billingForm.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-background border border-primary p-1 pl-2 rounded" required />
+        <input name="lastName" value={billingForm.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-background border border-primary p-1 pl-2 rounded" required />
         
-        <select name="country" value={billingForm.country} onChange={handleChange} className="input bg-white border border-gray-300 p-1">
+        <select name="country" value={billingForm.country} onChange={handleChange} className="input bg-background border border-primary p-1">
           {billingCountries.map((c) => (
             <option key={c.code} value={c.code}>{c.name}</option>
           ))}
@@ -65,20 +65,20 @@ export default function BillingForm() {
 
         {/* Conditionally render state dropdown if states available */}
         {availableStates ? (
-          <select name="state" value={billingForm.state} onChange={handleChange} className="input bg-white border border-gray-300 p-1">
+          <select name="state" value={billingForm.state} onChange={handleChange} className="input bg-background border border-primary p-1">
             {availableStates.map((s) => (
               <option key={s.code} value={s.code}>{s.name}</option>
             ))}
           </select>
         ) : null}
 
-        <input name="city" value={billingForm.city} onChange={handleChange} placeholder={labels.city} className="input bg-white border border-gray-300 p-1 pl-2 rounded" required />
+        <input name="city" value={billingForm.city} onChange={handleChange} placeholder={labels.city} className="input bg-background border border-primary p-1 pl-2 rounded" required />
 
-        <input name="address1" value={billingForm.address1} onChange={handleChange} placeholder={labels.address1} className="input bg-white border border-gray-300 p-1 pl-2 rounded" required />
-        <input name="address2" value={billingForm.address2} onChange={handleChange} placeholder={labels.address2} className="input bg-white border border-gray-300 p-1 pl-2 rounded" />
-        <input name="postalCode" value={billingForm.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-white border border-gray-300 p-1 pl-2 rounded" required />
-        <input name="phone" value={billingForm.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-white border border-gray-300 p-1 pl-2 rounded" required />
-        <input name="email" value={billingForm.email} onChange={handleChange} placeholder={labels.email} className="input bg-white border border-gray-300 md:col-span-2 p-1 pl-2 rounded" required />
+        <input name="address1" value={billingForm.address1} onChange={handleChange} placeholder={labels.address1} className="input bg-background border border-primary p-1 pl-2 rounded" required />
+        <input name="address2" value={billingForm.address2} onChange={handleChange} placeholder={labels.address2} className="input bg-background border border-primary p-1 pl-2 rounded" />
+        <input name="postalCode" value={billingForm.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border border-primary p-1 pl-2 rounded" required />
+        <input name="phone" value={billingForm.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border border-primary p-1 pl-2 rounded" required />
+        <input name="email" value={billingForm.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border border-primary md:col-span-2 p-1 pl-2 rounded" required />
       </div>
     </div>
   );

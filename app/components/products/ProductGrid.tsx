@@ -38,7 +38,7 @@ export default function ProductGrid() {
         {displayedProducts.length > 0 ? (
           displayedProducts.map((product) => <ProductCard key={product.ID} product={product} />)
         ) : (
-          <p className="text-center text-gray-600">{labels.noProductsFound}</p>
+          <p className="text-center text-wine-red">{labels.noProductsFound}</p>
         )}
       </div>
 
@@ -51,7 +51,7 @@ export default function ProductGrid() {
               key={i}
               onClick={() => setCurrentPage(i + 1)}
               className={`px-3 py-1 rounded-md border transition-all 
-                ${currentPage === i + 1 ? "bg-gray-800 text-white" : "bg-white text-gray-800 hover:bg-gray-200"}`}
+                ${currentPage === i + 1 ? "bg-wine-red text-background" : "bg-background text-foreground hover:bg-primary"}`}
             >
               {i + 1}
             </button>

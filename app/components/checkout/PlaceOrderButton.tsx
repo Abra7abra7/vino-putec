@@ -107,17 +107,17 @@ export default function PlaceOrderButton() {
     <div className="mt-6">
       <button
         onClick={handlePlaceOrder}
-        className={`w-full text-white font-semibold py-3 px-4 rounded-md transition
+        className={`w-full text-background font-semibold py-3 px-4 rounded-md transition-colors
           ${isLoading
-            ? "bg-gray-400 cursor-not-allowed"
-            : "bg-green-600 hover:bg-green-700"}`}
+            ? "bg-wine-red cursor-not-allowed opacity-50"
+            : "bg-wine-red hover:bg-wine-dark"}`}
         disabled={isLoading}
       >
         {isLoading
           ? labels.placingOrder || "Placing Order..."
           : labels.placeOrder || "Place Order"}
       </button>
-      {errorMsg && <p className="text-red-600 mt-2 text-sm">{errorMsg}</p>}
+      {errorMsg && <p className="text-wine-red mt-2 text-sm">{errorMsg}</p>}
     </div>
   );
 }
