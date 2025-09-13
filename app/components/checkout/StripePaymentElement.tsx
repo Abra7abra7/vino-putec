@@ -27,6 +27,26 @@ export default function StripePaymentElement() {
       alert(error.message);
       return;
     }
+
+    // Payment succeeded, send confirmation emails
+    try {
+      // Get order data from localStorage
+      const orderData = localStorage.getItem('stripeOrderData');
+      if (orderData) {
+        const parsedOrderData = JSON.parse(orderData);
+        
+        // Call placeorder API to send emails
+        await fetch('/api/checkout/placeorder', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(parsedOrderData),
+        });
+        
+        console.log('📧 Confirmation emails sent');
+      }
+    } catch (emailError) {
+      console.error('❌ Failed to send confirmation emails:', emailError);
+    }
   };
 
   return (
