@@ -4,6 +4,7 @@ import { useCheckoutSettings } from "../../context/CheckoutContext";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setShippingMethod } from "../../store/slices/checkoutSlice";
 import { useLocalization } from "../../context/LocalizationContext";
+import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 
 export default function ShippingMethod() {
   const { labels } = useLocalization();
@@ -39,7 +40,7 @@ export default function ShippingMethod() {
               <span className="text-sm font-medium text-gray-800">{method.name}</span>
             </div>
             <span className="text-sm text-gray-700">
-              {method.currency === "USD" ? "$" : ""}
+              {getCurrencySymbol(method.currency)}
               {method.price.toFixed(2)}
             </span>
           </label>

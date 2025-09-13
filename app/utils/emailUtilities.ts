@@ -72,7 +72,7 @@ export function formatOrderSummary(cartItems: OrderCartItem[]): {
   const lines = cartItems
     .map(
       (item) =>
-        `- ${item.Title} × ${item.quantity} = $${(
+        `- ${item.Title} × ${item.quantity} = €${(
           parseFloat(item.SalePrice || item.RegularPrice) * item.quantity
         ).toFixed(2)}`
     )
@@ -115,9 +115,9 @@ Spôsob platby: ${body.paymentMethodId.toUpperCase()}
 Súhrn objednávky:
 ${summary}
 
-Medzisúčet: $${subtotal.toFixed(2)}
-Doprava: $${shipping.toFixed(2)}
-Celkom: $${total.toFixed(2)}
+Medzisúčet: €${subtotal.toFixed(2)}
+Doprava: €${shipping.toFixed(2)}
+Celkom: €${total.toFixed(2)}
 
 Dátum: ${new Date().toLocaleString()}
 `;
@@ -148,7 +148,7 @@ ${body.shippingForm.city}, ${body.shippingForm.state}, ${body.shippingForm.count
 Súhrn objednávky:
 ${summary}
 
-Celkom: $${total.toFixed(2)}
+Celkom: €${total.toFixed(2)}
 
 Ďakujeme za nákup!
 ${siteName || "Vino Putec"}

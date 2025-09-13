@@ -2,21 +2,21 @@
     "shippingMethods": [
       {
         "id": "standard",
-        "name": "Standard Shipping (5–7 days)",
-        "price": 5.00,
-        "currency": "USD"
+        "name": "Štandardné doručenie (5–7 dní)",
+        "price": 4.50,
+        "currency": "EUR"
       },
       {
         "id": "express",
-        "name": "Express Shipping (2–3 days)",
-        "price": 15.00,
-        "currency": "USD"
+        "name": "Expresné doručenie (2–3 dni)",
+        "price": 13.50,
+        "currency": "EUR"
       },
       {
         "id": "overnight",
-        "name": "Overnight Shipping",
-        "price": 25.00,
-        "currency": "USD"
+        "name": "Doručenie do 24 hodín",
+        "price": 22.50,
+        "currency": "EUR"
       }
     ],
     "shippingCountries": [

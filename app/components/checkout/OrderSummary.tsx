@@ -3,6 +3,7 @@
 import { useAppSelector } from "../../store/hooks";
 import { useCheckoutSettings } from "../../context/CheckoutContext";
 import { useLocalization } from "../../context/LocalizationContext";
+import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -21,6 +22,9 @@ export default function OrderSummary() {
 
   const shippingCost = shipping?.price || 0;
   const totalAmount = cartTotal + shippingCost;
+  
+  // Get currency symbol from first cart item or default to EUR
+  const currencySymbol = cartItems.length > 0 ? getCurrencySymbol(cartItems[0].Currency) : "€";
 
   return (
     <div className="bg-white rounded-lg shadow-md p-6">
@@ -38,11 +42,11 @@ export default function OrderSummary() {
                 {item.Title}
               </Link>
               <p className="text-sm text-gray-600">
-                {labels.quantity || "Qty"}: {item.quantity} × ${parseFloat(item.SalePrice || item.RegularPrice).toFixed(2)}
+                {labels.quantity || "Qty"}: {item.quantity} × {getCurrencySymbol(item.Currency)}{parseFloat(item.SalePrice || item.RegularPrice).toFixed(2)}
               </p>
             </div>
             <div className="text-sm font-medium text-gray-800">
-              ${(item.quantity * parseFloat(item.SalePrice || item.RegularPrice)).toFixed(2)}
+              {getCurrencySymbol(item.Currency)}{(item.quantity * parseFloat(item.SalePrice || item.RegularPrice)).toFixed(2)}
             </div>
           </div>
         ))}
@@ -51,19 +55,19 @@ export default function OrderSummary() {
 
         <div className="flex justify-between text-sm">
           <span>{labels.subtotal || "Subtotal"}:</span>
-          <span>${cartTotal.toFixed(2)}</span>
+          <span>{currencySymbol}{cartTotal.toFixed(2)}</span>
         </div>
 
         <div className="flex justify-between text-sm">
           <span>{labels.shipping || "Shipping"}:</span>
-          <span>{shipping ? `${shipping.name} $${shipping.price.toFixed(2)}` : labels.noShippingSelected || "Not selected"}</span>
+          <span>{shipping ? `${shipping.name} ${getCurrencySymbol(shipping.currency)}${shipping.price.toFixed(2)}` : labels.noShippingSelected || "Not selected"}</span>
         </div>
 
         <hr className="my-4" />
 
         <div className="flex justify-between font-bold text-base">
           <span>{labels.total || "Total"}:</span>
-          <span>${totalAmount.toFixed(2)}</span>
+          <span>{currencySymbol}{totalAmount.toFixed(2)}</span>
         </div>
       </div>
     </div>

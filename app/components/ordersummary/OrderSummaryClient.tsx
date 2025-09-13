@@ -6,6 +6,7 @@ import { useLocalization } from "../../context/LocalizationContext";
 import { useProductContext } from "../../context/ProductContext";
 import { useAppDispatch } from "../../store/hooks";
 import { clearCart } from "../../store/slices/cartSlice";
+import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 import Image from "next/image";
 import { Product } from "../../../types/Product";
 
@@ -134,7 +135,7 @@ export default function OrderSummaryClient() {
                   />
                   <span className="text-gray-800">{item.Title} × {item.quantity}</span>
                 </div>
-                <span className="text-gray-700">${(price * item.quantity).toFixed(2)}</span>
+                <span className="text-gray-700">{getCurrencySymbol(item.Currency)}{(price * item.quantity).toFixed(2)}</span>
               </li>
             );
           })}
@@ -143,15 +144,15 @@ export default function OrderSummaryClient() {
         <div className="border-t mt-6 pt-4 space-y-2 text-sm text-gray-700">
           <div className="flex justify-between">
             <span>{labels.subtotal || "Subtotal"}:</span>
-            <span>${total.toFixed(2)}</span>
+            <span>€{total.toFixed(2)}</span>
           </div>
           <div className="flex justify-between">
             <span>{labels.shipping || "Shipping"}: {order.shippingMethod?.name}</span>
-            <span>${shippingCost.toFixed(2)}</span>
+            <span>€{shippingCost.toFixed(2)}</span>
           </div>
           <div className="flex justify-between font-semibold text-gray-900 border-t pt-2">
             <span>{labels.total || "Total"}:</span>
-            <span>${grandTotal.toFixed(2)}</span>
+            <span>€{grandTotal.toFixed(2)}</span>
           </div>
         </div>
 
