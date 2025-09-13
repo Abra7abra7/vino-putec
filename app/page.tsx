@@ -23,22 +23,8 @@ export default function Home() {
       <HomepageBanner />
       <RecentProducts />
       
-      {/* Services Section - Ubytovanie a Degustácie vedľa seba */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-foreground mb-4">Naše služby</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Objavte naše prémiové služby - ubytovanie a degustácie vína
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <DegustaciePreview />
-            <AccommodationPreview />
-          </div>
-        </div>
-      </section>
+      <DegustaciePreview />
+      <AccommodationPreview />
       
       <BrandStory />
       <Testimonials />
