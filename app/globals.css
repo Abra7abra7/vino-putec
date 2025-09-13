@@ -5,14 +5,17 @@
   --font-heading: var(--font-poppins);
   --font-body: var(--font-inter);
 
-  /* Vino Putec brand colors */
+  /* Vino Putec brand colors - CSS custom properties pre ľahkú zmenu */
   --color-background: #ffffff;
   --color-foreground: #171717;
   --color-primary: #f7dca7;
   --color-primary-dark: #e6c896;
-  --color-accent: #8b4513;
+  --color-primary-light: #f9e6c4;
   --color-wine-red: #722f37;
-  --color-gold: #f7dca7;
+  --color-wine-dark: #5a2429;
+  --color-wine-light: #8b3a42;
+  --color-accent-brown: #8b4513;
+  --color-accent-gold: #f7dca7;
 }
 
 /* Body uses body font */
