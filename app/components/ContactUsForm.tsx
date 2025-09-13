@@ -1,12 +1,10 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import { useGoogleReCaptcha } from 'react-google-recaptcha-v3';
 import { useLocalization } from '@/app/context/LocalizationContext';
 
 export default function ContactUsForm() {
   const { contactForm } = useLocalization();
-  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -16,18 +14,11 @@ export default function ContactUsForm() {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    if (!executeRecaptcha) {
-      setStatus(contactForm.captchaError);
-      return;
-    }
-
-    const token = await executeRecaptcha('contact_us');
-
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message, token }),
+        body: JSON.stringify({ name, email, message }),
       });
 
       if (!res.ok) throw new Error('Something went wrong');

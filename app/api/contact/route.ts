@@ -2,26 +2,17 @@ import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
 export async function POST(req: Request) {
-  const { name, email, message, token } = await req.json();
+  const { name, email, message } = await req.json();
 
-  // Step 1: reCAPTCHA Validation
-  const verifyRes = await fetch(
-    `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${token}`,
-    {
-      method: 'POST',
-    }
-  );
-
-  const captchaValidation = await verifyRes.json();
-
-  if (!captchaValidation.success || captchaValidation.score < 0.5) {
+  // Basic validation
+  if (!name || !email || !message) {
     return NextResponse.json(
-      { success: false, message: 'CAPTCHA verification failed.' },
+      { success: false, message: 'All fields are required.' },
       { status: 400 }
     );
   }
 
-  // Step 2: Setup Resend
+  // Setup Resend
   const resend = new Resend(process.env.RESEND_API_KEY);
 
   try {
