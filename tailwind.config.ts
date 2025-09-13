@@ -10,22 +10,16 @@ const config: Config = {
     extend: {
       colors: {
         // Vino Putec brand colors
-        primary: {
-          DEFAULT: "#f7dca7",
-          dark: "#e6c896",
-          light: "#f9e6c4",
-        },
-        wine: {
-          red: "#722f37",
-          dark: "#5a2429",
-          light: "#8b3a42",
-        },
-        accent: {
-          brown: "#8b4513",
-          gold: "#f7dca7",
-        },
-        background: "var(--color-background)",
-        foreground: "var(--color-foreground)",
+        primary: "#f7dca7",
+        'primary-dark': "#e6c896", 
+        'primary-light': "#f9e6c4",
+        'wine-red': "#722f37",
+        'wine-dark': "#5a2429",
+        'wine-light': "#8b3a42",
+        'accent-brown': "#8b4513",
+        'accent-gold': "#f7dca7",
+        background: "#ffffff",
+        foreground: "#171717",
       },
       fontFamily: {
         heading: ["var(--font-poppins)", "sans-serif"],
