@@ -72,12 +72,23 @@ npm install
 
 **/.env.local** – Ukladá citlivé premenné prostredia a konfiguráciu runtime pre váš obchod
 
+### Nastavenie environment premenných
+```sh
+# Skopírujte príklad súboru
+cp env.example .env.local
+
+# Upravte .env.local s vašimi skutočnými API kľúčmi
+# Všetky služby sú voliteľné - e-shop funguje aj bez nich
+```
+
 ### Spustenie development servera
 ```sh
 npm run dev
 ```
 
 Potom otvorte http://localhost:3000 vo vašom prehliadači.
+
+**Poznámka:** E-shop funguje aj bez nastavenia API kľúčov. Platobné metódy a newsletter budú dostupné až po nastavení príslušných služieb.
 
 ## Licencia
 
