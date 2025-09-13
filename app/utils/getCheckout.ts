@@ -46,7 +46,6 @@ const defaultCheckoutSettings: CheckoutSettings = {
   ],
   paymentMethods: [
     { id: "stripe", name: "Stripe", enabled: true },
-    { id: "paypal", name: "PayPal", enabled: true },
     { id: "cod", name: "Cash on Delivery", enabled: true },
   ],
 };

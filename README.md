@@ -20,8 +20,7 @@ Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktor�
 
 - **Bez databázy** – Produkty sú uložené v JSON súboroch
 - **Rýchly a ľahký** – Postavený na Next.js a optimalizovaný pre výkon
-- **Košík a objednávka** – LocalStorage košík s Stripe, PayPal a dobierkou
-- **PayPal Express Checkout** – Dostupné priamo z košíka a stránky produktu
+- **Košík a objednávka** – LocalStorage košík s Stripe a dobierkou
 - **Newsletter integrácia** – Prihlásenie na newsletter
 - **Kontaktný formulár s Google reCAPTCHA v3** – Ochrana pred spamom
 - **Spracovanie objednávok cez email** – Používa Resend na odosielanie notifikácií
@@ -34,8 +33,7 @@ Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktor�
 - **Úložisko**: JSON-based súborový systém (bez databázy)
 - **Platby**:
   - **Stripe Payment Element** – Vložené platby kartou
-  - **PayPal Standard Checkout** – Klasický checkout po vyplnení formulára
-  - **PayPal Express Checkout** – Okamžitý checkout priamo z košíka a stránok produktov
+  - **Dobierka** – Platba pri dodaní
 - **Hosting**: Vercel alebo akýkoľvek statický hosting
 
 ## Spustenie
@@ -68,7 +66,7 @@ npm install
 **/configs/checkout.json** - Definuje všetky nastavenia súvisiace s checkout skúsenosťou:
 - Spôsoby dopravy: Názvy, ceny a meny
 - Dostupné krajiny: Samostatné zoznamy pre krajiny dopravy a fakturácie
-- Spôsoby platby: Zahŕňa Stripe, PayPal a dobierku s možnosťami zapnúť/vypnúť
+- Spôsoby platby: Zahŕňa Stripe a dobierku s možnosťami zapnúť/vypnúť
 
 **/.env.local** – Ukladá citlivé premenné prostredia a konfiguráciu runtime pre váš obchod
 

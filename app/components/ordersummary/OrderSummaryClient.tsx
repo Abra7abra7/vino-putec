@@ -163,8 +163,6 @@ export default function OrderSummaryClient() {
             {labels.paymentMethod || "Payment Method"}:{" "}
             {order.paymentMethodId === "cod"
               ? "Cash on Delivery"
-              : order.paymentMethodId === "paypal"
-              ? "PayPal"
               : order.paymentMethodId === "stripe"
               ? "Credit Card (Stripe)"
               : order.paymentMethodId}

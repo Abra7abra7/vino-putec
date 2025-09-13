@@ -5,7 +5,6 @@ import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 import ProductLightbox from "../../components/products/ProductLightbox";
 import { getLocalization } from "../../utils/getLocalization";
 import AddToCartButtonWrapper from "../../components/products/AddToCartButtonWrapper";
-import PayPalExpressButtonWrapper from "@/app/components/paypal/PayPalExpressButtonWrapper";
 
 // Define a type for route params as a Promise
 type AsyncParams = Promise<{ slug?: string }>;
@@ -102,9 +101,6 @@ export default async function ProductPage({
               <AddToCartButtonWrapper product={product} />
             </div>
 
-            <div className="mt-4 max-w-48">
-              <PayPalExpressButtonWrapper product={product} />
-            </div>
 
           </div>
         </div>

@@ -287,12 +287,6 @@
         "icon": "/payments/cash.png"
       },
       {
-        "id": "paypal",
-        "name": "PayPal",
-        "enabled": true,
-        "icon": "/payments/paypal.png"
-      },
-      {
         "id": "stripe",
         "name": "Stripe (Credit/Debit Card)",
         "enabled": true,

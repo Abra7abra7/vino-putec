@@ -3,7 +3,9 @@ import Stripe from "stripe";
 import { getLocalization } from "../../../utils/getLocalization";
 import type { CartItem } from "../../../../types/CartItem";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {});
+const stripe = process.env.STRIPE_SECRET_KEY 
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {})
+  : null;
 
 interface StripeIntentBody {
   amount: number;
@@ -14,6 +16,10 @@ interface StripeIntentBody {
 }
 
 export async function POST(req: Request) {
+  if (!stripe) {
+    return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
+  }
+
   try {
     const {
       amount,

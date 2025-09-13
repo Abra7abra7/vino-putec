@@ -9,7 +9,6 @@ import Link from "next/link";
 import { removeFromCart, updateQuantity } from "../store/slices/cartSlice";
 import { showMiniCart } from "../utils/MiniCartController";
 import { X, Plus, Minus } from "lucide-react";
-import PayPalBasketExpressWrapper from "../components/paypal/PayPalBasketExpressWrapper";
 
 function CartContent() {
   const { labels } = useLocalization();
@@ -103,12 +102,6 @@ function CartContent() {
                 {labels.total || "Total"}: ${total.toFixed(2)}
               </p>
 
-              {/* PayPal Button Above Checkout Button */}
-              <div className="flex justify-end">
-                <div className="w-[260px]"> {/* Customize width as needed */}
-                  <PayPalBasketExpressWrapper />
-                </div>
-              </div>
 
               {/* Checkout Button Below */}
               <Link

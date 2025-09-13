@@ -6,9 +6,15 @@ export const config = {
   },
 };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {});
+const stripe = process.env.STRIPE_SECRET_KEY 
+  ? new Stripe(process.env.STRIPE_SECRET_KEY, {})
+  : null;
 
 export async function POST(req: Request) {
+  if (!stripe) {
+    return new Response("Stripe not configured", { status: 500 });
+  }
+
   const sig = req.headers.get("stripe-signature");
 
   if (!sig) {

@@ -4,7 +4,6 @@ import { useCheckoutSettings } from "../../context/CheckoutContext";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setPaymentMethod } from "../../store/slices/checkoutSlice";
 import { useLocalization } from "../../context/LocalizationContext";
-import PayPalButton from "./PayPalButton";
 import StripeClientSecretLoader from "./StripeClientSecretLoader";
 import PlaceOrderButton from "./PlaceOrderButton";
 import Image from "next/image";
@@ -93,11 +92,6 @@ export default function PaymentMethods() {
                 </div>
               </label>
 
-              {method.id === "paypal" && selectedMethodId === "paypal" && (
-                <div className="mt-4 ml-6">
-                  <PayPalButton />
-                </div>
-              )}
 
               {method.id === "cod" && selectedMethodId === "cod" && (
                 <div className="mt-4 ml-6">
