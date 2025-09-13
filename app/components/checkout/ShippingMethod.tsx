@@ -39,7 +39,7 @@ export default function ShippingMethod() {
               />
               <span className="text-sm font-medium text-foreground">{method.name}</span>
             </div>
-            <span className="text-sm text-wine-red">
+            <span className="text-sm text-gray-700">
               {getCurrencySymbol(method.currency)}
               {method.price.toFixed(2)}
             </span>

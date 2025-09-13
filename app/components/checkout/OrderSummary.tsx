@@ -37,11 +37,11 @@ export default function OrderSummary() {
             <div className="flex-1">
               <Link
                 href={`/products/${item.Slug}`}
-                className="text-sm font-medium text-foreground hover:text-wine-red"
+                className="text-sm font-medium text-foreground hover:text-gray-700"
               >
                 {item.Title}
               </Link>
-              <p className="text-sm text-wine-red">
+              <p className="text-sm text-gray-700">
                 {labels.quantity || "Qty"}: {item.quantity} × {getCurrencySymbol(item.Currency)}{parseFloat(item.SalePrice || item.RegularPrice).toFixed(2)}
               </p>
             </div>

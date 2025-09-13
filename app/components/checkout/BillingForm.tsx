@@ -48,7 +48,7 @@ export default function BillingForm() {
         <button
           type="button"
           onClick={handleSameAsShipping}
-          className="text-sm text-wine-red underline hover:text-foreground"
+          className="text-sm text-gray-700 underline hover:text-foreground"
         >
           {labels.sameAsShipping || "Same as Shipping"}
         </button>

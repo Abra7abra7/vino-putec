@@ -117,7 +117,7 @@ export default function PlaceOrderButton() {
           ? labels.placingOrder || "Placing Order..."
           : labels.placeOrder || "Place Order"}
       </button>
-      {errorMsg && <p className="text-wine-red mt-2 text-sm">{errorMsg}</p>}
+      {errorMsg && <p className="text-gray-700 mt-2 text-sm">{errorMsg}</p>}
     </div>
   );
 }

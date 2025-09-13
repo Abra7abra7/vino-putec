@@ -37,7 +37,7 @@ export default function NewsletterSignup() {
     <section className="py-16 bg-primary-light">
       <div className="container mx-auto text-center px-6">
         <h2 className="text-3xl font-bold text-foreground">{newsletter.title}</h2>
-        <p className="text-wine-red mt-2">{newsletter.description}</p>
+        <p className="text-gray-700 mt-2">{newsletter.description}</p>
 
         <form onSubmit={handleSubmit} className="mt-6 flex justify-center">
           <input
@@ -57,8 +57,8 @@ export default function NewsletterSignup() {
           </button>
         </form>
 
-        {status === "success" && <p className="mt-3 text-wine-red">Ďakujeme za prihlásenie!</p>}
-        {status === "error" && <p className="mt-3 text-wine-red">Prihlásenie zlyhalo. Skúste znovu.</p>}
+        {status === "success" && <p className="mt-3 text-gray-700">Ďakujeme za prihlásenie!</p>}
+        {status === "error" && <p className="mt-3 text-gray-700">Prihlásenie zlyhalo. Skúste znovu.</p>}
       </div>
     </section>
   );

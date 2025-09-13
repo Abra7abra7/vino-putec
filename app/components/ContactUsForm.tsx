@@ -54,7 +54,7 @@ export default function ContactUsForm() {
           <h2 className="text-4xl font-bold text-foreground">{contactForm.title}</h2>
         </div>
 
-        {status && <div className="mb-4 text-wine-red font-semibold">{status}</div>}
+        {status && <div className="mb-4 text-gray-700 font-semibold">{status}</div>}
 
         <form
           onSubmit={handleSubmit}

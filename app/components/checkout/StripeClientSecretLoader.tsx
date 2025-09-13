@@ -92,10 +92,10 @@ export default function StripeClientSecretLoader() {
   if (!clientSecret) {
     return (
       <div className="p-4 bg-primary-light border border-wine-red rounded-md">
-        <p className="text-wine-red">
+        <p className="text-gray-700">
           ⚠️ Stripe nie je nakonfigurovaný. Pre testovanie platieb nastavte Stripe API kľúče v environment premenných.
         </p>
-        <p className="text-sm text-wine-red mt-2">
+        <p className="text-sm text-gray-700 mt-2">
           Môžete použiť dobierku (Cash on Delivery) ako alternatívnu platobnú metódu.
         </p>
       </div>

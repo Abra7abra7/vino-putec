@@ -54,7 +54,7 @@ export default function PaymentMethods() {
       </h2>
 
       {!formReady && (
-        <p className="text-sm text-wine-red mb-2">
+        <p className="text-sm text-gray-700 mb-2">
           {labels.completeBeforePayment ||
             "Please complete all shipping and billing fields before selecting a payment method."}
         </p>
