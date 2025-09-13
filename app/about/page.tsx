@@ -94,6 +94,8 @@ export default function AboutPage() {
                       alt={photo.alt}
                       fill
                       className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      priority={index === 0}
+                      unoptimized
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">

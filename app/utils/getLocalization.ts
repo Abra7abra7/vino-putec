@@ -131,7 +131,7 @@ const defaultLocalization: LocalizationData = {
   },
   about: {
     title: "About Our Family Business",
-    imagePath: "/images/about-us.jpg",
+    imagePath: "/o-nas/rodina1.JPG",
     content:
       "We’re a family-owned business dedicated to eco-friendly materials and fair trade practices.\n\nOur mission is to bring you high-quality, sustainable products that make a difference.",
   },
