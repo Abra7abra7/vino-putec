@@ -7,7 +7,7 @@ export async function POST(req: Request) {
   // Basic validation
   if (!name || !email || !message) {
     return NextResponse.json(
-      { success: false, message: 'All fields are required.' },
+      { success: false, message: 'Všetky polia sú povinné.' },
       { status: 400 }
     );
   }
@@ -19,11 +19,11 @@ export async function POST(req: Request) {
     await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
       to: process.env.ADMIN_EMAIL!,
-      subject: `Contact Form Submission from ${name}`,
+      subject: `Kontaktný formulár od ${name}`,
       html: `
-        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Meno:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
+        <p><strong>Správa:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
       `,
     });
 
