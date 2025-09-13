@@ -46,7 +46,8 @@ export default function StripeClientSecretLoader() {
       });
 
       const data = await res.json();
-      if (data.clientSecret) {
+      
+      if (res.ok && data.clientSecret) {
         setClientSecret(data.clientSecret);
 
         const orderData = {
@@ -61,7 +62,14 @@ export default function StripeClientSecretLoader() {
 
         localStorage.setItem("recentOrder", JSON.stringify(orderData));
       } else {
-        console.error("❌ No clientSecret returned from Stripe API");
+        console.error("❌ Stripe API Error:", data.error || "No clientSecret returned");
+        console.error("❌ Response status:", res.status);
+        console.error("❌ Full response:", data);
+        
+        // Show user-friendly error message
+        if (data.error === "Stripe not configured") {
+          console.error("💡 Stripe is not configured. Please set up Stripe API keys in environment variables.");
+        }
       }
     };
 
@@ -79,7 +87,18 @@ export default function StripeClientSecretLoader() {
     dispatch,
   ]);
 
-  if (!clientSecret) return <p>Loading Stripe…</p>;
+  if (!clientSecret) {
+    return (
+      <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-md">
+        <p className="text-yellow-800">
+          ⚠️ Stripe nie je nakonfigurovaný. Pre testovanie platieb nastavte Stripe API kľúče v environment premenných.
+        </p>
+        <p className="text-sm text-yellow-700 mt-2">
+          Môžete použiť dobierku (Cash on Delivery) ako alternatívnu platobnú metódu.
+        </p>
+      </div>
+    );
+  }
 
   return <StripeWrapper clientSecret={clientSecret} />;
 }
