@@ -139,7 +139,7 @@ export default function DegustaciePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {packages.map((pkg) => (
-              <div key={pkg.id} className="bg-background rounded-lg shadow-lg p-8 border border-primary">
+              <div key={pkg.id} className="bg-background rounded-lg shadow-lg p-8 border border-primary flex flex-col h-full">
                 {/* Package Header */}
                 <div className="text-center mb-6">
                   <div className="text-4xl mb-4">{pkg.emoji}</div>
@@ -152,7 +152,7 @@ export default function DegustaciePage() {
                 </div>
 
                 {/* Description */}
-                <p className="text-wine-red mb-6 leading-relaxed">
+                <p className="text-wine-red mb-6 leading-relaxed flex-grow">
                   {pkg.description}
                 </p>
 
@@ -186,8 +186,8 @@ export default function DegustaciePage() {
                   )}
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-3">
+                {/* Action Buttons - Fixed at bottom */}
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                   <button
                     onClick={() => handleBookNow(pkg.id)}
                     className="flex-1 bg-wine-red hover:bg-wine-dark text-background px-6 py-3 rounded-lg font-semibold transition-colors"

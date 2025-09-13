@@ -5,9 +5,9 @@ export default function AccommodationPreview() {
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* Content */}
-          <div>
+          <div className="flex flex-col justify-center">
             <div className="mb-6">
               <Image
                 src="/putec-logo.jpg"
@@ -71,7 +71,7 @@ export default function AccommodationPreview() {
           </div>
 
           {/* Image Placeholder */}
-          <div className="relative">
+          <div className="relative flex items-center">
             <div className="w-full h-96 bg-primary-light rounded-lg flex items-center justify-center shadow-lg">
               <div className="text-center">
                 <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
