@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { sendAdminEmail, sendCustomerEmail } from "../../../utils/emailUtilities";
 
 export const config = {
   api: {
@@ -51,6 +52,77 @@ export async function POST(req: Request) {
       console.log("💰 Amount:", paymentIntent.amount, paymentIntent.currency);
       console.log("📧 Customer email:", paymentIntent.receipt_email);
       console.log("📋 Order ID:", paymentIntent.metadata?.orderId);
+      
+      // Send confirmation emails for successful payment
+      try {
+        const orderId = paymentIntent.metadata?.orderId;
+        const customerEmail = paymentIntent.receipt_email;
+        
+        if (orderId && customerEmail) {
+          // Create basic order data for email
+          const orderData = {
+            orderId,
+            orderDate: new Date().toISOString(),
+            cartItems: [], // Will be reconstructed from metadata
+            shippingForm: {
+              firstName: "Customer",
+              lastName: "",
+              email: customerEmail,
+              phone: "",
+              country: "",
+              state: "",
+              city: "",
+              address1: "",
+              address2: "",
+              postalCode: "",
+            },
+            billingForm: {
+              firstName: "Customer", 
+              lastName: "",
+              email: customerEmail,
+              phone: "",
+              country: "",
+              state: "",
+              city: "",
+              address1: "",
+              address2: "",
+              postalCode: "",
+            },
+            shippingMethod: {
+              id: "stripe",
+              name: paymentIntent.metadata?.shippingMethod || "Stripe Payment",
+              price: 0,
+              currency: paymentIntent.currency.toUpperCase(),
+            },
+            paymentMethodId: "stripe",
+          };
+
+          // Reconstruct cart items from metadata
+          const cartItems = [];
+          let itemIndex = 1;
+          while (paymentIntent.metadata[`item_${itemIndex}_title`]) {
+            cartItems.push({
+              ID: paymentIntent.metadata[`item_${itemIndex}_id`] || `item_${itemIndex}`,
+              Title: paymentIntent.metadata[`item_${itemIndex}_title`],
+              quantity: parseInt(paymentIntent.metadata[`item_${itemIndex}_qty`] || "1"),
+              RegularPrice: paymentIntent.metadata[`item_${itemIndex}_price`] || "0",
+              SalePrice: paymentIntent.metadata[`item_${itemIndex}_price`] || "0",
+            });
+            itemIndex++;
+          }
+          orderData.cartItems = cartItems;
+
+          // Send emails
+          await sendAdminEmail(orderData);
+          await sendCustomerEmail(orderData);
+          
+          console.log("📧 Confirmation emails sent for order:", orderId);
+        } else {
+          console.log("⚠️ Missing order data in payment intent metadata");
+        }
+      } catch (emailError) {
+        console.error("❌ Failed to send confirmation emails:", emailError);
+      }
       break;
 
     case "payment_intent.payment_failed":

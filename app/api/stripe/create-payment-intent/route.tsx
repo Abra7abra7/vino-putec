@@ -16,14 +16,7 @@ interface StripeIntentBody {
 }
 
 export async function POST(req: Request) {
-  // Debug all environment variables
-  console.log("🔍 All environment variables:");
-  console.log("NODE_ENV:", process.env.NODE_ENV);
-  console.log("STRIPE_SECRET_KEY:", process.env.STRIPE_SECRET_KEY ? "EXISTS" : "MISSING");
-  console.log("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:", process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ? "EXISTS" : "MISSING");
-  
   if (!stripe) {
-    console.log("❌ Stripe is null - STRIPE_SECRET_KEY not found");
     return NextResponse.json({ error: "Stripe not configured" }, { status: 500 });
   }
 
@@ -47,6 +40,7 @@ export async function POST(req: Request) {
 
     if (Array.isArray(cartItems)) {
       cartItems.forEach((item, index) => {
+        metadata[`item_${index + 1}_id`] = item.ID;
         metadata[`item_${index + 1}_title`] = item.Title;
         metadata[`item_${index + 1}_qty`] = item.quantity.toString();
         metadata[`item_${index + 1}_price`] = (item.SalePrice || item.RegularPrice).toString();

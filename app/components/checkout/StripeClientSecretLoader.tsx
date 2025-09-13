@@ -60,7 +60,9 @@ export default function StripeClientSecretLoader() {
           paymentMethodId,
         };
 
+        // Store order data for webhook processing
         localStorage.setItem("recentOrder", JSON.stringify(orderData));
+        localStorage.setItem("stripeOrderData", JSON.stringify(orderData));
       } else {
         console.error("❌ Stripe API Error:", data.error || "No clientSecret returned");
         console.error("❌ Response status:", res.status);
