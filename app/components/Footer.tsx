@@ -64,13 +64,9 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright & Attribution */}
+      {/* Copyright */}
       <div className="text-center text-sm mt-8">
-        {content.copyright}  
-        <span className="mx-1">|</span>  
-        <Link href="https://github.com/tishonator/TishCommerce" target="_blank" className="text-gray-300 hover:text-gray-400 transition">
-          Powered by TishCommerce
-        </Link>
+        {content.copyright}
       </div>
 
       {/* Scroll to Top Button (Client Component) */}

@@ -15,7 +15,7 @@ export async function POST(req: Request) {
   const { amount, currency, orderId, cartItems, shippingMethodName }: PayPalCreateBody = await req.json();
 
   const localization = getLocalization(); // Get localized site name
-  const siteName = localization.siteName || "TishCommerce";
+  const siteName = localization.siteName || "Vino Putec";
   const description = `${siteName} order`;
 
   const base = getPayPalApiBase();

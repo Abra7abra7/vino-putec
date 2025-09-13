@@ -24,7 +24,7 @@ export async function POST(req: Request) {
     }: StripeIntentBody = await req.json();
 
     const localization = getLocalization();
-    const siteName = localization.siteName || "TishCommerce";
+    const siteName = localization.siteName || "Vino Putec";
 
     const metadata: Record<string, string> = {
       orderId,

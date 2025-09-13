@@ -69,7 +69,7 @@ const defaultLocalization: LocalizationData = {
   email: "contact@example.com",
   phone: "+1 234 567 890",
   address: "123 Main Street, Tish City",
-  siteName: "TishCommerce",
+  siteName: "Vino Putec",
   siteTagline: "Your Database-Free Store",
   labels: {
     email: "Email",
@@ -111,7 +111,7 @@ const defaultLocalization: LocalizationData = {
   ],
   homepage: {
     banner: {
-      title: "Welcome to TishCommerce",
+      title: "Vitajte vo Vino Putec",
       subtitle: "The easiest way to manage and sell your products online.",
       buttonText: "Get Started Now",
       imagePath: "/homepage-banner.jpg",

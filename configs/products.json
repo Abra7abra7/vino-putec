@@ -1,311 +1,242 @@
 [
     {
-       "ID":"book-001",
-       "Title":"1984",
-       "Slug":"1984-george-orwell",
+       "ID":"wine-001",
+       "Title":"Vino Putec Cabernet Sauvignon",
+       "Slug":"vino-putec-cabernet-sauvignon",
        "Enabled":true,
        "CatalogVisible":true,
        "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Dystopian"
+          "Červené vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/book-1.jpg",
+       "FeatureImageURL":"/wines/cabernet-sauvignon.jpg",
        "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
+          "/wines/cabernet-sauvignon-1.jpg",
+          "/wines/cabernet-sauvignon-2.jpg"
        ],
-       "ShortDescription":"A dystopian novel by George Orwell about surveillance and totalitarianism.",
-       "LongDescription":"Published in 1949, George Orwell’s '1984' is a cautionary tale about a totalitarian regime that enforces thought control and relentless surveillance. The story follows Winston Smith, a man struggling against the oppressive Party and its leader, Big Brother.",
-       "RegularPrice":"19.99",
-       "SalePrice":"14.99",
-       "Currency": "USD",
+       "ShortDescription":"Prémiové červené víno s plnou chutou a elegantným aroma.",
+       "LongDescription":"Naše Cabernet Sauvignon je výsledkom starostlivého výberu hrozna z najlepších vinohradov vo Vinosadoch. Víno má intenzívnu rubínovú farbu, komplexné aroma s notami čierneho ríbezlí, čerešní a duba. Chuť je plná, harmonická s jemnými tanínmi a dlhým dozvukom.",
+       "RegularPrice":"24.99",
+       "SalePrice":"19.99",
+       "Currency": "EUR",
        "SubscriptionEnabled":false,
        "SubscriptionType":""
     },
     {
-       "ID":"book-002",
-       "Title":"To Kill a Mockingbird",
-       "Slug":"to-kill-a-mockingbird",
+       "ID":"wine-002",
+       "Title":"Vino Putec Chardonnay",
+       "Slug":"vino-putec-chardonnay",
        "Enabled":true,
        "CatalogVisible":true,
        "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Classic"
+          "Biele vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/book-2.jpg",
+       "FeatureImageURL":"/wines/chardonnay.jpg",
        "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
+          "/wines/chardonnay-1.jpg",
+          "/wines/chardonnay-2.jpg"
        ],
-       "ShortDescription":"A novel by Harper Lee exploring racial injustice in the Deep South.",
-       "LongDescription":"'To Kill a Mockingbird' by Harper Lee is a deeply moving novel set in the racially segregated American South. It follows young Scout Finch as she navigates issues of morality, prejudice, and justice through the trial of Tom Robinson, a Black man falsely accused of a crime.",
-       "RegularPrice":"15.99",
-       "SalePrice":"12.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":false,
-       "SubscriptionType":""
-    },
-    {
-       "ID":"book-003",
-       "Title":"The Great Gatsby",
-       "Slug":"the-great-gatsby",
-       "Enabled":true,
-       "CatalogVisible":true,
-       "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Classic"
-       ],
-       "FeatureImageURL":"/books/book-3.jpg",
-       "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
-       ],
-       "ShortDescription":"A novel by F. Scott Fitzgerald depicting the Jazz Age.",
-       "LongDescription":"'The Great Gatsby' by F. Scott Fitzgerald is a tragic love story set in the Roaring Twenties. It follows Jay Gatsby, a wealthy and mysterious man, who throws lavish parties in hopes of reuniting with his lost love, Daisy Buchanan.",
-       "RegularPrice":"14.99",
-       "SalePrice":"11.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":false,
-       "SubscriptionType":""
-    },
-    {
-       "ID":"book-004",
-       "Title":"Moby-Dick",
-       "Slug":"moby-dick",
-       "Enabled":true,
-       "CatalogVisible":true,
-       "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Adventure"
-       ],
-       "FeatureImageURL":"/books/book-4.jpg",
-       "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
-       ],
-       "ShortDescription":"A novel by Herman Melville about the obsessive quest for revenge against a white whale.",
-       "LongDescription":"Herman Melville’s 'Moby-Dick' is a gripping tale of Captain Ahab’s relentless pursuit of the great white whale. This epic novel explores themes of obsession, revenge, and the human struggle against nature.",
+       "ShortDescription":"Elegantné biele víno s jemnou kyslosťou a ovocným charakterom.",
+       "LongDescription":"Chardonnay z našej vinárne je jemné a elegantné biele víno s krásnou zlatou farbou. Aroma je jemné s notami zeleného jablka, citrusov a jemného vanilkového tónu z duba. Chuť je svieža, vyvážená s príjemnou kyslosťou a dlhým, čistým dozvukom.",
        "RegularPrice":"22.99",
        "SalePrice":"18.99",
-       "Currency": "USD",
+       "Currency": "EUR",
        "SubscriptionEnabled":false,
        "SubscriptionType":""
     },
     {
-       "ID":"book-005",
-       "Title":"Pride and Prejudice",
-       "Slug":"pride-and-prejudice",
+       "ID":"wine-003",
+       "Title":"Vino Putec Merlot",
+       "Slug":"vino-putec-merlot",
        "Enabled":true,
        "CatalogVisible":true,
        "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Romance"
+          "Červené vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/book-5.jpg",
+       "FeatureImageURL":"/wines/merlot.jpg",
        "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
+          "/wines/merlot-1.jpg",
+          "/wines/merlot-2.jpg"
        ],
-       "ShortDescription":"A novel by Jane Austen that explores themes of love and social standing.",
-       "LongDescription":"Jane Austen’s 'Pride and Prejudice' is a classic romance novel about Elizabeth Bennet and her evolving relationship with the wealthy and reserved Mr. Darcy. It examines themes of pride, class distinctions, and societal expectations in 19th-century England.",
-       "RegularPrice":"17.99",
-       "SalePrice":"14.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":false,
-       "SubscriptionType":""
-    },
-    {
-       "ID":"book-006",
-       "Title":"War and Peace",
-       "Slug":"war-and-peace",
-       "Enabled":true,
-       "CatalogVisible":true,
-       "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Historical"
-       ],
-       "FeatureImageURL":"/books/book-6.jpg",
-       "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
-       ],
-       "ShortDescription":"A historical novel by Leo Tolstoy that tells the story of Russian society during the Napoleonic Wars.",
-       "LongDescription":"One of the greatest novels ever written, War and Peace chronicles the French invasion of Russia and the impact of the Napoleonic era on Tsarist society. With a broad array of characters and intricate storytelling, Tolstoy paints a vivid picture of life, love, and war.",
-       "RegularPrice":"29.99",
-       "SalePrice":"24.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":false,
-       "SubscriptionType":""
-    },
-    {
-       "ID":"book-007",
-       "Title":"Crime and Punishment",
-       "Slug":"crime-and-punishment",
-       "Enabled":true,
-       "CatalogVisible":true,
-       "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Psychological"
-       ],
-       "FeatureImageURL":"/books/book-7.jpg",
-       "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
-       ],
-       "ShortDescription":"A novel by Fyodor Dostoevsky that explores guilt, redemption, and moral dilemmas.",
-       "LongDescription":"Crime and Punishment is a psychological thriller that follows the young and impoverished Raskolnikov as he commits a murder in St. Petersburg and struggles with guilt and paranoia. The novel delves deep into morality, justice, and the human condition.",
+       "ShortDescription":"Mäkké červené víno s ovocnou chutou a jemnými tanínmi.",
+       "LongDescription":"Naše Merlot je charakteristické svojou mäkkou a príjemnou chutou. Má tmavočervenú farbu s fialovými odtienkami. Aroma je ovocné s notami čierneho ríbezlí, sliviek a jemného duba. Chuť je plná, mäkká s jemnými tanínmi a harmonickým dozvukom.",
        "RegularPrice":"21.99",
        "SalePrice":"17.99",
-       "Currency": "USD",
+       "Currency": "EUR",
        "SubscriptionEnabled":false,
        "SubscriptionType":""
     },
     {
-       "ID":"book-008",
-       "Title":"Brave New World",
-       "Slug":"brave-new-world",
+       "ID":"wine-004",
+       "Title":"Vino Putec Pinot Noir",
+       "Slug":"vino-putec-pinot-noir",
        "Enabled":true,
        "CatalogVisible":true,
        "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Dystopian"
+          "Červené vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/book-8.jpg",
+       "FeatureImageURL":"/wines/pinot-noir.jpg",
        "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
+          "/wines/pinot-noir-1.jpg",
+          "/wines/pinot-noir-2.jpg"
        ],
-       "ShortDescription":"A dystopian novel by Aldous Huxley exploring the consequences of technological and genetic advancements.",
-       "LongDescription":"Set in a futuristic world, Brave New World explores the dangers of a society built on consumerism, technological advancement, and state-controlled happiness. Huxley presents a chilling vision of a world where individuality and freedom are sacrificed for stability.",
-       "RegularPrice":"18.99",
-       "SalePrice":"14.99",
-       "Currency": "USD",
+       "ShortDescription":"Elegantné červené víno s jemnou štruktúrou a komplexným aroma.",
+       "LongDescription":"Pinot Noir je naše najjemnejšie červené víno s krásnou svetločervenou farbou. Aroma je jemné a komplexné s notami červených ovocí, zemiakov a jemného duba. Chuť je elegantná, jemná s nízkou kyslosťou a dlhým, rafinovaným dozvukom.",
+       "RegularPrice":"26.99",
+       "SalePrice":"22.99",
+       "Currency": "EUR",
        "SubscriptionEnabled":false,
        "SubscriptionType":""
     },
     {
-       "ID":"book-009",
-       "Title":"The Catcher in the Rye",
-       "Slug":"the-catcher-in-the-rye",
+       "ID":"wine-005",
+       "Title":"Vino Putec Sauvignon Blanc",
+       "Slug":"vino-putec-sauvignon-blanc",
        "Enabled":true,
        "CatalogVisible":true,
        "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Classic"
+          "Biele vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/book-9.jpg",
+       "FeatureImageURL":"/wines/sauvignon-blanc.jpg",
        "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
+          "/wines/sauvignon-blanc-1.jpg",
+          "/wines/sauvignon-blanc-2.jpg"
        ],
-       "ShortDescription":"A novel by J.D. Salinger about teenage alienation and identity crisis.",
-       "LongDescription":"Narrated by the cynical teenager Holden Caulfield, The Catcher in the Rye follows his experiences in New York after being expelled from prep school. The novel explores themes of adolescence, alienation, and the struggles of finding one's place in the world.",
-       "RegularPrice":"16.99",
-       "SalePrice":"13.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":false,
-       "SubscriptionType":""
-    },
-    {
-       "ID":"book-010",
-       "Title":"The Hobbit",
-       "Slug":"the-hobbit",
-       "Enabled":true,
-       "CatalogVisible":true,
-       "ProductCategories":[
-          "Books",
-          "Fiction",
-          "Fantasy"
-       ],
-       "FeatureImageURL":"/books/book-10.jpg",
-       "ProductImageGallery":[
-          "/books/book-a.jpg",
-          "/books/book-b.jpg"
-       ],
-       "ShortDescription":"A fantasy novel by J.R.R. Tolkien that follows the adventure of Bilbo Baggins.",
-       "LongDescription":"The Hobbit is a timeless fantasy adventure that follows Bilbo Baggins, a humble hobbit, as he is swept into an epic journey to reclaim a treasure guarded by the dragon Smaug. Filled with magic, courage, and heroism, it serves as a prelude to The Lord of the Rings.",
-       "RegularPrice":"19.99",
+       "ShortDescription":"Svieže biele víno s výraznou kyslosťou a bylinkovým charakterom.",
+       "LongDescription":"Sauvignon Blanc je naše najsviežejšie biele víno s krásnou svetložltou farbou. Aroma je intenzívne s notami zelených byliniek, citrusov a jemného minerálneho tónu. Chuť je svieža, kyslá s výraznou kyslosťou a dlhým, čistým dozvukom.",
+       "RegularPrice":"20.99",
        "SalePrice":"16.99",
-       "Currency": "USD",
+       "Currency": "EUR",
        "SubscriptionEnabled":false,
        "SubscriptionType":""
     },
     {
-       "ID":"sub-001",
-       "Title":"Basic Hosting Plan",
-       "Slug":"basic-hosting",
+       "ID":"wine-006",
+       "Title":"Vino Putec Rosé",
+       "Slug":"vino-putec-rose",
        "Enabled":true,
-       "CatalogVisible":false,
+       "CatalogVisible":true,
        "ProductCategories":[
-          "Hosting",
-          "Subscription"
+          "Ružové vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/300x400?text=Basic-Hosting",
+       "FeatureImageURL":"/wines/rose.jpg",
        "ProductImageGallery":[
-          
+          "/wines/rose-1.jpg",
+          "/wines/rose-2.jpg"
        ],
-       "ShortDescription":"A basic hosting plan suitable for small websites.",
-       "LongDescription":"The Basic Hosting Plan is perfect for individuals and small businesses that need a reliable, low-cost hosting solution. It includes essential features like domain hosting, email support, and basic security.",
-       "RegularPrice":"9.99",
-       "SalePrice":"99.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":false,
-       "SubscriptionType":"month",
-       "SaleSubscriptionType":"year"
-    },
-    {
-       "ID":"sub-002",
-       "Title":"Premium Hosting Plan",
-       "Slug":"premium-hosting",
-       "Enabled":true,
-       "CatalogVisible":false,
-       "ProductCategories":[
-          "Hosting",
-          "Subscription"
-       ],
-       "FeatureImageURL":"/books/300x400?text=Premium-Hosting",
-       "ProductImageGallery":[
-          
-       ],
-       "ShortDescription":"A premium hosting plan with more resources for larger websites.",
-       "LongDescription":"The Premium Hosting Plan is designed for businesses that require enhanced performance, security, and support. It includes higher bandwidth, SSL certification, and dedicated customer service.",
+       "ShortDescription":"Elegantné ružové víno s jemnou chutou a sviežim charakterom.",
+       "LongDescription":"Naše Rosé je krásne ružové víno s jemnou lososovou farbou. Aroma je jemné a ovocné s notami červených ovocí, citrusov a jemného kvetinového tónu. Chuť je svieža, jemná s príjemnou kyslosťou a dlhým, čistým dozvukom.",
        "RegularPrice":"19.99",
-       "SalePrice":"179.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":true,
-       "SubscriptionType":"month",
-       "SaleSubscriptionType":"year"
+       "SalePrice":"15.99",
+       "Currency": "EUR",
+       "SubscriptionEnabled":false,
+       "SubscriptionType":""
     },
     {
-       "ID":"sub-003",
-       "Title":"Enterprise Hosting Plan",
-       "Slug":"enterprise-hosting",
+       "ID":"wine-007",
+       "Title":"Vino Putec Prosecco",
+       "Slug":"vino-putec-prosecco",
        "Enabled":true,
-       "CatalogVisible":false,
+       "CatalogVisible":true,
        "ProductCategories":[
-          "Hosting",
-          "Subscription"
+          "Šumivé vína",
+          "Prémiové vína",
+          "Suché vína"
        ],
-       "FeatureImageURL":"/books/300x400?text=Enterprise-Hosting",
+       "FeatureImageURL":"/wines/prosecco.jpg",
        "ProductImageGallery":[
-          
+          "/wines/prosecco-1.jpg",
+          "/wines/prosecco-2.jpg"
        ],
-       "ShortDescription":"An enterprise-level hosting plan for large-scale websites and businesses.",
-       "LongDescription":"The Enterprise Hosting Plan is the ultimate hosting solution for large businesses and organizations. It provides premium security, high-speed servers, unlimited bandwidth, and advanced support for mission-critical applications.",
-       "RegularPrice":"49.99",
-       "SalePrice":"499.99",
-       "Currency": "USD",
-       "SubscriptionEnabled":true,
-       "SubscriptionType":"month",
-       "SaleSubscriptionType":"year"
+       "ShortDescription":"Elegantné šumivé víno s jemnými bublinami a sviežou chutou.",
+       "LongDescription":"Naše Prosecco je krásne šumivé víno s jemnými, perzistentnými bublinami. Má svetložltú farbu s nazelenalými odtienkami. Aroma je jemné a ovocné s notami zeleného jablka, citrusov a jemného kvetinového tónu. Chuť je svieža, jemná s príjemnou kyslosťou a elegantným dozvukom.",
+       "RegularPrice":"28.99",
+       "SalePrice":"24.99",
+       "Currency": "EUR",
+       "SubscriptionEnabled":false,
+       "SubscriptionType":""
+    },
+    {
+       "ID":"wine-008",
+       "Title":"Vino Putec Dessert Wine",
+       "Slug":"vino-putec-dessert-wine",
+       "Enabled":true,
+       "CatalogVisible":true,
+       "ProductCategories":[
+          "Dessert vína",
+          "Prémiové vína",
+          "Sladké vína"
+       ],
+       "FeatureImageURL":"/wines/dessert-wine.jpg",
+       "ProductImageGallery":[
+          "/wines/dessert-wine-1.jpg",
+          "/wines/dessert-wine-2.jpg"
+       ],
+       "ShortDescription":"Luxusné dessert víno s intenzívnou chutou a sladkým charakterom.",
+       "LongDescription":"Naše Dessert Wine je luxusné sladké víno s intenzívnou zlatou farbou. Aroma je bohaté a komplexné s notami sušeného ovocia, medu a jemného duba. Chuť je sladká, plná s harmonickou kyslosťou a dlhým, luxusným dozvukom.",
+       "RegularPrice":"35.99",
+       "SalePrice":"29.99",
+       "Currency": "EUR",
+       "SubscriptionEnabled":false,
+       "SubscriptionType":""
+    },
+    {
+       "ID":"wine-009",
+       "Title":"Vino Putec Reserve",
+       "Slug":"vino-putec-reserve",
+       "Enabled":true,
+       "CatalogVisible":true,
+       "ProductCategories":[
+          "Červené vína",
+          "Prémiové vína",
+          "Reserve vína"
+       ],
+       "FeatureImageURL":"/wines/reserve.jpg",
+       "ProductImageGallery":[
+          "/wines/reserve-1.jpg",
+          "/wines/reserve-2.jpg"
+       ],
+       "ShortDescription":"Exkluzívne reserve víno s komplexnou chutou a dlhým dozvukom.",
+       "LongDescription":"Vino Putec Reserve je naše najexkluzívnejšie víno, ktoré dozrieva v dube 18 mesiacov. Má intenzívnu tmavočervenú farbu s cihlovými odtienkami. Aroma je komplexné s notami čierneho ríbezlí, čerešní, duba a jemného koření. Chuť je plná, harmonická s jemnými tanínmi a dlhým, luxusným dozvukom.",
+       "RegularPrice":"45.99",
+       "SalePrice":"39.99",
+       "Currency": "EUR",
+       "SubscriptionEnabled":false,
+       "SubscriptionType":""
+    },
+    {
+       "ID":"wine-010",
+       "Title":"Vino Putec Collection",
+       "Slug":"vino-putec-collection",
+       "Enabled":true,
+       "CatalogVisible":true,
+       "ProductCategories":[
+          "Kolekcie",
+          "Prémiové vína",
+          "Darčekové sety"
+       ],
+       "FeatureImageURL":"/wines/collection.jpg",
+       "ProductImageGallery":[
+          "/wines/collection-1.jpg",
+          "/wines/collection-2.jpg"
+       ],
+       "ShortDescription":"Exkluzívna kolekcia našich najlepších vín v darčekovom balení.",
+       "LongDescription":"Vino Putec Collection obsahuje výber našich najlepších vín v elegantnom darčekovom balení. Kolekcia obsahuje 6 fliaš rôznych vín z našej produkcie, každé v krásnom darčekovom obale. Ideálny darček pre milovníkov vína alebo na špeciálne príležitosti.",
+       "RegularPrice":"149.99",
+       "SalePrice":"129.99",
+       "Currency": "EUR",
+       "SubscriptionEnabled":false,
+       "SubscriptionType":""
     }
- ]
+]

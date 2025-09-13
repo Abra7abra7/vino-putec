@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     }
 
     const localization = getLocalization();
-    const siteName = localization.siteName || "TishCommerce";
+    const siteName = localization.siteName || "Vino Putec";
     const description = `${siteName} order`;
 
     const auth = Buffer.from(

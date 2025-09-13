@@ -151,7 +151,7 @@ ${summary}
 Total: $${total.toFixed(2)}
 
 Thank you for shopping with us!
-${siteName || "TishCommerce"}
+${siteName || "Vino Putec"}
 `;
 }
 
