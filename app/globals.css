@@ -5,9 +5,14 @@
   --font-heading: var(--font-poppins);
   --font-body: var(--font-inter);
 
-  /* If you want colors or other global styles, define them here */
+  /* Vino Putec brand colors */
   --color-background: #ffffff;
   --color-foreground: #171717;
+  --color-primary: #f7dca7;
+  --color-primary-dark: #e6c896;
+  --color-accent: #8b4513;
+  --color-wine-red: #722f37;
+  --color-gold: #f7dca7;
 }
 
 /* Body uses body font */

@@ -1,36 +1,36 @@
 {
-  "email": "contact@example.com",
-  "phone": "+1 234 567 890",
-  "address": "123 Main Street, Tish City",
-  "siteName": "TishCommerce",
-  "siteTagline": "Your Database-Free Store",
+  "email": "brano.putec@gmail.com",
+  "phone": "+421 903465666",
+  "address": "Pezinská 154, 902 01 Vinosady, Slovensko",
+  "siteName": "Vino Putec",
+  "siteTagline": "Prémiové vína z Vinosád",
   "labels": {
     "email": "Email",
     "phone": "Phone",
     "address": "Address",
-    "quickLinks": "Quick Links",
-    "contactUs": "Contact Us",
-    "followUs": "Follow Us",
-    "searchPlaceholder": "Search products...",
-    "allCategories": "All Categories",
-    "sortByName": "Sort by Name",
-    "sortByPrice": "Sort by Price",
-    "sortByNewest": "Sort by Newest",
-    "loadingProducts": "Loading products...",
-    "noProductsFound": "No products found...",
-    "productDetails": "Product Details",
-    "products": "Products",
-    "recentProducts": "Recent Products",
-    "addToCart": "Add to Cart",
-    "cartEmpty": "Your cart is empty.",
-    "viewCart": "View Cart",
-    "total": "Total",
-    "quantity": "Quantity",
-    "proceedToCheckout": "Proceed to Checkout",
-    "remove": "Remove",
-    "unitPrice": "Unit Price",
-    "productTotal": "Product Total",
-    "cartTitle": "Your Shopping Cart",
+    "quickLinks": "Rýchle odkazy",
+    "contactUs": "Kontaktujte nás",
+    "followUs": "Sledujte nás",
+    "searchPlaceholder": "Hľadať vína...",
+    "allCategories": "Všetky kategórie",
+    "sortByName": "Zoradiť podľa názvu",
+    "sortByPrice": "Zoradiť podľa ceny",
+    "sortByNewest": "Zoradiť podľa najnovších",
+    "loadingProducts": "Načítavanie vín...",
+    "noProductsFound": "Žiadne vína sa nenašli...",
+    "productDetails": "Detaily vína",
+    "products": "Vína",
+    "recentProducts": "Najnovšie vína",
+    "addToCart": "Pridať do košíka",
+    "cartEmpty": "Váš košík je prázdny.",
+    "viewCart": "Zobraziť košík",
+    "total": "Celkom",
+    "quantity": "Množstvo",
+    "proceedToCheckout": "Pokračovať k objednávke",
+    "remove": "Odstrániť",
+    "unitPrice": "Jednotková cena",
+    "productTotal": "Celková cena",
+    "cartTitle": "Váš nákupný košík",
     "orderSummary": "Order Summary",
     "subtotal": "Subtotal",
     "shipping": "Shipping",
@@ -61,16 +61,16 @@
     "payNow": "Pay Now"
   },
   "menu": [
-    { "label": "Home", "href": "/" },
-    { "label": "Products", "href": "/products" },
-    { "label": "About", "href": "/about" },
-    { "label": "Contact", "href": "/contact" }
+    { "label": "Domov", "href": "/" },
+    { "label": "Vína", "href": "/products" },
+    { "label": "O nás", "href": "/about" },
+    { "label": "Kontakt", "href": "/contact" }
   ],
   "footerLinks": [
-    { "label": "Home", "href": "/" },
-    { "label": "Products", "href": "/products" },
-    { "label": "About", "href": "/about" },
-    { "label": "Contact", "href": "/contact" }
+    { "label": "Domov", "href": "/" },
+    { "label": "Vína", "href": "/products" },
+    { "label": "O nás", "href": "/about" },
+    { "label": "Kontakt", "href": "/contact" }
   ],
   "socialLinks": [
     { "id": "facebook", "icon": "SiFacebook", "url": "https://facebook.com/yourpage" },
@@ -78,76 +78,76 @@
     { "id": "instagram", "icon": "SiInstagram", "url": "https://instagram.com/yourpage" },
     { "id": "linkedin", "icon": "SiLinkedin", "url": "https://linkedin.com/in/yourprofile" }
   ],
-  "homepage": {
+    "homepage": {
     "banner": {
-      "title": "Welcome to TishCommerce",
-      "subtitle": "The easiest way to manage and sell your products online.",
-      "buttonText": "Get Started Now",
+      "title": "Vitajte vo Vino Putec",
+      "subtitle": "Objavte prémiové vína z našej rodinnej vinárne vo Vinosadoch.",
+      "buttonText": "Pozrite naše vína",
       "imagePath": "/homepage-banner.jpg",
       "ctaLink": "/products"
     },
     "brandStory": {
-      "title": "Our Story",
-      "description": "Founded by three generations of passionate book lovers, our family-run store is built on a love for storytelling and community. We take pride in offering handpicked titles, personalized service, and a warm, welcoming experience for every reader.",
-      "buttonText": "Read More",
+      "title": "Naša história",
+      "description": "Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch. Naše vína sú výsledkom starostlivého prístupu k vinohradníctvu a lásky k vínu. Každá fľaša nesie v sebe jedinečnú chuť našej krajiny a rodinnej tradície.",
+      "buttonText": "Dozvedieť sa viac",
       "ctaLink": "/about"
     },
-    "testimonialsTitle": "What Our Customers Say",
+    "testimonialsTitle": "Čo hovoria naši zákazníci",
     "testimonials": [
       {
         "id": 1,
-        "name": "Jessica B.",
+        "name": "Jana K.",
         "avatar": "/user1.jpg",
-        "rating": 4.5,
-        "review": "These shoes changed my life! Comfortable and stylish."
+        "rating": 5,
+        "review": "Vynikajúce vína! Chuť je úžasná a kvalita je na najvyššej úrovni. Určite si objednám znovu."
       },
       {
         "id": 2,
-        "name": "Ethan Walker",
+        "name": "Peter Novák",
         "avatar": "/user2.jpg",
-        "rating": 4,
-        "review": "The best purchase I made this year. The quality is outstanding!"
+        "rating": 5,
+        "review": "Najlepšie vína v regióne! Rodinná tradícia je cítiť v každej fľaši. Odporúčam všetkým milovníkom vína."
       },
       {
         "id": 3,
-        "name": "Sophia Martinez",
+        "name": "Mária Svobodová",
         "avatar": "/user3.jpg",
         "rating": 5,
-        "review": "Exceptional customer service and fast delivery. Highly recommend!"
+        "review": "Profesionálny prístup a rýchle doručenie. Vína sú skutočne prémiové. Ďakujeme za skvelý servis!"
       }
     ],
     "newsletter": {
-      "title": "Subscribe to Our Newsletter",
-      "description": "Join our mailing list to receive exclusive updates and special offers.",
-      "placeholder": "Enter your email",
-      "buttonText": "Subscribe"
+      "title": "Prihláste sa na náš newsletter",
+      "description": "Buďte medzi prvými, ktorí sa dozvedia o nových vínoch a špeciálnych ponukách.",
+      "placeholder": "Zadajte váš email",
+      "buttonText": "Prihlásiť sa"
     },
-    "brandsTitle": "Trusted by Top Brands",
+    "brandsTitle": "Naše vína",
     "brands": [
-      { "name": "Brand 1", "logo": "/brands/brand1.svg" },
-      { "name": "Brand 2", "logo": "/brands/brand2.svg" },
-      { "name": "Brand 3", "logo": "/brands/brand3.svg" },
-      { "name": "Brand 4", "logo": "/brands/brand4.svg" },
-      { "name": "Brand 5", "logo": "/brands/brand5.svg" }
+      { "name": "Červené vína", "logo": "/brands/brand1.svg" },
+      { "name": "Biele vína", "logo": "/brands/brand2.svg" },
+      { "name": "Ružové vína", "logo": "/brands/brand3.svg" },
+      { "name": "Šumivé vína", "logo": "/brands/brand4.svg" },
+      { "name": "Dessert vína", "logo": "/brands/brand5.svg" }
     ]
   },
   "about": {
-    "title": "Our Story",
+    "title": "O nás",
     "imagePath": "/about-us.jpg",
-    "content": "Our family business began with a shared love for books and a dream to create something meaningful together.\n\nWhat started as a small garage project has grown into a trusted shop known for its handpicked collection, personal touch, and commitment to sustainability.\n\nWe believe in the power of storytelling, the value of independent creators, and the joy of sharing great reads with the community. Every book we sell is chosen with care—and every customer becomes part of our extended family."
+    "content": "Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktorá sa špecializuje na výrobu prémiových vín.\n\nNaša história sa začala s láskou k vinohradníctvu a túžbou vytvoriť niečo jedinečné. Dnes sme známi svojím starostlivým prístupom k výrobe vína a osobným vzťahom k zákazníkom.\n\nVeríme v silu tradície, hodnotu kvalitných surovín a radosť z delenia sa o skvelé vína s komunitou. Každá fľaša vína je vybraná s láskou - a každý zákazník sa stáva súčasťou našej rozšírenej rodiny."
   },
   "contactForm": {
-    "title": "Contact Us",
-    "nameLabel": "Name",
+    "title": "Kontaktujte nás",
+    "nameLabel": "Meno",
     "emailLabel": "Email",
-    "messageLabel": "Message",
-    "namePlaceholder": "Your Name",
-    "emailPlaceholder": "you@example.com",
-    "messagePlaceholder": "Your Message",
-    "buttonText": "Send Message",
-    "successMessage": "Your message has been sent successfully!",
-    "errorMessage": "Failed to send message. Please try again later.",
-    "captchaError": "reCAPTCHA is not yet available."
+    "messageLabel": "Správa",
+    "namePlaceholder": "Vaše meno",
+    "emailPlaceholder": "vas@email.sk",
+    "messagePlaceholder": "Vaša správa",
+    "buttonText": "Odoslať správu",
+    "successMessage": "Vaša správa bola úspešne odoslaná!",
+    "errorMessage": "Nepodarilo sa odoslať správu. Skúste to neskôr.",
+    "captchaError": "reCAPTCHA nie je k dispozícii."
   },
-  "copyright": "© 2025 Tihomir Ivanov @tishonator. All rights reserved."
+  "copyright": "© 2025 Putec s.r.o. Všetky práva vyhradené. | Powered by TishCommerce"
 }
