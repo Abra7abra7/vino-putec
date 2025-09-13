@@ -83,7 +83,7 @@ export default function OrderSummaryClient() {
 
   const getProductImage = (id: string): string => {
     const product = products.find((p) => p.ID === id);
-    return product?.FeatureImageURL || "/placeholder.png";
+    return product?.FeatureImageURL || "/o-nas/rodina2.jpg";
   };
 
   const renderAddress = (title: string, data: Address) => (

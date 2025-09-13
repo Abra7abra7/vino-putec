@@ -114,7 +114,7 @@ const defaultLocalization: LocalizationData = {
       title: "Vitajte vo Vino Putec",
       subtitle: "The easiest way to manage and sell your products online.",
       buttonText: "Get Started Now",
-      imagePath: "/homepage-banner.jpg",
+      imagePath: "/o-nas/rodina1.JPG",
       ctaLink: "/products",
     },
     brandStory: {
