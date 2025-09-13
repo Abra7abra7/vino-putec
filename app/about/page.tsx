@@ -2,13 +2,28 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getLocalization } from "../utils/getLocalization";
 
-export const metadata = ((): Metadata => {
-  const { about, siteName } = getLocalization();
-  return {
-    title: `${about.title} - ${siteName}`,
-    description: about.content.split("\n")[0], // Use first paragraph as description
-  };
-})();
+export const metadata: Metadata = {
+  title: "O nás | Rodinné vinárstvo Putec Vinosady | História vinárstva Pezinok",
+  description: "Rodinné vinárstvo Putec vo Vinosadoch pri Pezinku. Dlhoročná tradícia výroby prémiových vín, ubytovanie a degustácie vína. História, hodnoty a tím rodinného vinárstva pre Bratislavu, Senec, Trnavu a okolie.",
+  keywords: "o nás, Putec, Vinosady, Pezinok, rodinné vinárstvo, história vinárstva, tradícia, Bratislava, Senec, Trnava, ubytovanie, degustácie vína",
+  openGraph: {
+    title: "O nás | Rodinné vinárstvo Putec Vinosady",
+    description: "Dlhoročná tradícia rodinného vinárstva Putec vo Vinosadoch pri Pezinku",
+    type: "website",
+    locale: "sk_SK",
+    images: [
+      {
+        url: "/o-nas/rodina1.JPG",
+        width: 1200,
+        height: 630,
+        alt: "Rodinné vinárstvo Putec Vinosady",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://vinoputec.sk/o-nas",
+  },
+};
 
 
 export default function AboutPage() {

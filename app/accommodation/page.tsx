@@ -3,8 +3,18 @@ import type { Metadata } from "next";
 import { getLocalization } from "../utils/getLocalization";
 
 export const metadata: Metadata = {
-  title: "Ubytovanie - Vino Pútec",
-  description: "Ubytovanie v srdci vinohradníckej oblasti s možnosťou rezervácie online",
+  title: "Ubytovanie Vinosady | Putec | Ubytovanie Pezinok | Rezervácia",
+  description: "Ubytovanie vo Vinosadoch pri Pezinku v rodinnom vinárstve Putec. Komfortné ubytovanie s výhľadom na vinohrady. Rezervujte si ubytovanie pre Bratislavu, Senec, Trnavu.",
+  keywords: "ubytovanie Vinosady, ubytovanie Pezinok, Putec, ubytovanie, Bratislava, Senec, Trnava, vinárstvo, rezervácia ubytovania",
+  openGraph: {
+    title: "Ubytovanie Vinosady | Putec",
+    description: "Komfortné ubytovanie vo Vinosadoch pri Pezinku s výhľadom na vinohrady",
+    type: "website",
+    locale: "sk_SK",
+  },
+  alternates: {
+    canonical: "https://vinoputec.sk/ubytovanie-vinosady",
+  },
 };
 
 export default function AccommodationPage() {

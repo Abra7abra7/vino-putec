@@ -1,5 +1,5 @@
-import ContactUsForm from "../components/ContactUsForm";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Kontakt | Putec Vinosady | Kontaktné údaje vinárstva",
@@ -11,15 +11,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "sk_SK",
   },
-  alternates: {
-    canonical: "https://vinoputec.sk/kontakt",
-  },
 };
 
-export default function ContactPage() {
-    return (
-      <main>
-        <ContactUsForm />
-      </main>
-    );
-  }
+export default function KontaktPage() {
+  redirect("/contact");
+}

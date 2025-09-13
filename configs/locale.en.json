@@ -2,8 +2,8 @@
   "email": "info@vinoputec.sk",
   "phone": "+421 903465666",
   "address": "Pezinská 154, 902 01 Vinosady, Slovensko",
-  "siteName": "Vino Putec",
-  "siteTagline": "Prémiové vína z Vinosád",
+  "siteName": "Vino Putec - Rodinné vinárstvo Pezinok | Ubytovanie Vinosady | Degustácie vína",
+  "siteTagline": "Prémiové vína z Vinosád | Rodinné vinárstvo Pezinok | Ubytovanie a degustácie vína Bratislava, Senec, Trnava",
   "labels": {
     "email": "Email",
     "phone": "Telefón",
@@ -64,19 +64,19 @@
   },
   "menu": [
     { "label": "Domov", "href": "/" },
-    { "label": "Vína", "href": "/products" },
-    { "label": "Degustácie", "href": "/degustacie" },
-    { "label": "Ubytovanie", "href": "/accommodation" },
-    { "label": "O nás", "href": "/about" },
-    { "label": "Kontakt", "href": "/contact" }
+    { "label": "Vína", "href": "/vina" },
+    { "label": "Degustácie vína", "href": "/degustacie-vina" },
+    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie-vinosady" },
+    { "label": "O nás", "href": "/o-nas" },
+    { "label": "Kontakt", "href": "/kontakt" }
   ],
   "footerLinks": [
     { "label": "Domov", "href": "/" },
-    { "label": "Vína", "href": "/products" },
-    { "label": "Degustácie", "href": "/degustacie" },
-    { "label": "Ubytovanie", "href": "/accommodation" },
-    { "label": "O nás", "href": "/about" },
-    { "label": "Kontakt", "href": "/contact" }
+    { "label": "Vína", "href": "/vina" },
+    { "label": "Degustácie vína", "href": "/degustacie-vina" },
+    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie-vinosady" },
+    { "label": "O nás", "href": "/o-nas" },
+    { "label": "Kontakt", "href": "/kontakt" }
   ],
   "socialLinks": [
     { "id": "facebook", "icon": "SiFacebook", "url": "https://facebook.com/yourpage" },
@@ -86,17 +86,17 @@
   ],
     "homepage": {
     "banner": {
-      "title": "Vitajte vo Vino Putec",
-      "subtitle": "Objavte prémiové vína z našej rodinnej vinárne vo Vinosadoch.",
+      "title": "Rodinné vinárstvo Putec Pezinok | Ubytovanie Vinosady | Degustácie vína",
+      "subtitle": "Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku. Rodinné vinárstvo s tradíciou pre Bratislavu, Senec, Trnavu a okolie.",
       "buttonText": "Pozrite naše vína",
       "imagePath": "/o-nas/rodina2.jpg",
-      "ctaLink": "/products"
+      "ctaLink": "/vina"
     },
     "brandStory": {
-      "title": "Naša história",
-      "description": "Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch. Naše vína sú výsledkom starostlivého prístupu k vinohradníctvu a lásky k vínu. Každá fľaša nesie v sebe jedinečnú chuť našej krajiny a rodinnej tradície.",
+      "title": "Rodinné vinárstvo Putec - Tradícia vo Vinosadoch",
+      "description": "Putec s.r.o. je rodinné vinárstvo s dlhoročnou tradíciou vo Vinosadoch pri Pezinku. Naše prémiové vína sú výsledkom starostlivého prístupu k vinohradníctvu a lásky k vínu. Každá fľaša nesie v sebe jedinečnú chuť našej krajiny a rodinnej tradície. Ponúkame ubytovanie a degustácie vína pre návštevníkov z Bratislavy, Senca, Trnavy a celého regiónu.",
       "buttonText": "Dozvedieť sa viac",
-      "ctaLink": "/about"
+      "ctaLink": "/o-nas"
     },
     "testimonialsTitle": "Čo hovoria naši zákazníci",
     "testimonials": [
@@ -138,9 +138,9 @@
     ]
   },
   "about": {
-    "title": "O nás",
+    "title": "Rodinné vinárstvo Putec Vinosady | O nás",
     "imagePath": "/o-nas/rodina1.JPG",
-    "content": "Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktorá sa špecializuje na výrobu prémiových vín.\n\nNaša história sa začala s láskou k vinohradníctvu a túžbou vytvoriť niečo jedinečné. Dnes sme známi svojím starostlivým prístupom k výrobe vína a osobným vzťahom k zákazníkom.\n\nVeríme v silu tradície, hodnotu kvalitných surovín a radosť z delenia sa o skvelé vína s komunitou. Každá fľaša vína je vybraná s láskou - a každý zákazník sa stáva súčasťou našej rozšírenej rodiny."
+    "content": "Putec s.r.o. je rodinné vinárstvo s dlhoročnou tradíciou vo Vinosadoch pri Pezinku, ktoré sa špecializuje na výrobu prémiových vín a ponúka ubytovanie a degustácie vína.\n\nNaša história sa začala s láskou k vinohradníctvu a túžbou vytvoriť niečo jedinečné. Dnes sme známi svojím starostlivým prístupom k výrobe vína a osobným vzťahom k zákazníkom z Bratislavy, Senca, Trnavy a celého regiónu.\n\nVeríme v silu tradície, hodnotu kvalitných surovín a radosť z delenia sa o skvelé vína s komunitou. Každá fľaša vína je vybraná s láskou - a každý zákazník sa stáva súčasťou našej rozšírenej rodiny. Ponúkame ubytovanie a degustácie vína v krásnom prostredí Vinosád."
   },
   "contactForm": {
     "title": "Kontaktujte nás",
