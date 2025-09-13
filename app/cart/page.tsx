@@ -32,9 +32,19 @@ function CartContent() {
   };
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">{labels.yourCart || "Your Cart"}</h1>
+        {/* Logo Section */}
+        <div className="text-center mb-8">
+          <Image
+            src="/putec-logo.jpg"
+            alt="Pútec Logo"
+            width={100}
+            height={100}
+            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+          />
+          <h1 className="text-3xl font-bold text-foreground">{labels.yourCart || "Your Cart"}</h1>
+        </div>
 
         {items.length === 0 ? (
           <p className="text-gray-600 mt-10 mb-30 text-center">{labels.cartEmpty || "Your cart is empty."}</p>

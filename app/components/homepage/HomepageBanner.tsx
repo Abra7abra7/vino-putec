@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLocalization } from "../../context/LocalizationContext";
 
@@ -27,8 +28,23 @@ export default function HomepageBanner() {
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="max-w-4xl mx-auto px-6"
+        className="max-w-4xl mx-auto px-6 flex flex-col items-center"
       >
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mb-6"
+        >
+          <Image
+            src="/putec-logo.jpg"
+            alt="Pútec Logo"
+            width={120}
+            height={120}
+            className="rounded-full shadow-2xl border-4 border-primary"
+            priority
+          />
+        </motion.div>
         <h2 className="text-3xl md:text-4xl font-extrabold mb-6 drop-shadow-lg">{title}</h2>
         <p className="text-lg mb-8 text-primary">{subtitle}</p>
         <Link

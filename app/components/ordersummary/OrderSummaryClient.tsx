@@ -100,9 +100,19 @@ export default function OrderSummaryClient() {
 
   return (
     <section className="max-w-4xl mx-auto py-10 px-6">
-      <h1 className="text-3xl font-bold text-foreground mb-4">
-        {labels.orderSummary || "Order Summary"}
-      </h1>
+      {/* Logo Section */}
+      <div className="text-center mb-8">
+        <Image
+          src="/putec-logo.jpg"
+          alt="Pútec Logo"
+          width={100}
+          height={100}
+          className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+        />
+        <h1 className="text-3xl font-bold text-foreground">
+          {labels.orderSummary || "Order Summary"}
+        </h1>
+      </div>
       <p className="text-wine-red mt-3 mb-8">
         {labels.orderConfirmationMessage ||
           "Your order was placed successfully. We’ll notify you once it’s processed."}

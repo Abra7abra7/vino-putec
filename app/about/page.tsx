@@ -17,8 +17,20 @@ export default function AboutPage() {
   if (!about) return null;
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-background">
       <div className="container mx-auto px-6">
+        {/* Logo Section */}
+        <div className="text-center mb-12">
+          <Image
+            src="/putec-logo.jpg"
+            alt="Pútec Logo"
+            width={120}
+            height={120}
+            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+          />
+          <h1 className="text-4xl font-bold text-foreground mb-4">{about.title}</h1>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
           {/* Feature Image */}
           <div className="relative w-full h-64 md:h-96">
@@ -33,8 +45,7 @@ export default function AboutPage() {
 
           {/* Text Content */}
           <div>
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">{about.title}</h1>
-            <p className="text-lg text-gray-700 whitespace-pre-line">{about.content}</p>
+            <p className="text-lg text-wine-red whitespace-pre-line">{about.content}</p>
           </div>
         </div>
       </div>

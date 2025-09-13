@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ProductGrid from "../components/products/ProductGrid";
 import { getLocalization } from "../utils/getLocalization";
 import type { Metadata } from "next";
@@ -14,11 +15,21 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <section className="py-12 bg-stone-100">
+    <section className="py-12 bg-primary-light">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-gray-800 text-center mb-8">
-          {localeData.labels.products}
-        </h2>
+        {/* Logo Section */}
+        <div className="text-center mb-12">
+          <Image
+            src="/putec-logo.jpg"
+            alt="Pútec Logo"
+            width={100}
+            height={100}
+            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+          />
+          <h2 className="text-4xl font-bold text-foreground">
+            {localeData.labels.products}
+          </h2>
+        </div>
         <div className="mt-2">
           <ReduxProvider>
             <ProductGrid />

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { SiFacebook, SiInstagram, SiLinkedin, SiX } from "react-icons/si";
 import ScrollToTopButton from "./ScrollToTopButton"; // Keep this as a client component
 import { getLocalization } from "../utils/getLocalization";
@@ -24,7 +25,24 @@ export default function Footer() {
 
   return (
     <footer className="bg-wine-dark text-primary py-12 relative">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+        
+        {/* Logo & Brand */}
+        <div className="flex flex-col items-center md:items-start">
+          <Link href="/" className="flex flex-col items-center md:items-start space-y-3 hover:opacity-80 transition-opacity">
+            <Image
+              src="/putec-logo.jpg"
+              alt="Pútec Logo"
+              width={80}
+              height={80}
+              className="rounded-lg"
+            />
+            <div className="text-center md:text-left">
+              <h3 className="text-xl font-bold text-background">{content.siteName}</h3>
+              <p className="text-primary text-sm">{content.siteTagline}</p>
+            </div>
+          </Link>
+        </div>
         
         {/* Quick Links */}
         <div>

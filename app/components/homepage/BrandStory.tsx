@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getLocalization } from "../../utils/getLocalization";
 
 export default async function BrandStory() {
@@ -14,6 +15,17 @@ export default async function BrandStory() {
   return (
     <section className="relative w-full py-24 bg-gradient-to-r from-wine-dark via-wine-red to-accent-brown text-background">
       <div className="container mx-auto px-6 text-center">
+        {/* Logo */}
+        <div className="mb-8">
+          <Image
+            src="/putec-logo.jpg"
+            alt="Pútec Logo"
+            width={100}
+            height={100}
+            className="mx-auto rounded-full shadow-2xl border-4 border-primary"
+          />
+        </div>
+
         {/* Title */}
         <h2 className="text-4xl font-extrabold mb-6 tracking-wide">
           {title}

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
+import Image from 'next/image';
 import { useLocalization } from '@/app/context/LocalizationContext';
 
 export default function ContactUsForm() {
@@ -36,7 +37,17 @@ export default function ContactUsForm() {
   return (
     <section className="w-full min-h-screen bg-primary-light py-16">
       <div className="max-w-3xl mx-auto px-6">
-        <h2 className="text-4xl font-bold text-foreground text-center">{contactForm.title}</h2>
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <Image
+            src="/putec-logo.jpg"
+            alt="Pútec Logo"
+            width={100}
+            height={100}
+            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+          />
+          <h2 className="text-4xl font-bold text-foreground">{contactForm.title}</h2>
+        </div>
 
         {status && <div className="mb-4 text-wine-red font-semibold">{status}</div>}
 
