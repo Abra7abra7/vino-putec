@@ -28,26 +28,26 @@ export default function AccommodationPreview() {
             {/* Features */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-wine-red rounded-full flex items-center justify-center">
-                  <span className="text-sm text-background">🏡</span>
+                <div className="w-12 h-12 bg-wine-red rounded-full flex items-center justify-center">
+                  <span className="text-lg text-background">🏡</span>
                 </div>
                 <span className="text-wine-red">Komfortné izby</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-wine-red rounded-full flex items-center justify-center">
-                  <span className="text-sm text-background">🍷</span>
+                <div className="w-12 h-12 bg-wine-red rounded-full flex items-center justify-center">
+                  <span className="text-lg text-background">🍷</span>
                 </div>
                 <span className="text-wine-red">Degustácie vína</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-wine-red rounded-full flex items-center justify-center">
-                  <span className="text-sm text-background">🌅</span>
+                <div className="w-12 h-12 bg-wine-red rounded-full flex items-center justify-center">
+                  <span className="text-lg text-background">🌅</span>
                 </div>
                 <span className="text-wine-red">Krásne výhľady</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-wine-red rounded-full flex items-center justify-center">
-                  <span className="text-sm text-background">🍽️</span>
+                <div className="w-12 h-12 bg-wine-red rounded-full flex items-center justify-center">
+                  <span className="text-lg text-background">🍽️</span>
                 </div>
                 <span className="text-wine-red">Raňajky</span>
               </div>

@@ -42,7 +42,7 @@ export default function HomepageBanner() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xl mb-12 text-primary max-w-2xl"
+          className="text-xl mb-12 text-white max-w-2xl drop-shadow-lg"
         >
           {subtitle}
         </motion.p>

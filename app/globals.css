@@ -5,11 +5,11 @@
   --wine-red: oklch(68.1% 0.162 75.834);
   --wine-dark: oklch(45% 0.162 75.834);
   --wine-light: oklch(75% 0.162 75.834);
-  --primary: oklch(98.5% 0.001 106.423);
-  --primary-dark: oklch(95% 0.001 106.423);
-  --primary-light: oklch(99% 0.001 106.423);
+  --primary: #f5d491;
+  --primary-dark: #f0c97a;
+  --primary-light: #f8dca8;
   --accent-brown: oklch(68.1% 0.162 75.834);
-  --accent-gold: oklch(98.5% 0.001 106.423);
+  --accent-gold: #f5d491;
   --background: #ffffff;
   --foreground: #000000;
 }
