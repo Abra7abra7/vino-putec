@@ -6,6 +6,19 @@ export default function AccommodationPreview() {
     <section className="py-16 bg-background">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+          {/* Image Placeholder */}
+          <div className="relative flex items-center">
+            <div className="w-full h-96 bg-primary-light rounded-lg flex items-center justify-center shadow-lg">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-background">🏨</span>
+                </div>
+                <p className="text-wine-red text-lg font-semibold">Fotka ubytovania</p>
+                <p className="text-wine-red text-sm">Moderné izby s výhľadom na vinohrady</p>
+              </div>
+            </div>
+          </div>
+
           {/* Content */}
           <div className="flex flex-col justify-center">
             <div className="mb-6">
@@ -67,19 +80,6 @@ export default function AccommodationPreview() {
               >
                 Zobraziť detaily
               </Link>
-            </div>
-          </div>
-
-          {/* Image Placeholder */}
-          <div className="relative flex items-center">
-            <div className="w-full h-96 bg-primary-light rounded-lg flex items-center justify-center shadow-lg">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-background">🏨</span>
-                </div>
-                <p className="text-wine-red text-lg font-semibold">Fotka ubytovania</p>
-                <p className="text-wine-red text-sm">Moderné izby s výhľadom na vinohrady</p>
-              </div>
             </div>
           </div>
         </div>
