@@ -22,14 +22,19 @@ export default function ContactUsForm() {
         body: JSON.stringify({ name, email, message }),
       });
 
-      if (!res.ok) throw new Error('Something went wrong');
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Something went wrong');
+      }
 
       setName('');
       setEmail('');
       setMessage('');
       setStatus(contactForm.successMessage);
       setTimeout(() => setStatus(null), 5000);
-    } catch {
+    } catch (error) {
+      console.error('Contact form error:', error);
       setStatus(contactForm.errorMessage);
     }
   };
