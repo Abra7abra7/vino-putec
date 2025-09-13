@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
-/* Vino Putec brand colors - CSS custom properties */
+/* Vino Putec brand colors - OKLCH color space */
 :root {
-  --wine-red: #722f37;
-  --wine-dark: #5a2429;
-  --wine-light: #8b3a42;
-  --primary: #f7dca7;
-  --primary-dark: #e6c896;
-  --primary-light: #f9e6c4;
-  --accent-brown: #8b4513;
-  --accent-gold: #f7dca7;
+  --wine-red: oklch(68.1% 0.162 75.834);
+  --wine-dark: oklch(45% 0.162 75.834);
+  --wine-light: oklch(75% 0.162 75.834);
+  --primary: oklch(98.5% 0.001 106.423);
+  --primary-dark: oklch(95% 0.001 106.423);
+  --primary-light: oklch(99% 0.001 106.423);
+  --accent-brown: oklch(68.1% 0.162 75.834);
+  --accent-gold: oklch(98.5% 0.001 106.423);
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
 }
 
 /* Tailwind CSS v4 theme configuration */
