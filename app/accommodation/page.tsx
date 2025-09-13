@@ -142,10 +142,10 @@ export default function AccommodationPage() {
                   scrolling="no" 
                   frameBorder="0" 
                   width="100%" 
-                  height="2000" 
+                  height="800" 
                   name="previo-booking-iframe" 
                   id="previo-booking-iframe" 
-                  allowTransparency="true"
+                  allowtransparency="true"
                   className="w-full border-0 rounded-lg"
                 ></iframe>
               </div>
