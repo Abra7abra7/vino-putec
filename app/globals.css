@@ -1,21 +1,37 @@
 @import "tailwindcss";
 
+/* Vino Putec brand colors - CSS custom properties */
+:root {
+  --wine-red: #722f37;
+  --wine-dark: #5a2429;
+  --wine-light: #8b3a42;
+  --primary: #f7dca7;
+  --primary-dark: #e6c896;
+  --primary-light: #f9e6c4;
+  --accent-brown: #8b4513;
+  --accent-gold: #f7dca7;
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* Tailwind CSS v4 theme configuration */
+@theme {
+  --color-wine-red: var(--wine-red);
+  --color-wine-dark: var(--wine-dark);
+  --color-wine-light: var(--wine-light);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-accent-brown: var(--accent-brown);
+  --color-accent-gold: var(--accent-gold);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
 /* Map the font variables to something usable */
 :root {
   --font-heading: var(--font-poppins);
   --font-body: var(--font-inter);
-
-  /* Vino Putec brand colors - CSS custom properties pre ľahkú zmenu */
-  --color-background: #ffffff;
-  --color-foreground: #171717;
-  --color-primary: #f7dca7;
-  --color-primary-dark: #e6c896;
-  --color-primary-light: #f9e6c4;
-  --color-wine-red: #722f37;
-  --color-wine-dark: #5a2429;
-  --color-wine-light: #8b3a42;
-  --color-accent-brown: #8b4513;
-  --color-accent-gold: #f7dca7;
 }
 
 /* Body uses body font */
