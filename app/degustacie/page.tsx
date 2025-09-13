@@ -209,80 +209,84 @@ export default function DegustaciePage() {
 
       {/* Booking Form Modal */}
       {showBookingForm && selectedPackage && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-background rounded-xl shadow-2xl max-w-md w-full my-8 border-2 border-wine-red">
-            {/* Fixed Header */}
-            <div className="sticky top-0 bg-background border-b border-wine-red p-4 rounded-t-xl">
-              <div className="flex justify-between items-center">
-                <h3 className="text-xl font-bold text-foreground">
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-background rounded-xl shadow-2xl max-w-lg w-full border-2 border-wine-red">
+            {/* Header */}
+            <div className="p-4 border-b border-wine-red">
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-lg font-bold text-foreground">
                   Rezervácia termínu
                 </h3>
                 <button
                   onClick={() => setShowBookingForm(false)}
-                  className="text-wine-red hover:text-wine-dark text-2xl font-bold bg-primary-light hover:bg-primary rounded-full w-8 h-8 flex items-center justify-center transition-colors"
+                  className="text-wine-red hover:text-wine-dark text-xl font-bold bg-primary-light hover:bg-primary rounded-full w-7 h-7 flex items-center justify-center transition-colors"
                 >
                   ×
                 </button>
               </div>
               
-              <div className="mt-3 p-3 bg-primary-light rounded-lg border border-wine-red">
-                <p className="text-wine-red font-bold text-center">
+              <div className="p-2 bg-primary-light rounded border border-wine-red">
+                <p className="text-wine-red font-bold text-center text-sm">
                   {packages.find(p => p.id === selectedPackage)?.title} - {packages.find(p => p.id === selectedPackage)?.price}€
                 </p>
               </div>
             </div>
 
-            {/* Scrollable Content */}
-            <div className="p-4 max-h-96 overflow-y-auto">
-              <form className="space-y-4">
-                <div>
-                  <label className="block text-foreground font-semibold mb-2">
-                    Meno a priezvisko
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full border-2 border-wine-red p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-wine-red text-foreground bg-background"
-                    placeholder="Vaše meno"
-                  />
+            {/* Form Content */}
+            <div className="p-4">
+              <form className="space-y-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-foreground font-medium mb-1 text-sm">
+                      Meno a priezvisko
+                    </label>
+                    <input
+                      type="text"
+                      className="w-full border-2 border-wine-red p-2 rounded focus:outline-none focus:ring-1 focus:ring-wine-red text-foreground bg-background text-sm"
+                      placeholder="Vaše meno"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-foreground font-medium mb-1 text-sm">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      className="w-full border-2 border-wine-red p-2 rounded focus:outline-none focus:ring-1 focus:ring-wine-red text-foreground bg-background text-sm"
+                      placeholder="vas@email.sk"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-foreground font-medium mb-1 text-sm">
+                      Telefón
+                    </label>
+                    <input
+                      type="tel"
+                      className="w-full border-2 border-wine-red p-2 rounded focus:outline-none focus:ring-1 focus:ring-wine-red text-foreground bg-background text-sm"
+                      placeholder="+421 XXX XXX XXX"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-foreground font-medium mb-1 text-sm">
+                      Preferovaný dátum
+                    </label>
+                    <input
+                      type="date"
+                      className="w-full border-2 border-wine-red p-2 rounded focus:outline-none focus:ring-1 focus:ring-wine-red text-foreground bg-background text-sm"
+                    />
+                  </div>
                 </div>
 
                 <div>
-                  <label className="block text-foreground font-semibold mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full border-2 border-wine-red p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-wine-red text-foreground bg-background"
-                    placeholder="vas@email.sk"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-foreground font-semibold mb-2">
-                    Telefón
-                  </label>
-                  <input
-                    type="tel"
-                    className="w-full border-2 border-wine-red p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-wine-red text-foreground bg-background"
-                    placeholder="+421 XXX XXX XXX"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-foreground font-semibold mb-2">
-                    Preferovaný dátum
-                  </label>
-                  <input
-                    type="date"
-                    className="w-full border-2 border-wine-red p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-wine-red text-foreground bg-background"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-foreground font-semibold mb-2">
+                  <label className="block text-foreground font-medium mb-1 text-sm">
                     Počet osôb
                   </label>
-                  <select className="w-full border-2 border-wine-red p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-wine-red text-foreground bg-background">
+                  <select className="w-full border-2 border-wine-red p-2 rounded focus:outline-none focus:ring-1 focus:ring-wine-red text-foreground bg-background text-sm">
                     <option>Vyberte počet osôb</option>
                     <option>2 osôb</option>
                     <option>3 osôb</option>
@@ -302,31 +306,31 @@ export default function DegustaciePage() {
                 </div>
 
                 <div>
-                  <label className="block text-foreground font-semibold mb-2">
+                  <label className="block text-foreground font-medium mb-1 text-sm">
                     Poznámky
                   </label>
                   <textarea
-                    rows={3}
-                    className="w-full border-2 border-wine-red p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-wine-red focus:border-wine-red text-foreground bg-background resize-none"
+                    rows={2}
+                    className="w-full border-2 border-wine-red p-2 rounded focus:outline-none focus:ring-1 focus:ring-wine-red text-foreground bg-background resize-none text-sm"
                     placeholder="Špeciálne požiadavky, alergény, atď."
                   />
                 </div>
               </form>
             </div>
 
-            {/* Fixed Footer */}
-            <div className="sticky bottom-0 bg-background border-t border-wine-red p-4 rounded-b-xl">
+            {/* Footer */}
+            <div className="p-4 border-t border-wine-red">
               <div className="flex space-x-3">
                 <button
                   type="button"
                   onClick={() => setShowBookingForm(false)}
-                  className="flex-1 border-2 border-wine-red text-wine-red hover:bg-wine-red hover:text-background px-4 py-3 rounded-lg font-semibold transition-colors"
+                  className="flex-1 border-2 border-wine-red text-wine-red hover:bg-wine-red hover:text-background px-4 py-2 rounded font-semibold transition-colors text-sm"
                 >
                   Zrušiť
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-wine-red hover:bg-wine-dark text-background px-4 py-3 rounded-lg font-semibold transition-colors"
+                  className="flex-1 bg-wine-red hover:bg-wine-dark text-background px-4 py-2 rounded font-semibold transition-colors text-sm"
                 >
                   Odoslať rezerváciu
                 </button>
