@@ -96,30 +96,30 @@ export function generateAdminEmail(
   shipping: number,
   total: number
 ): string {
-  return `New Order Received
+  return `Nová objednávka
 
-Order ID: ${body.orderId}
-Order Date: ${body.orderDate}
-Customer: ${body.shippingForm.firstName} ${body.shippingForm.lastName}
+Číslo objednávky: ${body.orderId}
+Dátum objednávky: ${body.orderDate}
+Zákazník: ${body.shippingForm.firstName} ${body.shippingForm.lastName}
 Email: ${body.shippingForm.email}
-Phone: ${body.shippingForm.phone}
+Telefón: ${body.shippingForm.phone}
 
-Shipping Address:
+Dodacia adresa:
 ${body.shippingForm.address1}
 ${body.shippingForm.address2}
 ${body.shippingForm.city}, ${body.shippingForm.state}, ${body.shippingForm.country} ${body.shippingForm.postalCode}
 
-Shipping Method: ${body.shippingMethod.name}
-Payment Method: ${body.paymentMethodId.toUpperCase()}
+Spôsob doručenia: ${body.shippingMethod.name}
+Spôsob platby: ${body.paymentMethodId.toUpperCase()}
 
-Order Summary:
+Súhrn objednávky:
 ${summary}
 
-Subtotal: $${subtotal.toFixed(2)}
-Shipping: $${shipping.toFixed(2)}
-Total: $${total.toFixed(2)}
+Medzisúčet: $${subtotal.toFixed(2)}
+Doprava: $${shipping.toFixed(2)}
+Celkom: $${total.toFixed(2)}
 
-Date: ${new Date().toLocaleString()}
+Dátum: ${new Date().toLocaleString()}
 `;
 }
 
@@ -131,26 +131,26 @@ export function generateCustomerEmail(
   total: number
 ): string {
   const { labels, siteName } = getLocalization();
-  return `Hi ${body.shippingForm.firstName},
+  return `Dobrý deň ${body.shippingForm.firstName},
 
-${labels.orderConfirmationMessage || "Your order was placed successfully. We’ll notify you once it’s processed."}
+${labels.orderConfirmationMessage || "Vaša objednávka bola úspešne odoslaná. Oznámime vám, keď ju spracujeme."}
 
-Order ID: ${body.orderId}
-Order Date: ${body.orderDate}
-Shipping Method: ${body.shippingMethod.name}
-Payment Method: ${body.paymentMethodId.toUpperCase()}
+Číslo objednávky: ${body.orderId}
+Dátum objednávky: ${body.orderDate}
+Spôsob doručenia: ${body.shippingMethod.name}
+Spôsob platby: ${body.paymentMethodId.toUpperCase()}
 
-Shipping Address:
+Dodacia adresa:
 ${body.shippingForm.address1}
 ${body.shippingForm.address2}
 ${body.shippingForm.city}, ${body.shippingForm.state}, ${body.shippingForm.country} ${body.shippingForm.postalCode}
 
-Order Summary:
+Súhrn objednávky:
 ${summary}
 
-Total: $${total.toFixed(2)}
+Celkom: $${total.toFixed(2)}
 
-Thank you for shopping with us!
+Ďakujeme za nákup!
 ${siteName || "Vino Putec"}
 `;
 }
@@ -163,7 +163,7 @@ export async function sendAdminEmail(body: OrderBody) {
   const total = subtotal + shipping;
 
   const text = generateAdminEmail(body, lines, subtotal, shipping, total);
-  const subject = `🛒 New Order from ${body.shippingForm.firstName} ${body.shippingForm.lastName}`;
+  const subject = `🛒 Nová objednávka od ${body.shippingForm.firstName} ${body.shippingForm.lastName}`;
 
   await sendEmail({
     to: process.env.ADMIN_EMAIL!,
@@ -181,7 +181,7 @@ export async function sendCustomerEmail(body: OrderBody) {
 
   const text = generateCustomerEmail(body, lines, total);
   const subject =
-    getLocalization().labels.orderConfirmationTitle || "Your Order Confirmation";
+    getLocalization().labels.orderConfirmationTitle || "Potvrdenie objednávky";
 
   await sendEmail({
     to: body.shippingForm.email,
