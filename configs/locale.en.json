@@ -65,6 +65,7 @@
   "menu": [
     { "label": "Domov", "href": "/" },
     { "label": "Vína", "href": "/products" },
+    { "label": "Degustácie", "href": "/degustacie" },
     { "label": "Ubytovanie", "href": "/accommodation" },
     { "label": "O nás", "href": "/about" },
     { "label": "Kontakt", "href": "/contact" }
@@ -72,6 +73,7 @@
   "footerLinks": [
     { "label": "Domov", "href": "/" },
     { "label": "Vína", "href": "/products" },
+    { "label": "Degustácie", "href": "/degustacie" },
     { "label": "Ubytovanie", "href": "/accommodation" },
     { "label": "O nás", "href": "/about" },
     { "label": "Kontakt", "href": "/contact" }

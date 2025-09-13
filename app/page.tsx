@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getLocalization } from "./utils/getLocalization";
 import HomepageBanner from "./components/homepage/HomepageBanner";
 import RecentProducts from "./components/homepage/RecentProducts";
+import DegustaciePreview from "./components/homepage/DegustaciePreview";
 import AccommodationPreview from "./components/homepage/AccommodationPreview";
 import BrandStory from "./components/homepage/BrandStory";
 import Testimonials from "./components/homepage/Testimonials";
@@ -21,6 +22,7 @@ export default function Home() {
     <main>
       <HomepageBanner />
       <RecentProducts />
+      <DegustaciePreview />
       <AccommodationPreview />
       <BrandStory />
       <Testimonials />
