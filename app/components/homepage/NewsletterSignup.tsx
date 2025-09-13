@@ -19,13 +19,16 @@ export default function NewsletterSignup() {
         body: JSON.stringify({ email }),
       });
 
-      if (res.ok) {
+      const data = await res.json();
+
+      if (res.ok && data.success) {
         setStatus("success");
         setEmail("");
       } else {
         setStatus("error");
       }
-    } catch {
+    } catch (error) {
+      console.error("Newsletter subscription error:", error);
       setStatus("error");
     }
   };
@@ -54,8 +57,8 @@ export default function NewsletterSignup() {
           </button>
         </form>
 
-        {status === "success" && <p className="mt-3 text-green-600">Thank you for subscribing!</p>}
-        {status === "error" && <p className="mt-3 text-red-600">Subscription failed. Try again.</p>}
+        {status === "success" && <p className="mt-3 text-wine-red">Ďakujeme za prihlásenie!</p>}
+        {status === "error" && <p className="mt-3 text-wine-red">Prihlásenie zlyhalo. Skúste znovu.</p>}
       </div>
     </section>
   );
