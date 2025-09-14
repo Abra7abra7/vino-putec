@@ -1,7 +1,29 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function DegustaciePreview() {
+  const slides = [
+    { src: "/degustacie/degustacia-x.jpg", alt: "Degustácia - atmosféra" },
+    { src: "/degustacie/brano-degustacia-x.jpg", alt: "Degustácia s majiteľom" },
+    { src: "/degustacie/IMG_6015-2.jpg", alt: "Ochutnávka vín" },
+    { src: "/degustacie/sudy-x.jpg", alt: "Sudy a pivnica" },
+  ];
+
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(id);
+  }, [slides.length]);
+
+  const goPrev = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
+  const goNext = () => setCurrent((prev) => (prev + 1) % slides.length);
+
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-6">
@@ -105,15 +127,53 @@ export default function DegustaciePreview() {
             </div>
           </div>
 
-          {/* Image Placeholder */}
+          {/* Slider */}
           <div className="relative flex items-center">
-            <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-foreground">🍷</span>
+            <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.src}
+                  className={`absolute inset-0 transition-opacity duration-700 ${index === current ? 'opacity-100' : 'opacity-0'}`}
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    priority={index === current}
+                  />
                 </div>
-                <p className="text-foreground text-lg font-semibold">Degustačná miestnosť</p>
-                <p className="text-foreground text-sm">Elegantné prostredie pre ochutnávky</p>
+              ))}
+
+              {/* Controls */}
+              <button
+                type="button"
+                aria-label="Predchádzajúci"
+                onClick={goPrev}
+                className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center"
+              >
+                ‹
+              </button>
+              <button
+                type="button"
+                aria-label="Ďalší"
+                onClick={goNext}
+                className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center"
+              >
+                ›
+              </button>
+
+              {/* Dots */}
+              <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    aria-label={`Prejsť na snímku ${i + 1}`}
+                    onClick={() => setCurrent(i)}
+                    className={`w-2.5 h-2.5 rounded-full ${i === current ? 'bg-white' : 'bg-white/50'}`}
+                  />
+                ))}
               </div>
             </div>
           </div>

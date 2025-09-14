@@ -75,16 +75,27 @@ export default function DegustationProducts() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             {products.map((product) => (
-              <div key={product.ID} className="bg-background rounded-lg shadow-lg p-8 border border-gray-200 flex flex-col h-full">
-                {/* Product Header */}
-                <div className="text-center mb-6">
-                  <div className="text-4xl mb-4">🍷</div>
-                  <h3 className="text-2xl font-bold text-foreground mb-2">{product.Title}</h3>
-                  <div className="flex justify-center space-x-6 text-sm text-foreground-muted mb-4">
-                    <span>👥 {product.Capacity}</span>
-                    <span>⏱️ {product.Duration}</span>
+              <div key={product.ID} className="rounded-lg shadow-lg overflow-hidden border border-gray-200 flex flex-col h-full">
+                {/* Image background header */}
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={product.FeatureImageURL || '/placeholder.png'}
+                    alt={product.Title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-black/30" />
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="text-2xl font-bold drop-shadow" style={{ color: '#ffffff' }}>{product.Title}</h3>
+                    <div className="flex gap-4 text-sm text-gray-100">
+                      <span>👥 {product.Capacity}</span>
+                      <span>⏱️ {product.Duration}</span>
+                    </div>
                   </div>
                 </div>
+
+                <div className="bg-background p-8 flex flex-col flex-1">
 
                 {/* Description */}
                 <p className="text-foreground-muted mb-6 leading-relaxed flex-grow">
@@ -126,6 +137,7 @@ export default function DegustationProducts() {
                   >
                     Rezervovať degustáciu
                   </Link>
+                </div>
                 </div>
               </div>
             ))}

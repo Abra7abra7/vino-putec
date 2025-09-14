@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Hero from "../components/Hero";
 import ProductGrid from "../components/products/ProductGrid";
 import { getLocalization } from "../utils/getLocalization";
 import type { Metadata } from "next";
@@ -15,27 +16,23 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <section className="py-12 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Logo Section */}
-        <div className="text-center mb-12">
-          <Image
-            src="/putec-logo.jpg"
-            alt="Pútec Logo"
-            width={100}
-            height={100}
-            className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-6"
-          />
-          <h2 className="text-4xl font-bold text-foreground">
-            {localeData.labels.products}
-          </h2>
+    <>
+      <Hero
+        title={localeData.labels.products}
+        subtitle={localeData.siteTagline}
+        backgroundImageUrl="/vineyard-banner.webp"
+        secondaryCta={{ label: "Zobraziť všetko", href: "#produkty" }}
+        heightClass="h-[50vh]"
+      />
+      <section id="produkty" className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="mt-2">
+            <ReduxProvider>
+              <ProductGrid />
+            </ReduxProvider>
+          </div>
         </div>
-        <div className="mt-2">
-          <ReduxProvider>
-            <ProductGrid />
-          </ReduxProvider>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

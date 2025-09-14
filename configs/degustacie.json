@@ -8,9 +8,11 @@
        "ProductCategories":[
           "Degustácie vína"
        ],
-       "FeatureImageURL":"/degustacie/degustation-1.jpg",
+       "FeatureImageURL":"/degustacie/degustacia-x.jpg",
        "ProductImageGallery":[
-          "/degustacie/degustation-1.jpg"
+          "/degustacie/degustacia-x.jpg",
+          "/degustacie/IMG_6015-2.jpg",
+          "/degustacie/IMG_6063-2.jpg"
        ],
        "ShortDescription":"Ochutnávka 4 starostlivo vybraných vzoriek našich najobľúbenejších vín, doplnených o malú studenú misu.",
        "LongDescription":"Ideálne pre tých, ktorí sa chcú zoznámiť s našou produkciou, alebo majú záujem o degustáciu vo dvojici. Degustácia trvá 1-1,5 hodiny pre 2-5 osôb.",
@@ -38,9 +40,11 @@
        "ProductCategories":[
           "Degustácie vína"
        ],
-       "FeatureImageURL":"/degustacie/degustation-2.jpg",
+       "FeatureImageURL":"/degustacie/degustacia-brano-x.jpg",
        "ProductImageGallery":[
-          "/degustacie/degustation-2.jpg"
+          "/degustacie/degustacia-brano-x.jpg",
+          "/degustacie/brano-degustacia-x.jpg",
+          "/degustacie/sudy-x.jpg"
        ],
        "ShortDescription":"Degustácia 8 druhov starostlivo vybraných vín s majiteľom vinárstva, ktorý vás prevedie svetom našich vín a tajomstvami ich výroby.",
        "LongDescription":"Príjemný zážitok je doplnený malou studenou misou. Degustácia trvá 2,5-3 hodiny pre 6-9 osôb s prehliadkou výrobnej časti.",
@@ -69,9 +73,11 @@
        "ProductCategories":[
           "Degustácie vína"
        ],
-       "FeatureImageURL":"/degustacie/degustation-3.jpg",
+       "FeatureImageURL":"/degustacie/degustacia-skupina.jpg",
        "ProductImageGallery":[
-          "/degustacie/degustation-3.jpg"
+          "/degustacie/degustacia-skupina.jpg",
+          "/degustacie/jama-x.jpg",
+          "/degustacie/ruky-x.jpg"
        ],
        "ShortDescription":"Degustácia 8 druhov starostlivo vybraných vín, pre väčšie skupinky, s majiteľom vinárstva.",
        "LongDescription":"Príjemný zážitok je doplnený malou studenou misou. Degustácia trvá 2,5-3 hodiny pre 10-15 osôb s skupinovou atmosférou.",
@@ -100,9 +106,10 @@
        "ProductCategories":[
           "Degustácie vína"
        ],
-       "FeatureImageURL":"/degustacie/degustation-4.jpg",
+       "FeatureImageURL":"/degustacie/bozk-2.jpg",
        "ProductImageGallery":[
-          "/degustacie/degustation-4.jpg"
+          "/degustacie/bozk-2.jpg",
+          "/degustacie/misa-x.jpg"
        ],
        "ShortDescription":"Piknikový košík pre 2 osoby s bohato obloženými bagetami, sladkou pochúťkou, orieškami, minerálkou, fľašou vína podľa vlastného výberu a potrebnými drobnosťami.",
        "LongDescription":"Romantický piknikový zážitok pre dvojicu s víno podľa vlastného výberu. Trvanie podľa dohody, ideálne pre romantické chvíle vo vinohrade.",

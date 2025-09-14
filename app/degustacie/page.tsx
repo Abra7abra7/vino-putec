@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import DegustationProducts from "./DegustationProducts";
+import Hero from "../components/Hero";
 
 export const metadata: Metadata = {
   title: "Degustácie vína | Putec Vinosady | Ochutnávky vína Pezinok",
@@ -17,5 +18,19 @@ export const metadata: Metadata = {
 };
 
 export default function DegustaciePage() {
-  return <DegustationProducts />;
+  return (
+    <>
+      <Hero
+        title="Degustácie vína"
+        subtitle="Nezabudnuteľné zážitky s našimi prémiovými vínami"
+        backgroundImageUrl="/degustacie/degustacia-x.jpg"
+        primaryCta={{ label: "Rezervovať", href: "/degustacie" }}
+        secondaryCta={{ label: "Zobraziť balíky", href: "#baliky" }}
+        heightClass="h-[55vh]"
+      />
+      <div id="baliky">
+        <DegustationProducts />
+      </div>
+    </>
+  );
 }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Hero from "../components/Hero";
 import WineGrid from "../components/products/WineGrid";
 import { getLocalization } from "../utils/getLocalization";
 import type { Metadata } from "next";
@@ -15,30 +16,23 @@ export const metadata: Metadata = {
 
 export default function VinaPage() {
   return (
-    <section className="py-12 bg-background">
-      <div className="container mx-auto px-4">
-        {/* Logo Section */}
-        <div className="text-center mb-12">
-          <Image
-            src="/putec-logo.jpg"
-            alt="Pútec Logo"
-            width={100}
-            height={100}
-            className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-6"
-          />
-          <h2 className="text-4xl font-bold text-foreground">
-            Naše vína
-          </h2>
-          <p className="text-lg text-foreground-muted mt-4">
-            Prémiové vína z rodinného vinárstva Putec
-          </p>
+    <>
+      <Hero
+        title="Naše vína"
+        subtitle="Prémiové vína z rodinného vinárstva Putec"
+        backgroundImageUrl="/vineyard-banner.webp"
+        secondaryCta={{ label: "Zobraziť všetky", href: "#vsetky-vina" }}
+        heightClass="h-[50vh]"
+      />
+      <section id="vsetky-vina" className="py-12 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="mt-2">
+            <ReduxProvider>
+              <WineGrid />
+            </ReduxProvider>
+          </div>
         </div>
-        <div className="mt-2">
-          <ReduxProvider>
-            <WineGrid />
-          </ReduxProvider>
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Hero from "../components/Hero";
 import { getLocalization } from "../utils/getLocalization";
 
 export const metadata: Metadata = {
@@ -46,28 +47,13 @@ export default function AboutPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="py-16 bg-background text-foreground">
-        <div className="container mx-auto px-6 text-center">
-          {/* Logo */}
-          <div className="mb-8">
-            <Image
-              src="/putec-logo.jpg"
-              alt="Pútec Logo"
-              width={120}
-              height={120}
-              className="mx-auto rounded-full shadow-2xl border-4 border-accent"
-            />
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            {about.title}
-          </h1>
-          <p className="text-xl text-foreground max-w-3xl mx-auto">
-            Objavte našu rodinnú históriu a vášeň pre víno
-          </p>
-        </div>
-      </section>
+      <Hero
+        title={about.title}
+        subtitle="Objavte našu rodinnú históriu a vášeň pre víno"
+        backgroundImageUrl="/o-nas/rodina2.jpg"
+        secondaryCta={{ label: "Galéria rodiny", href: "/galeria/rodina" }}
+        heightClass="h-[50vh]"
+      />
 
       {/* Main Content */}
       <section className="py-16 bg-background">

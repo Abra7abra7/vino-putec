@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Hero from "../components/Hero";
+import AccommodationGallery from "../components/ubytovanie/AccommodationGallery";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -20,28 +22,14 @@ export default function AccommodationPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-background text-foreground">
-        <div className="container mx-auto px-6 text-center">
-          {/* Logo */}
-          <div className="mb-8">
-            <Image
-              src="/putec-logo.jpg"
-              alt="Pútec Logo"
-              width={120}
-              height={120}
-              className="mx-auto rounded-full shadow-2xl border-4 border-accent"
-            />
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Ubytovanie v srdci vinohradníctva
-          </h1>
-          <p className="text-xl text-foreground max-w-3xl mx-auto">
-            Prežite nezabudnuteľné chvíle v našom ubytovaní obklopenom vinohradmi a prírodou
-          </p>
-        </div>
-      </section>
+      <Hero
+        title="Ubytovanie v srdci vinohradníctva"
+        subtitle="Komfortné izby a zážitky vo vinohradoch"
+        backgroundImageUrl="/ubytovanie-exterier/vyhlad-na-vinohrad-x.jpg"
+        primaryCta={{ label: "Rezervovať", href: "#rezervacia" }}
+        secondaryCta={{ label: "Galéria", href: "/galeria/ubytovanie" }}
+        heightClass="h-[55vh]"
+      />
 
       {/* Features Section */}
       <section className="py-16 bg-background">
@@ -119,8 +107,11 @@ export default function AccommodationPage() {
         </div>
       </section>
 
+      {/* Gallery */}
+      <AccommodationGallery />
+
       {/* Reservation Section */}
-      <section className="py-16 bg-background">
+      <section id="rezervacia" className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">

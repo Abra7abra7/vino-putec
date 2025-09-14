@@ -1,21 +1,71 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function AccommodationPreview() {
+  const [slides, setSlides] = useState<string[]>([]);
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const load = async () => {
+      try {
+        const res = await fetch('/api/ubytovanie/gallery');
+        const data = await res.json();
+        const list: string[] = [...(data.exterier || []), ...(data.izby || [])];
+        setSlides(list.slice(0, 8));
+      } catch (e) {
+        console.error('Nepodarilo sa načítať galériu ubytovania', e);
+      }
+    };
+    load();
+  }, []);
+
+  useEffect(() => {
+    if (slides.length === 0) return;
+    const t = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 4000);
+    return () => clearInterval(t);
+  }, [slides]);
+
+  const goPrev = () => slides.length && setCurrent((p) => (p - 1 + slides.length) % slides.length);
+  const goNext = () => slides.length && setCurrent((p) => (p + 1) % slides.length);
+
   return (
     <section className="py-16 bg-background">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
-          {/* Image Placeholder */}
+          {/* Slider */}
           <div className="relative flex items-center">
-            <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center shadow-lg">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-foreground">🏨</span>
+            <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
+              {slides.length === 0 ? (
+                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                  <span className="text-foreground">Načítavam fotografie...</span>
                 </div>
-                <p className="text-foreground text-lg font-semibold">Fotka ubytovania</p>
-                <p className="text-foreground text-sm">Moderné izby s výhľadom na vinohrady</p>
-              </div>
+              ) : (
+                slides.map((src, index) => (
+                  <div key={src} className={`absolute inset-0 transition-opacity duration-700 ${index === current ? 'opacity-100' : 'opacity-0'}`}>
+                    <Image src={src} alt="Ubytovanie" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" priority={index === current} />
+                  </div>
+                ))
+              )}
+
+              {/* Controls */}
+              {slides.length > 1 && (
+                <>
+                  <button type="button" onClick={goPrev} aria-label="Predchádzajúci" className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center">‹</button>
+                  <button type="button" onClick={goNext} aria-label="Ďalší" className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white rounded-full w-10 h-10 flex items-center justify-center">›</button>
+                </>
+              )}
+
+              {/* Dots */}
+              {slides.length > 1 && (
+                <div className="absolute bottom-3 left-0 right-0 flex items-center justify-center gap-2">
+                  {slides.map((_, i) => (
+                    <button key={i} onClick={() => setCurrent(i)} aria-label={`Snímka ${i + 1}`} className={`w-2.5 h-2.5 rounded-full ${i === current ? 'bg-white' : 'bg-white/50'}`} />
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
