@@ -64,10 +64,18 @@ const checkoutSlice = createSlice({
       state.orderDate = action.payload.date;
     },
     setShippingForm(state, action: PayloadAction<Partial<FormData>>) {
-      state.shippingForm = { ...state.shippingForm, ...action.payload };
+      state.shippingForm = { 
+        ...state.shippingForm, 
+        ...action.payload,
+        isCompany: action.payload.isCompany ?? state.shippingForm.isCompany ?? false
+      };
     },
     setBillingForm(state, action: PayloadAction<Partial<FormData>>) {
-      state.billingForm = { ...state.billingForm, ...action.payload };
+      state.billingForm = { 
+        ...state.billingForm, 
+        ...action.payload,
+        isCompany: action.payload.isCompany ?? state.billingForm.isCompany ?? false
+      };
     },
     setShippingMethod(state, action: PayloadAction<string>) {
       state.shippingMethodId = action.payload;

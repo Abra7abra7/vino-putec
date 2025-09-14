@@ -11,6 +11,10 @@ export default function ShippingForm() {
   const { labels } = useLocalization();
   const dispatch = useAppDispatch();
   const form = useAppSelector((state) => state.checkout.shippingForm);
+  
+  // Debug: log form state
+  console.log('ShippingForm - form.isCompany:', form.isCompany);
+  console.log('ShippingForm - form:', form);
 
   useEffect(() => {
     if (!form.country && shippingCountries.length > 0) {

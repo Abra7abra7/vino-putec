@@ -35,7 +35,14 @@ export default function BillingForm() {
   };
 
   const handleSameAsShipping = () => {
-    dispatch(setBillingForm({ ...shippingForm }));
+    dispatch(setBillingForm({ 
+      ...shippingForm,
+      isCompany: shippingForm.isCompany || false,
+      companyName: shippingForm.companyName || "",
+      companyICO: shippingForm.companyICO || "",
+      companyDIC: shippingForm.companyDIC || "",
+      companyICDPH: shippingForm.companyICDPH || ""
+    }));
   };
 
   const availableStates = useMemo(() => {
