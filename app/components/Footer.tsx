@@ -24,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-background text-foreground py-16 relative border-t border-gray-200">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 text-center md:text-left">
         
         {/* Logo & Brand */}
         <div className="flex flex-col items-center md:items-start">
@@ -68,7 +68,7 @@ export default function Footer() {
         {/* Social Media */}
         <div>
           <h3 className="text-xl font-semibold mb-4 text-foreground">{content.labels.followUs}</h3>
-          <div className="flex justify-center md:justify-start space-x-4 mb-6">
+          <div className="flex justify-center md:justify-start space-x-4">
             {content.socialLinks.map((social) => {
               const IconComponent = iconMap[social.icon as SocialIcon]; // Type assertion to ensure TS compliance
               return (
@@ -78,18 +78,20 @@ export default function Footer() {
               );
             })}
           </div>
-          
-          {/* Legal Links */}
-          <div>
-            <h4 className="text-sm font-semibold mb-2 text-foreground">Právne informácie</h4>
-            <div className="flex flex-wrap gap-2 text-xs">
-              {content.legalLinks.map((link) => (
-                <Link key={link.label} href={link.href} className="text-foreground-muted hover:text-accent transition-colors duration-200">
+        </div>
+
+        {/* Legal Links */}
+        <div>
+          <h3 className="text-xl font-semibold mb-4 text-foreground">Právne informácie</h3>
+          <ul className="space-y-2">
+            {content.legalLinks.map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} className="text-foreground hover:text-accent transition-colors duration-200 text-sm">
                   {link.label}
                 </Link>
-              ))}
-            </div>
-          </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 
