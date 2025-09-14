@@ -41,7 +41,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="sk">
+      <head>
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            body { 
+              margin: 0; 
+              font-family: ${inter.style.fontFamily}, system-ui, sans-serif;
+              background-color: #ffffff;
+              color: #000000;
+            }
+            * { box-sizing: border-box; }
+          `
+        }} />
+      </head>
       <body
         className={`
           antialiased

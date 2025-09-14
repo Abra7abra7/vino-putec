@@ -8,6 +8,7 @@ export default function Achievements() {
   const [selectedCategory, setSelectedCategory] = useState<'diplomy' | 'ocenenia'>('diplomy');
   const [isMobile, setIsMobile] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -15,6 +16,7 @@ export default function Achievements() {
     };
     
     checkMobile();
+    setIsLoaded(true);
     window.addEventListener('resize', checkMobile);
     
     return () => window.removeEventListener('resize', checkMobile);
@@ -95,6 +97,18 @@ export default function Achievements() {
   const currentItems = selectedCategory === 'diplomy' ? diplomy : ocenenia;
   const maxItems = isMobile ? 4 : 6;
   const displayItems = showAll ? currentItems : currentItems.slice(0, maxItems);
+
+  if (!isLoaded) {
+    return (
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <p className="text-foreground">Načítavam...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 bg-background">

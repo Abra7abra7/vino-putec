@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 export default function AccommodationPreview() {
   const [slides, setSlides] = useState<string[]>([]);
   const [current, setCurrent] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const load = async () => {
@@ -14,18 +15,20 @@ export default function AccommodationPreview() {
         const res = await fetch('/api/gallery/ubytovanie');
         const data = await res.json();
         setSlides(data.photos?.slice(0, 8) || []);
+        setIsLoaded(true);
       } catch (e) {
         console.error('Nepodarilo sa načítať galériu ubytovania', e);
+        setIsLoaded(true);
       }
     };
     load();
   }, []);
 
   useEffect(() => {
-    if (slides.length === 0) return;
+    if (!isLoaded || slides.length === 0) return;
     const t = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 4000);
     return () => clearInterval(t);
-  }, [slides]);
+  }, [slides, isLoaded]);
 
   const goPrev = () => slides.length && setCurrent((p) => (p - 1 + slides.length) % slides.length);
   const goNext = () => slides.length && setCurrent((p) => (p + 1) % slides.length);
@@ -36,12 +39,12 @@ export default function AccommodationPreview() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* Slider */}
           <div className="relative flex items-center">
-            <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
-              {slides.length === 0 ? (
-                <div className="w-full h-full bg-gray-100 flex items-center justify-center">
-                  <span className="text-foreground">Načítavam fotografie...</span>
-                </div>
-              ) : (
+                        <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
+                          {!isLoaded || slides.length === 0 ? (
+                            <div className="w-full h-full bg-gray-100 flex items-center justify-center">
+                              <span className="text-foreground">Načítavam fotografie...</span>
+                            </div>
+                          ) : (
                 slides.map((src, index) => (
                   <div key={src} className={`absolute inset-0 transition-opacity duration-700 ${index === current ? 'opacity-100' : 'opacity-0'}`}>
                     <Image src={src} alt="Ubytovanie" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" priority={index === current} />

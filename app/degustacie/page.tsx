@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import DegustationProducts from "./DegustationProducts";
 import Hero from "../components/Hero";
-import DegustationGallery from "../components/degustacie/DegustationGallery";
 
 export const metadata: Metadata = {
   title: "Degustácie vína | Putec Vinosady | Ochutnávky vína Pezinok",
@@ -32,9 +31,6 @@ export default function DegustaciePage() {
       <div id="baliky">
         <DegustationProducts />
       </div>
-      
-      {/* Gallery */}
-      <DegustationGallery />
     </>
   );
 }
