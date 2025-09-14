@@ -18,8 +18,8 @@ export default function GoogleMaps() {
     const loadGoogleMaps = () => {
       if (window.google && mapRef.current) {
         const map = new window.google.maps.Map(mapRef.current, {
-          center: { lat: 48.2897, lng: 17.2667 }, // Vinosady coordinates
-          zoom: 15,
+          center: { lat: 48.2897, lng: 17.2667 }, // Pezinská 154, Vinosady coordinates
+          zoom: 16,
           mapTypeId: 'roadmap',
           styles: [
             {
@@ -114,7 +114,7 @@ export default function GoogleMaps() {
         const marker = new window.google.maps.Marker({
           position: { lat: 48.2897, lng: 17.2667 },
           map: map,
-          title: 'Putec Vinosady',
+          title: 'Putec Vinosady - Pezinská 154, Vinosady',
           animation: window.google.maps.Animation.DROP,
         });
 
