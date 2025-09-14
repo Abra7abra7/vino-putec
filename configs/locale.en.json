@@ -65,7 +65,8 @@
     "companyName": "Názov firmy",
     "companyICO": "IČO",
     "companyDIC": "DIČ",
-    "companyICDPH": "IČ DPH"
+    "companyICDPH": "IČ DPH",
+    "differentBilling": "Dodacie údaje sú iné ako fakturačné"
   },
   "menu": [
     { "label": "Domov", "href": "/" },

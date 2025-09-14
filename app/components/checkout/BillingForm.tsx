@@ -3,7 +3,7 @@
 import { useCheckoutSettings } from "../../context/CheckoutContext";
 import { useLocalization } from "../../context/LocalizationContext";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setBillingForm } from "../../store/slices/checkoutSlice";
+import { setBillingForm, setDifferentBilling } from "../../store/slices/checkoutSlice";
 import { useEffect, useMemo } from "react";
 
 export default function BillingForm() {
@@ -13,6 +13,7 @@ export default function BillingForm() {
   const dispatch = useAppDispatch();
   const billingForm = useAppSelector((state) => state.checkout.billingForm);
   const shippingForm = useAppSelector((state) => state.checkout.shippingForm);
+  const differentBilling = useAppSelector((state) => state.checkout.differentBilling);
 
   useEffect(() => {
     if (!billingForm.country && billingCountries.length > 0) {
@@ -24,7 +25,9 @@ export default function BillingForm() {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
 
-    if (name === "country") {
+    if (name === "differentBilling") {
+      dispatch(setDifferentBilling(checked));
+    } else if (name === "country") {
       // Reset state when changing country
       dispatch(setBillingForm({ country: value, state: "" }));
     } else if (type === 'checkbox') {
@@ -51,18 +54,37 @@ export default function BillingForm() {
 
   return (
     <div className="space-y-4 mt-8">
-      <div className="flex justify-between items-center">
-        <h3 className="text-xl font-semibold text-foreground">
-          {labels.billingInformation || "Billing Information"}
-        </h3>
-        <button
-          type="button"
-          onClick={handleSameAsShipping}
-          className="text-sm text-gray-700 underline hover:text-foreground"
-        >
-          {labels.sameAsShipping || "Same as Shipping"}
-        </button>
+      {/* Different Billing Checkbox */}
+      <div className="flex items-center justify-center py-4">
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            name="differentBilling"
+            checked={differentBilling}
+            onChange={handleChange}
+            className="w-4 h-4 text-accent bg-background border-accent rounded focus:ring-accent focus:ring-2"
+          />
+          <label htmlFor="differentBilling" className="ml-2 text-sm font-medium text-foreground">
+            {labels.differentBilling}
+          </label>
+        </div>
       </div>
+
+      {/* Billing Form - only shown if different billing is selected */}
+      {differentBilling && (
+        <>
+          <div className="flex justify-between items-center">
+            <h3 className="text-xl font-semibold text-foreground">
+              {labels.billingInformation || "Billing Information"}
+            </h3>
+            <button
+              type="button"
+              onClick={handleSameAsShipping}
+              className="text-sm text-gray-700 underline hover:text-foreground"
+            >
+              {labels.sameAsShipping || "Same as Shipping"}
+            </button>
+          </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input name="firstName" value={billingForm.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
         <input name="lastName" value={billingForm.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
@@ -141,6 +163,8 @@ export default function BillingForm() {
           </div>
         )}
       </div>
+        </>
+      )}
     </div>
   );
 }

@@ -26,6 +26,7 @@ export interface CheckoutState {
   billingForm: FormData;
   shippingMethodId: string;
   paymentMethodId: string;
+  differentBilling: boolean;
 }
 
 const initialForm: FormData = {
@@ -52,7 +53,8 @@ const initialState: CheckoutState = {
   shippingForm: initialForm,
   billingForm: initialForm,
   shippingMethodId: "",
-  paymentMethodId: ""
+  paymentMethodId: "",
+  differentBilling: false
 };
 
 const checkoutSlice = createSlice({
@@ -83,6 +85,9 @@ const checkoutSlice = createSlice({
     setPaymentMethod(state, action: PayloadAction<string>) {
       state.paymentMethodId = action.payload;
     },
+    setDifferentBilling(state, action: PayloadAction<boolean>) {
+      state.differentBilling = action.payload;
+    },
   },
 });
 
@@ -92,6 +97,7 @@ export const {
   setBillingForm,
   setShippingMethod,
   setPaymentMethod,
+  setDifferentBilling,
 } = checkoutSlice.actions;
 
 export default checkoutSlice.reducer;

@@ -11,10 +11,6 @@ export default function ShippingForm() {
   const { labels } = useLocalization();
   const dispatch = useAppDispatch();
   const form = useAppSelector((state) => state.checkout.shippingForm);
-  
-  // Debug: log form state
-  console.log('ShippingForm - form.isCompany:', form.isCompany);
-  console.log('ShippingForm - form:', form);
 
   useEffect(() => {
     if (!form.country && shippingCountries.length > 0) {
@@ -40,37 +36,11 @@ export default function ShippingForm() {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-xl font-semibold text-foreground">{labels.shippingInformation || "Shipping Information"}</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input name="firstName" value={form.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
-        <input name="lastName" value={form.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+      <div className="flex items-center justify-between">
+        <h3 className="text-xl font-semibold text-foreground">{labels.shippingInformation || "Shipping Information"}</h3>
         
-        <select name="country" value={form.country} onChange={handleChange} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none">
-          {shippingCountries.map((c) => (
-            <option key={c.code} value={c.code}>{c.name}</option>
-          ))}
-        </select>
-
-        {/* Conditionally render state dropdown or nothing */}
-        {availableStates ? (
-          <select name="state" value={form.state} onChange={handleChange} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none">
-            {availableStates.map((s) => (
-              <option key={s.code} value={s.code}>{s.name}</option>
-            ))}
-          </select>
-        ) : null}
-
-        <input name="city" value={form.city} onChange={handleChange} placeholder={labels.city || "Mesto"} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
-        <input name="address1" value={form.address1} onChange={handleChange} placeholder={labels.address1} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
-        <input name="address2" value={form.address2} onChange={handleChange} placeholder={labels.address2} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" />
-        <input name="postalCode" value={form.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
-        <input name="phone" value={form.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
-        <input name="email" value={form.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
-      </div>
-
-      {/* Company Information */}
-      <div className="mt-6 pt-6 border-t border-gray-200">
-        <div className="flex items-center mb-4">
+        {/* Company Checkbox */}
+        <div className="flex items-center">
           <input
             type="checkbox"
             name="isCompany"
@@ -82,8 +52,12 @@ export default function ShippingForm() {
             {labels.isCompany}
           </label>
         </div>
+      </div>
 
-        {form.isCompany && (
+      {/* Company Information - shown at top if company is selected */}
+      {form.isCompany && (
+        <div className="bg-accent/10 p-4 rounded-lg mb-4">
+          <h4 className="text-lg font-semibold text-foreground mb-3">Firemné údaje</h4>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               name="companyName"
@@ -116,7 +90,34 @@ export default function ShippingForm() {
               className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
             />
           </div>
-        )}
+        </div>
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input name="firstName" value={form.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="lastName" value={form.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        
+        <select name="country" value={form.country} onChange={handleChange} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none">
+          {shippingCountries.map((c) => (
+            <option key={c.code} value={c.code}>{c.name}</option>
+          ))}
+        </select>
+
+        {/* Conditionally render state dropdown or nothing */}
+        {availableStates ? (
+          <select name="state" value={form.state} onChange={handleChange} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none">
+            {availableStates.map((s) => (
+              <option key={s.code} value={s.code}>{s.name}</option>
+            ))}
+          </select>
+        ) : null}
+
+        <input name="city" value={form.city} onChange={handleChange} placeholder={labels.city || "Mesto"} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="address1" value={form.address1} onChange={handleChange} placeholder={labels.address1} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="address2" value={form.address2} onChange={handleChange} placeholder={labels.address2} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" />
+        <input name="postalCode" value={form.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="phone" value={form.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="email" value={form.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
       </div>
     </div>
   );
