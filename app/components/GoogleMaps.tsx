@@ -114,7 +114,7 @@ export default function GoogleMaps() {
         const marker = new window.google.maps.Marker({
           position: { lat: 48.2897, lng: 17.2667 },
           map: map,
-          title: 'Putec Vinosady - Pezinská 154, Vinosady',
+          title: 'Pezinská 154 - Vinárstvo, 902 01 Vinosady',
           animation: window.google.maps.Animation.DROP,
         });
 
@@ -122,8 +122,7 @@ export default function GoogleMaps() {
         const infoWindow = new window.google.maps.InfoWindow({
           content: `
             <div style="padding: 10px; max-width: 250px;">
-              <h3 style="margin: 0 0 10px 0; color: #333; font-size: 16px; font-weight: bold;">Putec Vinosady</h3>
-              <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;">Pezinská 154</p>
+              <h3 style="margin: 0 0 10px 0; color: #333; font-size: 16px; font-weight: bold;">Pezinská 154 - Vinárstvo</h3>
               <p style="margin: 0 0 5px 0; color: #666; font-size: 14px;">902 01 Vinosady</p>
               <p style="margin: 0; color: #666; font-size: 14px;">Slovensko</p>
             </div>
@@ -202,10 +201,10 @@ export default function GoogleMaps() {
         </h2>
         <div className="mb-4 text-center">
           <p className="text-foreground text-lg font-semibold mb-2">
-            Putec Vinosady
+            Pezinská 154 - Vinárstvo
           </p>
           <p className="text-foreground-muted">
-            Pezinská 154, 902 01 Vinosady
+            902 01 Vinosady
           </p>
           <p className="text-foreground-muted">
             Slovensko
