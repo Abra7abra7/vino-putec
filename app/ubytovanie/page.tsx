@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Hero from "../components/Hero";
-import AccommodationGallery from "../components/ubytovanie/AccommodationGallery";
+import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -276,12 +276,12 @@ export default function AccommodationPage() {
               >
                 Rezervovať ubytovanie
               </a>
-              <a
+              <Link
                 href="/galeria/ubytovanie"
                 className="border-2 border-accent text-accent hover:bg-accent hover:text-foreground px-8 py-4 rounded-lg font-semibold transition-all"
               >
                 Pozrieť galériu
-              </a>
+              </Link>
             </div>
           </div>
         </div>

@@ -37,7 +37,7 @@ export default function BrandStory() {
                   <span className="text-white text-sm">❤️</span>
                 </div>
                 <div>
-                  <h4 className="font-semibold text-foreground mb-1">"Žijeme vínom"</h4>
+                  <h4 className="font-semibold text-foreground mb-1">&quot;Žijeme vínom&quot;</h4>
                   <p className="text-sm text-foreground-muted">Víno je pre rodinu spôsobom života</p>
                 </div>
               </div>

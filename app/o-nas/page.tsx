@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Hero from "../components/Hero";
-import { getLocalization } from "../utils/getLocalization";
 
 export const metadata: Metadata = {
   title: "O nás | Rodinné vinárstvo Putec Vinosady | Vízia a misia | Tradícia vína",
@@ -112,7 +111,7 @@ export default function AboutPage() {
                 <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-3xl">❤️</span>
                 </div>
-                <h4 className="text-xl font-semibold text-foreground mb-3">"Žijeme vínom"</h4>
+                            <h4 className="text-xl font-semibold text-foreground mb-3">&quot;Žijeme vínom&quot;</h4>
                 <p className="text-foreground-muted">Víno je pre rodinu nielen profesiou, ale spôsobom života</p>
               </div>
               
