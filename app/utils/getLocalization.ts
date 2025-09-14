@@ -30,6 +30,7 @@ interface LocalizationData {
   };
   menu: { label: string; href: string }[];
   footerLinks: { label: string; href: string }[];
+  legalLinks: { label: string; href: string }[];
   socialLinks: { id: string; icon: string; url: string }[];
   homepage: {
     banner: {
@@ -102,6 +103,10 @@ const defaultLocalization: LocalizationData = {
     { label: "Products", href: "/products" },
     { label: "Pricing", href: "/pricing" },
     { label: "Contact", href: "/contact" },
+  ],
+  legalLinks: [
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
   socialLinks: [
     { id: "facebook", icon: "SiFacebook", url: "https://facebook.com/yourpage" },

@@ -6,7 +6,6 @@ import AccommodationPreview from "./components/homepage/AccommodationPreview";
 import BrandStory from "./components/homepage/BrandStory";
 import Testimonials from "./components/homepage/Testimonials";
 import NewsletterSignup from "./components/homepage/NewsletterSignup";
-import Brands from "./components/homepage/Brands";
 
 
 // Set page metadata

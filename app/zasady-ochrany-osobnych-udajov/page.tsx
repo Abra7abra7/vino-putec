@@ -93,7 +93,7 @@ export default function PrivacyPolicyPage() {
             <ul className="list-disc pl-6 mb-4">
               <li>Prístup k svojim osobným údajom</li>
               <li>Opravu nepresných údajov</li>
-              <li>Vymazanie údajov ("právo byť zabudnutý")</li>
+              <li>Vymazanie údajov (&quot;právo byť zabudnutý&quot;)</li>
               <li>Obmedzenie spracovania</li>
               <li>Prenosnosť údajov</li>
               <li>Námitku proti spracovaniu</li>

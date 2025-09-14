@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
@@ -14,7 +14,7 @@ function listImagesFrom(dirPath: string): string[] {
   }
 }
 
-export async function GET(_request: NextRequest) {
+export async function GET() {
   try {
     // Prefer canonical folders if present
     const baseCanonical = path.join(process.cwd(), "public", "ubytovanie");

@@ -134,7 +134,7 @@ export default function PrivacyToolsPage() {
             <div className="bg-accent/10 p-6 rounded-lg mb-6">
               <h3 className="text-lg font-semibold mb-4">Ako zmeniť nastavenia</h3>
               <ol className="list-decimal pl-6 space-y-2 text-foreground-muted">
-                <li>Kliknite na tlačidlo "Nastavenia cookies" v footeri stránky</li>
+                <li>Kliknite na tlačidlo &quot;Nastavenia cookies&quot; v footeri stránky</li>
                 <li>Vyberte si, ktoré typy cookies chcete povoliť</li>
                 <li>Uložte svoje nastavenia</li>
                 <li>Zmeny sa prejavia okamžite</li>

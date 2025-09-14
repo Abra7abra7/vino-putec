@@ -33,7 +33,7 @@ export default function TermsConditionsPage() {
             <h2 className="text-2xl font-semibold text-foreground mb-4">1. Úvodné ustanovenia</h2>
             <p className="mb-4">
               Tieto obchodné podmienky upravujú vzájomné práva a povinnosti medzi spoločnosťou 
-              <strong> Putec s.r.o.</strong> (ďalej len "predávajúci") a kupujúcim pri predaji vína 
+              <strong> Putec s.r.o.</strong> (ďalej len &quot;predávajúci&quot;) a kupujúcim pri predaji vína 
               prostredníctvom internetového obchodu.
             </p>
             <p className="mb-4">

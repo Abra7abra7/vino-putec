@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Hero from "../components/Hero";
 import ProductGrid from "../components/products/ProductGrid";
 import { getLocalization } from "../utils/getLocalization";

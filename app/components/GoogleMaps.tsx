@@ -231,6 +231,6 @@ export default function GoogleMaps() {
 // Extend Window interface for TypeScript
 declare global {
   interface Window {
-    google: any;
+    google: typeof google;
   }
 }
