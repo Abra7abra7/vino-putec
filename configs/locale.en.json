@@ -79,10 +79,9 @@
     { "label": "Kontakt", "href": "/kontakt" }
   ],
   "socialLinks": [
-    { "id": "facebook", "icon": "SiFacebook", "url": "https://facebook.com/yourpage" },
-    { "id": "x", "icon": "SiX", "url": "https://x.com/yourprofile" },
-    { "id": "instagram", "icon": "SiInstagram", "url": "https://instagram.com/yourpage" },
-    { "id": "linkedin", "icon": "SiLinkedin", "url": "https://linkedin.com/in/yourprofile" }
+    { "id": "facebook", "icon": "SiFacebook", "url": "https://www.facebook.com/vinoputec" },
+    { "id": "instagram", "icon": "SiInstagram", "url": "https://www.instagram.com/vinoputec/" },
+    { "id": "youtube", "icon": "SiYoutube", "url": "https://www.youtube.com/channel/UC4jSLd6VZSsxC34-lS7fFMw" }
   ],
     "homepage": {
     "banner": {
