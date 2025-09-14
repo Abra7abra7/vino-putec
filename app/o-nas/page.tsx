@@ -4,9 +4,9 @@ import Hero from "../components/Hero";
 import { getLocalization } from "../utils/getLocalization";
 
 export const metadata: Metadata = {
-  title: "O nás | Rodinné vinárstvo Putec Vinosady | Tradícia a kvalita vína",
-  description: "Víno Pútec je malé rodinné vinárstvo vo Vinosadoch na úpätí Malých Karpát. Výrobe vín sa s láskou venujeme už niekoľko generácií a sme hrdí na svetové úspechy našich vín. Kombinujeme rodinné postupy s modernými technológiami.",
-  keywords: "vinárstvo Putec, Vinosady, Malé Karpaty, rodinné vinárstvo, tradícia vína, kvalitné víno, Branislav Pútec, Natali, francúzske sudy, remeselné víno, Bratislava, Pezinok",
+  title: "O nás | Rodinné vinárstvo Putec Vinosady | Vízia a misia | Tradícia vína",
+  description: "Víno Pútec je malé rodinné vinárstvo vo Vinosadoch na úpätí Malých Karpát. Naša vízia: ochrániť budúcnosť vinohradov, prilákať turistov do Malých Karpát a zachovať vinohradnícku tradíciu. Výrobe vín sa s láskou venujeme už niekoľko generácií.",
+  keywords: "vinárstvo Putec, Vinosady, Malé Karpaty, rodinné vinárstvo, tradícia vína, kvalitné víno, vízia vinárstva, misia vinárstva, ochrana vinohradov, turizmus Malé Karpaty, slovenské víno, Branislav Pútec, Natali, francúzske sudy, remeselné víno, Bratislava, Pezinok",
   openGraph: {
     title: "O nás | Rodinné vinárstvo Putec Vinosady",
     description: "Rodinné vinárstvo s tradíciou už niekoľko generácií vo Vinosadoch na úpätí Malých Karpát",
@@ -186,6 +186,79 @@ export default function AboutPage() {
               <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
                 <div className="text-xl font-semibold text-foreground mb-4">Enologické postupy</div>
                 <p className="text-foreground-muted">Profesionálne enologické postupy aplikované pri výrobe</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Vision and Mission */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-foreground mb-6">Vízia a misia</h3>
+              <p className="text-xl text-foreground-muted max-w-3xl mx-auto">
+                Našimi produktmi a aktivitami chceme ochrániť budúcnosť vinohradov a prilákať nových turistov do Malých Karpát
+              </p>
+            </div>
+
+            <div className="bg-gradient-to-r from-accent/10 to-accent/5 rounded-3xl p-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">🌱</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-4">Ochrániť budúcnosť vinohradov</h4>
+                  <p className="text-foreground-muted">Vinohrady sú neustále zmršťované, my ich chceme zachovať pre budúce generácie</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">🏔️</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-4">Prilákať turistov do Malých Karpát</h4>
+                  <p className="text-foreground-muted">Chceme prilákať nových turistov do krásneho prostredia Malých Karpát</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">🍷</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-4">Priniesť zážitok zo skvelého vína</h4>
+                  <p className="text-foreground-muted">Chceme vám priniesť nezabudnuteľný zážitok z kvalitného vína</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">📜</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-4">Zachovať vinohradnícku tradíciu</h4>
+                  <p className="text-foreground-muted">Tradícia, ktorá formuje región už tisícročia, musí pokračovať</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">🌍</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-4">Zvýrazniť Slovensko na svetovej mape</h4>
+                  <p className="text-foreground-muted">Prostredníctvom kvalitných vín chceme reprezentovať Slovensko vo svete</p>
+                </div>
+
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span className="text-3xl">🤝</span>
+                  </div>
+                  <h4 className="text-xl font-semibold text-foreground mb-4">Podporovať malých slovenských vinárov</h4>
+                  <p className="text-foreground-muted">Ďakujeme všetkým partnerom, ktorí podporujú malých slovenských vinárov</p>
+                </div>
+              </div>
+
+              {/* Thank you message */}
+              <div className="mt-12 text-center">
+                <div className="bg-background/50 rounded-2xl p-8 max-w-4xl mx-auto">
+                  <h4 className="text-2xl font-semibold text-foreground mb-4">Ďakujeme našim partnerom</h4>
+                  <p className="text-lg text-foreground-muted leading-relaxed">
+                    Všetkým našim partnerom a podnikom, ktoré ponúkajú naše vína srdečne ďakujeme za to, 
+                    že sa rozhodli podporovať malých slovenských vinárov.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
