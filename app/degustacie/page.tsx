@@ -23,7 +23,7 @@ export default function DegustaciePage() {
       <Hero
         title="Degustácie vína"
         subtitle="Nezabudnuteľné zážitky s našimi prémiovými vínami"
-        backgroundImageUrl="/degustacie/degustacia-x.jpg"
+        backgroundImageUrl="/galeria/degustacie/degustacia-skupina.jpg"
         primaryCta={{ label: "Rezervovať", href: "/degustacie" }}
         secondaryCta={{ label: "Galéria", href: "/galeria/degustacie" }}
         heightClass="h-[55vh]"
