@@ -4,20 +4,20 @@ import Hero from "../components/Hero";
 import { getLocalization } from "../utils/getLocalization";
 
 export const metadata: Metadata = {
-  title: "O nás | Rodinné vinárstvo Putec Vinosady | História vinárstva Pezinok",
-  description: "Rodinné vinárstvo Putec vo Vinosadoch pri Pezinku. Dlhoročná tradícia výroby prémiových vín, ubytovanie a degustácie vína. História, hodnoty a tím rodinného vinárstva pre Bratislavu, Senec, Trnavu a okolie.",
-  keywords: "o nás, Putec, Vinosady, Pezinok, rodinné vinárstvo, história vinárstva, tradícia, Bratislava, Senec, Trnava, ubytovanie, degustácie vína",
+  title: "O nás | Rodinné vinárstvo Putec Vinosady | Tradícia a kvalita vína",
+  description: "Víno Pútec je malé rodinné vinárstvo vo Vinosadoch na úpätí Malých Karpát. Výrobe vín sa s láskou venujeme už niekoľko generácií a sme hrdí na svetové úspechy našich vín. Kombinujeme rodinné postupy s modernými technológiami.",
+  keywords: "vinárstvo Putec, Vinosady, Malé Karpaty, rodinné vinárstvo, tradícia vína, kvalitné víno, Branislav Pútec, Natali, francúzske sudy, remeselné víno, Bratislava, Pezinok",
   openGraph: {
     title: "O nás | Rodinné vinárstvo Putec Vinosady",
-    description: "Dlhoročná tradícia rodinného vinárstva Putec vo Vinosadoch pri Pezinku",
+    description: "Rodinné vinárstvo s tradíciou už niekoľko generácií vo Vinosadoch na úpätí Malých Karpát",
     type: "website",
     locale: "sk_SK",
     images: [
       {
-        url: "/o-nas/rodina1.JPG",
+        url: "/o-nas/rodina2.jpg",
         width: 1200,
         height: 630,
-        alt: "Rodinné vinárstvo Putec Vinosady",
+        alt: "Rodinné vinárstvo Putec Vinosady - tradícia a kvalita",
       },
     ],
   },
@@ -28,112 +28,208 @@ export const metadata: Metadata = {
 
 
 export default function AboutPage() {
-  const { about } = getLocalization();
-
-  if (!about) return null;
-
-  const familyPhotos = [
-    {
-      src: "/o-nas/rodina1.JPG",
-      alt: "Rodina Pútec - tradícia a vášeň pre víno",
-      title: "Naša rodina"
-    },
-    {
-      src: "/o-nas/rodina2.jpg", 
-      alt: "Rodina Pútec - dedičstvo a láska k vinohradníctvu",
-      title: "Rodinná tradícia"
-    }
-  ];
-
   return (
     <div className="min-h-screen bg-background">
+      {/* Hero Section */}
       <Hero
-        title={about.title}
-        subtitle="Objavte našu rodinnú históriu a vášeň pre víno"
+        title="O vinárstve"
+        subtitle="Rodinné vinárstvo s tradíciou už niekoľko generácií vo Vinosadoch na úpätí Malých Karpát"
         backgroundImageUrl="/o-nas/rodina2.jpg"
         secondaryCta={{ label: "Galéria rodiny", href: "/galeria/rodina" }}
-        heightClass="h-[50vh]"
+        heightClass="h-[60vh]"
       />
 
       {/* Main Content */}
-      <section className="py-16 bg-background">
+      <section className="py-20 bg-background">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
-            {/* Feature Image */}
-            <div className="relative w-full h-64 md:h-96">
+          
+          {/* Introduction Section */}
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-8">
+              Víno Pútec - Tradícia a kvalita
+            </h2>
+            <div className="max-w-4xl mx-auto">
+              <p className="text-xl text-foreground-muted leading-relaxed mb-6">
+                Víno Pútec je malé rodinné vinárstvo vo Vinosadoch na úpätí Malých Karpát. 
+                Výrobe vín sa s láskou venujeme už niekoľko generácií a sme hrdí na svetové úspechy našich vín.
+              </p>
+              <p className="text-lg text-foreground-muted leading-relaxed">
+                Sme malé rodinné vinárstvo vo Vinosadoch – naša rodina sa výrobe vína venuje už niekoľko generácií. 
+                Žijeme vínom a chceme vám priniesť skvelý pôžitok z tohto unikátneho umenia, ktorým víno je.
+              </p>
+            </div>
+          </div>
+
+          {/* History Section */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-20">
+            <div className="relative">
               <Image
-                src={about.imagePath}
-                alt={about.title}
-                fill
-                className="rounded-lg object-cover shadow-lg"
+                src="/o-nas/rodina1.JPG"
+                alt="História vinárstva Putec - rodinná tradícia"
+                width={600}
+                height={400}
+                className="rounded-2xl shadow-2xl"
                 priority
               />
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent rounded-full flex items-center justify-center">
+                <span className="text-3xl">🍷</span>
+              </div>
             </div>
-
-            {/* Text Content */}
+            
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">Naša história</h2>
-              <p className="text-lg text-foreground whitespace-pre-line leading-relaxed">{about.content}</p>
+              <h3 className="text-3xl font-bold text-foreground mb-6">História a založenie</h3>
+              <div className="space-y-4 text-foreground-muted">
+                <p>
+                  Vinárstvo <strong className="text-foreground">Branislav Pútec – Natali</strong> bolo oficiálne založené v roku 2012, 
+                  avšak rodinná tradícia siaha oveľa ďalej do minulosti. Rodina sa výrobe vína venuje už niekoľko generácií, 
+                  pričom pestovanie hrozna a výroba vína je hlboko zakorenená v rodinnej tradícii.
+                </p>
+                <p>
+                  Po nadobudnutí skúseností pri pestovaní hrozna a výrobe vína sme založili vinárstvo. 
+                  Po šetrnom spracovaní hrozna mušty prechádzajú riadeným spôsobom fermentácie. 
+                  Vyrábame vína, ktoré dozrievajú v kvalitných francúzskych drevených sudoch a nerezových cisternách.
+                </p>
+                <p>
+                  Víno tak získava špecifickú arómu a chuť. Modernizáciou technologických zariadení a ekologickými postupmi 
+                  vyrábame kvalitné víno.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Philosophy Section */}
+          <div className="bg-gradient-to-r from-accent/10 to-accent/5 rounded-3xl p-12 mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-foreground mb-6">Rodinná filozofia a hodnoty</h3>
+              <p className="text-xl text-foreground-muted max-w-3xl mx-auto">
+                O víno sa staráme ako o ďalšieho člena rodiny, spájame rodinné postupy s modernými technológiami, 
+                čím tvoríme kvalitné, remeselné víno, na ktoré sme hrdí.
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="text-center">
+                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">❤️</span>
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">"Žijeme vínom"</h4>
+                <p className="text-foreground-muted">Víno je pre rodinu nielen profesiou, ale spôsobom života</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">👨‍👩‍👧‍👦</span>
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">Rodinný prístup</h4>
+                <p className="text-foreground-muted">Osobný, láskavý prístup k výrobe vína</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">⚙️</span>
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">Moderné technológie</h4>
+                <p className="text-foreground-muted">Kombinujeme rodinné postupy s modernými technológiami</p>
+              </div>
+              
+              <div className="text-center">
+                <div className="w-20 h-20 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-3xl">⭐</span>
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-3">Remeselné víno</h4>
+                <p className="text-foreground-muted">Vytvárajú kvalitné, remeselné víno, na ktoré sú hrdí</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Technology Section */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-foreground mb-6">Technológie a výrobné postupy</h3>
+              <p className="text-xl text-foreground-muted max-w-3xl mx-auto">
+                Moderné zariadenia a postupy zaručujú najvyššiu kvalitu našich vín
+              </p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-2xl">🌱</span>
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-4">Najmodernejšia technológia</h4>
+                <p className="text-foreground-muted">Používame najmodernejšiu vinohradnícku technológiu pre optimálnu kvalitu</p>
+              </div>
+              
+              <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-2xl">🍇</span>
+                </div>
+                <h4 className="text-xl font-semibold text-foreground mb-4">Šetrné spracovanie</h4>
+                <p className="text-foreground-muted">Šetrné spracovanie hrozna s dôrazom na zachovanie kvality</p>
+              </div>
+              
+              <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div className="text-xl font-semibold text-foreground mb-4">Riadená fermentácia</div>
+                <p className="text-foreground-muted">Kontrolovaný proces fermentácie pre konzistentnú kvalitu</p>
+              </div>
+              
+              <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div className="text-xl font-semibold text-foreground mb-4">Francúzske sudy</div>
+                <p className="text-foreground-muted">Kvalitné francúzske drevené sudy pre dozrievanie vín</p>
+              </div>
+              
+              <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div className="text-xl font-semibold text-foreground mb-4">Nerezové cisterny</div>
+                <p className="text-foreground-muted">Nerezové cisterny pre optimálne uskladnenie</p>
+              </div>
+              
+              <div className="bg-background border border-gray-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                <div className="text-xl font-semibold text-foreground mb-4">Enologické postupy</div>
+                <p className="text-foreground-muted">Profesionálne enologické postupy aplikované pri výrobe</p>
+              </div>
             </div>
           </div>
 
           {/* Family Gallery */}
-          <div className="mb-16">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">Naša rodina</h2>
-              <p className="text-lg text-foreground max-w-2xl mx-auto">
-                Pozrite si fotky našej rodiny, ktorá už generácie buduje tradíciu vo vinohradníctve
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {familyPhotos.map((photo, index) => (
-                <div key={index} className="group">
-                  <div className="relative w-full h-80 rounded-lg overflow-hidden shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                    <Image
-                      src={photo.src}
-                      alt={photo.alt}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      priority={index === 0}
-                      unoptimized
-                    />
-                    <div className="absolute inset-0 bg-background bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                      <h3 className="text-foreground font-semibold text-lg">{photo.title}</h3>
-                    </div>
+          <div className="text-center">
+            <h3 className="text-3xl font-bold text-foreground mb-8">Naša rodina</h3>
+            <p className="text-xl text-foreground-muted mb-12 max-w-3xl mx-auto">
+              Pozrite si fotky našej rodiny, ktorá už generácie buduje tradíciu vo vinohradníctve
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              <div className="group">
+                <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                  <Image
+                    src="/o-nas/rodina1.JPG"
+                    alt="Rodina Pútec - tradícia a vášeň pre víno"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h4 className="text-white font-semibold text-xl">Naša rodina</h4>
+                    <p className="text-white/90">Tradícia a vášeň pre víno</p>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Values Section */}
-          <div className="bg-background border border-gray-200 rounded-xl p-8">
-            <h2 className="text-3xl font-bold text-foreground text-center mb-8">Naše hodnoty</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-foreground">🌱</span>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Tradícia</h3>
-                <p className="text-foreground">Dlhoročná rodinná tradícia vo vinohradníctve</p>
               </div>
               
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-foreground">❤️</span>
+              <div className="group">
+                <div className="relative w-full h-80 rounded-2xl overflow-hidden shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                  <Image
+                    src="/o-nas/rodina2.jpg"
+                    alt="Rodina Pútec - dedičstvo a láska k vinohradníctvu"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                    <h4 className="text-white font-semibold text-xl">Rodinná tradícia</h4>
+                    <p className="text-white/90">Dedičstvo a láska k vinohradníctvu</p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Vášeň</h3>
-                <p className="text-foreground">Láska k vínu a starostlivý prístup k výrobe</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-foreground">⭐</span>
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-3">Kvalita</h3>
-                <p className="text-foreground">Prémiová kvalita v každej fľaši vína</p>
               </div>
             </div>
           </div>
