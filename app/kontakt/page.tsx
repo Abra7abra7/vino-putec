@@ -20,14 +20,14 @@ export const metadata: Metadata = {
 export default function ContactPage() {
     return (
       <main>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-screen">
+        <div className="flex flex-col gap-8">
           {/* Contact Form */}
-          <div className="lg:order-1">
+          <div>
             <ContactUsForm />
           </div>
           
           {/* Google Maps */}
-          <div className="lg:order-2">
+          <div>
             <GoogleMaps />
           </div>
         </div>
