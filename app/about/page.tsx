@@ -47,7 +47,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-16 bg-gradient-to-r from-wine-dark via-wine-red to-accent-brown text-background">
+      <section className="py-16 bg-background text-foreground">
         <div className="container mx-auto px-6 text-center">
           {/* Logo */}
           <div className="mb-8">
@@ -56,14 +56,14 @@ export default function AboutPage() {
               alt="Pútec Logo"
               width={120}
               height={120}
-              className="mx-auto rounded-full shadow-2xl border-4 border-primary"
+              className="mx-auto rounded-full shadow-2xl border-4 border-accent"
             />
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             {about.title}
           </h1>
-          <p className="text-xl text-primary max-w-3xl mx-auto">
+          <p className="text-xl text-foreground max-w-3xl mx-auto">
             Objavte našu rodinnú históriu a vášeň pre víno
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function AboutPage() {
             {/* Text Content */}
             <div>
               <h2 className="text-3xl font-bold text-foreground mb-6">Naša história</h2>
-              <p className="text-lg text-wine-red whitespace-pre-line leading-relaxed">{about.content}</p>
+              <p className="text-lg text-foreground whitespace-pre-line leading-relaxed">{about.content}</p>
             </div>
           </div>
 
@@ -95,7 +95,7 @@ export default function AboutPage() {
           <div className="mb-16">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">Naša rodina</h2>
-              <p className="text-lg text-wine-red max-w-2xl mx-auto">
+              <p className="text-lg text-foreground max-w-2xl mx-auto">
                 Pozrite si fotky našej rodiny, ktorá už generácie buduje tradíciu vo vinohradníctve
               </p>
             </div>
@@ -112,9 +112,9 @@ export default function AboutPage() {
                       priority={index === 0}
                       unoptimized
                     />
-                    <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                    <div className="absolute inset-0 bg-background bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"></div>
                     <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
-                      <h3 className="text-background font-semibold text-lg">{photo.title}</h3>
+                      <h3 className="text-foreground font-semibold text-lg">{photo.title}</h3>
                     </div>
                   </div>
                 </div>
@@ -123,31 +123,31 @@ export default function AboutPage() {
           </div>
 
           {/* Values Section */}
-          <div className="bg-primary-light rounded-xl p-8">
+          <div className="bg-accent-light rounded-xl p-8">
             <h2 className="text-3xl font-bold text-foreground text-center mb-8">Naše hodnoty</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">
-                <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-background">🌱</span>
+                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-foreground">🌱</span>
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">Tradícia</h3>
-                <p className="text-wine-red">Dlhoročná rodinná tradícia vo vinohradníctve</p>
+                <p className="text-foreground">Dlhoročná rodinná tradícia vo vinohradníctve</p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-background">❤️</span>
+                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-foreground">❤️</span>
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">Vášeň</h3>
-                <p className="text-wine-red">Láska k vínu a starostlivý prístup k výrobe</p>
+                <p className="text-foreground">Láska k vínu a starostlivý prístup k výrobe</p>
               </div>
               
               <div className="text-center">
-                <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-background">⭐</span>
+                <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl text-foreground">⭐</span>
                 </div>
                 <h3 className="text-xl font-semibold text-foreground mb-3">Kvalita</h3>
-                <p className="text-wine-red">Prémiová kvalita v každej fľaši vína</p>
+                <p className="text-foreground">Prémiová kvalita v každej fľaši vína</p>
               </div>
             </div>
           </div>

@@ -56,7 +56,7 @@ export default function MiniCart() {
         aria-label={labels.viewCart || "View cart"}
       >
         <ShoppingCart size={24} />
-        <span className="absolute top-[-8px] right-[-10px] bg-wine-red text-background text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full leading-none">
+        <span className="absolute top-[-8px] right-[-10px] bg-accent text-foreground text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full leading-none">
           {totalQuantity}
         </span>
       </Link>
@@ -64,10 +64,10 @@ export default function MiniCart() {
       {/* Mini Cart Dropdown */}
       {isVisible && (
         <div
-          className="absolute right-0 mt-2 w-96 bg-background border border-primary shadow-lg rounded-md z-50 p-4"
+          className="absolute right-0 mt-2 w-96 bg-background border border-accent shadow-lg rounded-md z-50 p-4"
         >
           {cartItems.length === 0 ? (
-            <p className="text-wine-red text-sm text-center">{labels.cartEmpty || "Your cart is empty."}</p>
+            <p className="text-foreground text-sm text-center">{labels.cartEmpty || "Your cart is empty."}</p>
           ) : (
             <div className="space-y-4 max-h-64 overflow-y-auto">
               {cartItems.map((item) => {
@@ -86,11 +86,11 @@ export default function MiniCart() {
                     <div className="flex-1">
                       <Link
                         href={`/products/${item.Slug}`}
-                        className="text-sm font-semibold text-foreground hover:text-wine-red"
+                        className="text-sm font-semibold text-foreground hover:text-foreground"
                       >
                         {item.Title}
                       </Link>
-                      <p className="text-sm text-wine-red">
+                      <p className="text-sm text-foreground">
                         {labels.quantity || "Qty"}: {item.quantity} × ${price.toFixed(2)}
                       </p>
                       <p className="text-sm text-foreground font-medium">
@@ -99,7 +99,7 @@ export default function MiniCart() {
                     </div>
                     <button
                       onClick={() => dispatch(removeFromCart(item.ID))}
-                      className="text-wine-red hover:text-wine-dark"
+                      className="text-foreground hover:text-foreground-dark"
                       title={labels.remove || "Remove"}
                     >
                       <X size={16} />
@@ -120,14 +120,14 @@ export default function MiniCart() {
               </div>
               <Link
                 href="/cart"
-                className="mt-4 inline-block w-full text-center bg-wine-red hover:bg-wine-dark text-background px-4 py-2 rounded-md text-sm font-semibold transition"
+                className="mt-4 inline-block w-full text-center bg-accent hover:bg-accent-dark text-foreground px-4 py-2 rounded-md text-sm font-semibold transition"
               >
                 {labels.viewCart || "View Cart"}
               </Link>
 
               <Link
                 href="/checkout"
-                className="mt-4 inline-block w-full text-center bg-wine-red hover:bg-wine-dark text-background px-4 py-2 rounded-md text-sm font-semibold transition"
+                className="mt-4 inline-block w-full text-center bg-accent hover:bg-accent-dark text-foreground px-4 py-2 rounded-md text-sm font-semibold transition"
               >
                 {labels.proceedToCheckout || "Proceed to Checkout"}
               </Link>

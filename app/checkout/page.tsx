@@ -12,7 +12,7 @@ export default function CheckoutPage() {
   return (
     <ReduxProvider>
       <CheckoutProvider>
-        <section className="py-10 px-4 md:px-8 bg-primary-light">
+        <section className="py-10 px-4 md:px-8 bg-accent-light">
           {/* Logo Section */}
           <div className="text-center mb-8">
             <Image
@@ -20,7 +20,7 @@ export default function CheckoutPage() {
               alt="Pútec Logo"
               width={80}
               height={80}
-              className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-4"
+              className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-4"
             />
             <h1 className="text-3xl font-bold text-foreground">Objednávka</h1>
           </div>

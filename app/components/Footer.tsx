@@ -24,7 +24,7 @@ export default function Footer() {
   const content = getLocalization(); // Load localization data
 
   return (
-    <footer className="bg-wine-dark text-primary py-12 relative">
+    <footer className="bg-background text-foreground py-12 relative">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
         
         {/* Logo & Brand */}
@@ -38,19 +38,19 @@ export default function Footer() {
               className="rounded-lg"
             />
             <div className="text-center md:text-left">
-              <h3 className="text-xl font-bold text-background">{content.siteName}</h3>
-              <p className="text-primary text-sm">{content.siteTagline}</p>
+              <h3 className="text-xl font-bold text-foreground">{content.siteName}</h3>
+              <p className="text-foreground text-sm">{content.siteTagline}</p>
             </div>
           </Link>
         </div>
         
         {/* Quick Links */}
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-background">{content.labels.quickLinks}</h3>
+          <h3 className="text-xl font-semibold mb-4 text-foreground">{content.labels.quickLinks}</h3>
           <ul className="space-y-2">
             {content.footerLinks.map((link: FooterLink) => (
               <li key={link.label}>
-                <Link href={link.href} className="text-primary hover:text-accent-gold transition">
+                <Link href={link.href} className="text-foreground hover:text-foreground-gold transition">
                   {link.label}
                 </Link>
               </li>
@@ -60,20 +60,20 @@ export default function Footer() {
 
         {/* Contact Info */}
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-background">{content.labels.contactUs}</h3>
-          <p>{content.labels.email}: <a href={`mailto:${content.email}`} className="text-primary hover:text-accent-gold transition">{content.email}</a></p>
-          <p>{content.labels.phone}: <a href={`tel:${content.phone}`} className="text-primary hover:text-accent-gold transition">{content.phone}</a></p>
+          <h3 className="text-xl font-semibold mb-4 text-foreground">{content.labels.contactUs}</h3>
+          <p>{content.labels.email}: <a href={`mailto:${content.email}`} className="text-foreground hover:text-foreground-gold transition">{content.email}</a></p>
+          <p>{content.labels.phone}: <a href={`tel:${content.phone}`} className="text-foreground hover:text-foreground-gold transition">{content.phone}</a></p>
           <p>{content.labels.address}: {content.address}</p>
         </div>
 
         {/* Social Media */}
         <div>
-          <h3 className="text-xl font-semibold mb-4 text-background">{content.labels.followUs}</h3>
+          <h3 className="text-xl font-semibold mb-4 text-foreground">{content.labels.followUs}</h3>
           <div className="flex justify-center md:justify-start space-x-4">
             {content.socialLinks.map((social) => {
               const IconComponent = iconMap[social.icon as SocialIcon]; // Type assertion to ensure TS compliance
               return (
-                <Link key={social.id} href={social.url} target="_blank" className="text-primary hover:text-accent-gold transition">
+                <Link key={social.id} href={social.url} target="_blank" className="text-foreground hover:text-foreground-gold transition">
                   <IconComponent size={24} />
                 </Link>
               );

@@ -40,7 +40,7 @@ export default function ContactUsForm() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-primary-light py-16">
+    <section className="w-full min-h-screen bg-accent-light py-16">
       <div className="max-w-3xl mx-auto px-6">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -49,7 +49,7 @@ export default function ContactUsForm() {
             alt="Pútec Logo"
             width={100}
             height={100}
-            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+            className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-6"
           />
           <h2 className="text-4xl font-bold text-foreground">{contactForm.title}</h2>
         </div>
@@ -58,7 +58,7 @@ export default function ContactUsForm() {
 
         <form
           onSubmit={handleSubmit}
-          className="bg-background shadow-lg rounded-lg p-8 space-y-6 mt-3 border border-primary"
+          className="bg-background shadow-lg rounded-lg p-8 space-y-6 mt-3 border border-accent"
         >
           {/* Name Field */}
           <div>
@@ -108,7 +108,7 @@ export default function ContactUsForm() {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-wine-red hover:bg-wine-dark text-background px-6 py-3 rounded-md font-semibold transition-colors"
+            className="bg-accent hover:bg-accent-dark text-foreground px-6 py-3 rounded-md font-semibold transition-colors"
           >
             {contactForm.buttonText}
           </button>

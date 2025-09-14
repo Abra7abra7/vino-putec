@@ -15,11 +15,11 @@ export default function Testimonials() {
     
     for (let i = 0; i < maxStars; i++) {
       if (i < Math.floor(rating)) {
-        stars.push(<span key={i} className="text-accent-gold text-lg">★</span>); // Full star
+        stars.push(<span key={i} className="text-foreground-gold text-lg">★</span>); // Full star
       } else if (i < Math.ceil(rating) && rating % 1 !== 0) {
-        stars.push(<span key={i} className="text-accent-gold text-lg">⯪</span>); // Half star symbol
+        stars.push(<span key={i} className="text-foreground-gold text-lg">⯪</span>); // Half star symbol
       } else {
-        stars.push(<span key={i} className="text-wine-red text-lg">☆</span>); // Empty star
+        stars.push(<span key={i} className="text-foreground text-lg">☆</span>); // Empty star
       }
     }
   
@@ -39,7 +39,7 @@ export default function Testimonials() {
           {homepage.testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-primary-light p-8 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105"
+              className="bg-accent-light p-8 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105"
             >
               {/* User Avatar */}
               <Image
@@ -47,7 +47,7 @@ export default function Testimonials() {
                 alt={testimonial.name}
                 width={80}
                 height={80}
-                className="rounded-full mb-4 border-4 border-primary"
+                className="rounded-full mb-4 border-4 border-accent"
                 priority={false}
               />
 

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getLocalization } from "../utils/getLocalization";
 
 export const metadata: Metadata = {
   title: "Ubytovanie Vinosady | Putec | Ubytovanie Pezinok | Rezervácia",
@@ -18,12 +17,11 @@ export const metadata: Metadata = {
 };
 
 export default function AccommodationPage() {
-  const { siteName } = getLocalization();
 
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-wine-dark via-wine-red to-accent-brown text-background">
+      <section className="relative py-20 bg-background text-foreground">
         <div className="container mx-auto px-6 text-center">
           {/* Logo */}
           <div className="mb-8">
@@ -32,45 +30,45 @@ export default function AccommodationPage() {
               alt="Pútec Logo"
               width={120}
               height={120}
-              className="mx-auto rounded-full shadow-2xl border-4 border-primary"
+              className="mx-auto rounded-full shadow-2xl border-4 border-accent"
             />
           </div>
           
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Ubytovanie v srdci vinohradníctva
           </h1>
-          <p className="text-xl text-primary max-w-3xl mx-auto">
+          <p className="text-xl text-foreground max-w-3xl mx-auto">
             Prežite nezabudnuteľné chvíle v našom ubytovaní obklopenom vinohradmi a prírodou
           </p>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-primary-light">
+      <section className="py-16 bg-accent-light">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
-              <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-background">🏡</span>
+              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-foreground">🏡</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">Komfortné ubytovanie</h3>
-              <p className="text-wine-red">Moderné izby s všetkým potrebným vybavením</p>
+              <p className="text-foreground">Moderné izby s všetkým potrebným vybavením</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-background">🍷</span>
+              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-foreground">🍷</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">Degustácie vína</h3>
-              <p className="text-wine-red">Ochutnajte naše prémiové vína priamo na mieste</p>
+              <p className="text-foreground">Ochutnajte naše prémiové vína priamo na mieste</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-background">🌅</span>
+              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-foreground">🌅</span>
               </div>
               <h3 className="text-xl font-semibold text-foreground mb-2">Krásne výhľady</h3>
-              <p className="text-wine-red">Pohľad na vinohrady a okolitú prírodu</p>
+              <p className="text-foreground">Pohľad na vinohrady a okolitú prírodu</p>
             </div>
           </div>
         </div>
@@ -84,37 +82,37 @@ export default function AccommodationPage() {
               <h2 className="text-3xl font-bold text-foreground mb-6">
                 Naše ubytovanie
               </h2>
-              <div className="space-y-4 text-wine-red">
+              <div className="space-y-4 text-foreground">
                 <div className="flex items-start space-x-3">
-                  <span className="text-wine-red font-bold">✓</span>
+                  <span className="text-foreground font-bold">✓</span>
                   <p>Elegantné izby s vlastnou kúpeľňou</p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-wine-red font-bold">✓</span>
+                  <span className="text-foreground font-bold">✓</span>
                   <p>WiFi pripojenie v celej budove</p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-wine-red font-bold">✓</span>
+                  <span className="text-foreground font-bold">✓</span>
                   <p>Parkovanie pre hostí</p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-wine-red font-bold">✓</span>
+                  <span className="text-foreground font-bold">✓</span>
                   <p>Spoločenské priestory pre relaxáciu</p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-wine-red font-bold">✓</span>
+                  <span className="text-foreground font-bold">✓</span>
                   <p>Raňajky s miestnymi produktmi</p>
                 </div>
                 <div className="flex items-start space-x-3">
-                  <span className="text-wine-red font-bold">✓</span>
+                  <span className="text-foreground font-bold">✓</span>
                   <p>Degustačné miestnosti</p>
                 </div>
               </div>
             </div>
             
             <div className="relative">
-              <div className="w-full h-96 bg-primary-light rounded-lg flex items-center justify-center">
-                <p className="text-wine-red text-lg">Fotka ubytovania</p>
+              <div className="w-full h-96 bg-accent-light rounded-lg flex items-center justify-center">
+                <p className="text-foreground text-lg">Fotka ubytovania</p>
               </div>
             </div>
           </div>
@@ -122,13 +120,13 @@ export default function AccommodationPage() {
       </section>
 
       {/* Reservation Section */}
-      <section className="py-16 bg-primary-light">
+      <section className="py-16 bg-accent-light">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Rezervácia ubytovania
             </h2>
-            <p className="text-wine-red text-lg max-w-2xl mx-auto">
+            <p className="text-foreground text-lg max-w-2xl mx-auto">
               Vyplňte formulár nižšie pre rezerváciu vášho pobytu. 
               Môžete si vybrať dátumy, počet osôb a špeciálne požiadavky.
             </p>
@@ -146,6 +144,7 @@ export default function AccommodationPage() {
                 <script 
                   type="text/javascript" 
                   src="https://booking.previo.app/iframe/"
+                  async
                 ></script>
                 <iframe 
                   src="https://booking.previo.app/?hotId=782975" 
@@ -155,7 +154,7 @@ export default function AccommodationPage() {
                   height="800" 
                   name="previo-booking-iframe" 
                   id="previo-booking-iframe" 
-                  allowtransparency="true"
+                  allowTransparency={true}
                   className="w-full border-0 rounded-lg"
                 ></iframe>
               </div>
@@ -165,7 +164,7 @@ export default function AccommodationPage() {
       </section>
 
       {/* Contact Info */}
-      <section className="py-16 bg-wine-dark text-primary">
+      <section className="py-16 bg-background text-foreground">
         <div className="container mx-auto px-6 text-center">
           <h2 className="text-3xl font-bold mb-6">Kontakt pre ubytovanie</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">

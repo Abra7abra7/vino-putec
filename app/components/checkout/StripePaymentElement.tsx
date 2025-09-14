@@ -54,7 +54,7 @@ export default function StripePaymentElement() {
       <PaymentElement />
       <button
         type="submit"
-        className="mt-4 w-full bg-wine-red text-background py-2 px-4 rounded hover:bg-wine-dark transition-colors"
+        className="mt-4 w-full bg-accent text-foreground py-2 px-4 rounded hover:bg-accent-dark transition-colors"
         disabled={!stripe || !elements}
       >
         {labels.payNow || "Pay Now"}

@@ -13,7 +13,7 @@ export default async function BrandStory() {
   const { title, description, buttonText, ctaLink } = homepage.brandStory;
 
   return (
-    <section className="relative w-full py-24 bg-gradient-to-r from-wine-dark via-wine-red to-accent-brown text-background">
+    <section className="relative w-full py-24 bg-background text-foreground">
       <div className="container mx-auto px-6 text-center">
         {/* Logo */}
         <div className="mb-8">
@@ -22,7 +22,7 @@ export default async function BrandStory() {
             alt="Pútec Logo"
             width={100}
             height={100}
-            className="mx-auto rounded-full shadow-2xl border-4 border-primary"
+            className="mx-auto rounded-full shadow-2xl border-4 border-accent"
           />
         </div>
 
@@ -39,7 +39,7 @@ export default async function BrandStory() {
         {/* Call to Action Button */}
         <Link
           href={ctaLink}
-          className="mt-8 inline-block bg-background text-wine-red hover:bg-primary px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all transform hover:scale-105"
+          className="mt-8 inline-block bg-background text-foreground hover:bg-accent px-8 py-3 rounded-full text-lg font-semibold shadow-lg transition-all transform hover:scale-105"
         >
           {buttonText}
         </Link>

@@ -107,7 +107,7 @@ export default function OrderSummaryClient() {
           alt="Pútec Logo"
           width={100}
           height={100}
-          className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+          className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-6"
         />
         <h1 className="text-3xl font-bold text-foreground">
           {labels.orderSummary || "Order Summary"}

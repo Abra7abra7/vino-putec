@@ -26,7 +26,7 @@ export default function ShippingMethod() {
         {shippingMethods.map((method) => (
           <label
             key={method.id}
-            className="flex items-center justify-between p-1 rounded-md cursor-pointer hover:border-wine-red transition"
+            className="flex items-center justify-between p-1 rounded-md cursor-pointer hover:border-accent transition"
           >
             <div className="flex items-center gap-4">
               <input

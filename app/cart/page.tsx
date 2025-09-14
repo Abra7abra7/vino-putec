@@ -41,7 +41,7 @@ function CartContent() {
             alt="Pútec Logo"
             width={100}
             height={100}
-            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+            className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-6"
           />
           <h1 className="text-3xl font-bold text-foreground">{labels.yourCart || "Your Cart"}</h1>
         </div>
@@ -116,7 +116,7 @@ function CartContent() {
               {/* Checkout Button Below */}
               <Link
                 href="/checkout"
-                className="inline-block bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-md text-sm font-semibold transition"
+                className="inline-block bg-background hover:bg-background text-foreground px-6 py-3 rounded-md text-sm font-semibold transition"
               >
                 {labels.proceedToCheckout || "Proceed to Checkout"}
               </Link>

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function ProductsPage() {
   return (
-    <section className="py-12 bg-primary-light">
+    <section className="py-12 bg-accent-light">
       <div className="container mx-auto px-4">
         {/* Logo Section */}
         <div className="text-center mb-12">
@@ -24,7 +24,7 @@ export default function ProductsPage() {
             alt="Pútec Logo"
             width={100}
             height={100}
-            className="mx-auto rounded-full shadow-2xl border-4 border-primary mb-6"
+            className="mx-auto rounded-full shadow-2xl border-4 border-accent mb-6"
           />
           <h2 className="text-4xl font-bold text-foreground">
             {localeData.labels.products}

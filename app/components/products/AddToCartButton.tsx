@@ -27,7 +27,7 @@ export default function AddToCartButton({ product }: Props) {
   return (
     <button
       onClick={handleAddToCart}
-      className="mt-4 w-full sm:w-auto bg-wine-red hover:bg-wine-dark text-background px-6 py-3 rounded-md text-sm font-semibold transition-colors"
+      className="mt-4 w-full sm:w-auto bg-accent hover:bg-accent-dark text-foreground px-6 py-3 rounded-md text-sm font-semibold transition-colors"
     >
       {labels.addToCart || "Add to Cart"}
     </button>

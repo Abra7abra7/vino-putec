@@ -11,11 +11,11 @@ export default function HomepageBanner() {
     return null; // Prevent render if localization data is missing
   }
 
-  const { title, subtitle, buttonText, ctaLink, imagePath } = homepage.banner;
+  const { buttonText, ctaLink, imagePath } = homepage.banner;
 
   return (
     <section
-      className="w-full py-40 md:py-60 lg:py-80 text-white flex justify-center items-center text-center relative overflow-hidden"
+      className="w-full py-40 md:py-60 lg:py-80 text-foreground flex justify-center items-center text-center relative overflow-hidden"
       style={{
         backgroundImage: `url(${imagePath})`,
         backgroundSize: "cover",
@@ -35,16 +35,16 @@ export default function HomepageBanner() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow-lg"
         >
-          {title}
+          Rodinné vinárstvo Putec
         </motion.h2>
         
         <motion.p
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xl mb-12 text-white max-w-2xl drop-shadow-lg"
+          className="text-xl mb-12 text-foreground max-w-2xl drop-shadow-lg"
         >
-          {subtitle}
+          Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku
         </motion.p>
 
         {/* Action Buttons */}
@@ -56,21 +56,21 @@ export default function HomepageBanner() {
         >
           <Link
             href={ctaLink}
-            className="bg-background text-wine-red hover:bg-primary hover:text-wine-dark px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
+            className="bg-background text-foreground hover:bg-accent hover:text-foreground-dark px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
           >
             {buttonText}
           </Link>
           
           <Link
             href="/accommodation"
-            className="bg-wine-red text-background hover:bg-wine-dark hover:text-primary px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
+            className="bg-accent text-foreground hover:bg-accent-dark hover:text-foreground px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
           >
             Ubytovanie
           </Link>
           
           <Link
             href="/degustacie"
-            className="bg-primary text-wine-red hover:bg-primary-dark hover:text-wine-dark px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
+            className="bg-accent text-foreground hover:bg-accent-dark hover:text-foreground-dark px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
           >
             Degustácie
           </Link>

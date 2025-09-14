@@ -22,10 +22,15 @@ export default function Header() {
               priority
             />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">
+              <h1 className="sr-only">
                 {content.siteName}
               </h1>
-              <strong className="text-wine-red">{content.siteTagline}</strong>
+              <div className="text-2xl font-bold text-foreground">
+                Pútec
+              </div>
+              <div className="text-foreground text-sm">
+                Rodinné vinárstvo
+              </div>
             </div>
           </Link>
         </div>

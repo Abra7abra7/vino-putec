@@ -27,7 +27,7 @@ export default function OrderSummary() {
   const currencySymbol = cartItems.length > 0 ? getCurrencySymbol(cartItems[0].Currency) : "€";
 
   return (
-    <div className="bg-background rounded-lg shadow-lg p-6 border border-primary">
+    <div className="bg-background rounded-lg shadow-lg p-6 border border-accent">
       <h2 className="text-lg font-semibold mb-4">{labels.orderSummary || "Order Summary"}</h2>
 
       <div className="space-y-4">

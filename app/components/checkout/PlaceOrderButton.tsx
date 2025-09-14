@@ -107,10 +107,10 @@ export default function PlaceOrderButton() {
     <div className="mt-6">
       <button
         onClick={handlePlaceOrder}
-        className={`w-full text-background font-semibold py-3 px-4 rounded-md transition-colors
+        className={`w-full text-foreground font-semibold py-3 px-4 rounded-md transition-colors
           ${isLoading
-            ? "bg-wine-red cursor-not-allowed opacity-50"
-            : "bg-wine-red hover:bg-wine-dark"}`}
+            ? "bg-accent cursor-not-allowed opacity-50"
+            : "bg-accent hover:bg-accent-dark"}`}
         disabled={isLoading}
       >
         {isLoading
