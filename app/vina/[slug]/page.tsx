@@ -5,7 +5,6 @@ import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
 import ProductLightbox from "../../components/products/ProductLightbox";
 import { getLocalization } from "../../utils/getLocalization";
 import AddToCartButtonWrapper from "../../components/products/AddToCartButtonWrapper";
-import Hero from "../../components/Hero";
 
 // Define a type for route params as a Promise
 type AsyncParams = Promise<{ slug?: string }>;
@@ -90,17 +89,10 @@ export default async function ProductPage({
 
   return (
     <>
-      <Hero
-        title={product.Title}
-        subtitle={product.ShortDescription}
-        backgroundImageUrl={product.FeatureImageURL}
-        heightClass="h-[45vh]"
-      />
       <section className="py-12 bg-background">
         <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-center text-foreground">{product.Title}</h1>
-
-        <div className="grid mt-2 grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <h1 className="text-3xl font-bold text-center text-foreground mb-8">{product.Title}</h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* LEFT COLUMN: IMAGES */}
           <ProductLightbox images={[product.FeatureImageURL, ...product.ProductImageGallery]} />
 

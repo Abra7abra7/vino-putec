@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import HomepageBanner from "./components/homepage/HomepageBanner";
-import RecentProducts from "./components/homepage/RecentProducts";
+import Achievements from "./components/homepage/Achievements";
 import DegustaciePreview from "./components/homepage/DegustaciePreview";
 import AccommodationPreview from "./components/homepage/AccommodationPreview";
 import BrandStory from "./components/homepage/BrandStory";
@@ -37,7 +37,6 @@ export default function Home() {
   return (
     <main>
       <HomepageBanner />
-      <RecentProducts />
       
       <DegustaciePreview />
       <AccommodationPreview />
@@ -45,6 +44,7 @@ export default function Home() {
       <BrandStory />
       <Testimonials />
       <NewsletterSignup />
+      <Achievements />
       <Brands />
     </main>
   );
