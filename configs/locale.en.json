@@ -2,8 +2,8 @@
   "email": "info@vinoputec.sk",
   "phone": "+421 903465666",
   "address": "Pezinská 154, 902 01 Vinosady, Slovensko",
-  "siteName": "Vino Putec - Rodinné vinárstvo Pezinok | Ubytovanie Vinosady | Degustácie vína",
-  "siteTagline": "Prémiové vína z Vinosady| Rodinné vinárstvo Pezinok | Ubytovanie a degustácie vína Bratislava, Senec, Trnava",
+  "siteName": "Vino Putec",
+  "siteTagline": "Rodinné vinárstvo vo Vinosadoch",
   "labels": {
     "email": "Email",
     "phone": "Telefón",
@@ -65,16 +65,16 @@
   "menu": [
     { "label": "Domov", "href": "/" },
     { "label": "Vína", "href": "/vina" },
-    { "label": "Degustácie vína", "href": "/degustacie-vina" },
-    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie-vinosady" },
+    { "label": "Degustácie vína", "href": "/degustacie" },
+    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie" },
     { "label": "O nás", "href": "/o-nas" },
     { "label": "Kontakt", "href": "/kontakt" }
   ],
   "footerLinks": [
     { "label": "Domov", "href": "/" },
     { "label": "Vína", "href": "/vina" },
-    { "label": "Degustácie vína", "href": "/degustacie-vina" },
-    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie-vinosady" },
+    { "label": "Degustácie vína", "href": "/degustacie" },
+    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie" },
     { "label": "O nás", "href": "/o-nas" },
     { "label": "Kontakt", "href": "/kontakt" }
   ],
@@ -89,7 +89,7 @@
       "title": "Rodinné vinárstvo Putec Pezinok | Ubytovanie Vinosady | Degustácie vína",
       "subtitle": "Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku. Rodinné vinárstvo s tradíciou pre Bratislavu, Senec, Trnavu a okolie.",
       "buttonText": "Pozrite naše vína",
-      "imagePath": "/o-nas/rodina2.jpg",
+      "imagePath": "/vineyard-banner.webp",
       "ctaLink": "/vina"
     },
     "brandStory": {

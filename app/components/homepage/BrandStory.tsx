@@ -45,8 +45,6 @@ export default async function BrandStory() {
         </Link>
       </div>
 
-      {/* Decorative Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-wine-red/30 to-transparent pointer-events-none"></div>
     </section>
   );
 }

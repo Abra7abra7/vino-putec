@@ -15,7 +15,7 @@ export default async function RecentProducts() {
   }
 
   return (
-    <section className="py-12 bg-accent-light">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-foreground text-center mb-8">
           {labels.recentProducts}

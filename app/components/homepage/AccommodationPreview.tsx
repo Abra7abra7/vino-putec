@@ -8,7 +8,7 @@ export default function AccommodationPreview() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
           {/* Image Placeholder */}
           <div className="relative flex items-center">
-            <div className="w-full h-96 bg-accent-light rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center shadow-lg">
               <div className="text-center">
                 <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl text-foreground">🏨</span>
@@ -69,13 +69,13 @@ export default function AccommodationPreview() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/accommodation"
+                href="/ubytovanie"
                 className="bg-accent hover:bg-accent-dark text-foreground px-6 py-3 rounded-lg font-semibold transition-colors text-center"
               >
                 Rezervovať ubytovanie
               </Link>
               <Link
-                href="/accommodation"
+                href="/ubytovanie"
                 className="border-2 border-accent text-foreground hover:bg-accent hover:text-foreground px-6 py-3 rounded-lg font-semibold transition-colors text-center"
               >
                 Zobraziť detaily

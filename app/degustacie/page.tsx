@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     locale: "sk_SK",
   },
   alternates: {
-    canonical: "https://vinoputec.sk/degustacie-vina",
+    canonical: "https://vinoputec.sk/degustacie",
   },
 };
 

@@ -39,7 +39,7 @@ export default function Testimonials() {
           {homepage.testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-accent-light p-8 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105"
+              className="bg-background border border-gray-200 p-8 rounded-lg shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105"
             >
               {/* User Avatar */}
               <Image

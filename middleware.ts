@@ -12,6 +12,8 @@ export function middleware(request: NextRequest) {
     '/contact': '/kontakt',
     '/cart': '/kosik',
     '/checkout': '/pokladna',
+    '/degustacie-vina': '/degustacie',
+    '/ubytovanie-vinosady': '/ubytovanie',
   }
 
   // Presmerovanie pre presné zhodu
@@ -35,6 +37,8 @@ export const config = {
     '/about',
     '/contact',
     '/cart',
-    '/checkout'
+    '/checkout',
+    '/degustacie-vina',
+    '/ubytovanie-vinosady'
   ]
 }

@@ -15,7 +15,7 @@ export default function HomepageBanner() {
 
   return (
     <section
-      className="w-full py-40 md:py-60 lg:py-80 text-foreground flex justify-center items-center text-center relative overflow-hidden"
+      className="w-full py-40 md:py-60 lg:py-80 text-white flex justify-center items-center text-center relative overflow-hidden"
       style={{
         backgroundImage: `url(${imagePath})`,
         backgroundSize: "cover",
@@ -33,7 +33,8 @@ export default function HomepageBanner() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow-lg"
+          className="text-4xl md:text-5xl font-extrabold mb-6 drop-shadow-lg !text-white"
+          style={{ color: 'white' }}
         >
           Rodinné vinárstvo Putec
         </motion.h2>
@@ -42,7 +43,8 @@ export default function HomepageBanner() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-xl mb-12 text-foreground max-w-2xl drop-shadow-lg"
+          className="text-xl mb-12 max-w-2xl drop-shadow-lg !text-white"
+          style={{ color: 'white' }}
         >
           Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku
         </motion.p>
@@ -62,7 +64,7 @@ export default function HomepageBanner() {
           </Link>
           
           <Link
-            href="/accommodation"
+            href="/ubytovanie"
             className="bg-accent text-foreground hover:bg-accent-dark hover:text-foreground px-8 py-4 rounded-full text-xl font-bold shadow-lg transition-all transform hover:scale-110"
           >
             Ubytovanie

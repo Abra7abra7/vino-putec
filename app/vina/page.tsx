@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function VinaPage() {
   return (
-    <section className="py-12 bg-accent-light">
+    <section className="py-12 bg-background">
       <div className="container mx-auto px-4">
         {/* Logo Section */}
         <div className="text-center mb-12">

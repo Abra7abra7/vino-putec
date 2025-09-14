@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { LocalizationProvider } from "./context/LocalizationContext";
+import type { Metadata } from "next";
 
 // Load two fonts: one for headings, one for body
 const poppins = Poppins({
@@ -18,6 +19,21 @@ const inter = Inter({
   variable: "--font-inter",
   weight: ["300", "400", "500", "700"], // typical body range
 });
+
+export const metadata: Metadata = {
+  title: "Vino Putec - Rodinné vinárstvo vo Vinosadoch",
+  description: "Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku",
+  icons: {
+    icon: [
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    shortcut: "/favicon-32.png",
+    apple: "/favicon-192.png",
+  },
+};
 
 export default function RootLayout({
   children,

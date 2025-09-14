@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     locale: "sk_SK",
   },
   alternates: {
-    canonical: "https://vinoputec.sk/ubytovanie-vinosady",
+    canonical: "https://vinoputec.sk/ubytovanie",
   },
 };
 
@@ -44,7 +44,7 @@ export default function AccommodationPage() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-accent-light">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
             <div className="text-center">
@@ -111,7 +111,7 @@ export default function AccommodationPage() {
             </div>
             
             <div className="relative">
-              <div className="w-full h-96 bg-accent-light rounded-lg flex items-center justify-center">
+              <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
                 <p className="text-foreground text-lg">Fotka ubytovania</p>
               </div>
             </div>
@@ -120,7 +120,7 @@ export default function AccommodationPage() {
       </section>
 
       {/* Reservation Section */}
-      <section className="py-16 bg-accent-light">
+      <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">

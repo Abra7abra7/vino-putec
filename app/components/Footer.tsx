@@ -24,8 +24,8 @@ export default function Footer() {
   const content = getLocalization(); // Load localization data
 
   return (
-    <footer className="bg-background text-foreground py-12 relative">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+    <footer className="bg-background text-foreground py-16 relative border-t border-gray-200">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center md:text-left">
         
         {/* Logo & Brand */}
         <div className="flex flex-col items-center md:items-start">
@@ -50,7 +50,7 @@ export default function Footer() {
           <ul className="space-y-2">
             {content.footerLinks.map((link: FooterLink) => (
               <li key={link.label}>
-                <Link href={link.href} className="text-foreground hover:text-foreground-gold transition">
+                <Link href={link.href} className="text-foreground hover:text-accent transition-colors duration-200">
                   {link.label}
                 </Link>
               </li>
@@ -61,8 +61,8 @@ export default function Footer() {
         {/* Contact Info */}
         <div>
           <h3 className="text-xl font-semibold mb-4 text-foreground">{content.labels.contactUs}</h3>
-          <p>{content.labels.email}: <a href={`mailto:${content.email}`} className="text-foreground hover:text-foreground-gold transition">{content.email}</a></p>
-          <p>{content.labels.phone}: <a href={`tel:${content.phone}`} className="text-foreground hover:text-foreground-gold transition">{content.phone}</a></p>
+          <p>{content.labels.email}: <a href={`mailto:${content.email}`} className="text-foreground hover:text-accent transition-colors duration-200">{content.email}</a></p>
+          <p>{content.labels.phone}: <a href={`tel:${content.phone}`} className="text-foreground hover:text-accent transition-colors duration-200">{content.phone}</a></p>
           <p>{content.labels.address}: {content.address}</p>
         </div>
 
@@ -73,7 +73,7 @@ export default function Footer() {
             {content.socialLinks.map((social) => {
               const IconComponent = iconMap[social.icon as SocialIcon]; // Type assertion to ensure TS compliance
               return (
-                <Link key={social.id} href={social.url} target="_blank" className="text-foreground hover:text-foreground-gold transition">
+                <Link key={social.id} href={social.url} target="_blank" className="text-foreground hover:text-accent transition-colors duration-200">
                   <IconComponent size={24} />
                 </Link>
               );
@@ -83,8 +83,8 @@ export default function Footer() {
       </div>
 
       {/* Copyright */}
-      <div className="text-center text-sm mt-8">
-        {content.copyright}
+      <div className="text-center text-sm mt-12 pt-8 border-t border-gray-200">
+        <p className="text-foreground-muted">{content.copyright}</p>
       </div>
 
       {/* Scroll to Top Button (Client Component) */}

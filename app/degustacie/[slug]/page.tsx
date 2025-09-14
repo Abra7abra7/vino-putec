@@ -105,7 +105,7 @@ export default async function DegustationPage({ params }: { params: Promise<{ sl
             <p className="text-lg text-foreground-muted">{product.ShortDescription}</p>
             
             {/* Degustation specific info */}
-            <div className="p-4 bg-accent-subtle rounded-lg">
+            <div className="p-4 bg-background border border-gray-200 rounded-lg">
               <h3 className="text-lg font-semibold text-foreground mb-3">Informácie o degustácii</h3>
               <div className="space-y-2">
                 <div className="flex justify-between">
@@ -142,7 +142,7 @@ export default async function DegustationPage({ params }: { params: Promise<{ sl
             <h2 className="text-2xl font-semibold text-foreground mb-4">Zahrnuté v balíku</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {product.Features.map((feature, index) => (
-                <div key={index} className="flex items-center space-x-3 p-3 bg-accent-subtle rounded-lg">
+                <div key={index} className="flex items-center space-x-3 p-3 bg-background border border-gray-200 rounded-lg">
                   <span className="text-accent font-bold text-lg">✓</span>
                   <span className="text-foreground">{feature}</span>
                 </div>

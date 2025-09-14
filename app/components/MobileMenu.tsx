@@ -40,7 +40,7 @@ const MobileMenu = ({ menuItems }: MobileMenuProps) => {
 
       {/* Navigation Menu for Mobile & Desktop */}
       <nav
-        className={`absolute md:static top-16 left-0 w-full md:w-auto bg-accent-light md:bg-transparent md:flex flex-col md:flex-row items-start md:items-center p-6 md:p-0 transition-all ${
+        className={`absolute md:static top-16 left-0 w-full md:w-auto bg-background md:bg-transparent md:flex flex-col md:flex-row items-start md:items-center p-6 md:p-0 transition-all ${
           isMenuOpen ? "block" : "hidden"
         }`}
       >

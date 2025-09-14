@@ -1,0 +1,26 @@
+
+> vino-putec@1.0.0 dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.3 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.203:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Compiled middleware in 55ms
+ ✓ Ready in 637ms
+ ○ Compiling /api/degustation-reservation ...
+ ✓ Compiled /api/degustation-reservation in 561ms
+📧 Sending admin email to: stancikmarian8@gmail.com
+📧 From email: onboarding@resend.dev
+✅ Admin email sent: { data: { id: 'cb48cb0b-ae4d-4df5-a359-18dbf633e5a4' }, error: null }
+📧 Sending customer email to: log@example.com
+✅ Customer email sent: {
+  data: null,
+  error: {
+    statusCode: 403,
+    error: 'You can only send testing emails to your own email address (stancikmarian8@gmail.com). To send emails to other recipients, please verify a domain at resend.com/domains, and change the `from` address to an email using this domain.'
+  }
+}
+ POST /api/degustation-reservation 200 in 2204ms

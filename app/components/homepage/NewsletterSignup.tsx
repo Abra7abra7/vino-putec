@@ -34,7 +34,7 @@ export default function NewsletterSignup() {
   };
 
   return (
-    <section className="py-16 bg-accent-light">
+    <section className="py-16 bg-background">
       <div className="container mx-auto text-center px-6">
         <h2 className="text-3xl font-bold text-foreground">{newsletter.title}</h2>
         <p className="text-gray-700 mt-2">{newsletter.description}</p>

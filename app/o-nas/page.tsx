@@ -123,7 +123,7 @@ export default function AboutPage() {
           </div>
 
           {/* Values Section */}
-          <div className="bg-accent-light rounded-xl p-8">
+          <div className="bg-background border border-gray-200 rounded-xl p-8">
             <h2 className="text-3xl font-bold text-foreground text-center mb-8">Naše hodnoty</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center">

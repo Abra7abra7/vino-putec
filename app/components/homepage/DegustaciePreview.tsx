@@ -107,7 +107,7 @@ export default function DegustaciePreview() {
 
           {/* Image Placeholder */}
           <div className="relative flex items-center">
-            <div className="w-full h-96 bg-accent-light rounded-lg flex items-center justify-center shadow-lg">
+            <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center shadow-lg">
               <div className="text-center">
                 <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
                   <span className="text-2xl text-foreground">🍷</span>

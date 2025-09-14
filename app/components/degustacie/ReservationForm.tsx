@@ -26,10 +26,50 @@ export default function ReservationForm({ product }: ReservationFormProps) {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Tu by sa odoslal email s rezerváciou
-    alert(`Rezervácia odoslaná pre ${product.Title} na ${formData.date} ${formData.time}`);
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      const response = await fetch('/api/degustation-reservation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          productTitle: product.Title,
+          productPrice: product.RegularPrice,
+          productDeposit: product.Deposit,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        // Save reservation data to localStorage for confirmation page
+        localStorage.setItem('degustationReservation', JSON.stringify({
+          ...formData,
+          productTitle: product.Title,
+          productPrice: product.RegularPrice,
+          productDeposit: product.Deposit,
+        }));
+
+        // Redirect to confirmation page
+        window.location.href = '/degustation-confirmation';
+      } else {
+        setError(result.error || 'Chyba pri odosielaní rezervácie');
+      }
+    } catch (err) {
+      console.error('Reservation error:', err);
+      setError('Chyba pri odosielaní rezervácie. Skúste to znovu.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   // Generovanie dátumov na najbližšie 30 dní
@@ -49,7 +89,7 @@ export default function ReservationForm({ product }: ReservationFormProps) {
   ];
 
   return (
-    <div className="mt-10 p-6 bg-accent-subtle rounded-lg">
+    <div className="mt-10 p-6 bg-background border border-gray-200 rounded-lg">
       <h3 className="text-2xl font-semibold text-foreground mb-6">Rezervácia degustácie</h3>
       
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -194,11 +234,22 @@ export default function ReservationForm({ product }: ReservationFormProps) {
           </p>
         </div>
         
+        {error && (
+          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            {error}
+          </div>
+        )}
+
         <button
           type="submit"
-          className="w-full bg-accent hover:bg-accent-dark text-foreground px-6 py-3 rounded-lg font-semibold transition-colors"
+          disabled={isSubmitting}
+          className={`w-full px-6 py-3 rounded-lg font-semibold transition-colors ${
+            isSubmitting
+              ? "bg-gray-400 cursor-not-allowed text-gray-700"
+              : "bg-accent hover:bg-accent-dark text-foreground"
+          }`}
         >
-          Rezervovať degustáciu
+          {isSubmitting ? "Odosielam rezerváciu..." : "Rezervovať degustáciu"}
         </button>
       </form>
     </div>

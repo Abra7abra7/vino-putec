@@ -102,7 +102,7 @@ export default async function ProductPage({
             
             {/* Degustation specific info */}
             {isDegustation && (
-              <div className="mt-4 p-4 bg-accent-subtle rounded-lg">
+              <div className="mt-4 p-4 bg-background border border-gray-200 rounded-lg">
                 <div className="grid grid-cols-2 gap-4 text-sm">
                   {product.Capacity && (
                     <div>
@@ -156,7 +156,7 @@ export default async function ProductPage({
           <div className="mt-10 space-y-8">
             {/* Basic Wine Info */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-accent-subtle p-6 rounded-lg">
+              <div className="bg-background border border-gray-200 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-foreground mb-4">O víne</h3>
                 <div className="space-y-3">
                   {product.WineDetails.vintage && (
@@ -186,7 +186,7 @@ export default async function ProductPage({
                 </div>
               </div>
 
-              <div className="bg-accent-subtle p-6 rounded-lg">
+              <div className="bg-background border border-gray-200 p-6 rounded-lg">
                 <h3 className="text-xl font-semibold text-foreground mb-4">Charakteristika</h3>
                 <div className="space-y-3">
                   {product.WineDetails.color && (
@@ -267,7 +267,7 @@ export default async function ProductPage({
             </div>
 
             {/* Producer Info */}
-            <div className="bg-accent-subtle p-6 rounded-lg">
+            <div className="bg-background border border-gray-200 p-6 rounded-lg">
               <h3 className="text-xl font-semibold text-foreground mb-4">Výrobca</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {product.WineDetails.producer && (

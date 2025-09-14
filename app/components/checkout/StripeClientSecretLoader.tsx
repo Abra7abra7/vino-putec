@@ -91,7 +91,7 @@ export default function StripeClientSecretLoader() {
 
   if (!clientSecret) {
     return (
-      <div className="p-4 bg-accent-light border border-accent rounded-md">
+      <div className="p-4 bg-background border border-gray-200 rounded-md">
         <p className="text-gray-700">
           ⚠️ Stripe nie je nakonfigurovaný. Pre testovanie platieb nastavte Stripe API kľúče v environment premenných.
         </p>

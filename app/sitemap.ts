@@ -17,13 +17,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/degustacie-vina`,
+      url: `${baseUrl}/degustacie`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/ubytovanie-vinosady`,
+      url: `${baseUrl}/ubytovanie`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,

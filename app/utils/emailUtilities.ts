@@ -50,16 +50,28 @@ export async function sendEmail({
   text: string;
 }) {
   try {
+    console.log("📧 Attempting to send email to:", to);
+    console.log("📧 From email:", process.env.RESEND_FROM_EMAIL);
+    console.log("📧 Subject:", subject);
+    console.log("📧 Resend API Key exists:", !!process.env.RESEND_API_KEY);
+    
     const resend = new Resend(process.env.RESEND_API_KEY);
 
-    await resend.emails.send({
+    const result = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL!,
       to,
       subject,
       text,
     });
+
+    console.log("✅ Email sent successfully to:", to, "ID:", result.data?.id);
+    console.log("✅ Full result:", JSON.stringify(result, null, 2));
+    return result;
   } catch (error) {
-    console.error("❌ Failed to send email to:", to, "\nError:", error);
+    console.error("❌ Failed to send email to:", to);
+    console.error("❌ Error details:", JSON.stringify(error, null, 2));
+    console.error("❌ Error message:", error instanceof Error ? error.message : 'Unknown error');
+    throw error; // Re-throw error so calling functions know it failed
   }
 }
 
