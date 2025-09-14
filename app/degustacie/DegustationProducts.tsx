@@ -38,28 +38,6 @@ export default function DegustationProducts() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative py-20 bg-background text-foreground">
-        <div className="container mx-auto px-6 text-center">
-          <div className="mb-8">
-            <Image
-              src="/putec-logo.jpg"
-              alt="Pútec Logo"
-              width={120}
-              height={120}
-              className="mx-auto rounded-full shadow-2xl border-4 border-accent"
-            />
-          </div>
-          
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Degustácie vína
-          </h1>
-          <p className="text-xl text-foreground max-w-3xl mx-auto">
-            Objavte svet našich prémiových vín prostredníctvom nezabudnuteľných degustačných zážitkov
-          </p>
-        </div>
-      </section>
-
       {/* Products Section */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
@@ -145,26 +123,6 @@ export default function DegustationProducts() {
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-16 bg-background text-foreground">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Kontakt pre degustácie</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Rezervácie</h3>
-              <p className="mb-2">📞 +421 XXX XXX XXX</p>
-              <p className="mb-2">✉️ degustacie@vinoputec.sk</p>
-              <p>🕒 9:00 - 18:00 (denne)</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Adresa</h3>
-              <p className="mb-2">Vino Pútec</p>
-              <p className="mb-2">Vinohradnícka 123</p>
-              <p>123 45 Slovensko</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

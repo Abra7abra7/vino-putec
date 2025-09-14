@@ -25,51 +25,17 @@ export default function AccommodationPage() {
       <Hero
         title="Ubytovanie v srdci vinohradníctva"
         subtitle="Komfortné izby a zážitky vo vinohradoch"
-        backgroundImageUrl="/ubytovanie-exterier/vyhlad-na-vinohrad-x.jpg"
+        backgroundImageUrl="/galeria/ubytovanie/vyhlad-na-vinohrad-x.jpg"
         primaryCta={{ label: "Rezervovať", href: "#rezervacia" }}
         secondaryCta={{ label: "Galéria", href: "/galeria/ubytovanie" }}
         heightClass="h-[55vh]"
       />
-
-      {/* Features Section */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-foreground">🏡</span>
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">Komfortné ubytovanie</h3>
-              <p className="text-foreground">Moderné izby s všetkým potrebným vybavením</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-foreground">🍷</span>
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">Degustácie vína</h3>
-              <p className="text-foreground">Ochutnajte naše prémiové vína priamo na mieste</p>
-            </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-foreground">🌅</span>
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-2">Krásne výhľady</h3>
-              <p className="text-foreground">Pohľad na vinohrady a okolitú prírodu</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Accommodation Details */}
       <section className="py-16 bg-background">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-foreground mb-6">
-                Naše ubytovanie
-              </h2>
               <div className="space-y-4 text-foreground">
                 <div className="flex items-start space-x-3">
                   <span className="text-foreground font-bold">✓</span>
@@ -99,36 +65,25 @@ export default function AccommodationPage() {
             </div>
             
             <div className="relative">
-              <div className="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center">
-                <p className="text-foreground text-lg">Fotka ubytovania</p>
-              </div>
+              <Image
+                src="/galeria/ubytovanie/izba-interier-x.jpg"
+                alt="Interiér ubytovania"
+                width={600}
+                height={400}
+                className="w-full h-96 object-cover rounded-lg shadow-lg"
+                priority
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Gallery */}
-      <AccommodationGallery />
-
       {/* Reservation Section */}
       <section id="rezervacia" className="py-16 bg-background">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-foreground mb-4">
-              Rezervácia ubytovania
-            </h2>
-            <p className="text-foreground text-lg max-w-2xl mx-auto">
-              Vyplňte formulár nižšie pre rezerváciu vášho pobytu. 
-              Môžete si vybrať dátumy, počet osôb a špeciálne požiadavky.
-            </p>
-          </div>
-
           {/* Reservation Form */}
           <div className="max-w-4xl mx-auto">
             <div className="bg-background rounded-lg shadow-lg p-8">
-              <h3 className="text-2xl font-semibold text-foreground mb-6 text-center">
-                Rezervačný formulár
-              </h3>
               
               {/* Reservation PLUS iframe */}
               <div className="reservation-container">
@@ -154,26 +109,9 @@ export default function AccommodationPage() {
         </div>
       </section>
 
-      {/* Contact Info */}
-      <section className="py-16 bg-background text-foreground">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold mb-6">Kontakt pre ubytovanie</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Rezervácie</h3>
-              <p className="mb-2">📞 +421 XXX XXX XXX</p>
-              <p className="mb-2">✉️ ubytovanie@vinoputec.sk</p>
-              <p>🕒 8:00 - 20:00 (denne)</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Adresa</h3>
-              <p className="mb-2">Vino Pútec</p>
-              <p className="mb-2">Vinohradnícka 123</p>
-              <p>123 45 Slovensko</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Gallery */}
+      <AccommodationGallery />
+
     </div>
   );
 }

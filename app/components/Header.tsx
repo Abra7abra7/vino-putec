@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import MobileMenu from "./MobileMenu";
+import DesktopNavigation from "./DesktopNavigation";
 import { getLocalization } from "../utils/getLocalization";
 
 export default function Header() {
@@ -9,33 +10,27 @@ export default function Header() {
   return (
     <>
       {/* MAIN HEADER */}
-      <header className="bg-background text-foreground py-4 px-4 flex justify-between items-center relative z-50">
-        {/* Logo & Tagline */}
-        <div className="flex items-center space-x-4">
-          <Link href="/" className="flex items-center space-x-3 hover:opacity-80 transition-opacity">
-            <Image
-              src="/putec-logo.jpg"
-              alt="Pútec Logo"
-              width={60}
-              height={60}
-              className="rounded-lg"
-              priority
-            />
-            <div>
-              <h1 className="sr-only">
-                {content.siteName}
-              </h1>
-              <div className="text-2xl font-bold text-foreground">
-                Pútec
-              </div>
-              <div className="text-foreground text-sm">
-                Rodinné vinárstvo
-              </div>
+      <header className="sticky top-0 bg-background text-foreground py-4 px-4 flex items-center relative z-50 shadow-sm border-b border-gray-200">
+        {/* Logo - Left */}
+        <div className="flex items-center">
+          <Link href="/" className="hover:opacity-80 transition-opacity">
+            <div className="p-2 border-2 border-accent rounded-lg">
+              <Image
+                src="/putec-logo.jpg"
+                alt="Pútec Logo"
+                width={60}
+                height={60}
+                className="rounded-lg"
+                priority
+              />
             </div>
           </Link>
         </div>
 
-        {/* Mobile Menu (Client Component) */}
+        {/* Desktop Navigation - Center */}
+        <DesktopNavigation menuItems={content.menu} />
+
+        {/* Mobile Menu - Right */}
         <MobileMenu menuItems={content.menu} />
       </header>
     </>

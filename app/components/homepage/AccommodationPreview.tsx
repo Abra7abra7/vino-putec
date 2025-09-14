@@ -11,10 +11,9 @@ export default function AccommodationPreview() {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await fetch('/api/ubytovanie/gallery');
+        const res = await fetch('/api/gallery/ubytovanie');
         const data = await res.json();
-        const list: string[] = [...(data.exterier || []), ...(data.izby || [])];
-        setSlides(list.slice(0, 8));
+        setSlides(data.photos?.slice(0, 8) || []);
       } catch (e) {
         console.error('Nepodarilo sa načítať galériu ubytovania', e);
       }

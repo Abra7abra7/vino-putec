@@ -38,9 +38,9 @@ const MobileMenu = ({ menuItems }: MobileMenuProps) => {
         }
       </div>
 
-      {/* Navigation Menu for Mobile & Desktop */}
+      {/* Mobile Navigation Menu */}
       <nav
-        className={`absolute md:static top-16 left-0 w-full md:w-auto bg-background md:bg-transparent md:flex flex-col md:flex-row items-start md:items-center p-6 md:p-0 transition-all ${
+        className={`absolute top-16 left-0 w-full bg-background flex flex-col items-start p-6 transition-all ${
           isMenuOpen ? "block" : "hidden"
         }`}
       >
@@ -48,19 +48,12 @@ const MobileMenu = ({ menuItems }: MobileMenuProps) => {
           <Link
             key={label}
             href={href}
-            className="px-4 py-2 block text-sm md:text-base text-foreground hover:text-foreground"
+            className="px-4 py-2 block text-sm text-foreground hover:text-foreground"
             onClick={() => setIsMenuOpen(false)}
           >
             {label}
           </Link>
         ))}
-
-        {/* Desktop Cart Icon (hidden on mobile) */}
-        {!isCartOrCheckoutPage &&
-          <div className="hidden md:flex md:ml-4">
-            <MiniCart />
-          </div>
-        }
       </nav>
     </ReduxProvider>
   );

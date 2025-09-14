@@ -159,24 +159,6 @@ export default async function DegustationPage({ params }: { params: Promise<{ sl
 
         {/* Reservation Form */}
         <ReservationForm product={product} />
-
-        {/* Contact Info */}
-        <div className="mt-10 p-6 bg-background border border-accent rounded-lg">
-          <h3 className="text-xl font-semibold text-foreground mb-4">Kontaktné informácie</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Rezervácie</h4>
-              <p className="text-foreground-muted">📞 +421 903 465 666</p>
-              <p className="text-foreground-muted">✉️ info@vinoputec.sk</p>
-              <p className="text-foreground-muted">🕒 9:00 - 18:00 (denne)</p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-foreground mb-2">Adresa</h4>
-              <p className="text-foreground-muted">Pezinská 154</p>
-              <p className="text-foreground-muted">902 01 Vinosady, Slovensko</p>
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

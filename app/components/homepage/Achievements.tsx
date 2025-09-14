@@ -2,10 +2,23 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Achievements() {
   const [selectedCategory, setSelectedCategory] = useState<'diplomy' | 'ocenenia'>('diplomy');
+  const [isMobile, setIsMobile] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const diplomy = [
     {
@@ -80,6 +93,8 @@ export default function Achievements() {
   ];
 
   const currentItems = selectedCategory === 'diplomy' ? diplomy : ocenenia;
+  const maxItems = isMobile ? 4 : 6;
+  const displayItems = showAll ? currentItems : currentItems.slice(0, maxItems);
 
   return (
     <section className="py-16 bg-background">
@@ -119,33 +134,45 @@ export default function Achievements() {
           </div>
         </div>
 
-        {/* Achievements Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {currentItems.map((item) => (
+        {/* Achievements Grid - Responsive layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+          {displayItems.map((item) => (
             <div
               key={item.id}
               className="bg-background rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-xl transition-shadow"
             >
-              <div className="relative h-48 w-full">
+              <div className="relative h-32 md:h-40 w-full">
                 <Image
                   src={item.image}
                   alt={`${item.title} - ${item.subtitle}`}
                   fill
                   className="object-cover"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 16vw"
                 />
               </div>
-              <div className="p-4">
-                <h3 className="font-semibold text-foreground text-lg mb-1">
+              <div className="p-2 md:p-3">
+                <h3 className="font-semibold text-foreground text-sm md:text-base mb-1 line-clamp-2">
                   {item.title}
                 </h3>
-                <p className="text-foreground-muted text-sm">
+                <p className="text-foreground-muted text-xs md:text-sm line-clamp-1">
                   {item.subtitle}
                 </p>
               </div>
             </div>
           ))}
         </div>
+
+        {/* Show more/less button */}
+        {currentItems.length > maxItems && (
+          <div className="text-center mt-6">
+            <button 
+              onClick={() => setShowAll(!showAll)}
+              className="bg-accent hover:bg-accent-dark text-foreground px-6 py-2 rounded-lg font-medium text-sm transition-colors"
+            >
+              {showAll ? 'Zobraziť menej' : `Zobraziť všetky (${currentItems.length})`}
+            </button>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="text-center mt-12">

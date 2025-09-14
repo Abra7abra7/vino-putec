@@ -65,8 +65,8 @@
   "menu": [
     { "label": "Domov", "href": "/" },
     { "label": "Vína", "href": "/vina" },
-    { "label": "Degustácie vína", "href": "/degustacie" },
-    { "label": "Ubytovanie Vinosady", "href": "/ubytovanie" },
+    { "label": "Degustácie", "href": "/degustacie" },
+    { "label": "Ubytovanie", "href": "/ubytovanie" },
     { "label": "O nás", "href": "/o-nas" },
     { "label": "Kontakt", "href": "/kontakt" }
   ],

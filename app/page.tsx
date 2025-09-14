@@ -45,7 +45,7 @@ export default function Home() {
       <Testimonials />
       <NewsletterSignup />
       <Achievements />
-      <Brands />
+      
     </main>
   );
 }
