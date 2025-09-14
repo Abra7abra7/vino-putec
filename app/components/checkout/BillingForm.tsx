@@ -54,10 +54,10 @@ export default function BillingForm() {
         </button>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input name="firstName" value={billingForm.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-background border border-accent p-1 pl-2 rounded" required />
-        <input name="lastName" value={billingForm.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-background border border-accent p-1 pl-2 rounded" required />
+        <input name="firstName" value={billingForm.firstName} onChange={handleChange} placeholder={labels.firstName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="lastName" value={billingForm.lastName} onChange={handleChange} placeholder={labels.lastName} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
         
-        <select name="country" value={billingForm.country} onChange={handleChange} className="input bg-background border border-accent p-1">
+        <select name="country" value={billingForm.country} onChange={handleChange} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none">
           {billingCountries.map((c) => (
             <option key={c.code} value={c.code}>{c.name}</option>
           ))}
@@ -65,20 +65,20 @@ export default function BillingForm() {
 
         {/* Conditionally render state dropdown if states available */}
         {availableStates ? (
-          <select name="state" value={billingForm.state} onChange={handleChange} className="input bg-background border border-accent p-1">
+          <select name="state" value={billingForm.state} onChange={handleChange} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none">
             {availableStates.map((s) => (
               <option key={s.code} value={s.code}>{s.name}</option>
             ))}
           </select>
         ) : null}
 
-        <input name="city" value={billingForm.city} onChange={handleChange} placeholder={labels.city} className="input bg-background border border-accent p-1 pl-2 rounded" required />
+        <input name="city" value={billingForm.city} onChange={handleChange} placeholder={labels.city} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
 
-        <input name="address1" value={billingForm.address1} onChange={handleChange} placeholder={labels.address1} className="input bg-background border border-accent p-1 pl-2 rounded" required />
-        <input name="address2" value={billingForm.address2} onChange={handleChange} placeholder={labels.address2} className="input bg-background border border-accent p-1 pl-2 rounded" />
-        <input name="postalCode" value={billingForm.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border border-accent p-1 pl-2 rounded" required />
-        <input name="phone" value={billingForm.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border border-accent p-1 pl-2 rounded" required />
-        <input name="email" value={billingForm.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border border-accent md:col-span-2 p-1 pl-2 rounded" required />
+        <input name="address1" value={billingForm.address1} onChange={handleChange} placeholder={labels.address1} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="address2" value={billingForm.address2} onChange={handleChange} placeholder={labels.address2} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" />
+        <input name="postalCode" value={billingForm.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="phone" value={billingForm.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+        <input name="email" value={billingForm.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border-2 border-accent md:col-span-2 p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
       </div>
     </div>
   );

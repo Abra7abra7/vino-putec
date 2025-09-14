@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DegustacieClient from "./DegustacieClient";
+import DegustationProducts from "./DegustationProducts";
 
 export const metadata: Metadata = {
   title: "Degustácie vína | Putec Vinosady | Ochutnávky vína Pezinok",
@@ -17,5 +17,5 @@ export const metadata: Metadata = {
 };
 
 export default function DegustaciePage() {
-  return <DegustacieClient />;
+  return <DegustationProducts />;
 }

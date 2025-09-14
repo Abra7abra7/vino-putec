@@ -1,14 +1,14 @@
 import ProductCardWithProvider from "../products/ProductCardWithProvider";
 import { getLocalization } from "../../utils/getLocalization";
-import getProducts from "../../utils/getProducts";
+import { getWines } from "../../utils/getProducts";
 import { Product } from "../../../types/Product";
 
 export default async function RecentProducts() {
   const localeData = getLocalization();
   const labels = localeData.labels;
 
-  const allProducts = await getProducts();
-  const recentProducts = allProducts.slice(0, 3);
+  const wines = await getWines();
+  const recentProducts = wines.slice(0, 3);
 
   if (recentProducts.length === 0) {
     return <p className="text-center text-foreground">{labels.noProductsFound}</p>;

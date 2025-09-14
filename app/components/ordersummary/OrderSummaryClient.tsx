@@ -67,7 +67,7 @@ export default function OrderSummaryClient() {
         dispatch(clearCart());
       }
     } else {
-      router.push("/cart");
+      router.push("/kosik");
     }
   }, [searchParams, router, dispatch]);
 

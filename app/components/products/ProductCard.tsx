@@ -31,7 +31,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="bg-background shadow-lg rounded-lg overflow-hidden transition hover:scale-105 border border-accent">
       {/* Product Image with Link to Product Page */}
-      <Link href={`/products/${product.Slug}`}>
+      <Link href={`/vina/${product.Slug}`}>
         <div className="w-full">
           <Image
             src={product.FeatureImageURL}
@@ -46,7 +46,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       {/* Product Info */}
       <div className="p-6">
         <h3 className="text-xl font-semibold text-foreground truncate">
-          <Link href={`/products/${product.Slug}`} className="hover:text-foreground">
+          <Link href={`/vina/${product.Slug}`} className="hover:text-foreground">
             {product.Title}
           </Link>
         </h3>
@@ -74,7 +74,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
 
         <div className="mt-4 flex flex-col sm:flex-row gap-2">
-          <Link href={`/products/${product.Slug}`} className="sm:w-1/2">
+          <Link href={`/vina/${product.Slug}`} className="sm:w-1/2">
             <span className="w-full inline-block bg-accent hover:bg-accent-dark text-foreground px-4 py-2 rounded-md text-sm font-semibold text-center transition-colors">
               {labels.viewProduct || "View Product"}
             </span>

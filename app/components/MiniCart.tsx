@@ -51,7 +51,7 @@ export default function MiniCart() {
     >
       {/* Cart Icon */}
       <Link
-        href="/cart"
+        href="/kosik"
         className="relative flex items-center justify-center ml-2 mr-4"
         aria-label={labels.viewCart || "View cart"}
       >
@@ -85,16 +85,16 @@ export default function MiniCart() {
                     />
                     <div className="flex-1">
                       <Link
-                        href={`/products/${item.Slug}`}
+                        href={`/vina/${item.Slug}`}
                         className="text-sm font-semibold text-foreground hover:text-foreground"
                       >
                         {item.Title}
                       </Link>
                       <p className="text-sm text-foreground">
-                        {labels.quantity || "Qty"}: {item.quantity} × ${price.toFixed(2)}
+                        {labels.quantity || "Množstvo"}: {item.quantity} × €{price.toFixed(2)}
                       </p>
                       <p className="text-sm text-foreground font-medium">
-                        {labels.total || "Total"}: ${itemTotal}
+                        {labels.total || "Celkom"}: €{itemTotal}
                       </p>
                     </div>
                     <button
@@ -115,21 +115,21 @@ export default function MiniCart() {
             <>
               <hr className="my-4" />
               <div className="flex justify-between items-center text-sm font-semibold text-foreground">
-                <span>{labels.total || "Total"}:</span>
-                <span>${totalAmount.toFixed(2)}</span>
+                <span>{labels.total || "Celkom"}:</span>
+                <span>€{totalAmount.toFixed(2)}</span>
               </div>
               <Link
-                href="/cart"
+                href="/kosik"
                 className="mt-4 inline-block w-full text-center bg-accent hover:bg-accent-dark text-foreground px-4 py-2 rounded-md text-sm font-semibold transition"
               >
-                {labels.viewCart || "View Cart"}
+                {labels.viewCart || "Zobraziť košík"}
               </Link>
 
               <Link
-                href="/checkout"
+                href="/pokladna"
                 className="mt-4 inline-block w-full text-center bg-accent hover:bg-accent-dark text-foreground px-4 py-2 rounded-md text-sm font-semibold transition"
               >
-                {labels.proceedToCheckout || "Proceed to Checkout"}
+                {labels.proceedToCheckout || "Pokračovať k objednávke"}
               </Link>
             </>
           )}

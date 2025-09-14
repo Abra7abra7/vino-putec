@@ -20,7 +20,7 @@ const MobileMenu = ({ menuItems }: MobileMenuProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const pathname = usePathname();
-  const isCartOrCheckoutPage = pathname === "/cart" || pathname === "/checkout";
+  const isCartOrCheckoutPage = pathname === "/kosik" || pathname === "/pokladna";
 
   return (
     <ReduxProvider>

@@ -1,0 +1,50 @@
+[
+    {
+       "ID":"wine-001",
+       "Title":"Pálava biele polosuché 2024",
+       "Slug":"palava-biele-polosuche-2024",
+       "Enabled":true,
+       "CatalogVisible":true,
+       "ProductCategories":[
+          "Biele vína",
+          "Prémiové vína",
+          "Polosuché vína"
+       ],
+       "FeatureImageURL":"/vina/palava-2024.jpg",
+       "ProductImageGallery":[
+          "/vina/palava-2024-1.jpg",
+          "/vina/palava-2024-2.jpg"
+       ],
+       "ShortDescription":"Víno s iskrivou zlato-žltou farbou, s expresívnou vôňou pomarančovej kôry a sušených marhúľ, postupne prechádza do medovo-ovocnej chuti, plnej broskýň, byliniek a jemného tymiánu.",
+       "LongDescription":"Pálava biele polosuché 2024 je výsledkom starostlivého výberu hrozna z najlepších vinohradov vo Vinosadoch. Víno má iskrivú zlato-žltú farbu, s expresívnou vôňou pomarančovej kôry a sušených marhúľ, postupne prechádza do medovo-ovocnej chuti, plnej broskýň, byliniek a jemného tymiánu.",
+       "RegularPrice":"11.90",
+       "SalePrice":"11.90",
+       "Currency": "EUR",
+       "SubscriptionEnabled":false,
+       "SubscriptionType":"",
+       "ProductType": "wine",
+       "WineDetails": {
+          "vintage": "2024",
+          "color": "Iskrivá zlato-žltá farba",
+          "taste": "Medovo-ovocná chuť, plná broskýň, byliniek a jemného tymiánu",
+          "aroma": "Expresívna pomarančová kôra a sušené marhule",
+          "wineType": "biele polosuché",
+          "quality": "Akostné víno",
+          "protectedOrigin": "Chránené označenie pôvodu",
+          "region": "Malokarpatská vinohradnícka oblasť",
+          "residualSugar": "10 g/l",
+          "sugar": "22 NM",
+          "bottleVolume": "0,75 l",
+          "storageTemp": "10 – 12°C",
+          "servingTemp": "10 – 12 °C",
+          "batchNumber": "L.23",
+          "warnings": "Obsahuje siričitany",
+          "alcoholContent": "12%",
+          "producer": "Pútec s.r.o., Pezinská 154, 902 01 Vinosady, SR",
+          "bottler": "Putec s.r.o.",
+          "countryOfOrigin": "Slovensko",
+          "nutritionalInfoUrl": "https://eanonline.gs1sk.org/01/08582000037412?_ga=2.73120275.1033535469.1743430878-428837305.1743430878",
+          "gtin": "08582000037412"
+       }
+    }
+]

@@ -29,7 +29,8 @@ export function ProductProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     fetch("/api/products")
       .then((res) => res.json())
-      .then((data: Product[]) => {
+      .then((response: { products: Product[] }) => {
+        const data = response.products;
         setProducts(data);
         setFilteredProducts(data);
         setCategories([...new Set(data.flatMap((p) => p.ProductCategories))].sort());
