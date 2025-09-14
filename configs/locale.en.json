@@ -60,7 +60,12 @@
     "orderDate": "Dátum objednávky",
     "completeBeforePayment": "Prosím vyplňte všetky dodacie a fakturačné polia pred výberom spôsobu platby.",
     "payNow": "Zaplatiť teraz",
-    "orderConfirmationTitle": "Potvrdenie objednávky"
+    "orderConfirmationTitle": "Potvrdenie objednávky",
+    "isCompany": "Nákup ako firma",
+    "companyName": "Názov firmy",
+    "companyICO": "IČO",
+    "companyDIC": "DIČ",
+    "companyICDPH": "IČ DPH"
   },
   "menu": [
     { "label": "Domov", "href": "/" },

@@ -12,6 +12,11 @@ export interface FormData {
   postalCode: string;
   phone: string;
   email: string;
+  isCompany: boolean;
+  companyName: string;
+  companyICO: string;
+  companyDIC: string;
+  companyICDPH: string;
 }
 
 export interface CheckoutState {
@@ -34,6 +39,11 @@ const initialForm: FormData = {
   postalCode: "",
   phone: "",
   email: "",
+  isCompany: false,
+  companyName: "",
+  companyICO: "",
+  companyDIC: "",
+  companyICDPH: "",
 };
 
 const initialState: CheckoutState = {

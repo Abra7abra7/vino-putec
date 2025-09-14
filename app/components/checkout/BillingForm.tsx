@@ -21,11 +21,14 @@ export default function BillingForm() {
   }, [billingCountries, billingForm.country, dispatch]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
 
     if (name === "country") {
       // Reset state when changing country
       dispatch(setBillingForm({ country: value, state: "" }));
+    } else if (type === 'checkbox') {
+      dispatch(setBillingForm({ [name]: checked }));
     } else {
       dispatch(setBillingForm({ [name]: value }));
     }
@@ -79,6 +82,57 @@ export default function BillingForm() {
         <input name="postalCode" value={billingForm.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
         <input name="phone" value={billingForm.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
         <input name="email" value={billingForm.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border-2 border-accent md:col-span-2 p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+      </div>
+
+      {/* Company Information */}
+      <div className="mt-6 pt-6 border-t border-gray-200">
+        <div className="flex items-center mb-4">
+          <input
+            type="checkbox"
+            name="isCompany"
+            checked={billingForm.isCompany}
+            onChange={handleChange}
+            className="w-4 h-4 text-accent bg-background border-accent rounded focus:ring-accent focus:ring-2"
+          />
+          <label htmlFor="isCompany" className="ml-2 text-sm font-medium text-foreground">
+            {labels.isCompany}
+          </label>
+        </div>
+
+        {billingForm.isCompany && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              name="companyName"
+              value={billingForm.companyName}
+              onChange={handleChange}
+              placeholder={labels.companyName}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+              required={billingForm.isCompany}
+            />
+            <input
+              name="companyICO"
+              value={billingForm.companyICO}
+              onChange={handleChange}
+              placeholder={labels.companyICO}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+              required={billingForm.isCompany}
+            />
+            <input
+              name="companyDIC"
+              value={billingForm.companyDIC}
+              onChange={handleChange}
+              placeholder={labels.companyDIC}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+            />
+            <input
+              name="companyICDPH"
+              value={billingForm.companyICDPH}
+              onChange={handleChange}
+              placeholder={labels.companyICDPH}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

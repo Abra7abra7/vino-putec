@@ -19,8 +19,14 @@ export default function ShippingForm() {
   }, [form.country, shippingCountries, dispatch]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    dispatch(setShippingForm({ [name]: value }));
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    
+    if (type === 'checkbox') {
+      dispatch(setShippingForm({ [name]: checked }));
+    } else {
+      dispatch(setShippingForm({ [name]: value }));
+    }
   };
 
   // Get the list of states for selected country
@@ -56,6 +62,57 @@ export default function ShippingForm() {
         <input name="postalCode" value={form.postalCode} onChange={handleChange} placeholder={labels.postalCode} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
         <input name="phone" value={form.phone} onChange={handleChange} placeholder={labels.phone} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
         <input name="email" value={form.email} onChange={handleChange} placeholder={labels.email} className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none" required />
+      </div>
+
+      {/* Company Information */}
+      <div className="mt-6 pt-6 border-t border-gray-200">
+        <div className="flex items-center mb-4">
+          <input
+            type="checkbox"
+            name="isCompany"
+            checked={form.isCompany}
+            onChange={handleChange}
+            className="w-4 h-4 text-accent bg-background border-accent rounded focus:ring-accent focus:ring-2"
+          />
+          <label htmlFor="isCompany" className="ml-2 text-sm font-medium text-foreground">
+            {labels.isCompany}
+          </label>
+        </div>
+
+        {form.isCompany && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <input
+              name="companyName"
+              value={form.companyName}
+              onChange={handleChange}
+              placeholder={labels.companyName}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+              required={form.isCompany}
+            />
+            <input
+              name="companyICO"
+              value={form.companyICO}
+              onChange={handleChange}
+              placeholder={labels.companyICO}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+              required={form.isCompany}
+            />
+            <input
+              name="companyDIC"
+              value={form.companyDIC}
+              onChange={handleChange}
+              placeholder={labels.companyDIC}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+            />
+            <input
+              name="companyICDPH"
+              value={form.companyICDPH}
+              onChange={handleChange}
+              placeholder={labels.companyICDPH}
+              className="input bg-background border-2 border-accent p-3 pl-4 rounded-lg focus:border-accent-dark focus:outline-none"
+            />
+          </div>
+        )}
       </div>
     </div>
   );
