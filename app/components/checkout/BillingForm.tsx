@@ -65,7 +65,7 @@ export default function BillingForm() {
             className="w-4 h-4 text-accent bg-background border-accent rounded focus:ring-accent focus:ring-2"
           />
           <label htmlFor="differentBilling" className="ml-2 text-sm font-medium text-foreground">
-            {labels.differentBilling}
+            {labels.differentBilling || "Dodacie údaje sú iné ako fakturačné"}
           </label>
         </div>
       </div>
