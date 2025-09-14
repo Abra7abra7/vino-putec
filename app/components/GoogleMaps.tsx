@@ -18,7 +18,7 @@ export default function GoogleMaps() {
     const loadGoogleMaps = () => {
       if (window.google && mapRef.current) {
         const map = new window.google.maps.Map(mapRef.current, {
-          center: { lat: 48.2897, lng: 17.2667 }, // Pezinská 154, Vinosady coordinates
+          center: { lat: 48.30897158531647, lng: 17.28917563487912 }, // Pezinská 154, Vinosady coordinates
           zoom: 16,
           mapTypeId: 'roadmap',
           styles: [
@@ -112,7 +112,7 @@ export default function GoogleMaps() {
 
         // Add marker
         const marker = new window.google.maps.Marker({
-          position: { lat: 48.2897, lng: 17.2667 },
+          position: { lat: 48.30897158531647, lng: 17.28917563487912 },
           map: map,
           title: 'Pezinská 154 - Vinárstvo, 902 01 Vinosady',
           animation: window.google.maps.Animation.DROP,
