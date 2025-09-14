@@ -231,6 +231,7 @@ export default function GoogleMaps() {
 // Extend Window interface for TypeScript
 declare global {
   interface Window {
-    google: typeof google;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    google: any;
   }
 }
