@@ -110,7 +110,7 @@ export default function AccommodationPage() {
       </section>
 
       {/* Gallery */}
-      <AccommodationGallery />
+      
 
     </div>
   );

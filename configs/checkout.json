@@ -1,21 +1,15 @@
 {
     "shippingMethods": [
       {
-        "id": "standard",
-        "name": "Štandardné doručenie (5–7 dní)",
-        "price": 4.50,
+        "id": "courier",
+        "name": "Kurier (2-3 pracovné dni)",
+        "price": 3.00,
         "currency": "EUR"
       },
       {
-        "id": "express",
-        "name": "Expresné doručenie (2–3 dni)",
-        "price": 13.50,
-        "currency": "EUR"
-      },
-      {
-        "id": "overnight",
-        "name": "Doručenie do 24 hodín",
-        "price": 22.50,
+        "id": "pickup",
+        "name": "Osobne na prevádzke (Vinosady)",
+        "price": 0.00,
         "currency": "EUR"
       }
     ],
