@@ -40,7 +40,7 @@ export default function ContactUsForm() {
   };
 
   return (
-    <section className="w-full min-h-screen bg-background py-16">
+    <section className="w-full h-full bg-background py-16">
       <div className="max-w-3xl mx-auto px-6">
         {/* Logo */}
         <div className="text-center mb-8">

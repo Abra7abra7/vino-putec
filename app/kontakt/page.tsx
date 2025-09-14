@@ -1,4 +1,5 @@
 import ContactUsForm from "../components/ContactUsForm";
+import GoogleMaps from "../components/GoogleMaps";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -19,7 +20,17 @@ export const metadata: Metadata = {
 export default function ContactPage() {
     return (
       <main>
-        <ContactUsForm />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 min-h-screen">
+          {/* Contact Form */}
+          <div className="lg:order-1">
+            <ContactUsForm />
+          </div>
+          
+          {/* Google Maps */}
+          <div className="lg:order-2">
+            <GoogleMaps />
+          </div>
+        </div>
       </main>
     );
   }
