@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "../components/Hero";
 import WineGrid from "../components/products/WineGrid";
+import AgeVerification from "../components/AgeVerification";
 import { getLocalization } from "../utils/getLocalization";
 import type { Metadata } from "next";
 import { ReduxProvider } from "../providers";
@@ -17,6 +18,7 @@ export const metadata: Metadata = {
 export default function VinaPage() {
   return (
     <>
+      <AgeVerification />
       <Hero
         title="Naše vína"
         subtitle="Prémiové vína z rodinného vinárstva Putec"

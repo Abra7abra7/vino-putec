@@ -68,7 +68,7 @@ export default function Footer() {
         {/* Social Media */}
         <div>
           <h3 className="text-xl font-semibold mb-4 text-foreground">{content.labels.followUs}</h3>
-          <div className="flex justify-center md:justify-start space-x-4">
+          <div className="flex justify-center md:justify-start space-x-4 mb-6">
             {content.socialLinks.map((social) => {
               const IconComponent = iconMap[social.icon as SocialIcon]; // Type assertion to ensure TS compliance
               return (
@@ -77,6 +77,18 @@ export default function Footer() {
                 </Link>
               );
             })}
+          </div>
+          
+          {/* Legal Links */}
+          <div>
+            <h4 className="text-sm font-semibold mb-2 text-foreground">Právne informácie</h4>
+            <div className="flex flex-wrap gap-2 text-xs">
+              {content.legalLinks.map((link) => (
+                <Link key={link.label} href={link.href} className="text-foreground-muted hover:text-accent transition-colors duration-200">
+                  {link.label}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

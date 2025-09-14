@@ -2,6 +2,7 @@ import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import CookiesBanner from "./components/CookiesBanner";
 import { LocalizationProvider } from "./context/LocalizationContext";
 import type { Metadata } from "next";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <CookiesBanner />
         </LocalizationProvider>
       </body>
     </html>

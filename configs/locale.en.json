@@ -78,6 +78,12 @@
     { "label": "O nás", "href": "/o-nas" },
     { "label": "Kontakt", "href": "/kontakt" }
   ],
+  "legalLinks": [
+    { "label": "Zásady ochrany osobných údajov", "href": "/zasady-ochrany-osobnych-udajov" },
+    { "label": "Obchodné podmienky", "href": "/obchodne-podmienky" },
+    { "label": "Reklamačný poriadok", "href": "/reklamacny-poriadok" },
+    { "label": "Nástroje na ochranu súkromia", "href": "/nastroje-ochrany-sukromia" }
+  ],
   "socialLinks": [
     { "id": "facebook", "icon": "SiFacebook", "url": "https://www.facebook.com/vinoputec" },
     { "id": "instagram", "icon": "SiInstagram", "url": "https://www.instagram.com/vinoputec/" },
