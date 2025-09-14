@@ -1,11 +1,20 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function GoogleMaps() {
   const mapRef = useRef<HTMLDivElement>(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [apiKeyMissing, setApiKeyMissing] = useState(false);
 
   useEffect(() => {
+    const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+    
+    if (!apiKey || apiKey === 'your_google_maps_api_key_here') {
+      setApiKeyMissing(true);
+      return;
+    }
+
     const loadGoogleMaps = () => {
       if (window.google && mapRef.current) {
         const map = new window.google.maps.Map(mapRef.current, {
@@ -124,21 +133,66 @@ export default function GoogleMaps() {
         marker.addListener('click', () => {
           infoWindow.open(map, marker);
         });
+
+        setMapLoaded(true);
       }
     };
 
     // Load Google Maps script if not already loaded
     if (!window.google) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
       script.async = true;
       script.defer = true;
       script.onload = loadGoogleMaps;
+      script.onerror = () => {
+        console.error('Failed to load Google Maps');
+        setApiKeyMissing(true);
+      };
       document.head.appendChild(script);
     } else {
       loadGoogleMaps();
     }
   }, []);
+
+  if (apiKeyMissing) {
+    return (
+      <div className="w-full h-full min-h-[500px] bg-background">
+        <div className="p-6">
+          <h2 className="text-3xl font-bold text-foreground mb-4 text-center">
+            Nájdete nás tu
+          </h2>
+          <div className="mb-4 text-center">
+            <p className="text-foreground text-lg font-semibold mb-2">
+              Putec Vinosady
+            </p>
+            <p className="text-foreground-muted">
+              Pezinská 154, 902 01 Vinosady
+            </p>
+            <p className="text-foreground-muted">
+              Slovensko
+            </p>
+          </div>
+        </div>
+        <div className="w-full h-96 rounded-lg shadow-lg border border-gray-200 bg-gray-100 flex items-center justify-center">
+          <div className="text-center p-8">
+            <h3 className="text-xl font-bold text-gray-700 mb-4">
+              Google Maps nie je nakonfigurované
+            </h3>
+            <div className="text-gray-600 space-y-2">
+              <p>Pre zobrazenie mapy potrebujete:</p>
+              <ol className="list-decimal list-inside space-y-1 text-left max-w-md mx-auto">
+                <li>Získať Google Maps API kľúč na <a href="https://console.cloud.google.com/google/maps-apis" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Google Cloud Console</a></li>
+                <li>Vytvoriť súbor <code className="bg-gray-200 px-1 rounded">.env.local</code> v root priečinku</li>
+                <li>Pridať: <code className="bg-gray-200 px-1 rounded">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=your_api_key_here</code></li>
+                <li>Reštartovať development server</li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-full min-h-[500px] bg-background">
@@ -163,6 +217,14 @@ export default function GoogleMaps() {
         className="w-full h-96 rounded-lg shadow-lg border border-gray-200"
         style={{ minHeight: '400px' }}
       />
+      {!mapLoaded && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto mb-2"></div>
+            <p className="text-gray-600">Načítavam mapu...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
