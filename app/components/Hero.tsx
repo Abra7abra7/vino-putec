@@ -25,7 +25,7 @@ export default function Hero({
           src={backgroundImageUrl}
           alt={title}
           fill
-          className="object-cover"
+          className="object-cover object-top"
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
