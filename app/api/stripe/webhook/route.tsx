@@ -244,20 +244,21 @@ export async function POST(req: Request) {
       });
 
       const finalized = await (stripe as Stripe).invoices.finalizeInvoice((invoice as any).id as string);
-      // Mark as paid to odstrániť platobné tlačidlá na hostovanej stránke
+      // Najprv pošli e‑mail, aby Stripe odoslal faktúru (v test/prod). Potom označ ako paid.
+      try {
+        await (stripe as Stripe).invoices.sendInvoice((finalized as any).id as string);
+        console.log("📧 Stripe will send invoice email:", (finalized as any).id);
+      } catch (e) {
+        console.warn('⚠️ invoices.send failed', e);
+      }
+      // Označ ako paid (out of band), aby sa skryli platobné tlačidlá
       try {
         await (stripe as Stripe).invoices.pay((finalized as any).id as string, { paid_out_of_band: true });
         console.log("✅ Invoice marked paid (out of band):", (finalized as any).id);
       } catch (e) {
         console.warn('⚠️ invoices.pay (paid_out_of_band) failed', e);
       }
-      // Po zaplatení necháme Stripe poslať e‑mail s PDF
-      try {
-        await (stripe as Stripe).invoices.sendInvoice((finalized as any).id as string);
-      } catch (e) {
-        console.warn('⚠️ invoices.send failed', e);
-      }
-      console.log("🧾 Invoice finalized, paid & sent:", (finalized as any).id, (finalized as any).hosted_invoice_url);
+      console.log("🧾 Invoice finalized, sent & paid:", (finalized as any).id, (finalized as any).hosted_invoice_url);
       try { await (stripe as Stripe).paymentIntents.update(pi.id, { metadata: { ...pi.metadata, invoiced: '1' } }); } catch (e) { console.warn('⚠️ failed to set PI.invoiced=1', e); }
     } catch (err) {
       console.error("❌ Failed to create/send invoice:", err);
