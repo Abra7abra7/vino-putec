@@ -6,6 +6,10 @@ export const config = {
   },
 };
 
+// Ensure Node.js runtime on Vercel (needed for Stripe signature verification)
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {})
   : null;
@@ -42,6 +46,7 @@ export async function POST(req: Request) {
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error("❌ Webhook error:", message);
+    console.error("🧪 Raw headers: content-type=", req.headers.get('content-type'));
     return new Response(`Webhook Error: ${message}`, { status: 400 });
   }
 
