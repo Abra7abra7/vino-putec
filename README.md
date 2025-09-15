@@ -185,3 +185,8 @@ Vino Putec je vydaný pod MIT licenciou.
 Ak nájdete tento projekt užitočný, zvážte podporu našej práce. Vaša podpora nám pomáha udržiavať tento projekt nažive a ďalej ho zlepšovať.
 
 Ďakujeme! ❤️
+
+---
+
+### Administrátor: Operácie a podpora
+- Podrobný operatívny návod pre Stripe a fakturáciu: `docs/OPERATIONS.md`
