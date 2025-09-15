@@ -87,25 +87,7 @@ export default function OrderSummaryClient() {
               localStorage.setItem(sentKey, 'true');
               console.log('📧 Confirmation emails requested after Stripe redirect');
 
-              // Try to create and send Stripe invoice as a fallback if webhook failed
-              if (!alreadyInvoiced) {
-                try {
-                  await fetch('/api/stripe/create-invoice-from-order', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      orderId: parsed.orderId,
-                      paymentIntentId: paymentIntentFromQuery || undefined,
-                      shippingForm: parsed.shippingForm,
-                      billingForm: parsed.billingForm,
-                    }),
-                  });
-                  localStorage.setItem(invoiceKey, 'true');
-                  console.log('🧾 Stripe invoice creation requested after redirect');
-                } catch (invErr) {
-                  console.error('❌ Failed to create Stripe invoice after redirect', invErr);
-                }
-              }
+              // Fallback fakturácia vypnutá – webhook je jediný zdroj pravdy
             } catch (e) {
               console.error('❌ Failed to send confirmation emails after redirect', e);
             }

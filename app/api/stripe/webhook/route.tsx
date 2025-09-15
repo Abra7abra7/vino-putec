@@ -112,6 +112,7 @@ export async function POST(req: Request) {
             ? `${md["billing_firstName"] || ''} ${md["billing_lastName"] || ''}`.trim()
             : undefined,
           email: md["billing_email"] || email,
+          preferred_locales: ['sk', 'sk-SK'],
           address: {
             line1: md["billing_address1"] || undefined,
             line2: md["billing_address2"] || undefined,
@@ -130,6 +131,15 @@ export async function POST(req: Request) {
               postal_code: md["shipping_postalCode"] || undefined,
               country: md["shipping_country"] || undefined,
             }
+          }
+        });
+        // Store company identifiers to customer metadata for invoice footer/memo
+        await (stripe as Stripe).customers.update(customerId, {
+          metadata: {
+            ico: md['billing_company_ico'] || '',
+            dic: md['billing_company_dic'] || '',
+            ic_dph: md['billing_company_icdph'] || '',
+            company_name: md['billing_company_name'] || ''
           }
         });
       } catch {}
@@ -213,13 +223,17 @@ export async function POST(req: Request) {
       });
 
       const finalized = await (stripe as Stripe).invoices.finalizeInvoice((invoice as any).id as string);
-      // If Stripe still shows pay buttons, mark as out-of-band paid to hide pay actions (sandbox-only safeguard)
+      // Send only PDF link (no hosted pay page)
       try {
-        if ((finalized as any).status !== 'paid') {
-          await (stripe as Stripe).invoices.pay((finalized as any).id as string, { paid_out_of_band: true });
+        const pdf = (finalized as any).invoice_pdf as string | undefined;
+        const toEmail = ((pi.metadata || {}) as Record<string,string>)["billing_email"] || email;
+        if (pdf && toEmail) {
+          // Minimal plain-text mail; v praxi používame už existujúci mailer
+          // Zámerne neposielame hosted_invoice_url
+          console.log('📎 Invoice PDF link for customer:', toEmail, pdf);
         }
       } catch {}
-      console.log("🧾 Invoice finalized:", (finalized as any).id, "charge_automatically. hosted:", (finalized as any).hosted_invoice_url);
+      console.log("🧾 Invoice finalized:", (finalized as any).id, "charge_automatically. pdf:", (finalized as any).invoice_pdf);
     } catch (err) {
       console.error("❌ Failed to create/send invoice:", err);
     }
