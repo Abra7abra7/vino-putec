@@ -88,21 +88,7 @@ export default function OrderSummaryClient() {
               console.log('📧 Confirmation emails requested after Stripe redirect');
 
               // Idempotentný ping – ak webhook zlyhá, backend vystaví chýbajúcu faktúru
-              const invoiceKey = `invoiceSent:${parsed.orderId}`;
-              const alreadyInvoiced = localStorage.getItem(invoiceKey);
-              if (!alreadyInvoiced) {
-                try {
-                  await fetch('/api/stripe/create-invoice-from-order', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      orderId: parsed.orderId,
-                      paymentIntentId: paymentIntentFromQuery || undefined,
-                    }),
-                  });
-                  localStorage.setItem(invoiceKey, 'true');
-                } catch {}
-              }
+              // Fallback ping vypnutý – webhook je jediný zdroj vystavenia faktúr
             } catch (e) {
               console.error('❌ Failed to send confirmation emails after redirect', e);
             }

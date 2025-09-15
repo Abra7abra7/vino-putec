@@ -191,16 +191,20 @@ export async function POST(req: Request) {
       // Clean any pending invoice items for this order to avoid duplicates
       try {
         const pendingItems = await (stripe as Stripe).invoiceItems.list({ customer: customerId, limit: 100 });
+        let removed = 0;
         for (const ii of pendingItems.data) {
           // Only delete items not yet attached to an invoice and belonging to this order
           const desc = (ii as any).description as string | undefined;
           if (!ii.invoice && desc && desc.includes(`[${orderId}]`)) {
             await (stripe as Stripe).invoiceItems.del(ii.id);
+            removed++;
           }
         }
+        console.log(`🧹 Removed ${removed} pending invoice_items for order ${orderId}`);
       } catch {}
 
       // Create invoice items for products
+      let createdItems = 0;
       for (const it of items) {
         const amountCents = it.unitPriceCents * it.qty;
         if (amountCents > 0) {
@@ -210,6 +214,7 @@ export async function POST(req: Request) {
             currency,
             description: `[${orderId}] ${it.title} × ${it.qty}`,
           });
+          createdItems++;
         }
       }
 
@@ -221,7 +226,9 @@ export async function POST(req: Request) {
           currency,
           description: `[${orderId}] Doprava: ${shipping.method || ""}`.trim(),
         });
+        createdItems++;
       }
+      console.log(`➕ Created ${createdItems} invoice_items for order ${orderId}`);
 
       // Create and finalize invoice with send_invoice (manual email from Stripe)
       const invoice = await (stripe as Stripe).invoices.create({
