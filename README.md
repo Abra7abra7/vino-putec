@@ -65,16 +65,59 @@ sequenceDiagram
   S-->>API: payment_intent.succeeded
   API->>S: update Customer (billing/shipping z PI.metadata)
   API->>S: create invoice_items (položky + doprava)
-  API->>S: create + finalize Invoice (charge_automatically)
-  API->>S: pay Invoice (hide pay actions)
+  API->>S: create Invoice (send_invoice, pending_invoice_items_behavior: include)
+  API->>S: finalize Invoice
+  API->>S: send Invoice (Stripe odošle e‑mail)
+  API->>S: pay Invoice (paid_out_of_band = true, skryje pay tlačidlá)
   API->>S: update PaymentIntent.metadata.invoiced=1
 
-  alt Fallback (ak webhook mešká)
-    FE->>API: POST /api/stripe/create-invoice-from-order
-    API->>S: vyhľadaj PI → vystav & zaplať faktúru
-    API->>R: e‑mail s odkazom na faktúru
-  end
+  Note over FE,API: Klientsky fallback na faktúru je vypnutý (idempotencia)
 ```
+
+## Stripe integrácia a fakturácia
+
+- **Produkčná Webhook URL**: `https://vino-putec.vercel.app/api/stripe/webhook`
+- **Primárny event**: `payment_intent.succeeded` (ostatné len na debug počas testov)
+- **Lokalizácia**: nastavujeme `customer.preferred_locales: ['sk', 'sk-SK']`
+- **Poradie fakturácie**:
+  1) Z PI.metadata prečítame položky (`item_{i}_title|qty|price_cents`) a dopravu (`shippingMethod`, `shippingPriceCents`)
+  2) Vyčistíme čakajúce `invoice_items` s prefixom `[orderId]`
+  3) Vytvoríme `invoice_items` (položky + doprava)
+  4) `invoices.create` s `collection_method: send_invoice`, `auto_advance: false`, `pending_invoice_items_behavior: 'include'`
+  5) `invoices.finalize`
+  6) `invoices.send` (Stripe odošle e‑mail s faktúrou)
+  7) `invoices.pay(..., { paid_out_of_band: true })` (skryje platobné tlačidlá; v produkcii zostane stav "paid")
+  8) `payment_intent.metadata.invoiced = '1'`
+
+### Idempotencia (bez duplicitných položiek/e‑mailov)
+- Strážime `PaymentIntent.metadata.invoiced === '1'`
+- Hľadáme existujúce faktúry podľa `metadata['orderId']` a popisu
+- Pred vytvorením položiek zmažeme čakajúce `invoice_items` obsahujúce `[orderId]`
+- Klientsky fallback endpoint je vypnutý (len ping/log režim)
+
+### Aké údaje sa prenášajú do Stripe
+- `PaymentIntent.metadata` obsahuje:
+  - `orderId`, `item_{i}_title`, `item_{i}_qty`, `item_{i}_price_cents`
+  - `shippingMethod`, `shippingPriceCents`
+  - billing_* a shipping_* polia (meno, adresa, e‑mail, …)
+  - firemné údaje: `billing_company_name`, `billing_company_ico`, `billing_company_dic`, `billing_company_icdph`
+- Pred faktúrou aktualizujeme `Customer` (meno, e‑mail, adresy, `preferred_locales`, firemné údaje v `customer.metadata`)
+
+### Testovanie (lokálne)
+```bash
+stripe listen --forward-to localhost:3000/api/stripe/webhook
+# nastav STRIPE_WEBHOOK_SECRET podľa výstupu listen
+npm run dev
+```
+V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send invoice email“, „✅ Invoice marked paid …“.
+
+### Produkčný checklist
+- [ ] `STRIPE_SECRET_KEY` v `.env`
+- [ ] `STRIPE_WEBHOOK_SECRET` pre `https://vino-putec.vercel.app/api/stripe/webhook`
+- [ ] Stripe Dashboard → Email settings → povolené odosielanie faktúr (prod)
+- [ ] Webhook events: len `payment_intent.succeeded` (ostatné vypnuté)
+- [ ] Over test: kartová platba → v Stripe „Invoice: paid“, zákazník dostane e‑mail
+
 
 Poznámky:
 - Faktúry: idempotencia podľa `orderId` a `PI.metadata.invoiced` + čistenie čakajúcich `invoice_items`.
