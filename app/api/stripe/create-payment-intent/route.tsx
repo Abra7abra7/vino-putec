@@ -2,6 +2,24 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { getLocalization } from "../../../utils/getLocalization";
 import type { CartItem } from "../../../../types/CartItem";
+// Local type that includes optional company fields used in checkout FormData
+type BillingAddress = {
+  firstName: string;
+  lastName: string;
+  country: string;
+  state: string;
+  city: string;
+  address1: string;
+  address2: string;
+  postalCode: string;
+  phone: string;
+  email: string;
+  isCompany?: boolean;
+  companyName?: string;
+  companyICO?: string;
+  companyDIC?: string;
+  companyICDPH?: string;
+};
 
 const stripe = process.env.STRIPE_SECRET_KEY 
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {})
@@ -13,6 +31,11 @@ interface StripeIntentBody {
   orderId: string;
   cartItems?: CartItem[]; // Mark as optional
   shippingMethodName: string;
+  shippingCost: number;
+  customerEmail?: string;
+  customerName?: string;
+  shippingForm?: BillingAddress;
+  billingForm?: BillingAddress;
 }
 
 export async function POST(req: Request) {
@@ -27,6 +50,11 @@ export async function POST(req: Request) {
       orderId,
       cartItems = [], // fallback to empty array
       shippingMethodName,
+      shippingCost,
+      customerEmail,
+      customerName,
+      shippingForm,
+      billingForm,
     }: StripeIntentBody = await req.json();
 
     const localization = getLocalization();
@@ -36,15 +64,68 @@ export async function POST(req: Request) {
       orderId,
       siteName,
       shippingMethod: shippingMethodName,
+      shippingPriceCents: Math.round((shippingCost || 0) * 100).toString(),
+      shippingCurrency: currency,
     };
 
     if (Array.isArray(cartItems)) {
       cartItems.forEach((item, index) => {
+        const unit = parseFloat(item.SalePrice || item.RegularPrice || "0");
+        const unitCents = Math.round(unit * 100);
+
         metadata[`item_${index + 1}_id`] = item.Slug; // Use Slug as ID
         metadata[`item_${index + 1}_title`] = item.Title;
         metadata[`item_${index + 1}_qty`] = item.quantity.toString();
-        metadata[`item_${index + 1}_price`] = (item.SalePrice || item.RegularPrice).toString();
+        metadata[`item_${index + 1}_price`] = unit.toString();
+        metadata[`item_${index + 1}_price_cents`] = unitCents.toString();
       });
+    }
+
+    // Company / billing metadata
+    if (billingForm) {
+      metadata["billing_is_company"] = (billingForm.isCompany ? "1" : "0");
+      if (billingForm.isCompany) {
+        if (billingForm.companyName) metadata["billing_company_name"] = String(billingForm.companyName);
+        if (billingForm.companyICO) metadata["billing_company_ico"] = String(billingForm.companyICO);
+        if (billingForm.companyDIC) metadata["billing_company_dic"] = String(billingForm.companyDIC);
+        if (billingForm.companyICDPH) metadata["billing_company_icdph"] = String(billingForm.companyICDPH);
+      }
+      // billing address
+      metadata["billing_firstName"] = String(billingForm.firstName || "");
+      metadata["billing_lastName"] = String(billingForm.lastName || "");
+      metadata["billing_address1"] = String(billingForm.address1 || "");
+      metadata["billing_address2"] = String(billingForm.address2 || "");
+      metadata["billing_city"] = String(billingForm.city || "");
+      metadata["billing_state"] = String(billingForm.state || "");
+      metadata["billing_postalCode"] = String(billingForm.postalCode || "");
+      metadata["billing_country"] = String(billingForm.country || "");
+      metadata["billing_phone"] = String(billingForm.phone || "");
+      metadata["billing_email"] = String(billingForm.email || "");
+    }
+
+    // Shipping address
+    if (shippingForm) {
+      metadata["shipping_firstName"] = String(shippingForm.firstName || "");
+      metadata["shipping_lastName"] = String(shippingForm.lastName || "");
+      metadata["shipping_address1"] = String(shippingForm.address1 || "");
+      metadata["shipping_address2"] = String(shippingForm.address2 || "");
+      metadata["shipping_city"] = String(shippingForm.city || "");
+      metadata["shipping_state"] = String(shippingForm.state || "");
+      metadata["shipping_postalCode"] = String(shippingForm.postalCode || "");
+      metadata["shipping_country"] = String(shippingForm.country || "");
+      metadata["shipping_phone"] = String(shippingForm.phone || "");
+      metadata["shipping_email"] = String(shippingForm.email || "");
+    }
+
+    // Ensure we have or create a Customer
+    let customerId: string | undefined = undefined;
+    if (customerEmail) {
+      const existing = await stripe.customers.search({ query: `email:'${customerEmail}'` });
+      if (existing.data.length > 0) customerId = existing.data[0].id;
+      else {
+        const created = await stripe.customers.create({ email: customerEmail, name: customerName });
+        customerId = created.id;
+      }
     }
 
     const paymentIntent = await stripe.paymentIntents.create({
@@ -53,6 +134,8 @@ export async function POST(req: Request) {
       description: `${siteName} Order ${orderId}`,
       metadata,
       automatic_payment_methods: { enabled: true },
+      customer: customerId,
+      setup_future_usage: 'off_session',
     });
 
     return NextResponse.json({ clientSecret: paymentIntent.client_secret });

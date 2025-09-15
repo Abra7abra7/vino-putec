@@ -17,9 +17,10 @@ export default function PaymentMethods() {
   const shippingForm = useAppSelector((state) => state.checkout.shippingForm);
   const billingForm = useAppSelector((state) => state.checkout.billingForm);
   const shippingMethodId = useAppSelector((state) => state.checkout.shippingMethodId);
+  const differentBilling = useAppSelector((state) => state.checkout.differentBilling);
 
   const isFormComplete = () => {
-    const formFields = [
+    const baseFields = [
       shippingForm.firstName,
       shippingForm.lastName,
       shippingForm.country,
@@ -27,16 +28,24 @@ export default function PaymentMethods() {
       shippingForm.postalCode,
       shippingForm.phone,
       shippingForm.email,
-      billingForm.firstName,
-      billingForm.lastName,
-      billingForm.country,
-      billingForm.address1,
-      billingForm.postalCode,
-      billingForm.phone,
-      billingForm.email,
       shippingMethodId,
     ];
-    return formFields.every((field) => field && field.trim() !== "");
+
+    // If billing is different, require billing fields; otherwise don't block payment
+    const billingFields = differentBilling
+      ? [
+          billingForm.firstName,
+          billingForm.lastName,
+          billingForm.country,
+          billingForm.address1,
+          billingForm.postalCode,
+          billingForm.phone,
+          billingForm.email,
+        ]
+      : [];
+
+    const all = [...baseFields, ...billingFields];
+    return all.every((field) => field && field.trim() !== "");
   };
 
   const formReady = isFormComplete();

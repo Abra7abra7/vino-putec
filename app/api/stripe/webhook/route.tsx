@@ -43,17 +43,203 @@ export async function POST(req: Request) {
     return new Response(`Webhook Error: ${message}`, { status: 400 });
   }
 
+  async function ensureCustomerByEmail(email?: string | null, name?: string | null) {
+    if (!email) return null;
+    const existing = await (stripe as Stripe).customers.search({
+      query: `email:'${email}'`,
+    });
+    if (existing.data.length > 0) return existing.data[0];
+    return await (stripe as Stripe).customers.create({
+      email: email || undefined,
+      name: name || undefined,
+    });
+  }
+
+  function parseLineItemsFromMetadata(md: Record<string, string | undefined>) {
+    const items: { title: string; qty: number; unitPriceCents: number }[] = [];
+    const indices = new Set<number>();
+    Object.keys(md || {}).forEach((k) => {
+      const m = k.match(/^item_(\d+)_/);
+      if (m) indices.add(parseInt(m[1], 10));
+    });
+
+    indices.forEach((i) => {
+      const title = md[`item_${i}_title`] || `Položka ${i}`;
+      const qty = parseInt(md[`item_${i}_qty`] || "1", 10) || 1;
+      const unitPriceCents =
+        parseInt(md[`item_${i}_price_cents`] || "0", 10) ||
+        Math.round(parseFloat(md[`item_${i}_price`] || "0") * 100);
+
+      if (qty > 0 && unitPriceCents >= 0) {
+        items.push({ title, qty, unitPriceCents });
+      }
+    });
+
+    const shipping = {
+      method: md["shippingMethod"],
+      priceCents: parseInt(md["shippingPriceCents"] || "0", 10) || 0,
+    };
+
+    return { items, shipping };
+  }
+
+  async function createAndSendInvoiceFromPI(pi: Stripe.PaymentIntent, chargeEmail?: string | null) {
+    try {
+      if ((pi.metadata as any)?.invoiced === '1') {
+        console.log('🧾 PI already invoiced, skipping');
+        return;
+      }
+      let customerId = typeof pi.customer === "string" ? pi.customer : pi.customer?.id;
+      const email = pi.receipt_email || chargeEmail || undefined;
+
+      if (!customerId) {
+        const customer = await ensureCustomerByEmail(email, undefined);
+        if (!customer) {
+          console.warn("⚠️ No email available to create a customer, skipping invoice.");
+          return;
+        }
+        customerId = customer.id;
+      }
+
+      const orderId = pi.metadata?.orderId || "N/A";
+      const { items, shipping } = parseLineItemsFromMetadata((pi.metadata || {}) as Record<string, string>);
+      const currency = pi.currency;
+      // Update customer from PI metadata (billing + shipping) so invoice shows correct info
+      try {
+        const md = (pi.metadata || {}) as Record<string, string>;
+        await (stripe as Stripe).customers.update(customerId, {
+          name: md["billing_firstName"] || md["billing_lastName"]
+            ? `${md["billing_firstName"] || ''} ${md["billing_lastName"] || ''}`.trim()
+            : undefined,
+          email: md["billing_email"] || email,
+          address: {
+            line1: md["billing_address1"] || undefined,
+            line2: md["billing_address2"] || undefined,
+            city: md["billing_city"] || undefined,
+            state: md["billing_state"] || undefined,
+            postal_code: md["billing_postalCode"] || undefined,
+            country: md["billing_country"] || undefined,
+          },
+          shipping: {
+            name: `${md["shipping_firstName"] || ''} ${md["shipping_lastName"] || ''}`.trim(),
+            address: {
+              line1: md["shipping_address1"] || undefined,
+              line2: md["shipping_address2"] || undefined,
+              city: md["shipping_city"] || undefined,
+              state: md["shipping_state"] || undefined,
+              postal_code: md["shipping_postalCode"] || undefined,
+              country: md["shipping_country"] || undefined,
+            }
+          }
+        });
+      } catch {}
+
+      // Determine payment method to charge automatically
+      let defaultPaymentMethodId: string | undefined = undefined;
+      if (typeof pi.payment_method === "string") {
+        defaultPaymentMethodId = pi.payment_method;
+      } else if (pi.latest_charge && typeof pi.latest_charge === "string") {
+        try {
+          const ch = await (stripe as Stripe).charges.retrieve(pi.latest_charge);
+          if (typeof ch.payment_method === "string") defaultPaymentMethodId = ch.payment_method;
+        } catch {}
+      }
+
+      // Attach PM to customer (required for charge_automatically)
+      if (defaultPaymentMethodId) {
+        try {
+          await (stripe as Stripe).paymentMethods.attach(defaultPaymentMethodId, { customer: customerId });
+        } catch (e) {
+          // ignore if already attached or cannot attach
+          console.warn("⚠️ attach payment_method to customer failed/ignored", e);
+        }
+      }
+
+      // Idempotency guard: if invoice for this orderId already exists, skip
+      try {
+        const existingInvoices = await (stripe as Stripe).invoices.search({
+          query: `metadata['orderId']:'${orderId}' OR description:'${orderId}'`
+        });
+        if (existingInvoices.data.length > 0) {
+          console.log("🧾 Invoice already exists for orderId, skipping create:", orderId, existingInvoices.data.map(i => i.id));
+          return;
+        }
+      } catch {}
+
+      // Clean any pending invoice items for this order to avoid duplicates
+      try {
+        const pendingItems = await (stripe as Stripe).invoiceItems.list({ customer: customerId, limit: 100 });
+        for (const ii of pendingItems.data) {
+          // Only delete items not yet attached to an invoice and belonging to this order
+          const desc = (ii as any).description as string | undefined;
+          if (!ii.invoice && desc && desc.includes(`[${orderId}]`)) {
+            await (stripe as Stripe).invoiceItems.del(ii.id);
+          }
+        }
+      } catch {}
+
+      // Create invoice items for products
+      for (const it of items) {
+        const amountCents = it.unitPriceCents * it.qty;
+        if (amountCents > 0) {
+          await (stripe as Stripe).invoiceItems.create({
+            customer: customerId,
+            amount: amountCents,
+            currency,
+            description: `[${orderId}] ${it.title} × ${it.qty}`,
+          });
+        }
+      }
+
+      // Shipping as separate line
+      if (shipping.priceCents > 0) {
+        await (stripe as Stripe).invoiceItems.create({
+          customer: customerId,
+          amount: shipping.priceCents,
+          currency,
+          description: `[${orderId}] Doprava: ${shipping.method || ""}`.trim(),
+        });
+      }
+
+      // Create and finalize invoice with automatic collection
+      const invoice = await (stripe as Stripe).invoices.create({
+        customer: customerId,
+        auto_advance: true,
+        collection_method: "charge_automatically",
+        description: `Objednávka ${orderId}`,
+        metadata: { orderId },
+        default_payment_method: defaultPaymentMethodId,
+        pending_invoice_items_behavior: "include",
+      });
+
+      const finalized = await (stripe as Stripe).invoices.finalizeInvoice((invoice as any).id as string);
+      // If Stripe still shows pay buttons, mark as out-of-band paid to hide pay actions (sandbox-only safeguard)
+      try {
+        if ((finalized as any).status !== 'paid') {
+          await (stripe as Stripe).invoices.pay((finalized as any).id as string, { paid_out_of_band: true });
+        }
+      } catch {}
+      console.log("🧾 Invoice finalized:", (finalized as any).id, "charge_automatically. hosted:", (finalized as any).hosted_invoice_url);
+    } catch (err) {
+      console.error("❌ Failed to create/send invoice:", err);
+    }
+  }
+
   // Handle different event types
   switch (event.type) {
     case "payment_intent.succeeded":
       const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log("✅ Payment succeeded:", paymentIntent.id);
-      console.log("💰 Amount:", paymentIntent.amount, paymentIntent.currency);
-      console.log("📧 Customer email:", paymentIntent.receipt_email);
-      console.log("📋 Order ID:", paymentIntent.metadata?.orderId);
-      
-      // Log successful payment for now
-      console.log("📧 Payment successful - emails will be sent via placeorder API");
+      let chargeEmail: string | null | undefined = undefined;
+      try {
+        if (paymentIntent.latest_charge && typeof paymentIntent.latest_charge === "string") {
+          const charge = await (stripe as Stripe).charges.retrieve(paymentIntent.latest_charge);
+          chargeEmail = charge.billing_details?.email;
+        }
+      } catch (e) {
+        console.warn("⚠️ Unable to retrieve charge for email:", e);
+      }
+
+      await createAndSendInvoiceFromPI(paymentIntent, chargeEmail);
       break;
 
     case "payment_intent.payment_failed":
@@ -75,12 +261,7 @@ export async function POST(req: Request) {
       console.log("📋 Order ID:", actionRequired.metadata?.orderId);
       break;
 
-    case "charge.succeeded":
-      const charge = event.data.object as Stripe.Charge;
-      console.log("💳 Charge succeeded:", charge.id);
-      console.log("💰 Amount:", charge.amount, charge.currency);
-      console.log("📧 Customer email:", charge.billing_details?.email);
-      break;
+    // removed charge.succeeded to avoid double-processing
 
     case "charge.failed":
       const failedCharge = event.data.object as Stripe.Charge;

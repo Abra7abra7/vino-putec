@@ -15,6 +15,11 @@ export interface Address {
   postalCode: string;
   phone: string;
   email: string;
+  isCompany?: boolean;
+  companyName?: string;
+  companyICO?: string;
+  companyDIC?: string;
+  companyICDPH?: string;
 }
 
 export interface ShippingMethod {
@@ -121,6 +126,13 @@ ${body.shippingForm.address1}
 ${body.shippingForm.address2}
 ${body.shippingForm.city}, ${body.shippingForm.state}, ${body.shippingForm.country} ${body.shippingForm.postalCode}
 
+Fakturačné údaje:
+${body.billingForm.firstName} ${body.billingForm.lastName}
+${body.billingForm.address1}
+${body.billingForm.address2}
+${body.billingForm.city}, ${body.billingForm.state}, ${body.billingForm.country} ${body.billingForm.postalCode}
+${body.billingForm.isCompany ? `\nFirma: ${body.billingForm.companyName}\nICO: ${body.billingForm.companyICO || ''}\nDIC: ${body.billingForm.companyDIC || ''}\nIC DPH: ${body.billingForm.companyICDPH || ''}` : ''}
+
 Spôsob doručenia: ${body.shippingMethod.name}
 Spôsob platby: ${body.paymentMethodId.toUpperCase()}
 
@@ -159,6 +171,13 @@ ${body.shippingForm.city}, ${body.shippingForm.state}, ${body.shippingForm.count
 
 Súhrn objednávky:
 ${summary}
+
+Fakturačné údaje:
+${body.billingForm.firstName} ${body.billingForm.lastName}
+${body.billingForm.address1}
+${body.billingForm.address2}
+${body.billingForm.city}, ${body.billingForm.state}, ${body.billingForm.country} ${body.billingForm.postalCode}
+${body.billingForm.isCompany ? `\nFirma: ${body.billingForm.companyName}\nICO: ${body.billingForm.companyICO || ''}\nDIC: ${body.billingForm.companyDIC || ''}\nIC DPH: ${body.billingForm.companyICDPH || ''}` : ''}
 
 Celkom: €${total.toFixed(2)}
 

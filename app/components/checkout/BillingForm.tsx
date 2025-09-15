@@ -21,6 +21,20 @@ export default function BillingForm() {
     }
   }, [billingCountries, billingForm.country, dispatch]);
 
+  // Keep billing same as shipping when differentBilling is false
+  useEffect(() => {
+    if (!differentBilling) {
+      dispatch(setBillingForm({ 
+        ...shippingForm,
+        isCompany: shippingForm.isCompany || false,
+        companyName: shippingForm.companyName || "",
+        companyICO: shippingForm.companyICO || "",
+        companyDIC: shippingForm.companyDIC || "",
+        companyICDPH: shippingForm.companyICDPH || ""
+      }));
+    }
+  }, [differentBilling, shippingForm, dispatch]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value, type } = e.target;
     const checked = (e.target as HTMLInputElement).checked;
@@ -65,7 +79,7 @@ export default function BillingForm() {
             className="w-4 h-4 text-accent bg-background border-accent rounded focus:ring-accent focus:ring-2"
           />
           <label htmlFor="differentBilling" className="ml-2 text-sm font-medium text-foreground">
-            {labels.differentBilling || "Dodacie údaje sú iné ako fakturačné"}
+            {labels.differentBilling || "Fakturačné údaje sú odlišné od dodacích"}
           </label>
         </div>
       </div>

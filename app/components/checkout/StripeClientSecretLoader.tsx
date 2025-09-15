@@ -42,6 +42,11 @@ export default function StripeClientSecretLoader() {
           orderId,
           cartItems,
           shippingMethodName: shippingMethod.name,
+          shippingCost,
+          customerEmail: shippingForm?.email,
+          customerName: `${shippingForm?.firstName || ''} ${shippingForm?.lastName || ''}`.trim(),
+          shippingForm,
+          billingForm,
         }),
       });
 

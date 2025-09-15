@@ -26,6 +26,11 @@ interface Address {
   postalCode: string;
   phone: string;
   email: string;
+  isCompany?: boolean;
+  companyName?: string;
+  companyICO?: string;
+  companyDIC?: string;
+  companyICDPH?: string;
 }
 
 interface ShippingMethod {
@@ -55,6 +60,7 @@ export default function OrderSummaryClient() {
 
   useEffect(() => {
     const orderIdFromQuery = searchParams.get("orderId");
+    const paymentIntentFromQuery = searchParams.get("payment_intent");
     const recent = localStorage.getItem("recentOrder");
   
     if (recent) {
@@ -65,6 +71,46 @@ export default function OrderSummaryClient() {
       // Clear cart ONCE if we're redirected from Stripe with orderId in query,
       if (orderIdFromQuery && parsed.orderId === orderIdFromQuery) {
         dispatch(clearCart());
+        // After successful Stripe redirect, ensure confirmation emails are sent once
+        const sentKey = `emailsSent:${parsed.orderId}`;
+        const invoiceKey = `invoiceSent:${parsed.orderId}`;
+        const alreadySent = localStorage.getItem(sentKey);
+        const alreadyInvoiced = localStorage.getItem(invoiceKey);
+        if (!alreadySent) {
+          (async () => {
+            try {
+              await fetch('/api/checkout/placeorder', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(parsed),
+              });
+              localStorage.setItem(sentKey, 'true');
+              console.log('📧 Confirmation emails requested after Stripe redirect');
+
+              // Try to create and send Stripe invoice as a fallback if webhook failed
+              if (!alreadyInvoiced) {
+                try {
+                  await fetch('/api/stripe/create-invoice-from-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      orderId: parsed.orderId,
+                      paymentIntentId: paymentIntentFromQuery || undefined,
+                      shippingForm: parsed.shippingForm,
+                      billingForm: parsed.billingForm,
+                    }),
+                  });
+                  localStorage.setItem(invoiceKey, 'true');
+                  console.log('🧾 Stripe invoice creation requested after redirect');
+                } catch (invErr) {
+                  console.error('❌ Failed to create Stripe invoice after redirect', invErr);
+                }
+              }
+            } catch (e) {
+              console.error('❌ Failed to send confirmation emails after redirect', e);
+            }
+          })();
+        }
       }
     } else {
       router.push("/kosik");
@@ -90,6 +136,14 @@ export default function OrderSummaryClient() {
     <div className="mb-6">
       <h3 className="font-semibold text-foreground mb-2">{title}</h3>
       <p className="text-sm text-gray-700">{data.firstName} {data.lastName}</p>
+      {data.isCompany && (
+        <div className="mt-1 text-sm text-gray-700">
+          <p><strong>Firma:</strong> {data.companyName}</p>
+          {data.companyICO && <p><strong>IČO:</strong> {data.companyICO}</p>}
+          {data.companyDIC && <p><strong>DIČ:</strong> {data.companyDIC}</p>}
+          {data.companyICDPH && <p><strong>IČ DPH:</strong> {data.companyICDPH}</p>}
+        </div>
+      )}
       <p className="text-sm text-gray-700">{data.address1}</p>
       {data.address2 && <p className="text-sm text-gray-700">{data.address2}</p>}
       <p className="text-sm text-gray-700">{data.city}, {data.state}, {data.country} {data.postalCode}</p>
