@@ -12,6 +12,8 @@ const stripe = process.env.STRIPE_SECRET_KEY
   : null;
 
 export async function POST(req: Request) {
+  console.log("🔔 WEBHOOK CALLED - Stripe event received");
+  
   if (!stripe) {
     return new Response("Stripe not configured", { status: 500 });
   }
@@ -254,6 +256,8 @@ export async function POST(req: Request) {
     }
   }
 
+  console.log(`🔔 Processing event: ${event.type}`);
+  
   // Handle different event types
   switch (event.type) {
     case "payment_intent.succeeded":
