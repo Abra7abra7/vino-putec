@@ -223,31 +223,24 @@ export async function POST(req: Request) {
         });
       }
 
-      // Create and finalize invoice with automatic collection
+      // Create and finalize invoice with send_invoice (manual email from Stripe)
       const invoice = await (stripe as Stripe).invoices.create({
         customer: customerId,
-        auto_advance: true,
-        collection_method: "charge_automatically",
+        auto_advance: false,
+        collection_method: "send_invoice",
+        days_until_due: 7,
         description: `Objednávka ${orderId}`,
         metadata: { orderId },
-        default_payment_method: defaultPaymentMethodId,
         pending_invoice_items_behavior: "include",
       });
 
       const finalized = await (stripe as Stripe).invoices.finalizeInvoice((invoice as any).id as string);
-      // Send only PDF link (no hosted pay page)
       try {
-        const pdf = (finalized as any).invoice_pdf as string | undefined;
-        const toEmail = ((pi.metadata || {}) as Record<string,string>)["billing_email"] || email;
-        if (pdf && toEmail) {
-          await sendEmail({
-            to: toEmail,
-            subject: `Faktúra – objednávka ${(pi.metadata as any)?.orderId || ''}`,
-            text: `Dobrý deň,\n\nVaša faktúra je pripravená na stiahnutie (PDF):\n${pdf}\n\nĎakujeme za nákup.`,
-          });
-        }
-      } catch {}
-      console.log("🧾 Invoice finalized:", (finalized as any).id, "charge_automatically. pdf:", (finalized as any).invoice_pdf);
+        await (stripe as Stripe).invoices.sendInvoice((finalized as any).id as string);
+      } catch (e) {
+        console.warn('⚠️ invoices.send failed', e);
+      }
+      console.log("🧾 Invoice finalized & sent:", (finalized as any).id, (finalized as any).hosted_invoice_url);
       try { await (stripe as Stripe).paymentIntents.update(pi.id, { metadata: { ...pi.metadata, invoiced: '1' } }); } catch (e) { console.warn('⚠️ failed to set PI.invoiced=1', e); }
     } catch (err) {
       console.error("❌ Failed to create/send invoice:", err);
