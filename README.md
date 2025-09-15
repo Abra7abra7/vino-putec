@@ -2,6 +2,41 @@
 
 **Vino Putec** je moderný e-shop pre prémiové vína z rodinnej vinárne vo Vinosadoch. Postavený na Next.js 15, TypeScript, Tailwind CSS a Redux, optimalizovaný pre malé obchody s až 200 produktmi.
 
+## Architektúra a štruktúra projektu
+
+- Framework: Next.js App Router (15.x), TypeScript, TailwindCSS
+- Stav: Redux Toolkit (košík, checkout stav)
+- Úložisko produktov: JSON súbory v `configs/` (bez databázy)
+- Platby: Stripe Payment Element + Webhook (fakturácia)
+- Emaily: Resend (potvrdenia objednávok)
+- Hosting: Vercel (Node runtime pre webhook)
+
+### Strom adresárov (výber)
+- `app/`
+  - `page.tsx` – domovská stránka
+  - `products/` a `vina/` – listing a detail produktov
+  - `pokladna/` – checkout (Shipping/Billing, Stripe element)
+  - `ordersummary/` – zhrnutie po platbe
+  - `api/` – API routy (Stripe, newsletter, kontakty…)
+    - `stripe/create-payment-intent` – vytvorenie PI + prenesenie metadát
+    - `stripe/webhook` – vystavenie a odoslanie faktúry (finalize → send → paid)
+    - `checkout/placeorder` – odoslanie e-mailov cez Resend
+- `configs/` – konfigurácie (wines.json, checkout.json, locale…)
+- `public/` – obrázky (`/vina`, galérie, logá…)
+- `store/` – Redux store, slices
+- `docs/` – operatívny návod (`OPERATIONS.md`)
+
+## Dátový model produktov (JSON)
+
+- Zdroj pravdy: `configs/wines.json`
+- Povinné polia: `Id`, `Name`, `Slug`, `RegularPrice`/`SalePrice`, `Currency`, `Image`, `Category`
+- Obrázky: `public/vina/...` a v JSON sa referencujú cestou `/vina/xyz.jpg`
+
+Pridanie produktu:
+1. Nahraj obrázok do `public/vina/`
+2. Pridaj záznam do `configs/wines.json`
+3. Deploy (Vercel) – produkt sa zobrazí v liste a má detail cez `Slug`
+
 ## O nás
 
 Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktorá sa špecializuje na výrobu prémiových vín. Naša história sa začala s láskou k vinohradníctvu a túžbou vytvoriť vína, ktoré odrážajú jedinečnú chuť našej krajiny.
@@ -119,6 +154,37 @@ V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send 
 - [ ] Over test: kartová platba → v Stripe „Invoice: paid“, zákazník dostane e‑mail
 
 ### Poznámka k e‑mailom (test vs. produkcia)
+## API prehľad
+
+- `GET /api/wines` – načítanie produktov z `configs/wines.json`
+- `POST /api/stripe/create-payment-intent` – vytvorenie PaymentIntent, uloženie metadát (položky košíka, doprava, billing/shipping, firemné údaje)
+- `POST /api/stripe/webhook` – prijíma `payment_intent.succeeded`, vytvára `invoice_items`, `invoices.create` (send_invoice), `finalize`, `send`, `pay(out_of_band)`, nastaví `PI.metadata.invoiced='1'`
+- `POST /api/checkout/placeorder` – po redirecte pošle potvrdenia (Resend)
+
+## Checkout UX
+
+- Platobné metódy sa aktivujú hneď po vyplnení dopravy (billing sa predvyplní ako shipping, ak nie je zvolené „iná fakturačná adresa“)
+- Podpora firmy (IČO/DIČ/IČ DPH) – prenášané do Stripe (Customer + metadata) pre zobrazenie na faktúre
+
+## Nastavenie prostredia
+
+- `.env.local` (lokálne), Vercel Env (produkcia)
+- Kľúče (výber):
+  - `STRIPE_SECRET_KEY` – test/live podľa režimu
+  - `STRIPE_WEBHOOK_SECRET` – podľa Stripe endpointu (test/live)
+  - `RESEND_API_KEY` – pre odosielanie potvrdení
+
+## Nasadenie (Vercel)
+
+- Webhook route beží na Node runtime (nie edge): `export const runtime='nodejs'`
+- Webhook endpoint v Stripe: `https://vino-putec.vercel.app/api/stripe/webhook`, event: `payment_intent.succeeded`
+- Pre produkciu použi LIVE kľúče a LIVE webhook secret
+
+## Prečo nevyužívame Stripe Products teraz
+
+- Zdroj pravdy ostáva v JSON kvôli kontrole vizuálu, rýchlosti a jednoduchosti
+- V budúcnosti je možné doplniť paralelne Stripe Products/Prices pre reporting/Tax bez zmeny UI (voliteľné)
+
 - V test móde Stripe e‑maily často neodosiela, pokiaľ nie je zapnuté „Send emails in test mode“ v Settings → Email → Customer emails.
 - V produkcii sa e‑maily odosielajú po `invoices.send` automaticky (po nasadení LIVE kľúčov a LIVE webhooku).
 
