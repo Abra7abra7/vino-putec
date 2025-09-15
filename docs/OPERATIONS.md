@@ -30,6 +30,10 @@ V logu hľadaj: „➕ Created N invoice_items“, „📧 Stripe will send invo
 - [ ] Stripe Email settings → Invoice emails zapnuté
 - [ ] Test kartovej platby: faktúra „paid“, e‑mail od Stripe
 
+## Email behavior (test vs. prod)
+- Test mode: zapni „Send emails in test mode“, inak e‑maily nemusia odchádzať
+- Prod mode: e‑maily odchádzajú po `invoices.send` automaticky
+
 ## Troubleshooting
 - Faktúra prázdna: skontroluj log „➕ Created N invoice_items“ (N>0)
 - 2× faktúra/e‑mail: skontroluj `PI.metadata.invoiced` a duplicitu webhookov

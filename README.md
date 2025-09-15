@@ -118,6 +118,10 @@ V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send 
 - [ ] Webhook events: len `payment_intent.succeeded` (ostatné vypnuté)
 - [ ] Over test: kartová platba → v Stripe „Invoice: paid“, zákazník dostane e‑mail
 
+### Poznámka k e‑mailom (test vs. produkcia)
+- V test móde Stripe e‑maily často neodosiela, pokiaľ nie je zapnuté „Send emails in test mode“ v Settings → Email → Customer emails.
+- V produkcii sa e‑maily odosielajú po `invoices.send` automaticky (po nasadení LIVE kľúčov a LIVE webhooku).
+
 
 Poznámky:
 - Faktúry: idempotencia podľa `orderId` a `PI.metadata.invoiced` + čistenie čakajúcich `invoice_items`.
