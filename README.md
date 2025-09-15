@@ -36,6 +36,51 @@ Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktor�
   - **Dobierka** – Platba pri dodaní
 - **Hosting**: Vercel alebo akýkoľvek statický hosting
 
+## Nákupný proces – sekvenčný diagram
+
+```mermaid
+sequenceDiagram
+  autonumber
+  actor U as Užívateľ
+  participant FE as Next.js (frontend)
+  participant API as Next.js API routes
+  participant S as Stripe
+  participant R as Resend
+
+  U->>FE: Vyplní dodacie/fakturačné údaje
+  FE->>API: POST /api/stripe/create-payment-intent
+  API->>S: Vytvor/nahraj Customer + PaymentIntent (metadata)
+  S-->>API: client_secret
+  API-->>FE: client_secret
+
+  U->>FE: Potvrdí platbu (Stripe PaymentElement)
+  FE->>S: confirmPayment
+  S-->>FE: redirect /ordersummary?payment_intent=…
+
+  FE->>API: POST /api/checkout/placeorder (odoslať e‑maily)
+  API->>R: send admin + customer email
+  R-->>API: OK
+
+  Note over S,API: Webhook
+  S-->>API: payment_intent.succeeded
+  API->>S: update Customer (billing/shipping z PI.metadata)
+  API->>S: create invoice_items (položky + doprava)
+  API->>S: create + finalize Invoice (charge_automatically)
+  API->>S: pay Invoice (hide pay actions)
+  API->>S: update PaymentIntent.metadata.invoiced=1
+
+  alt Fallback (ak webhook mešká)
+    FE->>API: POST /api/stripe/create-invoice-from-order
+    API->>S: vyhľadaj PI → vystav & zaplať faktúru
+    API->>R: e‑mail s odkazom na faktúru
+  end
+```
+
+Poznámky:
+- Faktúry: idempotencia podľa `orderId` a `PI.metadata.invoiced` + čistenie čakajúcich `invoice_items`.
+- E‑maily: odosielané cez Resend (potvrdenia) a fallback e‑mail s odkazom na faktúru.
+- Zber dát: billing/shipping + firma/IČO/DIČ/IČ DPH → PI.metadata a Stripe Customer (kvôli zobrazeniu na faktúre).
+
 ## Spustenie
 
 ### Klonovanie repozitára
