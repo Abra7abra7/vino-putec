@@ -247,7 +247,7 @@ export async function POST(req: Request) {
       // Najprv pošli e‑mail, aby Stripe odoslal faktúru (v test/prod). Potom označ ako paid.
       try {
         await (stripe as Stripe).invoices.sendInvoice(finalized.id as string);
-        console.log("📧 Stripe will send invoice email:", (finalized as any).id);
+        console.log("📧 Stripe will send invoice email:", finalized.id);
       } catch (e) {
         console.warn('⚠️ invoices.send failed', e);
       }
