@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { Address, sendEmail } from "../../../utils/emailUtilities";
+import { sendEmail } from "../../../utils/emailUtilities";
 
 const stripe = process.env.STRIPE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_SECRET_KEY, {})
@@ -58,7 +58,8 @@ async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: st
   }
 
   // Idempotency: if already invoiced or invoice exists, skip
-  if ((pi.metadata as any)?.invoiced === '1') return { status: 'invoiced' };
+  const piMetadata = (pi.metadata ?? {}) as Record<string, string | undefined>;
+  if (piMetadata.invoiced === '1') return { status: 'invoiced' };
   const existing = await stripe.invoices.search({ query: `metadata['orderId']:'${orderId}'` });
   if (existing.data.length > 0) return { status: 'exists', invoiceId: existing.data[0].id };
 
@@ -115,7 +116,7 @@ async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: st
   try {
     const pending = await stripe.invoiceItems.list({ customer: customerId, limit: 100 });
     for (const ii of pending.data) {
-      const desc = (ii as any).description as string | undefined;
+      const desc = (ii.description ?? undefined) as string | undefined;
       if (!ii.invoice && desc && desc.includes(`[${orderId}]`)) {
         await stripe.invoiceItems.del(ii.id);
       }
@@ -140,7 +141,7 @@ async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: st
     await stripe.invoiceItems.create({ customer: customerId, amount: shippingCents, currency, description: `[${orderId}] Doprava: ${md['shippingMethod'] || ''}`.trim() });
   }
 
-  const invoice = await stripe.invoices.create({
+  const invoice: Stripe.Invoice = await stripe.invoices.create({
     customer: customerId,
     auto_advance: true,
     collection_method: 'charge_automatically',
@@ -148,7 +149,7 @@ async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: st
     metadata: { orderId },
     default_payment_method: defaultPm,
   });
-  const finalized = await stripe.invoices.finalizeInvoice((invoice as any).id as string);
+  const finalized: Stripe.Invoice = await stripe.invoices.finalizeInvoice(invoice.id as string);
 
   try {
     const pdf = (finalized as any).invoice_pdf as string | undefined;
@@ -161,8 +162,8 @@ async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: st
     }
   } catch {}
 
-  try { await stripe.paymentIntents.update(pi.id, { metadata: { ...pi.metadata, invoiced: '1' } }); } catch {}
-  return { status: 'created', invoiceId: (finalized as any).id };
+  try { await stripe.paymentIntents.update(pi.id, { metadata: { ...piMetadata, invoiced: '1' } as Stripe.MetadataParam }); } catch {}
+  return { status: 'created', invoiceId: finalized.id };
 }
 
 export async function POST(req: NextRequest) {

@@ -1,5 +1,4 @@
 import Stripe from "stripe";
-import { sendEmail } from "../../../utils/emailUtilities";
 
 export const config = {
   api: {
@@ -88,7 +87,8 @@ export async function POST(req: Request) {
 
   async function createAndSendInvoiceFromPI(pi: Stripe.PaymentIntent, chargeEmail?: string | null) {
     try {
-      if ((pi.metadata as any)?.invoiced === '1') {
+      const piMetadata = (pi.metadata ?? {}) as Record<string, string | undefined>;
+      if (piMetadata.invoiced === '1') {
         console.log('🧾 PI already invoiced, skipping');
         return;
       }
@@ -104,8 +104,8 @@ export async function POST(req: Request) {
         customerId = customer.id;
       }
 
-      const orderId = pi.metadata?.orderId || "N/A";
-      const { items, shipping } = parseLineItemsFromMetadata((pi.metadata || {}) as Record<string, string>);
+      const orderId = piMetadata.orderId || "N/A";
+      const { items, shipping } = parseLineItemsFromMetadata((piMetadata || {}) as Record<string, string>);
       const currency = pi.currency;
       // Update customer from PI metadata (billing + shipping) so invoice shows correct info
       try {
@@ -188,7 +188,7 @@ export async function POST(req: Request) {
           if (invoiceExists) console.log('🧾 Invoice already exists for orderId (list)', orderId);
         } catch (e) { console.warn('⚠️ invoices.list failed:', e); }
       }
-      if (invoiceExists || (pi.metadata as any)?.invoiced === '1') return;
+      if (invoiceExists || piMetadata.invoiced === '1') return;
 
       // Clean any pending invoice items for this order to avoid duplicates
       try {
@@ -196,7 +196,7 @@ export async function POST(req: Request) {
         let removed = 0;
         for (const ii of pendingItems.data) {
           // Only delete items not yet attached to an invoice and belonging to this order
-          const desc = (ii as any).description as string | undefined;
+          const desc = (ii.description ?? undefined) as string | undefined;
           if (!ii.invoice && desc && desc.includes(`[${orderId}]`)) {
             await (stripe as Stripe).invoiceItems.del(ii.id);
             removed++;
@@ -233,7 +233,7 @@ export async function POST(req: Request) {
       console.log(`➕ Created ${createdItems} invoice_items for order ${orderId}`);
 
       // Create and finalize invoice with send_invoice (manual email from Stripe)
-      const invoice = await (stripe as Stripe).invoices.create({
+      const invoice: Stripe.Invoice = await (stripe as Stripe).invoices.create({
         customer: customerId,
         auto_advance: false,
         collection_method: "send_invoice",
@@ -243,23 +243,23 @@ export async function POST(req: Request) {
         pending_invoice_items_behavior: "include",
       });
 
-      const finalized = await (stripe as Stripe).invoices.finalizeInvoice((invoice as any).id as string);
+      const finalized: Stripe.Invoice = await (stripe as Stripe).invoices.finalizeInvoice(invoice.id as string);
       // Najprv pošli e‑mail, aby Stripe odoslal faktúru (v test/prod). Potom označ ako paid.
       try {
-        await (stripe as Stripe).invoices.sendInvoice((finalized as any).id as string);
+        await (stripe as Stripe).invoices.sendInvoice(finalized.id as string);
         console.log("📧 Stripe will send invoice email:", (finalized as any).id);
       } catch (e) {
         console.warn('⚠️ invoices.send failed', e);
       }
       // Označ ako paid (out of band), aby sa skryli platobné tlačidlá
       try {
-        await (stripe as Stripe).invoices.pay((finalized as any).id as string, { paid_out_of_band: true });
-        console.log("✅ Invoice marked paid (out of band):", (finalized as any).id);
+        await (stripe as Stripe).invoices.pay(finalized.id as string, { paid_out_of_band: true });
+        console.log("✅ Invoice marked paid (out of band):", finalized.id);
       } catch (e) {
         console.warn('⚠️ invoices.pay (paid_out_of_band) failed', e);
       }
-      console.log("🧾 Invoice finalized, sent & paid:", (finalized as any).id, (finalized as any).hosted_invoice_url);
-      try { await (stripe as Stripe).paymentIntents.update(pi.id, { metadata: { ...pi.metadata, invoiced: '1' } }); } catch (e) { console.warn('⚠️ failed to set PI.invoiced=1', e); }
+      console.log("🧾 Invoice finalized, sent & paid:", finalized.id, finalized.hosted_invoice_url);
+      try { await (stripe as Stripe).paymentIntents.update(pi.id, { metadata: { ...piMetadata, invoiced: '1' } as Stripe.MetadataParam }); } catch (e) { console.warn('⚠️ failed to set PI.invoiced=1', e); }
     } catch (err) {
       console.error("❌ Failed to create/send invoice:", err);
     }
