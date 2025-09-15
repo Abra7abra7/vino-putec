@@ -167,15 +167,26 @@ export async function POST(req: Request) {
       }
 
       // Idempotency guard: if invoice for this orderId already exists, skip
+      let invoiceExists = false;
       try {
         const existingInvoices = await (stripe as Stripe).invoices.search({
           query: `metadata['orderId']:'${orderId}' OR description:'${orderId}'`
         });
-        if (existingInvoices.data.length > 0) {
-          console.log("🧾 Invoice already exists for orderId, skipping create:", orderId, existingInvoices.data.map(i => i.id));
-          return;
+        invoiceExists = existingInvoices.data.length > 0;
+        if (invoiceExists) {
+          console.log("🧾 Invoice already exists for orderId (search)", orderId, existingInvoices.data.map(i => i.id));
         }
-      } catch {}
+      } catch (e) {
+        console.warn('⚠️ invoices.search failed, will fallback to list:', e);
+      }
+      if (!invoiceExists) {
+        try {
+          const listed = await (stripe as Stripe).invoices.list({ customer: customerId, limit: 10 });
+          invoiceExists = listed.data.some(inv => (inv.metadata as any)?.orderId === orderId || inv.description?.includes(orderId));
+          if (invoiceExists) console.log('🧾 Invoice already exists for orderId (list)', orderId);
+        } catch (e) { console.warn('⚠️ invoices.list failed:', e); }
+      }
+      if (invoiceExists || (pi.metadata as any)?.invoiced === '1') return;
 
       // Clean any pending invoice items for this order to avoid duplicates
       try {
@@ -237,6 +248,7 @@ export async function POST(req: Request) {
         }
       } catch {}
       console.log("🧾 Invoice finalized:", (finalized as any).id, "charge_automatically. pdf:", (finalized as any).invoice_pdf);
+      try { await (stripe as Stripe).paymentIntents.update(pi.id, { metadata: { ...pi.metadata, invoiced: '1' } }); } catch (e) { console.warn('⚠️ failed to set PI.invoiced=1', e); }
     } catch (err) {
       console.error("❌ Failed to create/send invoice:", err);
     }
