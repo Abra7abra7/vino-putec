@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { sendEmail } from "../../../utils/emailUtilities";
 
 export const config = {
   api: {
@@ -228,9 +229,11 @@ export async function POST(req: Request) {
         const pdf = (finalized as any).invoice_pdf as string | undefined;
         const toEmail = ((pi.metadata || {}) as Record<string,string>)["billing_email"] || email;
         if (pdf && toEmail) {
-          // Minimal plain-text mail; v praxi používame už existujúci mailer
-          // Zámerne neposielame hosted_invoice_url
-          console.log('📎 Invoice PDF link for customer:', toEmail, pdf);
+          await sendEmail({
+            to: toEmail,
+            subject: `Faktúra – objednávka ${(pi.metadata as any)?.orderId || ''}`,
+            text: `Dobrý deň,\n\nVaša faktúra je pripravená na stiahnutie (PDF):\n${pdf}\n\nĎakujeme za nákup.`,
+          });
         }
       } catch {}
       console.log("🧾 Invoice finalized:", (finalized as any).id, "charge_automatically. pdf:", (finalized as any).invoice_pdf);
