@@ -16,34 +16,6 @@ async function ensureCustomerByEmail(
   return await stripe.customers.create({ email: email || undefined, name: name || undefined });
 }
 
-function parseLineItemsFromMetadata(md: Record<string, string | undefined>) {
-  const items: { title: string; qty: number; unitPriceCents: number }[] = [];
-  const indices = new Set<number>();
-  Object.keys(md || {}).forEach((k) => {
-    const m = k.match(/^item_(\d+)_/);
-    if (m) indices.add(parseInt(m[1], 10));
-  });
-
-  indices.forEach((i) => {
-    const title = md[`item_${i}_title`] || `Položka ${i}`;
-    const qty = parseInt(md[`item_${i}_qty`] || "1", 10) || 1;
-    const unitPriceCents =
-      parseInt(md[`item_${i}_price_cents`] || "0", 10) ||
-      Math.round(parseFloat(md[`item_${i}_price`] || "0") * 100);
-
-    if (qty > 0 && unitPriceCents >= 0) {
-      items.push({ title, qty, unitPriceCents });
-    }
-  });
-
-  const shipping = {
-    method: md["shippingMethod"],
-    priceCents: parseInt(md["shippingPriceCents"] || "0", 10) || 0,
-  };
-
-  return { items, shipping };
-}
-
 async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: string | null) {
   if (!stripe) return { status: 'error' };
   const md = (pi.metadata || {}) as Record<string, string>;
@@ -152,7 +124,7 @@ async function createInvoiceIfMissing(pi: Stripe.PaymentIntent, chargeEmail?: st
   const finalized: Stripe.Invoice = await stripe.invoices.finalizeInvoice(invoice.id as string);
 
   try {
-    const pdf = (finalized as any).invoice_pdf as string | undefined;
+    const pdf = (finalized as unknown as Stripe.Invoice).invoice_pdf as string | undefined;
     if (pdf && email) {
       await sendEmail({
         to: email,

@@ -184,7 +184,7 @@ export async function POST(req: Request) {
       if (!invoiceExists) {
         try {
           const listed = await (stripe as Stripe).invoices.list({ customer: customerId, limit: 10 });
-          invoiceExists = listed.data.some(inv => (inv.metadata as any)?.orderId === orderId || inv.description?.includes(orderId));
+          invoiceExists = listed.data.some((inv: Stripe.Invoice) => ((inv.metadata ?? {}) as Record<string, string | undefined>).orderId === orderId || (inv.description ?? '').includes(orderId));
           if (invoiceExists) console.log('🧾 Invoice already exists for orderId (list)', orderId);
         } catch (e) { console.warn('⚠️ invoices.list failed:', e); }
       }
