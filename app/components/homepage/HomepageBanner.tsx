@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+const MotionDiv = dynamic(() => import("framer-motion").then(m => m.motion.div), { ssr: false });
+const MotionH2 = dynamic(() => import("framer-motion").then(m => m.motion.h2), { ssr: false });
+const MotionP = dynamic(() => import("framer-motion").then(m => m.motion.p), { ssr: false });
 import { useLocalization } from "../../context/LocalizationContext";
 
 export default function HomepageBanner() {
@@ -23,13 +26,13 @@ export default function HomepageBanner() {
         backgroundRepeat: "no-repeat",
       }}
     >
-      <motion.div
+      <MotionDiv
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         className="max-w-4xl mx-auto px-6 flex flex-col items-center"
       >
-        <motion.h2
+        <MotionH2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
@@ -37,9 +40,9 @@ export default function HomepageBanner() {
           style={{ color: 'white' }}
         >
           Rodinné vinárstvo Putec
-        </motion.h2>
+        </MotionH2>
         
-        <motion.p
+        <MotionP
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -47,10 +50,10 @@ export default function HomepageBanner() {
           style={{ color: 'white' }}
         >
           Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku
-        </motion.p>
+        </MotionP>
 
         {/* Action Buttons */}
-        <motion.div
+        <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
@@ -76,8 +79,8 @@ export default function HomepageBanner() {
           >
             Degustácie
           </Link>
-        </motion.div>
-      </motion.div>
+        </MotionDiv>
+      </MotionDiv>
     </section>
   );
 }

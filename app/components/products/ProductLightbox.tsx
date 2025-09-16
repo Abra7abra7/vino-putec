@@ -32,7 +32,7 @@ export default function ProductLightbox({ images }: ProductLightboxProps) {
       >
         <Image
           src={images[0]}
-          alt="Main Product Image"
+          alt={`Hlavný obrázok produktu`}
           width={800}
           height={600}
           sizes="(max-width: 768px) 100vw, 50vw"
@@ -53,7 +53,7 @@ export default function ProductLightbox({ images }: ProductLightboxProps) {
           >
             <Image
               src={image}
-              alt={`Gallery image ${index + 1}`}
+              alt={`Galéria – obrázok ${index + 1}`}
               width={96}
               height={96}
               className="object-contain w-full h-full"

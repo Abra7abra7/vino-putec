@@ -25,7 +25,7 @@ export default function Hero({
           src={backgroundImageUrl}
           alt={title}
           fill
-          sizes="100vw"
+          sizes="(max-width: 480px) 100vw, (max-width: 768px) 100vw, 90vw"
           className="object-cover"
           style={{ objectPosition: 'center 25%' }}
           priority

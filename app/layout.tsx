@@ -1,4 +1,4 @@
-import { Poppins, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -6,24 +6,18 @@ import CookiesBanner from "./components/CookiesBanner";
 import { LocalizationProvider } from "./context/LocalizationContext";
 import type { Metadata } from "next";
 
-// Load two fonts: one for headings, one for body
-const poppins = Poppins({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-poppins",
-  weight: ["400", "700"], // normal + bold, for headings
-});
-
+// Load single font family for whole site (lighter payload)
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
-  weight: ["300", "400", "500", "700"], // typical body range
+  weight: ["400", "600"],
 });
 
 export const metadata: Metadata = {
   title: "Vino Putec - Rodinné vinárstvo vo Vinosadoch",
   description: "Prémiové vína z Vinosád, ubytovanie a degustácie vína v Pezinku",
+  metadataBase: new URL("https://vino-putec-web.vercel.app"),
   icons: {
     icon: [
       { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
@@ -59,7 +53,6 @@ export default function RootLayout({
       <body
         className={`
           antialiased
-          ${poppins.variable}
           ${inter.variable}
         `}
       >
