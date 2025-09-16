@@ -2,7 +2,7 @@
 
 **Vino Putec** je moderný e-shop pre prémiové vína z rodinnej vinárne vo Vinosadoch. Postavený na Next.js 15, TypeScript, Tailwind CSS a Redux, optimalizovaný pre malé obchody s až 200 produktmi.
 
-## Architektúra a štruktúra projektu
+## Architektúra a štruktúra projektu (aktualizované 2025-09)
 
 - Framework: Next.js App Router (15.x), TypeScript, TailwindCSS
 - Stav: Redux Toolkit (košík, checkout stav)
@@ -10,6 +10,15 @@
 - Platby: Stripe Payment Element + Webhook (fakturácia)
 - Emaily: Resend (potvrdenia objednávok)
 - Hosting: Vercel (Node runtime pre webhook)
+
+### Novinky (SEO, výkon, obsah)
+- Výkon: optimalizované obrázky (`npm run images:optimize`), LCP/CLS fix (hero cez `next/image` s `priority`, `sizes`), lazy-load pod‑fold sekcií, `prefers-reduced-motion`.
+- SEO: JSON‑LD pre `Organization`, `Winery (LocalBusiness)`, `WebSite`, `BreadcrumbList`, `ItemList`, `Product` (detail vína/degustácie) + canonical/OG.
+- Landing stránky:
+  - `degustacie/pezinok` – Degustácie Pezinok & Vinosady
+  - `ubytovanie/vinosady` – Ubytovanie Vinosady
+- Interné prelinkovanie: odkazy na landingy v menu, footeri, homepage a `o-nas`.
+- UI dôveryhodnosť: rating badge (5.0/31) v hero a na kartách/detailoch.
 
 ### Strom adresárov (výber)
 - `app/`
@@ -21,6 +30,8 @@
     - `stripe/create-payment-intent` – vytvorenie PI + prenesenie metadát
     - `stripe/webhook` – vystavenie a odoslanie faktúry (finalize → send → paid)
     - `checkout/placeorder` – odoslanie e-mailov cez Resend
+  - `degustacie/pezinok` – landing pre lokálne dopyty
+  - `ubytovanie/vinosady` – landing pre ubytovanie
 - `configs/` – konfigurácie (wines.json, checkout.json, locale…)
 - `public/` – obrázky (`/vina`, galérie, logá…)
 - `store/` – Redux store, slices
@@ -98,8 +109,20 @@ Poznámky k komponentom:
 - `Hero` má `sizes="100vw"` a používa `fill`.
 - Karty produktov používajú validné `width/height` + `sizes` pre responzívne načítanie.
 
-Build hook:
-- pred `next build` sa automaticky spustí `prebuild` (optimalizácia obrázkov), aby sa do buildu dostali už optimalizované assety.
+Poznámka: odporúča sa spúšťať pred produkčným buildom, aby sa do buildu dostali už optimalizované assety.
+
+## Next/Image konfigurácia
+- Používa sa `images.remotePatterns` (namiesto deprecated `images.domains`) pre: `localhost`, `vino-putec-web.vercel.app`, `vinoputec.sk`.
+
+## JSON‑LD schémy
+- V `app/layout.tsx`: `Winery (LocalBusiness)`, `Organization`, `WebSite` + `aggregateRating` (5.0/31)
+- Listingy (`/vina`, `/degustacie`): `BreadcrumbList`, `ItemList`
+- Detaily (`/vina/[slug]`, `/degustacie/[slug]`): `Product` + `Offer` + `BreadcrumbList`
+
+## Landingy a interné linky
+- Landingy: `degustacie/pezinok`, `ubytovanie/vinosady`
+- Menu a Footer doplnené o priame odkazy; homepage CTA smerujú na landingy
+- `sitemap.ts` obsahuje nové cesty; po deploy požiadať o indexáciu v GSC
 
 ## Nákupný proces – sekvenčný diagram
 

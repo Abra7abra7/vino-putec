@@ -73,10 +73,10 @@ export default async function AccommodationPreview() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/ubytovanie"
+                href="/ubytovanie/vinosady"
                 className="bg-accent hover:bg-accent-dark text-foreground px-6 py-3 rounded-lg font-semibold transition-colors text-center"
               >
-                Rezervovať ubytovanie
+                Ubytovanie Vinosady
               </Link>
               <Link
                 href="/ubytovanie"

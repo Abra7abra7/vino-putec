@@ -8,6 +8,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/slices/cartSlice";
 import { useLocalization } from "../../context/LocalizationContext";
 import { showMiniCart } from "../../utils/MiniCartController";
+import RatingBadge from "../RatingBadge";
 
 interface ProductCardProps {
   product: Product;
@@ -46,6 +47,9 @@ export default function ProductCard({ product }: ProductCardProps) {
 
       {/* Product Info */}
       <div className="p-6">
+        <div className="mb-2">
+          <RatingBadge ratingValue={5} reviewCount={31} />
+        </div>
         <h3 className="text-xl font-semibold text-foreground truncate">
           <Link href={`/vina/${product.Slug}`} className="hover:text-foreground">
             {product.Title}

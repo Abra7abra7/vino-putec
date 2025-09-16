@@ -44,10 +44,39 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
+              "@type": "Winery",
+              "name": "Vino Putec",
+              "url": "https://vinoputec.sk",
+              "image": "https://vinoputec.sk/putec-logo.jpg",
+              "aggregateRating": {"@type":"AggregateRating","ratingValue": 5, "reviewCount": 31},
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Pezinská 154",
+                "addressLocality": "Vinosady",
+                "postalCode": "902 01",
+                "addressCountry": "SK"
+              },
+              "telephone": "+421 903465666",
+              "priceRange": "€€",
+              "servesCuisine": "Slovak",
+              "sameAs": [
+                "https://www.facebook.com/vinoputec",
+                "https://www.instagram.com/vinoputec/",
+                "https://www.youtube.com/channel/UC4jSLd6VZSsxC34-lS7fFMw"
+              ]
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Vino Putec",
               "url": "https://vinoputec.sk",
               "logo": "https://vinoputec.sk/putec-logo.jpg",
+              "aggregateRating": {"@type":"AggregateRating","ratingValue": 5, "reviewCount": 31},
               "sameAs": [
                 "https://www.facebook.com/vinoputec",
                 "https://www.instagram.com/vinoputec/",

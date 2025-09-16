@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import ReservationForm from "../../components/degustacie/ReservationForm";
 import { getCurrencySymbol } from "../../utils/getCurrencySymbol";
+import Script from "next/script";
 
 // Generate metadata for each degustation
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -68,8 +69,38 @@ export default async function DegustationPage({ params }: { params: Promise<{ sl
 
   return (
     <section className="py-12 bg-background">
+      <Script id="ld-json-breadcrumbs-degust-detail" type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+            {"@type":"ListItem","position":1,"name":"Domov","item":"https://vinoputec.sk/"},
+            {"@type":"ListItem","position":2,"name":"Degustácie","item":"https://vinoputec.sk/degustacie"},
+            {"@type":"ListItem","position":3,"name": product.Title, "item": `https://vinoputec.sk/degustacie/${product.Slug}`}
+          ] }) }} />
+      <Script id="ld-json-product-degust" type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context":"https://schema.org","@type":"Product",
+          "name": product.Title,
+          "image": [product.FeatureImageURL, ...(product.ProductImageGallery||[])],
+          "description": product.ShortDescription,
+          "sku": product.ID,
+          "brand": {"@type":"Brand","name":"Vino Putec"},
+          "offers": {
+            "@type":"Offer",
+            "priceCurrency": product.Currency,
+            "price": product.SalePrice || product.RegularPrice,
+            "availability":"https://schema.org/InStock",
+            "url": `https://vinoputec.sk/degustacie/${product.Slug}`
+          }
+        }) }} />
       <div className="container mx-auto px-4">
         <h1 className="text-3xl font-bold text-center text-foreground mb-8">{product.Title}</h1>
+        <div className="flex justify-center mb-6">
+          <span className="inline-flex items-center gap-2 text-sm text-foreground">
+            <span aria-hidden>★</span>
+            <span className="font-semibold">5.0</span>
+            <span className="opacity-70">(31 recenzií)</span>
+          </span>
+        </div>
         
         <div className="grid mt-2 grid-cols-1 md:grid-cols-2 gap-6 mt-6">
           {/* LEFT COLUMN: IMAGES */}

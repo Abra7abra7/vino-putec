@@ -3,6 +3,8 @@ import DegustationProducts from "./DegustationProducts";
 import Hero from "../components/Hero";
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
+import RatingBadge from "../components/RatingBadge";
 
 export const metadata: Metadata = {
   title: "Degustácie Vinosady | Firemné akcie Pezinok | Ochutnávky vína | Víno Pútec",
@@ -30,6 +32,21 @@ export const metadata: Metadata = {
 export default function DegustaciePage() {
   return (
     <div className="min-h-screen bg-background">
+      <Script id="ld-json-breadcrumbs-degust" type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {"@type":"ListItem","position":1,"name":"Domov","item":"https://vinoputec.sk/"},
+            {"@type":"ListItem","position":2,"name":"Degustácie","item":"https://vinoputec.sk/degustacie"}
+          ]
+        }) }} />
+      <Script id="ld-json-itemlist-degust" type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({
+          "@context":"https://schema.org",
+          "@type":"ItemList",
+          "itemListElement": []
+        }) }} />
       <Hero
         title="Degustácie vína"
         subtitle="Nezabudnuteľné zážitky s našimi prémiovými vínami v srdci Malých Karpát"
@@ -38,6 +55,9 @@ export default function DegustaciePage() {
         secondaryCta={{ label: "Galéria", href: "/galeria/degustacie" }}
         heightClass="h-[60vh]"
       />
+      <div className="container mx-auto px-6 -mt-10">
+        <RatingBadge ratingValue={5} reviewCount={31} />
+      </div>
 
       {/* Main Content */}
       <section className="py-20 bg-background">

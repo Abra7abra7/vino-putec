@@ -8,6 +8,7 @@ const MotionH1 = dynamic(() => import("framer-motion").then(m => m.motion.h1), {
 const MotionP = dynamic(() => import("framer-motion").then(m => m.motion.p), { ssr: false });
 import { useEffect, useState } from "react";
 import { useLocalization } from "../../context/LocalizationContext";
+import RatingBadge from "../RatingBadge";
 
 export default function HomepageBanner() {
   const { homepage } = useLocalization(); // Get homepage data
@@ -53,6 +54,7 @@ export default function HomepageBanner() {
         transition={reduceMotion ? { duration: 0 } : { duration: 0.8, ease: "easeOut" }}
         className="relative max-w-4xl mx-auto px-6 py-40 md:py-60 lg:py-80 flex flex-col items-center"
       >
+        <RatingBadge ratingValue={5} reviewCount={31} className="mb-4" />
         <MotionH1
           initial={reduceMotion ? undefined : { opacity: 0, y: -20 }}
           animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}

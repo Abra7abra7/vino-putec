@@ -4,7 +4,11 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['localhost', 'vino-putec-web.vercel.app', 'vinoputec.sk'],
+    remotePatterns: [
+      { protocol: 'http', hostname: 'localhost' },
+      { protocol: 'https', hostname: 'vino-putec-web.vercel.app' },
+      { protocol: 'https', hostname: 'vinoputec.sk' },
+    ],
   },
 };
 
