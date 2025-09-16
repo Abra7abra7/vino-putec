@@ -49,7 +49,7 @@ export default function AccommodationPreview() {
                           ) : (
                 slides.map((src, index) => (
                   <div key={src} className={`absolute inset-0 transition-opacity duration-700 ${index === current ? 'opacity-100' : 'opacity-0'}`}>
-                    <Image src={src} alt="Ubytovanie" fill className="object-cover" sizes="(max-width: 1024px) 100vw, 50vw" priority={index === current} />
+                    <Image src={src} alt={`Ubytovanie – snímka ${index + 1}`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
                   </div>
                 ))
               )}

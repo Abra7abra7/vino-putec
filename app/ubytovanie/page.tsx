@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Hero from "../components/Hero";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+const PrevioBookingClient = dynamic(() => import("../components/PrevioBookingClient"), { ssr: false });
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -299,25 +301,7 @@ export default function AccommodationPage() {
             </div>
             
             <div className="bg-background rounded-lg shadow-lg p-8">
-              {/* Reservation PLUS iframe */}
-              <div className="reservation-container">
-                <script 
-                  type="text/javascript" 
-                  src="https://booking.previo.app/iframe/"
-                  async
-                ></script>
-                <iframe 
-                  src="https://booking.previo.app/?hotId=782975" 
-                  scrolling="no" 
-                  frameBorder="0" 
-                  width="100%" 
-                  height="800" 
-                  name="previo-booking-iframe" 
-                  id="previo-booking-iframe" 
-                  allowTransparency={true}
-                  className="w-full border-0 rounded-lg"
-                ></iframe>
-              </div>
+              <PrevioBookingClient />
             </div>
           </div>
         </div>
