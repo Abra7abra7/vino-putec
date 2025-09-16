@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Hero from "../components/Hero";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-const PrevioBookingClient = dynamic(() => import("../components/PrevioBookingClient"), { ssr: false });
+import PrevioBookingClient from "../components/PrevioBookingClient";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
