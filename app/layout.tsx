@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import CookiesBanner from "./components/CookiesBanner";
 import { LocalizationProvider } from "./context/LocalizationContext";
+import { ReduxProvider } from "./providers";
 import type { Metadata } from "next";
 
 // Load single font family for whole site (lighter payload)
@@ -38,6 +39,52 @@ export default function RootLayout({
   return (
     <html lang="sk">
       <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Vino Putec",
+              "url": "https://vinoputec.sk",
+              "logo": "https://vinoputec.sk/putec-logo.jpg",
+              "sameAs": [
+                "https://www.facebook.com/vinoputec",
+                "https://www.instagram.com/vinoputec/",
+                "https://www.youtube.com/channel/UC4jSLd6VZSsxC34-lS7fFMw"
+              ],
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Pezinská 154",
+                "addressLocality": "Vinosady",
+                "postalCode": "902 01",
+                "addressCountry": "SK"
+              },
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+421 903465666",
+                "contactType": "customer service",
+                "areaServed": "SK"
+              }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "url": "https://vinoputec.sk",
+              "name": "Vino Putec",
+              "potentialAction": {
+                "@type": "SearchAction",
+                "target": "https://vinoputec.sk/vina?query={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            })
+          }}
+        />
         <style dangerouslySetInnerHTML={{
           __html: `
             body { 
@@ -56,12 +103,14 @@ export default function RootLayout({
           ${inter.variable}
         `}
       >
-        <LocalizationProvider>
-          <Header />
-          {children}
-          <Footer />
-          <CookiesBanner />
-        </LocalizationProvider>
+        <ReduxProvider>
+          <LocalizationProvider>
+            <Header />
+            {children}
+            <Footer />
+            <CookiesBanner />
+          </LocalizationProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

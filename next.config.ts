@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
     formats: ['image/avif', 'image/webp'],
-    domains: ['localhost'],
+    domains: ['localhost', 'vino-putec-web.vercel.app', 'vinoputec.sk'],
   },
 };
 

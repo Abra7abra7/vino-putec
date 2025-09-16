@@ -49,6 +49,7 @@ export default function Testimonials() {
                 height={80}
                 className="rounded-full mb-4 border-4 border-accent"
                 priority={false}
+                sizes="(max-width: 768px) 80px, 80px"
               />
 
               {/* Name */}
