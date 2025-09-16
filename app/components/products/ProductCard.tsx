@@ -37,7 +37,8 @@ export default function ProductCard({ product }: ProductCardProps) {
             src={product.FeatureImageURL}
             alt={product.Title}
             width={400}
-            height={0}
+            height={600}
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="w-full h-auto object-contain rounded-t-lg"
           />
         </div>

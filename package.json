@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "images:optimize": "node scripts/optimize-images.cjs",
+    "images:dry": "cross-env DRY_RUN=1 node scripts/optimize-images.cjs"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.8.2",
@@ -26,6 +28,8 @@
     "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
+    "@types/sharp": "^0.32.0",
+    "cross-env": "^7.0.3",
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^24",
@@ -33,6 +37,8 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
+    "sharp": "^0.33.5",
+    "ts-node": "^10.9.2",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

@@ -71,6 +71,33 @@ Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktor�
   - **Dobierka** – Platba pri dodaní
 - **Hosting**: Vercel alebo akýkoľvek statický hosting
 
+## Optimalizácia obrázkov (výkon a SEO)
+
+- Používame `next/image` s optimalizáciou zapnutou v `next.config.ts` (formáty `AVIF`/`WebP`).
+- Všetky obrázky v `public/` sú zmenšované in‑place skriptom (zachovaná logická štruktúra priečinkov):
+
+Skripty:
+
+```bash
+# náhľad bez zmien (DRY RUN)
+npm run images:dry
+
+# ostrá optimalizácia (prepíše pôvodné súbory menšími a recompressnutými)
+npm run images:optimize
+```
+
+Čo skript robí:
+- obmedzí šírku veľkých fotiek na max 2000 px a recompressne podľa prípony:
+  - JPEG → mozjpeg ~75
+  - PNG → compressionLevel 9 + paleta
+  - WebP/AVIF → primeraná kvalita
+- logo `public/putec-logo.jpg` zmenšuje na 160 px pre malé použitie.
+- DRY RUN: nastav `DRY_RUN=1` (používa `cross-env`) alebo `npm run images:dry`.
+
+Poznámky k komponentom:
+- `Hero` má `sizes="100vw"` a používa `fill`.
+- Karty produktov používajú validné `width/height` + `sizes` pre responzívne načítanie.
+
 ## Nákupný proces – sekvenčný diagram
 
 ```mermaid
