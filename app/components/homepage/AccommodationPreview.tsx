@@ -26,7 +26,9 @@ export default function AccommodationPreview() {
 
   useEffect(() => {
     if (!isLoaded || slides.length === 0) return;
-    const t = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 4000);
+    const isMobile = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) return; // disable autoplay on mobile to reduce CPU/TBT
+    const t = setInterval(() => setCurrent((p) => (p + 1) % slides.length), 5000);
     return () => clearInterval(t);
   }, [slides, isLoaded]);
 
