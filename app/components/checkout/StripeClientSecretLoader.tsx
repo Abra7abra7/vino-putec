@@ -89,6 +89,7 @@ export default function StripeClientSecretLoader() {
     shippingForm,
     billingForm,
     shippingMethod,
+    shippingCost,
     paymentMethodId,
     currency,
     dispatch,

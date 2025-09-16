@@ -72,6 +72,7 @@
     { "label": "Domov", "href": "/" },
     { "label": "Vína", "href": "/vina" },
     { "label": "Degustácie", "href": "/degustacie" },
+    { "label": "Galéria", "href": "/galeria" },
     { "label": "Ubytovanie", "href": "/ubytovanie" },
     { "label": "O nás", "href": "/o-nas" },
     { "label": "Kontakt", "href": "/kontakt" }

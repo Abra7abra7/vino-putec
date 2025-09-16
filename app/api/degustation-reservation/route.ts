@@ -1,8 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 interface ReservationData {
   name: string;
   email: string;
@@ -24,6 +22,21 @@ export async function POST(req: NextRequest) {
     if (!body.name || !body.email || !body.phone || !body.date || !body.time || !body.guests) {
       return NextResponse.json({ error: "Chýbajú povinné údaje" }, { status: 400 });
     }
+
+    // Initialize Resend only when handler is invoked and env exists
+    const RESEND_API_KEY = process.env.RESEND_API_KEY;
+    const RESEND_FROM_EMAIL = process.env.RESEND_FROM_EMAIL;
+    const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+
+    if (!RESEND_API_KEY || !RESEND_FROM_EMAIL || !ADMIN_EMAIL) {
+      console.warn('RESEND env missing – skipping email send');
+      return NextResponse.json({
+        success: true,
+        message: 'Rezervácia prijatá. Emailový servis nie je nakonfigurovaný.'
+      });
+    }
+
+    const resend = new Resend(RESEND_API_KEY);
 
     // Send admin email
     const adminEmailText = `
@@ -47,12 +60,12 @@ ${body.message ? `Poznámky: ${body.message}` : ''}
 Rezervácia vytvorená: ${new Date().toLocaleString('sk-SK')}
     `;
 
-    console.log("📧 Sending admin email to:", process.env.ADMIN_EMAIL);
-    console.log("📧 From email:", process.env.RESEND_FROM_EMAIL);
+    console.log("📧 Sending admin email to:", ADMIN_EMAIL);
+    console.log("📧 From email:", RESEND_FROM_EMAIL);
     
     const adminResult = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
-      to: process.env.ADMIN_EMAIL!,
+      from: RESEND_FROM_EMAIL,
+      to: ADMIN_EMAIL,
       subject: `🍷 Nová rezervácia degustácie od ${body.name}`,
       text: adminEmailText,
     });
@@ -89,7 +102,7 @@ Tím Vino Pútec
     console.log("📧 Sending customer email to:", body.email);
     
     const customerResult = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL!,
+      from: RESEND_FROM_EMAIL,
       to: body.email,
       subject: '🍷 Potvrdenie rezervácie degustácie - Vino Pútec',
       text: customerEmailText,
