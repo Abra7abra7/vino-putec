@@ -14,10 +14,7 @@
 ### Novinky (SEO, výkon, obsah)
 - Výkon: optimalizované obrázky (`npm run images:optimize`), LCP/CLS fix (hero cez `next/image` s `priority`, `sizes`), lazy-load pod‑fold sekcií, `prefers-reduced-motion`.
 - SEO: JSON‑LD pre `Organization`, `Winery (LocalBusiness)`, `WebSite`, `BreadcrumbList`, `ItemList`, `Product` (detail vína/degustácie) + canonical/OG.
-- Landing stránky:
-  - `degustacie/pezinok` – Degustácie Pezinok & Vinosady
-  - `ubytovanie/vinosady` – Ubytovanie Vinosady
-- Interné prelinkovanie: odkazy na landingy v menu, footeri, homepage a `o-nas`.
+- Interné prelinkovanie: posilnené odkazy na hlavné stránky `Degustácie` a `Ubytovanie` v menu, footeri, homepage a `o-nas`.
 - UI dôveryhodnosť: rating badge (5.0/31) v hero a na kartách/detailoch.
 
 ### Strom adresárov (výber)
@@ -30,8 +27,8 @@
     - `stripe/create-payment-intent` – vytvorenie PI + prenesenie metadát
     - `stripe/webhook` – vystavenie a odoslanie faktúry (finalize → send → paid)
     - `checkout/placeorder` – odoslanie e-mailov cez Resend
-  - `degustacie/pezinok` – landing pre lokálne dopyty
-  - `ubytovanie/vinosady` – landing pre ubytovanie
+  - `degustacie/` – hlavná stránka degustácií
+  - `ubytovanie/` – hlavná stránka ubytovania
 - `configs/` – konfigurácie (wines.json, checkout.json, locale…)
 - `public/` – obrázky (`/vina`, galérie, logá…)
 - `store/` – Redux store, slices
@@ -164,7 +161,7 @@ sequenceDiagram
 
 ## Stripe integrácia a fakturácia
 
-- **Produkčná Webhook URL**: `https://vino-putec.vercel.app/api/stripe/webhook`
+- **Produkčná Webhook URL**: `https://vino-putec-web.vercel.app/api/stripe/webhook`
 - **Primárny event**: `payment_intent.succeeded` (ostatné len na debug počas testov)
 - **Lokalizácia**: nastavujeme `customer.preferred_locales: ['sk', 'sk-SK']`
 - **Poradie fakturácie**:
@@ -201,7 +198,7 @@ V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send 
 
 ### Produkčný checklist
 - [ ] `STRIPE_SECRET_KEY` v `.env`
-- [ ] `STRIPE_WEBHOOK_SECRET` pre `https://vino-putec.vercel.app/api/stripe/webhook`
+- [ ] `STRIPE_WEBHOOK_SECRET` pre `https://vino-putec-web.vercel.app/api/stripe/webhook`
 - [ ] Stripe Dashboard → Email settings → povolené odosielanie faktúr (prod)
 - [ ] Webhook events: len `payment_intent.succeeded` (ostatné vypnuté)
 - [ ] Over test: kartová platba → v Stripe „Invoice: paid“, zákazník dostane e‑mail
@@ -251,8 +248,8 @@ Poznámky:
 
 ### Klonovanie repozitára
 ```sh
-git clone https://github.com/Abra7abra7/vino-putec.git
-cd vino-putec
+git clone https://github.com/Abra7abra7/vino-putec-web.git
+cd vino-putec-web
 ```
 
 ### Inštalácia závislostí
