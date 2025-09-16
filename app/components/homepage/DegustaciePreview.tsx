@@ -113,10 +113,10 @@ export default function DegustaciePreview() {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
-                href="/degustacie/pezinok"
+                href="/degustacie"
                 className="bg-accent hover:bg-accent-dark text-foreground px-6 py-3 rounded-lg font-semibold transition-colors text-center"
               >
-                Degustácie Pezinok
+                Rezervovať degustáciu
               </Link>
               <Link
                 href="/degustacie"

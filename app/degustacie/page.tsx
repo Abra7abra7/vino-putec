@@ -242,6 +242,27 @@ export default function DegustaciePage() {
       <div id="baliky">
         <DegustationProducts />
       </div>
+
+      {/* FAQ */}
+      <section className="py-12 bg-background">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl font-bold text-foreground mb-6">Často kladené otázky (FAQ)</h2>
+          <div className="space-y-4">
+            <details className="bg-background border border-gray-200 rounded-lg p-4">
+              <summary className="font-semibold text-foreground">Koľko ľudí môžeme priniesť?</summary>
+              <p className="text-foreground-muted mt-2">Od 2 do približne 17 osôb podľa balíka a priestorov.</p>
+            </details>
+            <details className="bg-background border border-gray-200 rounded-lg p-4">
+              <summary className="font-semibold text-foreground">Je možné zabezpečiť občerstvenie?</summary>
+              <p className="text-foreground-muted mt-2">Áno, zabezpečíme studenú misu či catering podľa dohody.</p>
+            </details>
+            <details className="bg-background border border-gray-200 rounded-lg p-4">
+              <summary className="font-semibold text-foreground">Kde sa nachádzame?</summary>
+              <p className="text-foreground-muted mt-2">Pezinská 154, 902 01 Vinosady – pár minút od Pezinku.</p>
+            </details>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
