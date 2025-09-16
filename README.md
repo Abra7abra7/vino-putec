@@ -87,7 +87,7 @@ npm run images:optimize
 ```
 
 Čo skript robí:
-- obmedzí šírku veľkých fotiek na max 2000 px a recompressne podľa prípony:
+- obmedzí šírku veľkých fotiek na max 1600 px a recompressne podľa prípony:
   - JPEG → mozjpeg ~75
   - PNG → compressionLevel 9 + paleta
   - WebP/AVIF → primeraná kvalita
@@ -97,6 +97,9 @@ npm run images:optimize
 Poznámky k komponentom:
 - `Hero` má `sizes="100vw"` a používa `fill`.
 - Karty produktov používajú validné `width/height` + `sizes` pre responzívne načítanie.
+
+Build hook:
+- pred `next build` sa automaticky spustí `prebuild` (optimalizácia obrázkov), aby sa do buildu dostali už optimalizované assety.
 
 ## Nákupný proces – sekvenčný diagram
 

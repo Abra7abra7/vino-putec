@@ -18,7 +18,7 @@ const INCLUDE_DIRS = [
   'vina',
 ];
 
-const MAX_WIDTH = 2000; // cap long edge for large photos
+const MAX_WIDTH = 1600; // stricter cap for faster delivery
 const JPEG_QUALITY = 75; // mozjpeg
 const WEBP_QUALITY = 70;
 const AVIF_QUALITY = 60;
