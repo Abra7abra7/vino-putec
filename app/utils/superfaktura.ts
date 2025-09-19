@@ -125,7 +125,7 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
 
   // Odoslanie požiadavky na SuperFaktúra API
   try {
-    const response = await axios.post('https://sandbox.superfaktura.sk/invoices/create', invoicePayload, {
+    const response = await axios.post('https://moja.superfaktura.sk/invoices/create', invoicePayload, {
       headers: {
         'Authorization': `SFAPI email=${process.env.SUPERFAKTURA_EMAIL}&apikey=${process.env.SUPERFAKTURA_API_KEY}`,
         'Content-Type': 'application/json',
