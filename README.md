@@ -9,6 +9,7 @@
 - Úložisko produktov: JSON súbory v `configs/` (bez databázy)
 - Platby: Stripe Payment Element + Webhook (fakturácia)
 - Emaily: Resend (potvrdenia objednávok)
+- Fakturácia: SuperFaktúra (právne platné faktúry)
 - Hosting: Vercel (Node runtime pre webhook)
 
 ### Novinky (SEO, výkon, obsah)
@@ -67,6 +68,7 @@ Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktor�
 - **Newsletter integrácia** – Prihlásenie na newsletter
 - **Kontaktný formulár s Google reCAPTCHA v3** – Ochrana pred spamom
 - **Spracovanie objednávok cez email** – Používa Resend na odosielanie notifikácií
+- **Automatická fakturácia** – SuperFaktúra pre právne platné faktúry
 - **SEO optimalizovaný** – Rýchle, indexovateľné stránky produktov
 - **Nasadenie kdekoľvek** – Funguje na Vercel alebo akomkoľvek statickom hostingu
 
@@ -77,6 +79,7 @@ Putec s.r.o. je rodinná vinárňa s dlhoročnou tradíciou vo Vinosadoch, ktor�
 - **Platby**:
   - **Stripe Payment Element** – Vložené platby kartou
   - **Dobierka** – Platba pri dodaní
+  - **SuperFaktúra** – Automatické generovanie právne platných faktúr
 - **Hosting**: Vercel alebo akýkoľvek statický hosting
 
 ## Optimalizácia obrázkov (výkon a SEO)
@@ -204,6 +207,26 @@ V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send 
 - [ ] Over test: kartová platba → v Stripe „Invoice: paid“, zákazník dostane e‑mail
 
 ### Poznámka k e‑mailom (test vs. produkcia)
+
+## SuperFaktúra integrácia (nové 2025-01)
+
+- **Automatická fakturácia**: Po úspešnej Stripe platbe sa vytvorí právne platná faktúra v SuperFaktúre
+- **Hybrid prístup**: Stripe faktúra + SuperFaktúra faktúra fungujú paralelne
+- **Environment premenné**: `SUPERFAKTURA_EMAIL`, `SUPERFAKTURA_API_KEY`
+- **Podporované meny**: EUR, CZK
+- **DPH sadzba**: 20% (nastaviteľné v `app/utils/superfaktura.ts`)
+- **Error handling**: Ak SuperFaktúra zlyhá, Stripe faktúra zostane
+
+### SuperFaktúra flow:
+1. Stripe webhook prijme `payment_intent.succeeded`
+2. Vytvorí sa Stripe faktúra (existujúci flow)
+3. Vytvorí sa SuperFaktúra faktúra (nový flow)
+4. Zákazník dostane oba typy faktúr
+
+### Dokumentácia:
+- Podrobný návod: `docs/SUPERFAKTURA_INTEGRATION.md`
+- Testovanie: Lokálne cez Stripe CLI alebo produkčne na Vercel
+
 ## API prehľad
 
 - `GET /api/wines` – načítanie produktov z `configs/wines.json`
@@ -223,6 +246,8 @@ V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send 
   - `STRIPE_SECRET_KEY` – test/live podľa režimu
   - `STRIPE_WEBHOOK_SECRET` – podľa Stripe endpointu (test/live)
   - `RESEND_API_KEY` – pre odosielanie potvrdení
+  - `SUPERFAKTURA_EMAIL` – e-mail pre SuperFaktúra API
+  - `SUPERFAKTURA_API_KEY` – API kľúč pre SuperFaktúra
 
 ## Nasadenie (Vercel)
 

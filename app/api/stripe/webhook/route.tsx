@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { createSuperFakturaInvoice } from "../../../utils/superfaktura";
 
 export const config = {
   api: {
@@ -286,7 +287,16 @@ export async function POST(req: Request) {
         console.warn("⚠️ Unable to retrieve charge for email:", e);
       }
 
+      // 1. Vytvor Stripe faktúru (existujúci kód)
       await createAndSendInvoiceFromPI(paymentIntent, chargeEmail);
+      
+      // 2. Vytvor SuperFaktúru faktúru (nový kód)
+      try {
+        await createSuperFakturaInvoice(paymentIntent);
+      } catch (error) {
+        console.error("❌ SuperFaktura invoice creation failed:", error);
+        // Pokračujeme aj keď SuperFaktúra zlyhá - Stripe faktúra už je vytvorená
+      }
       break;
 
     case "payment_intent.payment_failed":
