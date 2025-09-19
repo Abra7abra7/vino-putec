@@ -31,6 +31,10 @@ export default function StripeClientSecretLoader() {
 
   useEffect(() => {
     const loadSecret = async () => {
+      console.log('🔍 StripeClientSecretLoader - orderId:', orderId);
+      console.log('🔍 StripeClientSecretLoader - cartItems.length:', cartItems.length);
+      console.log('🔍 StripeClientSecretLoader - shippingMethod:', shippingMethod);
+      
       if (!orderId || cartItems.length === 0 || !shippingMethod) return;
 
       const res = await fetch("/api/stripe/create-payment-intent", {

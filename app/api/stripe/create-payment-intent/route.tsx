@@ -44,6 +44,9 @@ export async function POST(req: Request) {
   }
 
   try {
+    const body = await req.json();
+    console.log('🔍 create-payment-intent - received body:', body);
+    
     const {
       amount,
       currency,
@@ -55,7 +58,9 @@ export async function POST(req: Request) {
       customerName,
       shippingForm,
       billingForm,
-    }: StripeIntentBody = await req.json();
+    }: StripeIntentBody = body;
+    
+    console.log('🔍 create-payment-intent - orderId:', orderId);
 
     const localization = getLocalization();
     const siteName = localization.siteName || "Vino Putec";
