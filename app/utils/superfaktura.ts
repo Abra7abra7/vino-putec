@@ -67,6 +67,28 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
     phone: metadata.billing_phone || undefined,
   };
 
+  // Debug log pre kontrolu metadát
+  console.log('🔍 SuperFaktura - Billing metadata:', {
+    company_name: metadata.billing_company_name,
+    company_ico: metadata.billing_company_ico,
+    company_dic: metadata.billing_company_dic,
+    company_icdph: metadata.billing_company_icdph,
+    firstName: metadata.billing_firstName,
+    lastName: metadata.billing_lastName,
+    address: metadata.billing_address1,
+    city: metadata.billing_city,
+    country: metadata.billing_country,
+    email: metadata.billing_email,
+  });
+
+  console.log('🔍 SuperFaktura - Shipping metadata:', {
+    shipping_firstName: metadata.shipping_firstName,
+    shipping_lastName: metadata.shipping_lastName,
+    shipping_address1: metadata.shipping_address1,
+    shipping_city: metadata.shipping_city,
+    shipping_country: metadata.shipping_country,
+  });
+
   // Príprava položiek faktúry - OPRAVA: používame price_cents namiesto price
   const invoiceItems: SFInvoiceItem[] = [];
   const indices = new Set<number>();
