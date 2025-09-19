@@ -213,11 +213,12 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, charge
               data: sendResp.data,
             });
           }
-        } catch (emailError: any) {
+        } catch (emailError: unknown) {
+          const err = emailError as { message?: string; response?: { status?: number; data?: unknown } } | undefined;
           console.warn(`⚠️ Failed to send invoice email via SuperFaktura:`, {
-            message: emailError?.message,
-            responseStatus: emailError?.response?.status,
-            responseData: emailError?.response?.data,
+            message: err?.message,
+            responseStatus: err?.response?.status,
+            responseData: err?.response?.data,
           });
         }
       } else {
@@ -228,54 +229,5 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, charge
     }
   } catch (error) {
     console.error(`❌ Failed to create SuperFaktura invoice for order ${metadata.orderId}:`, error);
-  }
-}
-
-// Funkcia na odosielanie emailu s faktúrou zákazníkovi
-async function sendInvoiceEmail(invoice: SFInvoice, customerEmail: string): Promise<void> {
-  try {
-    // Použijeme Resend API pre odosielanie emailu
-    const resendResponse = await axios.post('https://api.resend.com/emails', {
-      from: 'Vino Putec <faktury@vino-putec.sk>',
-      to: [customerEmail],
-      subject: `Faktúra ${invoice.invoice_no_formatted} - Vino Putec`,
-      html: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-          <h2 style="color: #8B4513;">🍷 Vino Putec - Faktúra</h2>
-          
-          <p>Dobrý deň,</p>
-          
-          <p>Ďakujeme za vašu objednávku! Priložená je faktúra č. <strong>${invoice.invoice_no_formatted}</strong>.</p>
-          
-          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="margin-top: 0; color: #8B4513;">Detaily faktúry:</h3>
-            <p><strong>Číslo faktúry:</strong> ${invoice.invoice_no_formatted}</p>
-            <p><strong>Celková suma:</strong> ${invoice.total_amount} ${invoice.invoice_currency}</p>
-            <p><strong>Splatnosť:</strong> ${invoice.due}</p>
-          </div>
-          
-          <p>Faktúru si môžete stiahnuť a vytlačiť z vašeho SuperFaktúra účtu.</p>
-          
-          <p>S pozdravom,<br>
-          <strong>Vino Putec</strong><br>
-          <em>Rodinná vinárstvo</em></p>
-          
-          <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
-          <p style="font-size: 12px; color: #666;">
-            Tento email bol odoslaný automaticky po úspešnej platbe vašej objednávky.
-          </p>
-        </div>
-      `,
-    }, {
-      headers: {
-        'Authorization': `Bearer ${(process.env.RESEND_API_KEY || '').trim()}`,
-        'Content-Type': 'application/json',
-      },
-    });
-
-    console.log(`📧 Invoice email sent successfully to ${customerEmail}. Email ID: ${resendResponse.data.id}`);
-  } catch (error) {
-    console.error(`❌ Failed to send invoice email to ${customerEmail}:`, error);
-    throw error;
   }
 }
