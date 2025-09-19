@@ -179,18 +179,46 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, charge
       // Odoslanie emailu s faktúrou zákazníkovi cez SuperFaktúru
       if (customerEmail && process.env.SUPERFAKTURA_SEND_EMAILS === '1') {
         try {
-          await axios.post(`https://moja.superfaktura.sk/invoices/send`, {
+          const sendPayload = {
             id: response.data.data.Invoice.id,
-            to_client: 1
-          }, {
-            headers: {
-              'Authorization': `SFAPI email=${process.env.SUPERFAKTURA_EMAIL}&apikey=${process.env.SUPERFAKTURA_API_KEY}`,
-              'Content-Type': 'application/json',
-            },
+            to_client: 1,
+            // explicitné odoslanie na e‑mail zo Stripe PI/Charge
+            to_emails: customerEmail,
+          } as Record<string, unknown>;
+
+          console.log('📨 SuperFaktura /invoices/send payload:', sendPayload);
+
+          const sendResp = await axios.post(
+            `https://moja.superfaktura.sk/invoices/send`,
+            sendPayload,
+            {
+              headers: {
+                'Authorization': `SFAPI email=${process.env.SUPERFAKTURA_EMAIL}&apikey=${process.env.SUPERFAKTURA_API_KEY}`,
+                'Content-Type': 'application/json',
+              },
+              validateStatus: () => true,
+            }
+          );
+
+          console.log('📨 SuperFaktura /invoices/send response:', {
+            status: sendResp.status,
+            data: sendResp.data,
           });
-          console.log(`📧 Invoice email sent via SuperFaktura to ${customerEmail}`);
-        } catch (emailError) {
-          console.warn(`⚠️ Failed to send invoice email via SuperFaktura:`, emailError);
+
+          if (sendResp.status >= 200 && sendResp.status < 300 && (sendResp.data?.error === 0 || sendResp.data?.success)) {
+            console.log(`📧 Invoice email sent via SuperFaktura to ${customerEmail}`);
+          } else {
+            console.warn('⚠️ SuperFaktura did not confirm email sending OK:', {
+              status: sendResp.status,
+              data: sendResp.data,
+            });
+          }
+        } catch (emailError: any) {
+          console.warn(`⚠️ Failed to send invoice email via SuperFaktura:`, {
+            message: emailError?.message,
+            responseStatus: emailError?.response?.status,
+            responseData: emailError?.response?.data,
+          });
         }
       } else {
         console.warn(`⚠️ No customer email available or SUPERFAKTURA_SEND_EMAILS not enabled for invoice ${response.data.data.Invoice.id}`);

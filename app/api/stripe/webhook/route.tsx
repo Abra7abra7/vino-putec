@@ -17,14 +17,19 @@ const stripe = process.env.STRIPE_SECRET_KEY
 
 export async function POST(req: Request) {
   console.log("🔔 WEBHOOK CALLED - Stripe event received");
+  console.log("🔍 Webhook - STRIPE_SECRET_KEY exists:", !!process.env.STRIPE_SECRET_KEY);
+  console.log("🔍 Webhook - STRIPE_WEBHOOK_SECRET exists:", !!process.env.STRIPE_WEBHOOK_SECRET);
   
   if (!stripe) {
+    console.error("❌ Stripe not configured - missing STRIPE_SECRET_KEY");
     return new Response("Stripe not configured", { status: 500 });
   }
 
   const sig = req.headers.get("stripe-signature");
+  console.log("🔍 Webhook - Stripe signature exists:", !!sig);
 
   if (!sig) {
+    console.error("❌ Missing Stripe signature");
     return new Response("Missing Stripe signature", { status: 400 });
   }
 
@@ -39,15 +44,20 @@ export async function POST(req: Request) {
   let event: Stripe.Event;
 
   try {
+    console.log("🔍 Webhook - Attempting to construct event...");
     event = stripe.webhooks.constructEvent(
       rawBody,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET!
     );
+    console.log("✅ Webhook - Event constructed successfully, type:", event.type);
   } catch (err) {
     const message = err instanceof Error ? err.message : "Unknown error";
     console.error("❌ Webhook error:", message);
     console.error("🧪 Raw headers: content-type=", req.headers.get('content-type'));
+    console.error("🧪 Raw headers: stripe-signature=", sig);
+    console.error("🧪 Raw body length:", rawBody.length);
+    console.error("🧪 Raw body preview:", rawBody.substring(0, 200));
     return new Response(`Webhook Error: ${message}`, { status: 400 });
   }
 
