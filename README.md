@@ -217,6 +217,14 @@ V logu uvidíš: „➕ Created N invoice_items…“, „📧 Stripe will send 
 - **DPH sadzba**: 20% (nastaviteľné v `app/utils/superfaktura.ts`)
 - **Error handling**: Ak SuperFaktúra zlyhá, Stripe faktúra zostane
 
+### ✅ Overené funkcie (2025-01-19):
+- **Sandbox URL**: `https://sandbox.superfaktura.sk` (funkčné)
+- **API autentifikácia**: Funguje s sandbox kľúčom
+- **Vytvorenie faktúry**: Úspešné (ID: 219491)
+- **Položky faktúry**: Správne spracované (produkty + doprava)
+- **DPH kalkulácia**: 20% DPH správne vypočítané
+- **Číslovanie faktúr**: Automatické (2025001)
+
 ### SuperFaktúra flow:
 1. Stripe webhook prijme `payment_intent.succeeded`
 2. Vytvorí sa Stripe faktúra (existujúci flow)

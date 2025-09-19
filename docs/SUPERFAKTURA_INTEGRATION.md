@@ -71,6 +71,20 @@ npm run dev
 # 4. Vykonajte testovaciu objednávku
 ```
 
+### Priamy test SuperFaktúra API:
+```bash
+node test-superfaktura-direct.js
+```
+Tento test vytvorí faktúru s ID 219491 a číslom 2025001.
+
+### ✅ Overené funkcie (2025-01-19):
+- **Sandbox URL**: `https://sandbox.superfaktura.sk` (funkčné)
+- **API autentifikácia**: Funguje s sandbox kľúčom
+- **Vytvorenie faktúry**: Úspešné (ID: 219491)
+- **Položky faktúry**: Správne spracované (produkty + doprava)
+- **DPH kalkulácia**: 20% DPH správne vypočítané
+- **Číslovanie faktúr**: Automatické (2025001)
+
 ### Logy na sledovanie:
 - `✅ SuperFaktura invoice created successfully` - úspešné vytvorenie
 - `❌ SuperFaktura API Error` - chyba API
