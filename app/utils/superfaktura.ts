@@ -168,16 +168,24 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, charge
     if (response.data.error === 0) {
       console.log(`✅ SuperFaktura invoice created successfully for order ${metadata.orderId}. Invoice ID: ${response.data.data.Invoice.id}`);
       
-      // Odoslanie emailu s faktúrou zákazníkovi
-      if (customerEmail) {
+      // Odoslanie emailu s faktúrou zákazníkovi cez SuperFaktúru
+      if (customerEmail && process.env.SUPERFAKTURA_SEND_EMAILS === '1') {
         try {
-          await sendInvoiceEmail(response.data.data.Invoice, customerEmail);
+          await axios.post(`https://moja.superfaktura.sk/invoices/send`, {
+            id: response.data.data.Invoice.id,
+            to_client: 1
+          }, {
+            headers: {
+              'Authorization': `SFAPI email=${process.env.SUPERFAKTURA_EMAIL}&apikey=${process.env.SUPERFAKTURA_API_KEY}`,
+              'Content-Type': 'application/json',
+            },
+          });
+          console.log(`📧 Invoice email sent via SuperFaktura to ${customerEmail}`);
         } catch (emailError) {
-          console.warn(`⚠️ Failed to send invoice email to ${customerEmail}:`, emailError);
-          // Pokračujeme aj keď email zlyhá
+          console.warn(`⚠️ Failed to send invoice email via SuperFaktura:`, emailError);
         }
       } else {
-        console.warn(`⚠️ No customer email available for invoice ${response.data.data.Invoice.id}`);
+        console.warn(`⚠️ No customer email available or SUPERFAKTURA_SEND_EMAILS not enabled for invoice ${response.data.data.Invoice.id}`);
       }
     } else {
       console.error(`❌ SuperFaktura API Error for order ${metadata.orderId}:`, response.data.error_message);
