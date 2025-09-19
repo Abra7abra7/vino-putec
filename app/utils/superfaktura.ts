@@ -2,6 +2,15 @@
 import axios from 'axios';
 import Stripe from 'stripe';
 
+// Definícia štruktúry pre SuperFaktúra faktúru
+interface SFInvoice {
+  id: string;
+  invoice_no_formatted: string;
+  total_amount: string;
+  invoice_currency: string;
+  due: string;
+}
+
 // Definícia štruktúry pre položku faktúry v SuperFaktúre
 interface SFInvoiceItem {
   name: string;
@@ -47,15 +56,15 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
   // Príprava dát o klientovi z metadát PaymentIntent
   const clientData: SFClientData = {
     name: metadata.billing_company_name || `${metadata.billing_firstName} ${metadata.billing_lastName}`,
-    ico: metadata.billing_company_ico,
-    dic: metadata.billing_company_dic,
-    ic_dph: metadata.billing_company_icdph,
-    address: metadata.billing_address1,
-    city: metadata.billing_city,
-    zip: metadata.billing_postalCode,
+    ico: metadata.billing_company_ico || undefined,
+    dic: metadata.billing_company_dic || undefined,
+    ic_dph: metadata.billing_company_icdph || undefined,
+    address: metadata.billing_address1 || '',
+    city: metadata.billing_city || '',
+    zip: metadata.billing_postalCode || '',
     country_id: getCountryId(metadata.billing_country),
-    email: metadata.billing_email,
-    phone: metadata.billing_phone,
+    email: metadata.billing_email || '',
+    phone: metadata.billing_phone || undefined,
   };
 
   // Príprava položiek faktúry - OPRAVA: používame price_cents namiesto price
@@ -125,10 +134,67 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
 
     if (response.data.error === 0) {
       console.log(`✅ SuperFaktura invoice created successfully for order ${metadata.orderId}. Invoice ID: ${response.data.data.Invoice.id}`);
+      
+      // Odoslanie emailu s faktúrou zákazníkovi
+      try {
+        await sendInvoiceEmail(response.data.data.Invoice, clientData.email);
+      } catch (emailError) {
+        console.warn(`⚠️ Failed to send invoice email:`, emailError);
+        // Pokračujeme aj keď email zlyhá
+      }
     } else {
       console.error(`❌ SuperFaktura API Error for order ${metadata.orderId}:`, response.data.error_message);
     }
   } catch (error) {
     console.error(`❌ Failed to create SuperFaktura invoice for order ${metadata.orderId}:`, error);
+  }
+}
+
+// Funkcia na odosielanie emailu s faktúrou zákazníkovi
+async function sendInvoiceEmail(invoice: SFInvoice, customerEmail: string): Promise<void> {
+  try {
+    // Použijeme Resend API pre odosielanie emailu
+    const resendResponse = await axios.post('https://api.resend.com/emails', {
+      from: 'Vino Putec <faktury@vino-putec.sk>',
+      to: [customerEmail],
+      subject: `Faktúra ${invoice.invoice_no_formatted} - Vino Putec`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+          <h2 style="color: #8B4513;">🍷 Vino Putec - Faktúra</h2>
+          
+          <p>Dobrý deň,</p>
+          
+          <p>Ďakujeme za vašu objednávku! Priložená je faktúra č. <strong>${invoice.invoice_no_formatted}</strong>.</p>
+          
+          <div style="background-color: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="margin-top: 0; color: #8B4513;">Detaily faktúry:</h3>
+            <p><strong>Číslo faktúry:</strong> ${invoice.invoice_no_formatted}</p>
+            <p><strong>Celková suma:</strong> ${invoice.total_amount} ${invoice.invoice_currency}</p>
+            <p><strong>Splatnosť:</strong> ${invoice.due}</p>
+          </div>
+          
+          <p>Faktúru si môžete stiahnuť a vytlačiť z vašeho SuperFaktúra účtu.</p>
+          
+          <p>S pozdravom,<br>
+          <strong>Vino Putec</strong><br>
+          <em>Rodinná vinárstvo</em></p>
+          
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #ddd;">
+          <p style="font-size: 12px; color: #666;">
+            Tento email bol odoslaný automaticky po úspešnej platbe vašej objednávky.
+          </p>
+        </div>
+      `,
+    }, {
+      headers: {
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log(`📧 Invoice email sent successfully to ${customerEmail}. Email ID: ${resendResponse.data.id}`);
+  } catch (error) {
+    console.error(`❌ Failed to send invoice email to ${customerEmail}:`, error);
+    throw error;
   }
 }
