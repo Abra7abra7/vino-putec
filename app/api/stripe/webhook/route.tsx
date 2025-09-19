@@ -276,8 +276,17 @@ export async function POST(req: Request) {
   // Handle different event types
   switch (event.type) {
     case "payment_intent.succeeded":
-      const paymentIntent = event.data.object as Stripe.PaymentIntent;
-      console.log("📋 Order ID:", paymentIntent.metadata?.orderId);
+      let paymentIntent = event.data.object as Stripe.PaymentIntent;
+      console.log("📋 Order ID from event:", paymentIntent.metadata?.orderId);
+      
+      // Načítaj plný PaymentIntent pre kompletné metadáta
+      try {
+        paymentIntent = await (stripe as Stripe).paymentIntents.retrieve(paymentIntent.id);
+        console.log("📋 Order ID after retrieve:", paymentIntent.metadata?.orderId);
+      } catch (e) {
+        console.warn("⚠️ Failed to retrieve full PaymentIntent:", e);
+      }
+      
       let chargeEmail: string | null | undefined = undefined;
       try {
         if (paymentIntent.latest_charge && typeof paymentIntent.latest_charge === "string") {

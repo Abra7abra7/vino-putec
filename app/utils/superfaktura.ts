@@ -37,6 +37,11 @@ interface SFClientData {
 
 // Hlavná funkcia na vytvorenie faktúry
 export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, chargeEmail?: string | null) {
+  console.log('🔍 SuperFaktura - Checking credentials...');
+  console.log('🔍 SUPERFAKTURA_EMAIL exists:', !!process.env.SUPERFAKTURA_EMAIL);
+  console.log('🔍 SUPERFAKTURA_API_KEY exists:', !!process.env.SUPERFAKTURA_API_KEY);
+  console.log('🔍 SUPERFAKTURA_SEND_EMAILS:', process.env.SUPERFAKTURA_SEND_EMAILS);
+  
   if (!process.env.SUPERFAKTURA_EMAIL || !process.env.SUPERFAKTURA_API_KEY) {
     console.warn("SuperFaktura credentials are not set. Skipping invoice creation.");
     return;
