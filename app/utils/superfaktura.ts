@@ -43,6 +43,9 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, charge
   }
 
   const metadata = pi.metadata as Record<string, string>;
+  
+  console.log('🔍 SuperFaktura - PaymentIntent metadata:', metadata);
+  console.log('🔍 SuperFaktura - Order ID from metadata:', metadata.orderId);
 
   // Mapovanie krajiny na ID podľa SuperFaktúry
   const getCountryId = (countryCode: string) => {
