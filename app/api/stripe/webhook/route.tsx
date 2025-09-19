@@ -292,7 +292,7 @@ export async function POST(req: Request) {
       
       // 2. Vytvor SuperFaktúru faktúru (nový kód)
       try {
-        await createSuperFakturaInvoice(paymentIntent);
+        await createSuperFakturaInvoice(paymentIntent, chargeEmail);
       } catch (error) {
         console.error("❌ SuperFaktura invoice creation failed:", error);
         // Pokračujeme aj keď SuperFaktúra zlyhá - Stripe faktúra už je vytvorená

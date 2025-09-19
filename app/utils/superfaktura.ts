@@ -36,7 +36,7 @@ interface SFClientData {
 }
 
 // Hlavná funkcia na vytvorenie faktúry
-export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
+export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent, chargeEmail?: string | null) {
   if (!process.env.SUPERFAKTURA_EMAIL || !process.env.SUPERFAKTURA_API_KEY) {
     console.warn("SuperFaktura credentials are not set. Skipping invoice creation.");
     return;
@@ -53,6 +53,9 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
     }
   };
 
+  // Získanie emailu - priorita: chargeEmail > pi.receipt_email > metadata.billing_email
+  const customerEmail = chargeEmail || pi.receipt_email || metadata.billing_email || '';
+  
   // Príprava dát o klientovi z metadát PaymentIntent
   const clientData: SFClientData = {
     name: metadata.billing_company_name || `${metadata.billing_firstName} ${metadata.billing_lastName}`,
@@ -63,10 +66,18 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
     city: metadata.billing_city || '',
     zip: metadata.billing_postalCode || '',
     country_id: getCountryId(metadata.billing_country),
-    email: metadata.billing_email || '',
+    email: customerEmail,
     phone: metadata.billing_phone || undefined,
   };
 
+  // Debug log pre kontrolu emailov
+  console.log('🔍 SuperFaktura - Email sources:', {
+    chargeEmail,
+    receipt_email: pi.receipt_email,
+    billing_email: metadata.billing_email,
+    final_customerEmail: customerEmail,
+  });
+  
   // Debug log pre kontrolu metadát
   console.log('🔍 SuperFaktura - Billing metadata:', {
     company_name: metadata.billing_company_name,
@@ -158,11 +169,15 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
       console.log(`✅ SuperFaktura invoice created successfully for order ${metadata.orderId}. Invoice ID: ${response.data.data.Invoice.id}`);
       
       // Odoslanie emailu s faktúrou zákazníkovi
-      try {
-        await sendInvoiceEmail(response.data.data.Invoice, clientData.email);
-      } catch (emailError) {
-        console.warn(`⚠️ Failed to send invoice email:`, emailError);
-        // Pokračujeme aj keď email zlyhá
+      if (customerEmail) {
+        try {
+          await sendInvoiceEmail(response.data.data.Invoice, customerEmail);
+        } catch (emailError) {
+          console.warn(`⚠️ Failed to send invoice email to ${customerEmail}:`, emailError);
+          // Pokračujeme aj keď email zlyhá
+        }
+      } else {
+        console.warn(`⚠️ No customer email available for invoice ${response.data.data.Invoice.id}`);
       }
     } else {
       console.error(`❌ SuperFaktura API Error for order ${metadata.orderId}:`, response.data.error_message);
