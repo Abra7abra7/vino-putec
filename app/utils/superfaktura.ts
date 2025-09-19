@@ -47,9 +47,9 @@ export async function createSuperFakturaInvoice(pi: Stripe.PaymentIntent) {
   // Mapovanie krajiny na ID podľa SuperFaktúry
   const getCountryId = (countryCode: string) => {
     switch (countryCode) {
-      case 'SK': return 189;
+      case 'SK': return 191;
       case 'CZ': return 58;
-      default: return 189; // Default na Slovensko
+      default: return 191; // Default na Slovensko
     }
   };
 
@@ -209,7 +209,7 @@ async function sendInvoiceEmail(invoice: SFInvoice, customerEmail: string): Prom
       `,
     }, {
       headers: {
-        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Authorization': `Bearer ${(process.env.RESEND_API_KEY || '').trim()}`,
         'Content-Type': 'application/json',
       },
     });
